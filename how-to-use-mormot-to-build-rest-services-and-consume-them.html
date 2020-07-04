@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="mORMot,Rest,Delphi,">
+        <meta name="description" content="How to Use mORMot to Build Rest Services and Consume Them">
+        <meta name="author" content="">
+        <title>How to Use mORMot to Build Rest Services and Consume Them</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">How to Use mORMot to Build Rest Services and Consume Them</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1532583335"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/mORMot/index.html">mORMot</a><a class="tag" href="/tag/Rest/index.html">Rest</a><a class="tag" href="/tag/Delphi/index.html">Delphi</a></span>
+                </section>
+                <article class="content"><h1>如何使用mORMot构建Rest服务并使用</h1>
+
+<h2>服务端</h2>
+
+<pre><code class="language-pascal">var
+  FModel: TSQLModel;
+  FDB: TSQLRestServer;
+  FServer: TSQLHttpServer;
+
+    //Create Server
+    FModel := TSQLModel.Create([], 'api');
+    FDB := TSQLRestServerFullMemory.Create(FModel, 'test.json', false, false);
+    //reg services
+    FDB.ServiceRegister(TTestService, [TypeInfo(ITestService)], sicShared);
+
+    //setting and start it
+    FServer := TSQLHttpServer.Create(httpPort, [FDB], '+',
+    useHttpApiRegisteringURI);
+    FServer.AccessControlAllowOrigin := '*'; // allow cross-site AJAX queries
+
+</code></pre>
+
+<h3>接口和DTO单元</h3>
+
+<pre><code class="language-pascal">type
+  TTest = record
+    A, B: string;
+  end;
+
+  TTest1 = class(TPersistent)
+  private
+    fB: string;
+    fA: string;
+  published
+    property A: string read fA write fA;
+    property B: string read fB write fB;
+  end;
+
+  ITestService = interface(IInvokable)
+    ['{85B34854-522A-4218-A66C-4E2C274BD318}']
+    function TestMethod(const D: TTest): TServiceCustomAnswer;
+    procedure Fuck(const D: TTest; out r: TTest1);
+  end;
+
+//初始化的时候注册一下
+initialization
+  TInterfaceFactory.RegisterInterfaces([TypeInfo(IClockService)]);
+</code></pre>
+
+<h3>服务类</h3>
+
+<pre><code class="language-pascal">  TTestService = class(TInterfacedObject, ITestService)
+  public
+  published
+    function TestMethod(const D: TTest): TServiceCustomAnswer;
+    procedure Fuck(const D: TTest; out r: TTest1);
+  end;
+
+implementation
+
+function TTestService.TestMethod(const D: TTest): TServiceCustomAnswer;
+begin
+  Result.Status := 200;
+
+  Result.Content := '{&quot;A&quot;:&quot;sdsdsd&quot;,&quot;B&quot;:&quot;sdsfdgfsweeed&quot;}';
+end;
+
+procedure TTestService.Fuck(const D: TTest; out r: TTest1);
+begin
+
+  r.A := 'Hellsinsidn';
+  r.B := 'sdwfgfgf';
+end;
+
+{ TTest1 }
+
+end.
+
+</code></pre>
+
+<p>正常实现接口方法并编写逻辑处理代码即可, 返回值为 <code>TServiceCustomAnswer</code> 的话就可以返回自定义的JSON内容给客户端</p>
+
+<h2>客户端</h2>
+
+<pre><code class="language-pascal">//定义几个常量
+const
+  ROOM_NAME = 'api';
+  SERVICE_503 = 'HTTP服务不可用';
+type
+  // 配置一下服务器
+  TServiceConfig = record
+    Host:string;
+    Port:string;
+    /// &lt;summary&gt;
+    ///   载入配置
+    /// &lt;/summary&gt;
+    procedure LoadConf;
+  end;  
+//小小地封装一下, 方便调用
+TSOAClient = class(TPersistentWithCustomCreate)
+  private
+    Client: TSQLHttpClient;
+    Model: TSQLModel;
+    Config: TServiceConfig;
+    /// &lt;summary&gt;
+    ///   注册服务接口
+    /// &lt;/summary&gt;
+    procedure RegServices;
+  public
+    /// &lt;summary&gt;
+    ///   创建SOA客户端实例
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;pvConfig&quot;&gt;
+    ///   配置
+    /// &lt;/param&gt;
+    constructor Create(pvConfig: TServiceConfig);
+    destructor Destory; overload;
+
+    /// &lt;summary&gt;
+    ///   取得接口实例
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;I&quot;&gt;
+    ///   接口
+    /// &lt;/param&gt;
+    /// &lt;param name=&quot;obj&quot;&gt;
+    ///   返回接口实例
+    /// &lt;/param&gt;
+    /// &lt;returns&gt;
+    ///   是否成功
+    /// &lt;/returns&gt;
+    function Get(I: TGUID; out obj): Boolean;
+  end;
+
+implementation
+
+function TSOAClient.Get(I: TGUID; out obj): Boolean;
+begin
+  Result := Client.Services.Resolve(I, obj);
+end;
+
+destructor TSOAClient.Destory;
+begin
+  FreeAndNil(Client);
+  FreeAndNil(Model);
+end;
+
+procedure TSOAClient.RegServices;
+begin
+  //  Client.ServiceRegister([TypeInfo(ITestService)],sicShared);
+  Client.ServiceDefine([ITestService
+  //新接口注册在这里
+
+
+  ], sicShared);
+end;
+
+constructor TSOAClient.Create(pvConfig: TServiceConfig);
+begin
+  Config := pvConfig;
+  Model := TSQLModel.Create([], ROOM_NAME);
+  Client := TSQLHttpClient.Create(Config.Host, Config.Port, Model);
+  RegServices;
+end;  
+
+
+</code></pre>
+
+<h3>调用</h3>
+
+<pre><code class="language-pascal">var
+  c:TSOAClient;
+  conf:TServiceConfig;
+  I:ITestService;
+begin
+  Result := False;
+  conf.LoadConf;
+
+  try
+    c := TSOAClient.Create(conf); //创建连接客户端 连接到HTTP服务
+  except
+    on E: Exception do
+    begin
+      // SERVICE_503
+      Exit;
+    end;
+  end;
+  try
+    if c.Get(ITestService,I) then
+    begin
+      //这里进行随意的调用即可
+      //I.Fuck
+    end;
+
+  finally
+    FreeAndNil(c);
+  end;
+end;
+</code></pre>
+
+<p>如果返回 TServiceCustomAnswer, 那就用正常的HTTP组件去调用, 然后自行处理返回的body即可</p>
+
+<p>小结: 这种模式我觉得很适合把Delphi的DataSnap改造成这种形式,
+一方面可以享受到http.sys的高效, 另一方面这种基于接口的编程方式, 可以完全脱离代理类的那套流程</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/firedac-ds-connection-pool.html">FireDAC DataSnap Connection Pool</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/use-webhook-to-deploy-hugo.html">Use webhook to deploy Hugo</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

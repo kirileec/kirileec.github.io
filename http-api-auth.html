@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="Http Api Auth">
+        <meta name="author" content="">
+        <title>Http Api Auth</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Http Api Auth</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1568021326"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><p>内部使用的api鉴权方式</p>
+
+<h2>API Key + API Secret</h2>
+
+<p>由于是内部使用, 无需考虑存储成本</p>
+
+<p>基本流程如下</p>
+
+<ol>
+<li>服务端以各种形式颁发 API Key 和 API Secret 给客户端</li>
+<li>客户端发起请求时, 将 Query Param 以字母顺序进行排序, 生成类似 <code>a=1&amp;b=2&amp;c=3&amp;api_key=xxxx</code> 这样的字符串</li>
+<li>在上面这个字符串后拼接上 API Secret 然后hash生成sign</li>
+<li>sign拼接到最终的请求地址中, 即 <code>a=1&amp;b=2&amp;c=3&amp;api_key=xxxx&amp;sign=xxxxxx</code></li>
+<li>服务端以相同的方式进行hash算出sign值和url中的进行比对即可确定该次请求是否合法</li>
+</ol>
+
+<p>好了, 上面这样就可以确保请求的<strong>参数不被修改</strong>, 因为如果被修改, 签名sign就会不同. 同时因为 API Secret 并没有在传输过程中被中间人知道,
+因此, 通过猜测去进行算sign也是行不通的</p>
+
+<p>完成上面这样之后, 需要阻止重放攻击, 假设当前的请求url <code>https://example.com/api?a=1&amp;b=2&amp;c=3&amp;api_key=xxxx&amp;sign=xxxxxx</code> 被拦截了,
+那么攻击者只要原封不动把这个请求再进行一次即可持续不断地向服务器发起请求</p>
+
+<p>于是, 增加 timestamp 和 nonce, 一个是请求发起时的 Unix 时间戳, 另一个是随机数.</p>
+
+<p>服务端拿到timestamp之后, 校验一下, 只允许最近一分钟的请求通过, 或者更短的间隔, 就保证了一个timestamp只有在当次的请求有效.</p>
+
+<p>而服务端对于nonce的处理则是, 在第一次请求完成后, 将之存到redis, 并且为60s后过期, 这样每个nonce也只能使用一次.</p>
+
+<p>除非攻击者获得了 API Key API Secret  以及你使用的加密方式才可以发动攻击.</p>
+
+<p>当然, 服务端需要作一些ban ip之类的策略, 防止恶意的请求消耗资源</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/golang-new-struct.html">Golang Create Struct</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/deploy-your-own-goproxy-with-access-to-private-server.html">Deploy Your Own Goproxy With Access to Private Server</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="Centos6 Supervisor">
+        <meta name="author" content="">
+        <title>Centos6 Supervisor</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Centos6 Supervisor</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1563440620"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><p>Centos6 Supervisor</p>
+
+<p>centos6 不能使用systemd进行守护，使用supervisor</p>
+
+<h1>首先需要升级python到2.7版本</h1>
+
+<blockquote>
+<p>参考 <a href="https://www.cnblogs.com/gjc592/p/9223005.html">https://www.cnblogs.com/gjc592/p/9223005.html</a></p>
+</blockquote>
+
+<h2>安装2.7 python</h2>
+
+<pre><code class="language-bash">yum install gcc -y
+wget https://www.python.org/ftp/python/2.7.16/Python-2.7.16.tgz
+tar -zxvf  Python-2.7.16.tgz
+cd Python-2.7.16
+./configure --prefix=/usr/local/python2.7
+make &amp;&amp; make install
+</code></pre>
+
+<h2>检测下</h2>
+
+<pre><code class="language-bash">cd /usr/local/python2.7/bin
+ll
+whereis python
+</code></pre>
+
+<h2>创建新的文件链接</h2>
+
+<pre><code class="language-bash">cd /usr/bin
+ll *python*
+unlink python
+unlink python2
+ll *python*
+cp /usr/local/python2.7/bin/python2.7 /usr/bin/python2.7  #注意路径
+ln -s /usr/bin/python2.7  python　　　　　　
+ln -s python  python2
+ll *python*   
+python               #可以看到提示的Python2.7.15,证明安装成功，但是还没有彻底结束
+</code></pre>
+
+<h2>修改yum启动路径</h2>
+
+<pre><code class="language-bash">vim /usr/bin/yum　#将头部#!/usr/bin/python 修改为 #!/usr/bin/python2.6
+yum install gcc -y #测试一下
+</code></pre>
+
+<h1>然后安装supervisor</h1>
+
+<p>supervisor在centos6上需要python2.7，同时需要pip来安装, 在上面升级了python之后，应该是需要重新安装pip和setup_tool的， 安装过程略</p>
+
+<h2>pip==9.0.1 错误</h2>
+
+<p>先</p>
+
+<pre><code class="language-bash">easy_install pip==9.0.1
+</code></pre>
+
+<p>如果 <code>pkg_resources.DistributionNotFound: distribute==0.6.10</code>
+则 安装 distribute-0.6.10</p>
+
+<pre><code class="language-bash">wget http://pypi.python.org/packages/source/d/distribute/distribute-0.6.10.tar.gz
+cd distribute-0.6.10
+python setup.py install
+</code></pre>
+
+<p>再安装一次</p>
+
+<pre><code class="language-bash">easy_install pip==9.0.1
+</code></pre>
+
+<p>最后 pip 确保可以正常输出</p>
+
+<h2>安装supervisor</h2>
+
+<pre><code class="language-bash">easy_install supervisor
+</code></pre>
+
+<p>测试一下这个</p>
+
+<pre><code class="language-bash">python
+python&gt;&gt;&gt; import supervisor
+</code></pre>
+
+<p>执行生成配置</p>
+
+<pre><code class="language-bash">echo_supervisord_conf &gt; /etc/supervisord.conf
+</code></pre>
+
+<p>配置文件里</p>
+
+<pre><code class="language-conf">[supervisord]
+logfile=/var/log/supervisord.log ; main log file; default $CWD/supervisord.log
+
+[include]
+files = supervisord.d/*.ini
+</code></pre>
+
+<p>如果不增加其他配置文件 include也可以不管， 直接在supervisord.conf里加也是可以的</p>
+
+<p>配置范例如下:</p>
+
+<pre><code class="language-conf">[program:golang-http-server]
+command=/home/golang/simple_http_server
+directory=/home/golang/
+autostart=true
+autorestart=true
+startsecs=10
+stdout_logfile=/var/log/simple_http_server.log
+stdout_logfile_maxbytes=1MB
+stdout_logfile_backups=10
+stdout_capture_maxbytes=1MB
+stderr_logfile=/var/log/simple_http_server.log
+stderr_logfile_maxbytes=1MB
+stderr_logfile_backups=10
+stderr_capture_maxbytes=1MB
+
+
+[program:jingkongapp]
+command = /data/www/group/app/jingkongapp 
+autostart = true
+autorestart = true
+directory=/data/www/group/app/
+user = root
+redirect_stderr=true 
+stdout_logfile=/data/www/group/app/log.txt 
+stderr_logfile=/data/www/group/app/log_err.txt
+</code></pre>
+
+<p>注意directory 和 stdout_logfile redirect_stderr 要设置起来， 否则可能会运行后直接退出，启动的时候 ERROR (spawn error)错误
+同时需要保证对应的服务端口没有被占用, 总之不能有阻碍程序运行的因素存在， 最好程序中尽量不使用相对路径</p>
+
+<h1>最后</h1>
+
+<pre><code class="language-bash">supervisorctl status # 查看状态
+supervisorctl stop all #停止所有
+supervisorctl start all #启动所有
+supervisorctl tail appname #模拟启动
+supervisorctl reload #重新加载配置
+</code></pre>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/gopath-to-go-module.html">Migrate from GOPATH to Go mod</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/rpgmv-startup-encry.html">RPG MV 验证器简单绕过</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

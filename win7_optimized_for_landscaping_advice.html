@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="红警2中途崩溃,other,">
+        <meta name="description" content="对win7优化美化的忠告">
+        <meta name="author" content="">
+        <title>对win7优化美化的忠告</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">对win7优化美化的忠告</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1320202920"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/%e7%ba%a2%e8%ad%a62%e4%b8%ad%e9%80%94%e5%b4%a9%e6%ba%83/index.html">红警2中途崩溃</a><a class="tag" href="/tag/other/index.html">other</a></span>
+                </section>
+                <article class="content"><ol>
+<li><p>尽量不要安装第三方主题，因为第三方的主题一般都需要替换<code>explorer.exe</code> <code>shell32.dll</code> <code>ExplorerFrame.dll</code>三个文件，而制作者的系统版本和你的一般不会一样，而且经过修改的文件，很可能会发生很多不稳定的现象。亲身经历，原版文件一点问题都没有，替换后，有些程序就经常出现崩溃的现象（比如，关闭的时候崩溃，郁闷，又或者游戏崩溃，比如红警2，替换了之后，不管怎么调兼容选项，死活在中途跳出，不替换果断顺利地玩）。真的有需要安装的，简单，认真学主题制作，用工具自己修改，否则各种崩溃，各种无响应等着你</p></li>
+
+<li><p>字体替换慎重，字体删除慎重。先说删除字体，有些人有洁癖，总想着给C盘瘦身，于是到最后决定对font目录下手，呵呵，我试过删除。然后发现，原本一些看起来丝毫没用的字体，居然是有用的，因为一些软件会调用它们，删了你就等着看着一大片方格子吧。字体替换，由于字体间距宽度大小的不同，往往替换后的字体无法正常显示，比如斩头斩脚，或者干脆不显示（浪漫雅圆替换宋体后&hellip;）。还有一些用于替换的字体，因为制作者的不严谨，可能不包含一些字符，比如一些特殊符号，或者外语的符号，于是显示方格子</p></li>
+
+<li><p>字体渲染要慎重<code>MacType</code>都知道吧，渲染字体用的，可以光滑字体边缘，挺好。于是期望所有程序都能被渲染到，于是选择注册表模式，然后发现一款网游的字体不支持，直接模糊成一坨，，什么破游戏，另，这程序别看不怎么占资源，其实也有的，像桌面特效的软件占的资源都不小，关掉一般都能快不少。</p></li>
+
+<li><p>优化，先说说管理员权限，很多人在右键添加了获取管理员权限，然后就给C盘的Windows文件夹的大部分文件都给“获取”一次，然后&hellip;..我就这样，郁闷。这货会造成“权限失禁”，呵呵，比如错误711，就是宽带连接那个问题，网上的解决办法是给wmi文件夹获取权限即可，其实都忽略了它产生的原因，原因是<code>WindowsEventLog</code>这个服务还有一堆服务，因为权限问题，开机时无法启动，然后拨号必须的服务没了，自然不能拨号了。根据我的经历推断，造成711的凶手就是给<code>system32</code>文件夹获取了管理员权限，至少我不获取权限的时候，从来不会出现711错误。所以不要听信什么“获取权限即可删除文件”什么的，删不掉可以装个<code>unlocker</code>，比权限靠谱，或者试着重命名一下，你会发现&hellip;.实在不行，重启下<code>explorer</code>。
+服务的问题，不用优化，顶多关个传真机，关个打印机，其他的别动，你真想精简，那还是直接下精简的系统吧，最近装了个精简了很多功能的<code>win7sp1</code>，很不错，精简了媒体中心，游戏，示例图片等一些用不上的东西。
+清理垃圾的问题，也没必要，特别是一些临时文件，留着没什么关系，像优化软件删这删那的总有一天出问题，早就不用了。</p></li>
+</ol>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/cod8_clearance.html">COD8通关</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/data_backup_is_recommended.html">资料备份方式推荐</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

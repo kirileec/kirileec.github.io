@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="kotlin,android,">
+        <meta name="description" content="Android Kotlin RecyclerView Databinding">
+        <meta name="author" content="">
+        <title>Android Kotlin RecyclerView Databinding</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Android Kotlin RecyclerView Databinding</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1575729632"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/kotlin/index.html">kotlin</a><a class="tag" href="/tag/android/index.html">android</a></span>
+                </section>
+                <article class="content"><p>Android Kotlin RecyclerView Databinding</p>
+
+<ul>
+<li><h2>一个已经能进行简单的按按钮操作的RecyclerView项目</h2>
+
+<pre><code class="language-gradle">apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+</code></pre>
+
+<pre><code class="language-gradle">dataBinding {
+    enabled = true
+}
+</code></pre></li>
+
+<li><p>一个数据绑定辅助类</p></li>
+</ul>
+
+<pre><code class="language-kotlin">    /**
+      * 赋予ImageView和ImageButton以 app:img 的属性, 用于绑定图片
+      * @author linx
+      */
+    class BindingUtil {
+        companion object {
+            @BindingAdapter(&quot;app:img&quot;)
+            @JvmStatic
+            fun imgData(iv: ImageView, data: Int) {
+                iv.setImageResource(data)
+            }
+
+            @BindingAdapter(&quot;app:img&quot;)
+            @JvmStatic
+            fun imgData(iv: ImageButton, data: Int) {
+                iv.setBackgroundResource(android.R.color.transparent)
+                iv.setImageResource(data)
+            }
+
+            /**
+             * ImageView绑定图片地址url
+             * @param iv ImageView
+             * @param data Any
+             */
+            @BindingAdapter(&quot;app:url&quot;)
+            @JvmStatic
+            fun ImageViewUrl(iv: ImageView, data: Any) {
+                if (data is String) {
+                    if (!data.isEmpty()) {
+                        Glide.with(iv.context).load(Uri.parse(data)).into(iv)
+                    } else {
+                        iv.setImageResource(R.mipmap.touxiang2_default)
+                    }
+
+                } else if (data is Int) {
+                    iv.setImageResource(data)
+                }
+            }
+
+        }
+    }
+</code></pre>
+
+<ul>
+<li>一个数据adapter
+<br /></li>
+</ul>
+
+<pre><code class="language-kotlin">    import android.view.LayoutInflater
+    import android.view.View
+    import android.view.ViewGroup
+    import androidx.databinding.DataBindingUtil
+    import androidx.databinding.ViewDataBinding
+    import androidx.recyclerview.widget.RecyclerView.Adapter
+    import androidx.recyclerview.widget.RecyclerView.ViewHolder
+    import java.util.*
+
+    /**
+    * RecylerView 数据绑定适配器
+    * @param T
+    * @property mList List&lt;T&gt;?
+    * @property layoutId Int?
+    * @property brId Int?
+    * @property itemClick ItemClick?
+    * @constructor
+    */
+    open class QJBaseAdapter&lt;T&gt;(var mList: List&lt;T&gt;?, var layoutId: Int?, var brId: Int?) :
+        Adapter&lt;QJBaseAdapter.QJBaseViewHolder&gt;() {
+
+
+        var itemClick: ItemClick? = null
+
+        /**
+        * 更新数据
+        * @param items ArrayList&lt;T&gt;?
+        */
+        fun updateData(items: ArrayList&lt;T&gt;?) {
+            this.mList = items
+            notifyDataSetChanged()
+        }
+
+        interface ItemClick {
+            fun OnItemClick(v: View, position: Int)
+        }
+
+        fun setItemClickListener(itemClick: ItemClick) {
+            this.itemClick = itemClick
+        }
+
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QJBaseViewHolder {
+
+            val binding: ViewDataBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context), this.layoutId!!, parent, false
+            )
+            return QJBaseViewHolder(binding)
+        }
+
+        override fun getItemCount(): Int = mList!!.size
+
+        override fun onBindViewHolder(holder: QJBaseViewHolder, position: Int) {
+            var item = mList!![position] // 这里必须为var 因为需要修改列表的数据
+            doBeforeShow(holder.binding.root, item)
+            holder.binding.setVariable(this.brId!!, mList!![position])
+            holder.binding.executePendingBindings()
+            // item点击事件
+            holder.binding.root.setOnClickListener {
+                itemClick?.OnItemClick(holder.binding.root, position)
+            }
+            forInnerControl(holder.binding.root, item)
+        }
+
+
+        /**
+        * 在绑定数据之前执行, 可以修改数据 item 的值
+        * @param itemView View?
+        * @param item T
+        */
+        open fun doBeforeShow(itemView: View?, item: T) {
+
+        }
+
+        /**
+        * 用于给ItemView内部的组件绑定事件
+        * @param itemView View?
+        * @param item T
+        */
+        open fun forInnerControl(itemView: View?, item: T) {
+
+        }
+
+        class QJBaseViewHolder(var binding: ViewDataBinding) : ViewHolder(binding.root)
+    }
+</code></pre>
+
+<ul>
+<li>声明数据类
+<br /></li>
+</ul>
+
+<pre><code class="language-kotlin">    data class SchoolNews(
+        val title: String = &quot;&quot;, //标题
+        val contentShort: String = &quot;&quot;, //内容简写
+        val date: String = &quot;&quot;, //日期
+        val state: Int = 0, //0 unreaded 1 readed 2 pinned
+        var img:Int =0
+    )
+</code></pre>
+
+<ul>
+<li>RecyclerView 的itemview中声明, 注意顶层元素使用layout, 其他盲敲即可, IDE会补全
+<br /></li>
+</ul>
+
+<pre><code class="language-xml">    &lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+    &lt;data&gt;
+        &lt;variable
+            name=&quot;schoolNews&quot;
+            type=&quot;model.SchoolNews&quot; /&gt;
+    &lt;/data&gt;
+</code></pre>
+
+<ul>
+<li><p>以 <code>android:text=&quot;@{schoolNews.title}&quot;</code> 这样的方式绑定数据, ImageView和ImageButton则以 <code>app:img=&quot;@{schoolNews.img}&quot;</code> img 是resId即资源id, 图片的值不能直接绑定, 需要用代码<code>setImageResource</code>来实现</p></li>
+
+<li><p>创建一个特定的适配器, 重写两个方法</p></li>
+</ul>
+
+<pre><code class="language-kotlin">    class SchoolNewsAdapter(mList: List&lt;SchoolNews&gt;?, layoutId: Int?, brId: Int?) :
+        QJBaseAdapter&lt;SchoolNews&gt;(mList, layoutId, brId) {
+
+        override fun forInnerControl(itemView: View?, item: SchoolNews) {
+            // 这里可以为每个 itemView 的子控件添加事件
+            
+        }
+
+        // 在这个方法中对item进行修改是可以应用到界面的, 不过肯定不能执行过于耗时的操作
+        override fun doBeforeShow(itemView: View?, item: SchoolNews) {
+            // 根据state字段的值来决定显示哪张图片
+            when (item.state) {
+                0-&gt; item.img = R.mipmap.yuandian
+                2-&gt; item.img = R.mipmap.schoolnews_guding
+                else-&gt;item.img = R.color.mainwhite
+            }
+        }
+
+
+    }
+</code></pre>
+
+<p>顺便说下, 代码中访问内置颜色是这样的<code>android.R.color.transparent</code></p>
+
+<ul>
+<li>最后就是使用了
+<br /></li>
+</ul>
+
+<pre><code class="language-kotlin">    var mAdapter: SchoolNewsAdapter? = null
+
+    private fun initView() {
+        mAdapter = SchoolNewsAdapter(
+            schoolNews, R.layout.recycler_view_item_school_news_info,
+            BR.schoolNews
+        )
+
+        schoolNewsRv.adapter = mAdapter
+    }
+</code></pre>
+
+<p>这里说明下 schoolNews为 <code>ArrayList&lt;SchoolNews&gt;</code>, <code>R.layout.recycler_view_item_school_news_info</code>为item的布局文件, <code>BR.schoolNews</code>这个就是前面 <code>&lt;layout&gt;</code>内的variable了, 如果最开始的插件没有配置好, 这个会报错. 原理其实就是编译器自动帮我们生成好了代码</p>
+
+<p>更新数据则使用 <code>mAdapter!!.updateData(schoolNews)</code>即可</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/android-kotlin-fragmentadapter.html">Android Kotlin Fragmentadapter</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/android-wifi-debugging.html">Android Wifi Debugging</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

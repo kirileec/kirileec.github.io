@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="IDEFixPack,Delphi,">
+        <meta name="description" content="IDEFixPack6.3">
+        <meta name="author" content="">
+        <title>IDEFixPack6.3</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">IDEFixPack6.3</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1540960067"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/IDEFixPack/index.html">IDEFixPack</a><a class="tag" href="/tag/Delphi/index.html">Delphi</a></span>
+                </section>
+                <article class="content"><p>IDE Fix Pack 6.3 更新日志</p>
+
+<p>From <a href="https://andy.jgknet.de/blog/2018/06/ide-fix-pack-6-3-released/">Here</a></p>
+
+<p>The new IDE Fix Pack 6.3 adds some IDE fixes and makes DFM reading a little bit faster due to the usage of buffers on the stack instead of the TBytes heap allocations with unnecessary FillChar calls that were introduced with XE3.</p>
+
+<p>新的 <code>IDE Fix Pack 6.3</code> 增加了一些IDE问题修复, 让DFM文件的读取变快了一点点, 使用 <strong>栈</strong> 上的缓存替代了<strong>TBytes堆</strong>上的多余的FillChar调用(XE3)</p>
+
+<p>The compiler option extension <code>-x-fpr</code> also got a new feature. If a function has stack variables that exceed 4096 bytes, the function prolog that is generated will be up to 3 times faster than the original compiler generated code (RSP-19826).</p>
+
+<p>编译器选项 <code>-x-fpr</code> 也增加了新的特性. 如果一个<code>function</code> 声明了栈上的超过4096字节的变量, 该<code>function</code>生成的代码将比原编译器快3倍(RSP-19826)</p>
+
+<p>Furthermore the compiler option extensions are now combined into -x-On options what makes it easier to specify the options because you don’t need to remember all the option names anymore.</p>
+
+<p>另外编译器扩展选项合并到了一个 <code>-x-On</code> 选项中, 这样就不需要去记了.</p>
+
+<blockquote>
+<ul>
+<li>-x-O1     启用选项 <code>-x-fvs</code>   <code>-x-fpr</code></li>
+<li>-x-O2     启用选项 <code>-x-fvs</code>   <code>-x-fpr</code> <code>-x-orc</code></li>
+<li>-x-O3     启用选项 <code>-x-fvs=2</code> <code>-x-fpr</code> <code>-x-orc</code></li>
+<li>-x-Ox     启用ABI更改优化: <code>-x-fvs=2</code> <code>-x-fpr</code> <code>-x-orc=2</code> <code>-x-ff</code></li>
+</ul>
+</blockquote>
+
+<p>All options are listed in the Readme.txt and can be specified under <code>Project Options</code>/<code>Delphi Compiler</code>/<code>Compiling</code>/<code>Other options</code>/<code>Additional options</code> to pass to the compiler.</p>
+
+<p>所有选项都在<code>Readme.txt</code>中可以看到.</p>
+
+<p>Changelog</p>
+
+<ul>
+<li>Added: Patch to remove IDE flickering when WM_SETTINGCHANGE is broadcasted</li>
+<li>Added: Fix for RSP-20700: Tooltip Help Insight is blinking if Structure View is scrolled</li>
+<li>Added: Undo XE3+ TFiler/TReader/TParser/TStream TBytes usage, replace SetLength with SetLengthUninit for special cases</li>
+<li>Added: -x-fpr generates 3 times faster stack memory page probing code (RSP-19826)</li>
+<li>Added: Options -x-O1, -x-O2, -x-O3, -x-Ox that enable other optimization options</li>
+</ul>
+
+<p>更新日志</p>
+
+<ul>
+<li>Added: 移除了当消息 <code>WM_SETTINGCHANGE</code> 被广播时的IDE闪烁</li>
+<li>Added: 修复 RSP-20700: 修复当 <code>Structure View</code> 滚动时的帮助信息气泡闪烁</li>
+<li>Added: 撤消XE3 + <code>TFiler</code> / <code>TReader</code> / <code>TParser</code> / <code>TStream TBytes</code>用法, 将<code>SetLength</code>替换为<code>SetLengthUninit</code>用于特殊情况</li>
+<li>Added: -x-fpr 生成3倍快的堆栈内存页探测代码 (RSP-19826)</li>
+<li>Added: 选项 <code>-x-O1</code>, <code>-x-O2</code>, <code>-x-O3</code>, <code>-x-Ox</code> 用于启用一些特性</li>
+</ul>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/delphi-rest-header-do-not-encode.html">Delphi Rest请求控件增加请求头时不编码</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/mormot-json%e5%bf%bd%e7%95%a5%e6%9c%aa%e5%ae%9a%e4%b9%89%e7%9a%84%e5%ad%97%e6%ae%b5.html">mORMot Json忽略未定义的字段</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

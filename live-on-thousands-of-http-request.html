@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="Live on Thousands of Http Request">
+        <meta name="author" content="">
+        <title>Live on Thousands of Http Request</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Live on Thousands of Http Request</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1581148614"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><p>面对成千上万次的http请求如何存活</p>
+
+<h2>背景</h2>
+
+<ul>
+<li>大概有3w张物联卡, 需要通过api请求的方式获取其流量使用情况</li>
+<li>服务端有客户端白名单和请求频率的限制(频率具体是多少不清楚)</li>
+</ul>
+
+<h2>问题</h2>
+
+<ol>
+<li>如果在一个协程中一张张跑完所有卡, 那么3w张卡从获取数据到写入到数据库可能需要消耗&hellip;额, 很长时间, 那么这种情况每次定时任务的跨度太长容易导致不方便调试等问题, 会大量拉伸开发周期</li>
+<li>如果开多个协程去跑所有卡, 理论上可以把时间缩短到 t/x x为协程数, 但是使用协程时, 即使只使用2个协程, 依然会导致触发服务端的规则导致本该返回正常数据的, 最后只拿到个其它错误. 同时协程数越多, 出现其它错误的几率也更大</li>
+<li>需要在白名单的机子上跑方可调用api</li>
+</ol>
+
+<h2>解决思路</h2>
+
+<ul>
+<li>针对第三点, 可以使用代理服务器, 可以完美伪装, 然而api调用的效率就会下降很多. 比如我现在的情况是java的服务端, 那么去搜java判断远程ip的方法, 可能会有很多种, 一个个拿到postman里试, 运气不错, <code>x-forwarded-for</code>可用</li>
+<li>针对另外两点, 重试就行了. 目前所用的方式为, 开一个协程池, 容量为30个, 在协程的事件中判断是否发生了限流或超时的情况, 如果发生了, 则添加到重试队列, 让它一只重试即可</li>
+</ul>
+
+<h2>具体代码</h2>
+
+<pre><code>defer ants.Release()
+var wg sync.WaitGroup
+invokeChan := xchan.NewXChan(10000, func(i interface{}) {
+			wg.Add(1)
+			p.Invoke(i)
+		})
+p, _ = ants.NewPoolWithFunc(poolCount, func(i interface{}) {
+			handleCard(i, alarmchan, insertChan, invokeChan)
+			wg.Done()
+		})
+for _, cardid := range CardList {
+    wg.Add(1)
+    p.Invoke(string(cardid))
+}
+defer p.Release()
+isPoolRunning = true
+wg.Wait()
+isPoolRunning = false
+</code></pre>
+
+<p>在handleCard方法中, 如果需要重试, <code>invokeChan.Add(cardid)</code>即可, 而isPoolRunning用于防止某一次任务无限重试下去, 让后面的定时任务一直堆积. xchan是一个简单的队列, 感觉用来异步进行<strong>顺序</strong>操作挺合适的</p>
+
+<h2>引用</h2>
+
+<ul>
+<li>协程池 <code>&quot;github.com/panjf2000/ants/v2&quot;</code></li>
+<li>自己封装的cmiot v2版本的SDK, <code>&quot;github.com/linxlib/cmiot_v2&quot;</code></li>
+</ul>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/these-days.html">疫情这些天</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/mac-open-a-new-shell-windows-to-execute-scripts.html">Mac Open a New Shell Windows to Execute Scripts</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

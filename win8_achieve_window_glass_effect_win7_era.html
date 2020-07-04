@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="https://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="https://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="https://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="https://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="https://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="other,">
+        <meta name="description" content="win8实现win7时代的窗口玻璃效果">
+        <meta name="author" content="">
+        <title>win8实现win7时代的窗口玻璃效果</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">win8实现win7时代的窗口玻璃效果</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1365139119"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/other/index.html">other</a></span>
+                </section>
+                <article class="content"><pre><code>        windows8取消了玻璃效果，虽然有些地方仍然可以看出一些“残留物”，比如，鼠标放在右下角可以AEROPEEK预览桌面，但其实窗口边框的效果已经没了，记得有个帖子就是吐槽win8的风格不统一的，METRO和AERO混搭，按钮也是乱七八糟，幸好RTM版本一些很明显的“不合群”，没那么明星了。&lt;br /&gt;
+</code></pre>
+
+<p><br />
+win7时代各种软件都追求透明玻璃效果，像是一种潮流一样。存在的有两种实现方式，一个是调用系统本身的透明功能，比如QQ，也有一些是使用软件自身的API，比如迅雷7。于是到了win8，调用系统的那些软件，开不了透明了。<br />
+<br />
+最近找到一个小程序，原理是在载入桌面环境时加载作者写的DWMGlass.dll到桌面进程中，实现AERO效果，使用HKEY_LOCAL_MACHINESOFTWAREMicrosoftWindows
+NTCurrentVersionWindows这个位置的一个系统自动的进程注入模块，在这个AppInit_DLLs键值下填入DLL路径即可加载。<br />
+<br />
+于是开始研究，无奈基础不扎实，又系统中已经加载了MACTYPE的dll，不知道如何同时加载两个dll，各种纠结。经多次试验，得出方法：<br /></p>
+
+<p>AppInit_DLLs下如此填写&rdquo;D:DWMDWMGlass.dll&rdquo;,MacType.dll。<br />
+具体方法为先清空键值，然后填入第一个&rdquo;D:DWMDWMGlass.dll&rdquo;，即DWMGlass.dll的放置的路径（或者使用该程序自带的reg文件导入，需要修改reg文件中相关路径），然后启动MACTYPE的程序，先切换到不加载，再切换为注册表加载，程序会自动在键值中增加一个，如此即可实现双dll加载。<br />
+<br />
+重启看效果，QQ的透明也可以开了，具体性能相关问题有待测试。<br /></p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/windows_server_2012_on_hlp_files_to_solve.html">Windows Server 2012关于.hlp文件的解决</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/win8_pagefilesys_file_is_too_large.html">win8 pagefile.sys文件过大</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>
