@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
-  <id>https://linx.run</id>
-  <updated>2020-07-04T22:54:58+08:00</updated>
+  <id>http://linx.run</id>
+  <updated>2020-07-04T22:58:28+08:00</updated>
   <subtitle>记录解决方案</subtitle>
-  <link href="https://linx.run"></link>
+  <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
@@ -11,70 +11,70 @@
     <title>阿里mPaas Inside 接入H5 (Android)</title>
     <updated>2020-06-23T19:50:09+08:00</updated>
     <id>tag:linx.run,2020-06-23:/mpaas-inside-h5.html</id>
-    <link href="https://linx.run/mpaas-inside-h5.html" rel="alternate"></link>
+    <link href="http://linx.run/mpaas-inside-h5.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>nginx proxypass tcp</title>
     <updated>2020-06-17T21:58:40+08:00</updated>
     <id>tag:linx.run,2020-06-17:/nginx-proxypass-tcp.html</id>
-    <link href="https://linx.run/nginx-proxypass-tcp.html" rel="alternate"></link>
+    <link href="http://linx.run/nginx-proxypass-tcp.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>mac 触摸板手势</title>
     <updated>2020-06-13T18:19:04+08:00</updated>
     <id>tag:linx.run,2020-06-13:/mac-touchpad-gesture.html</id>
-    <link href="https://linx.run/mac-touchpad-gesture.html" rel="alternate"></link>
+    <link href="http://linx.run/mac-touchpad-gesture.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>初识grpc, 使用grpc传输文件</title>
     <updated>2020-05-29T23:46:46+08:00</updated>
     <id>tag:linx.run,2020-05-29:/first-try-grpc-to-transfer-file.html</id>
-    <link href="https://linx.run/first-try-grpc-to-transfer-file.html" rel="alternate"></link>
+    <link href="http://linx.run/first-try-grpc-to-transfer-file.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>git 忽略大小写导致的文章找不到</title>
     <updated>2020-05-20T20:28:38+08:00</updated>
     <id>tag:linx.run,2020-05-20:/git-ignorecase-troubleshoot.html</id>
-    <link href="https://linx.run/git-ignorecase-troubleshoot.html" rel="alternate"></link>
+    <link href="http://linx.run/git-ignorecase-troubleshoot.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>MacBook Pro 设置合盖后睡得更死</title>
     <updated>2020-05-19T19:31:50+08:00</updated>
     <id>tag:linx.run,2020-05-19:/let-macbookpro-sleep-for-battery-saving.html</id>
-    <link href="https://linx.run/let-macbookpro-sleep-for-battery-saving.html" rel="alternate"></link>
+    <link href="http://linx.run/let-macbookpro-sleep-for-battery-saving.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>parallels desktop 性能对比 vmware fusion</title>
     <updated>2020-05-19T19:13:16+08:00</updated>
     <id>tag:linx.run,2020-05-19:/parallels-desktop-compare-to-vmware-fusion.html</id>
-    <link href="https://linx.run/parallels-desktop-compare-to-vmware-fusion.html" rel="alternate"></link>
+    <link href="http://linx.run/parallels-desktop-compare-to-vmware-fusion.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>Seekbar With Thumb Touch</title>
     <updated>2020-05-12T19:45:48+08:00</updated>
     <id>tag:linx.run,2020-05-12:/seekbar-with-thumb-touch.html</id>
-    <link href="https://linx.run/seekbar-with-thumb-touch.html" rel="alternate"></link>
+    <link href="http://linx.run/seekbar-with-thumb-touch.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>Android SharedPreferences Kotlin 版</title>
     <updated>2020-05-12T19:44:15+08:00</updated>
     <id>tag:linx.run,2020-05-12:/android-sharedpreferences-kotlin.html</id>
-    <link href="https://linx.run/android-sharedpreferences-kotlin.html" rel="alternate"></link>
+    <link href="http://linx.run/android-sharedpreferences-kotlin.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>一直走马灯的TextView</title>
     <updated>2020-05-12T19:37:46+08:00</updated>
     <id>tag:linx.run,2020-05-12:/always-marquee-textview.html</id>
-    <link href="https://linx.run/always-marquee-textview.html" rel="alternate"></link>
+    <link href="http://linx.run/always-marquee-textview.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
