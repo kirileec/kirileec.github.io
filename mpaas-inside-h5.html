@@ -205,7 +205,55 @@ private void loadOfflineNebula() {
             android:value=&quot;***&quot; /&gt;
 </code></pre>
 
-<h4>启动</h4>
+<h4>兼容Android 9 +</h4>
+
+<p><code>res/xml</code> 下创建 <code>network_security_config.xml</code>, 内容为</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;network-security-config&gt;
+    &lt;base-config cleartextTrafficPermitted=&quot;true&quot;&gt;
+        &lt;trust-anchors&gt;
+            &lt;certificates src=&quot;system&quot; /&gt;
+        &lt;/trust-anchors&gt;
+    &lt;/base-config&gt;
+&lt;/network-security-config&gt;
+</code></pre>
+
+<p><code>AndroidManifest.xml</code>  <code>&lt;application&gt;</code>下加上 <code>android:networkSecurityConfig=&quot;@xml/network_security_config&quot;</code></p>
+
+<h4>离线包自动更新</h4>
+
+<p><code>MainActivity</code></p>
+
+<pre><code class="language-java">Toast.makeText(MainActivity.this, &quot;检查应用更新&quot;, Toast.LENGTH_SHORT).show();
+        MPNebula.updateAllApp(new MpaasNebulaUpdateCallback() {
+            @Override
+            public void onResult(final boolean success, boolean isLimit) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MPNebula.setCustomViewProvider(new H5ViewProviderImpl());
+                        if (success) {
+                            Toast.makeText(MainActivity.this, &quot;应用更新完成即将打开&quot;, Toast.LENGTH_SHORT).show();
+                            MPNebula.startApp(&quot;19981998&quot;);
+                        } else {
+                            MPNebula.startApp(&quot;19981998&quot;);
+                        }
+
+                    }
+                });
+            }
+        }, true);
+</code></pre>
+
+<h4>离线包不能检查到更新的问题解决</h4>
+
+<ul>
+<li><a href="https://help.aliyun.com/document_detail/159033.html?spm=a2c4">https://help.aliyun.com/document_detail/159033.html?spm=a2c4</a> 根据该链接进行Charles抓包 <a href="https://charles.ren">https://charles.ren</a>, 主要检查请求体中是否有nebula-*-all, 如果有, 并且没有Response进行下一步</li>
+<li>defaultConfig 下增加 abiFilters &lsquo;armeabi&rsquo; 过滤so</li>
+<li>客户端版本号和离线包版本号都改成1.0.0.* 这样的版本号</li>
+<li>回忆一下, 当初在控制台的代码配置处下载配置的时候, 有没有上传APK文件, 参考 <a href="https://help.aliyun.com/document_detail/164968.html?spm=a2c4g.11186623.6.566.22813e52mE41Ph">https://help.aliyun.com/document_detail/164968.html?spm=a2c4g.11186623.6.566.22813e52mE41Ph</a>, 每次下载都要上传apk, 因为每次都会被清理掉. 如果没上传, 那么下载下来的配置文件中 base64Code 为空, 将导致检查更新时鉴权不通过</li>
+</ul>
 </article>
                 <section class="author">
                     
