@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-07-06T15:50:02+08:00</updated>
+  <updated>2020-07-07T21:25:32+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>samba 无密码访问</title>
+    <updated>2020-07-07T21:24:18+08:00</updated>
+    <id>tag:linx.run,2020-07-07:/samba-guest-no-password.html</id>
+    <link href="http://linx.run/samba-guest-no-password.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>阿里mPaas Inside 接入H5 (Android)</title>
     <updated>2020-06-23T19:50:09+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2020-05-12T19:44:15+08:00</updated>
     <id>tag:linx.run,2020-05-12:/android-sharedpreferences-kotlin.html</id>
     <link href="http://linx.run/android-sharedpreferences-kotlin.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>一直走马灯的TextView</title>
-    <updated>2020-05-12T19:37:46+08:00</updated>
-    <id>tag:linx.run,2020-05-12:/always-marquee-textview.html</id>
-    <link href="http://linx.run/always-marquee-textview.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
