@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-07-07T21:25:32+08:00</updated>
+  <updated>2020-08-03T15:07:25+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>macOS reset nvram if update failed</title>
+    <updated>2020-08-03T14:54:57+08:00</updated>
+    <id>tag:linx.run,2020-08-03:/mac-reset-nvram-if-update-failed.html</id>
+    <link href="http://linx.run/mac-reset-nvram-if-update-failed.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>samba 无密码访问</title>
     <updated>2020-07-07T21:24:18+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2020-05-12T19:45:48+08:00</updated>
     <id>tag:linx.run,2020-05-12:/seekbar-with-thumb-touch.html</id>
     <link href="http://linx.run/seekbar-with-thumb-touch.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>Android SharedPreferences Kotlin 版</title>
-    <updated>2020-05-12T19:44:15+08:00</updated>
-    <id>tag:linx.run,2020-05-12:/android-sharedpreferences-kotlin.html</id>
-    <link href="http://linx.run/android-sharedpreferences-kotlin.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>

@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="samba 无密码访问">
+        <meta name="description" content="macOS reset nvram if update failed">
         <meta name="author" content="">
-        <title>samba 无密码访问</title>
+        <title>macOS reset nvram if update failed</title>
     </head>
     <body>
         <article class="container">
@@ -68,35 +68,28 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">samba 无密码访问</h1>
+                <h1 class="title">macOS reset nvram if update failed</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1594128258"><span class="from"></span></span>
+                    <span class="date" data-time="1596437697"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>树莓派</p>
+                <article class="content"><blockquote>
+<p><a href="https://support.apple.com/zh-cn/HT204063">https://support.apple.com/zh-cn/HT204063</a></p>
+</blockquote>
 
-<pre><code>[global]
-workgroup = WORKGROUP
-server string Samba Server Version %v
-security = user
-map to guest = Bad User
-guest account = root
-[deploy]
-comment = 
-path = /share
-browseable = yes
-writeable = yes
-guest ok = yes
-create mode = 0777
-directory mode = 2777
-</code></pre>
+<p>最近macOS升级到10.15.6版本的时候, 出现无法安装更新的问题, 重试了好几天, 没戏.</p>
 
-<pre><code>sudo samba restart
-</code></pre>
+<p>关机之后, 按住</p>
+
+<p><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/macos-nvram-option-key.png" width="80" alt="Option 键"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/mac-nvram-add-icon.png" width="35" alt="加"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/macos-nvram-command-key.png" width="95" alt="Command 键"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/mac-nvram-add-icon.png" width="35" alt="加"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/macos-nvram-p-key.png" width="72" alt="P 键"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/mac-nvram-add-icon.png" width="35" alt="加"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/keyboards/macos-nvram-r-key.png" width="72" alt="R 键"></p>
+
+<p><kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>P</kbd>+ <kbd>R</kbd></p>
+
+<p>会自动开机, 第二次看到苹果标志后就可以松开了</p>
 </article>
                 <section class="author">
                     
@@ -105,16 +98,6 @@ directory mode = 2777
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/mac-reset-nvram-if-update-failed.html">macOS reset nvram if update failed</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/mpaas-inside-h5.html">阿里mPaas Inside 接入H5 (Android)</a>
-                    </section>
                     
                 </section>
                 
