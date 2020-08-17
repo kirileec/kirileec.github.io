@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-08-03T15:10:21+08:00</updated>
+  <updated>2020-08-17T22:34:54+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>macOS homebrew mysql totally reset root password</title>
+    <updated>2020-08-17T22:31:44+08:00</updated>
+    <id>tag:linx.run,2020-08-17:/macos-homebrew-mysql-totally-reset-root-password.html</id>
+    <link href="http://linx.run/macos-homebrew-mysql-totally-reset-root-password.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>macOS reset nvram if update failed</title>
     <updated>2020-08-03T14:54:57+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2020-05-19T19:13:16+08:00</updated>
     <id>tag:linx.run,2020-05-19:/parallels-desktop-compare-to-vmware-fusion.html</id>
     <link href="http://linx.run/parallels-desktop-compare-to-vmware-fusion.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>Seekbar With Thumb Touch</title>
-    <updated>2020-05-12T19:45:48+08:00</updated>
-    <id>tag:linx.run,2020-05-12:/seekbar-with-thumb-touch.html</id>
-    <link href="http://linx.run/seekbar-with-thumb-touch.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
