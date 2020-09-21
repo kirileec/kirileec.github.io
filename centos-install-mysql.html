@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="macOS homebrew mysql totally reset root password">
+        <meta name="description" content="centos install mysql">
         <meta name="author" content="">
-        <title>macOS homebrew mysql totally reset root password</title>
+        <title>centos install mysql</title>
     </head>
     <body>
         <article class="container">
@@ -68,31 +68,33 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">macOS homebrew mysql totally reset root password</h1>
+                <h1 class="title">centos install mysql</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1597674704"><span class="from"></span></span>
+                    <span class="date" data-time="1600651621"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>当我安装完执行 <code>mysql_secure_installation</code> 想要设置一个密码的时候, 提示我</p>
+                <article class="content"><pre><code class="language-shell">yum list installed mysql*
+rpm –qa|grep mysql*
+yum list mysql*
 
-<pre><code class="language-sh">Error: Access denied for user 'root'@'localhost' (using password: YES)
-</code></pre>
+yum install mysql
+sudo rpm -Uvh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+yum repolist enabled | grep mysql.*
 
-<p>这就尼玛离谱了, 还好找到了一个破罐子破摔的方法</p>
+yum install mysql-community-server
 
-<pre><code class="language-sh">brew services stop mysql
-pkill mysqld
-rm -rf /usr/local/var/mysql/ # NOTE: this will delete your existing database!!!
-brew postinstall mysql
-brew services restart mysql
-mysql -uroot
+systemctl start  mysqld
+grep &quot;password&quot; /var/log/mysqld.log
+mysql -uroot -p
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
-exit
+set password for root@localhost = password('password'); 
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 </code></pre>
 </article>
                 <section class="author">
@@ -104,13 +106,13 @@ exit
                     
                     <section class="nav prev more">
                         <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/centos-install-mysql.html">centos install mysql</a>
+                        <a class="link" href="/something-about-nginx.html">something about nginx</a>
                     </section>
                     
                     
                     <section class="nav next more">
                         <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/mac-reset-nvram-if-update-failed.html">macOS reset nvram if update failed</a>
+                        <a class="link" href="/macos-homebrew-mysql-totally-reset-root-password.html">macOS homebrew mysql totally reset root password</a>
                     </section>
                     
                 </section>

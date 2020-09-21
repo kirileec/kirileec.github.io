@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-08-17T22:45:03+08:00</updated>
+  <updated>2020-09-21T09:41:06+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>something about nginx</title>
+    <updated>2020-09-21T09:28:27+08:00</updated>
+    <id>tag:linx.run,2020-09-21:/something-about-nginx.html</id>
+    <link href="http://linx.run/something-about-nginx.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>centos install mysql</title>
+    <updated>2020-09-21T09:27:01+08:00</updated>
+    <id>tag:linx.run,2020-09-21:/centos-install-mysql.html</id>
+    <link href="http://linx.run/centos-install-mysql.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>macOS homebrew mysql totally reset root password</title>
     <updated>2020-08-17T22:31:44+08:00</updated>
@@ -61,20 +75,6 @@
     <updated>2020-05-20T20:28:38+08:00</updated>
     <id>tag:linx.run,2020-05-20:/git-ignorecase-troubleshoot.html</id>
     <link href="http://linx.run/git-ignorecase-troubleshoot.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>MacBook Pro 设置合盖后睡得更死</title>
-    <updated>2020-05-19T19:31:50+08:00</updated>
-    <id>tag:linx.run,2020-05-19:/let-macbookpro-sleep-for-battery-saving.html</id>
-    <link href="http://linx.run/let-macbookpro-sleep-for-battery-saving.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>parallels desktop 性能对比 vmware fusion</title>
-    <updated>2020-05-19T19:13:16+08:00</updated>
-    <id>tag:linx.run,2020-05-19:/parallels-desktop-compare-to-vmware-fusion.html</id>
-    <link href="http://linx.run/parallels-desktop-compare-to-vmware-fusion.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
