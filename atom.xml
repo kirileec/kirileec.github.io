@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-09-21T09:42:14+08:00</updated>
+  <updated>2020-11-13T13:07:34+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>为XCode自动创建 1x 2x 3x 图片</title>
+    <updated>2020-11-13T12:45:02+08:00</updated>
+    <id>tag:linx.run,2020-11-13:/post-create-1x-2x-3x-images-for-ios-app.html</id>
+    <link href="http://linx.run/post-create-1x-2x-3x-images-for-ios-app.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>something about nginx</title>
     <updated>2020-09-21T09:28:27+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2020-05-29T23:46:46+08:00</updated>
     <id>tag:linx.run,2020-05-29:/first-try-grpc-to-transfer-file.html</id>
     <link href="http://linx.run/first-try-grpc-to-transfer-file.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>git 忽略大小写导致的文章找不到</title>
-    <updated>2020-05-20T20:28:38+08:00</updated>
-    <id>tag:linx.run,2020-05-20:/git-ignorecase-troubleshoot.html</id>
-    <link href="http://linx.run/git-ignorecase-troubleshoot.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
