@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="something about nginx">
+        <meta name="description" content="为XCode自动创建 1x 2x 3x 图片">
         <meta name="author" content="">
-        <title>something about nginx</title>
+        <title>为XCode自动创建 1x 2x 3x 图片</title>
     </head>
     <body>
         <article class="container">
@@ -68,123 +68,45 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">something about nginx</h1>
+                <h1 class="title">为XCode自动创建 1x 2x 3x 图片</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1600651707"><span class="from"></span></span>
+                    <span class="date" data-time="1605242702"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h2>centos nginx install</h2>
+                <article class="content"><h1>使用Mac的服务来进行自动化操作</h1>
 
-<pre><code class="language-shell">sudo yum install yum-utils -y
-vim /etc/yum.repos.d/nginx.repo
+<p><code>⌥</code>+<code>␣</code>, 输入 <code>Auto</code> 运行 <code>自动操作</code>, 或者在<code>启动台</code>搜索<code>自动操作</code>, 我用的是Alfred</p>
 
-[nginx-stable]
-name=nginx stable repo
-baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-module_hotfixes=true
+<p>创建一个快速操作(齿轮图标), 工作流程收到当前 选择 图像文件 位于 访达</p>
 
-[nginx-mainline]
-name=nginx mainline repo
-baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=0
-gpgkey=https://nginx.org/keys/nginx_signing.key
-module_hotfixes=true
+<h2>使用到的资源有</h2>
 
-sudo yum-config-manager --enable nginx-mainline
+<ul>
+<li><code>资源库</code>-&gt;<code>文件和文件夹</code>-&gt;<code>给访达项目重新命名</code></li>
+<li><code>资源库</code>-&gt;<code>文件和文件夹</code>-&gt;<code>复制访达项目</code></li>
+<li><code>资源库</code>-&gt;<code>照片</code>-&gt;<code>缩放图像</code></li>
+</ul>
 
-sudo yum install nginx -y
-</code></pre>
+<h2>详细步骤如下</h2>
 
-<h2>https -&gt; https</h2>
+<ol>
+<li><code>给访达项目重新命名</code> -&gt; <code>添加文本</code> -&gt; <code>@3x</code> <code>名称之后</code></li>
+<li><code>复制访达项目</code></li>
+<li><code>缩放图像</code>-&gt; <code>按百分比</code> <code>66</code></li>
+<li><code>复制访达项目</code></li>
+<li><code>给访达项目重新命名</code>-&gt; <code>替换文本</code> -&gt; <code>@3x_副本</code> 替换为 <code>@2x</code></li>
+<li><code>复制访达项目</code></li>
+<li><code>缩放图像</code>-&gt; <code>按百分比</code> <code>50</code></li>
+<li><code>给访达项目重新命名</code>-&gt; <code>替换文本</code> -&gt; <code>@2x_副本</code> 替换为 <code>空</code>(不填)</li>
+</ol>
 
-<pre><code class="language-nginx">proxy_set_header Host example.com;
-proxy_ssl_name        example.com;
-proxy_pass            https://1.2.3.4;
-</code></pre>
+<p><code>⌘</code>+<code>S</code>保存, 输入一个名称, 然后在访达里选择一个文件, 右键菜单的服务里就出现了刚添加的服务了</p>
 
-<h2>add query param</h2>
-
-<pre><code class="language-nginx">location  /XX/XX {     
-    set $args &quot;$args&amp;a1=xxx&amp;a2=xxx&quot;;      
-    proxy_ pass  http://ip:port/xxxx;  
-}
-</code></pre>
-
-<h2>.Net Core</h2>
-
-<pre><code class="language-nginx">location / {
-    proxy_pass http://localhost:5000;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection keep-alive;
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-}
-</code></pre>
-
-<h2>optimization</h2>
-
-<pre><code class="language-nginx"># 线程优化
-
-worker_processes  1;  # 根据cpu核数调整
-worker_rlimit_nofile 65535;
-events {
-    use epoll;  # linux 才能用
-    worker_connections  65535;
-    multi_accept on;
-}
-
-# 一般优化
-tcp_nopush     on;
-
-keepalive_timeout  60;
-tcp_nodelay on;
-client_header_buffer_size 4k;
-open_file_cache max=102400 inactive=20s;
-open_file_cache_valid 30s;
-open_file_cache_min_uses 1;
-client_header_timeout 15;
-client_body_timeout 15;
-reset_timedout_connection on;
-send_timeout 15;
-server_tokens off;
-client_max_body_size 10m;
-
-# gzip
-gzip on;
-gzip_disable &quot;msie6&quot;; 
-gzip_vary on; 
-gzip_proxied any;
-gzip_comp_level 8; #压缩级别
-gzip_buffers 16 8k;
-#gzip_http_version 1.1;
-gzip_min_length 100; #不压缩临界值
-gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
-
-
-# 指定文件类型进行缓存
-location ~* \.(ico|jpe?g|gif|png|bmp|swf|flv)$ {
-    expires 30d;
-    #log_not_found off;
-    access_log off;
-}
-
-location ~* \.(js|css)$ {
-    expires 7d;
-    log_not_found off;
-    access_log off;
-}
-</code></pre>
-
-<p>其中, gzip和缓存可以放到 server下, 设置某一个网站生效</p>
+<p>PS: @3x_副本 这一串在不同系统可能不一样, 可能有些系统是 <code>@3x“的副本</code>, 需要试一下才知道, 如果有引号在, 那么在重新命名之前要先把引号替换为空</p>
 </article>
                 <section class="author">
                     
@@ -193,16 +115,6 @@ location ~* \.(js|css)$ {
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/createiospics.html">为XCode自动创建 1x 2x 3x 图片</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/centos-install-mysql.html">centos install mysql</a>
-                    </section>
                     
                 </section>
                 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-11-13T13:11:46+08:00</updated>
+  <updated>2020-11-13T13:13:04+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
@@ -10,8 +10,8 @@
   <entry>
     <title>为XCode自动创建 1x 2x 3x 图片</title>
     <updated>2020-11-13T12:45:02+08:00</updated>
-    <id>tag:linx.run,2020-11-13:/post-create-1x-2x-3x-pics-for-ios-app.html</id>
-    <link href="http://linx.run/post-create-1x-2x-3x-pics-for-ios-app.html" rel="alternate"></link>
+    <id>tag:linx.run,2020-11-13:/createiospics.html</id>
+    <link href="http://linx.run/createiospics.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
