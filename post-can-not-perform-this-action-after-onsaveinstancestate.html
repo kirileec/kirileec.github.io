@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="为XCode自动创建 1x 2x 3x 图片">
+        <meta name="description" content="Android can not perform this action after onSaveInstanceState">
         <meta name="author" content="">
-        <title>为XCode自动创建 1x 2x 3x 图片</title>
+        <title>Android can not perform this action after onSaveInstanceState</title>
     </head>
     <body>
         <article class="container">
@@ -68,45 +68,31 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">为XCode自动创建 1x 2x 3x 图片</h1>
+                <h1 class="title">Android can not perform this action after onSaveInstanceState</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1605242702"><span class="from"></span></span>
+                    <span class="date" data-time="1614439018"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h1>使用Mac的服务来进行自动化操作</h1>
+                <article class="content"><p>起因是在使用BottomDialog这个组件时<a href="https://github.com/shaohui10086/BottomDialog">BottomDialog</a>, 发现当多次调用时容易出现标题的报错并且崩溃。 但是我在app的其他地方也有多次使用该组件，都没有出现过类似的错误。</p>
 
-<p><code>⌥</code>+<code>␣</code>, 输入 <code>Auto</code> 运行 <code>自动操作</code>, 或者在<code>启动台</code>搜索<code>自动操作</code>, 我用的是Alfred</p>
+<p>经过比对后发现，报错的场景是在一个BaseActivity的扩展方法中。</p>
 
-<p>创建一个快速操作(齿轮图标), 工作流程收到当前 选择 图像文件 位于 访达</p>
+<p>而经过各种搜索后发现，最终问题被指向了FragmentManager。</p>
 
-<h2>使用到的资源有</h2>
+<p>由于该场景下，我调用BottomDialog是在一个回调中使用supportFragmentManager获取的FragmentManager实例， 问题就出在这里。kotlin中使用supportFragmentManager获取FragmentManager实例，其实是this.supportFragmentManager, 但是回调方法中的<code>this</code>完全无法预料，甚至当你需要使用它时，它已经被销毁了。</p>
 
-<ul>
-<li><code>资源库</code>-&gt;<code>文件和文件夹</code>-&gt;<code>给访达项目重新命名</code></li>
-<li><code>资源库</code>-&gt;<code>文件和文件夹</code>-&gt;<code>复制访达项目</code></li>
-<li><code>资源库</code>-&gt;<code>照片</code>-&gt;<code>缩放图像</code></li>
-</ul>
+<p>于是最终解决方案就出来了，</p>
 
-<h2>详细步骤如下</h2>
+<pre><code>    fun CustomFormActivity.addBarScan(
+        manager: FragmentManager,
+        。。。。
+</code></pre>
 
-<ol>
-<li><code>给访达项目重新命名</code> -&gt; <code>添加文本</code> -&gt; <code>@3x</code> <code>名称之后</code></li>
-<li><code>复制访达项目</code></li>
-<li><code>缩放图像</code>-&gt; <code>按百分比</code> <code>66</code></li>
-<li><code>复制访达项目</code></li>
-<li><code>给访达项目重新命名</code>-&gt; <code>替换文本</code> -&gt; <code>@3x_副本</code> 替换为 <code>@2x</code></li>
-<li><code>复制访达项目</code></li>
-<li><code>缩放图像</code>-&gt; <code>按百分比</code> <code>50</code></li>
-<li><code>给访达项目重新命名</code>-&gt; <code>替换文本</code> -&gt; <code>@2x_副本</code> 替换为 <code>空</code>(不填)</li>
-</ol>
-
-<p><code>⌘</code>+<code>S</code>保存, 输入一个名称, 然后在访达里选择一个文件, 右键菜单的服务里就出现了刚添加的服务了</p>
-
-<p>PS: @3x_副本 这一串在不同系统可能不一样, 可能有些系统是 <code>@3x“的副本</code>, 需要试一下才知道, 如果有引号在, 那么在重新命名之前要先把引号替换为空</p>
+<p>在扩展方法中加入参数，由调用方提供FragmentManager即可</p>
 </article>
                 <section class="author">
                     
@@ -115,16 +101,6 @@
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/post-can-not-perform-this-action-after-onsaveinstancestate.html">Android can not perform this action after onSaveInstanceState</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/something-about-nginx.html">something about nginx</a>
-                    </section>
                     
                 </section>
                 

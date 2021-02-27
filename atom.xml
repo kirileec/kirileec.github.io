@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2020-11-13T13:13:04+08:00</updated>
+  <updated>2021-02-27T23:27:23+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>Android can not perform this action after onSaveInstanceState</title>
+    <updated>2021-02-27T23:16:58+08:00</updated>
+    <id>tag:linx.run,2021-02-27:/post-can-not-perform-this-action-after-onsaveinstancestate.html</id>
+    <link href="http://linx.run/post-can-not-perform-this-action-after-onsaveinstancestate.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>为XCode自动创建 1x 2x 3x 图片</title>
     <updated>2020-11-13T12:45:02+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2020-06-13T18:19:04+08:00</updated>
     <id>tag:linx.run,2020-06-13:/mac-touchpad-gesture.html</id>
     <link href="http://linx.run/mac-touchpad-gesture.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>初识grpc, 使用grpc传输文件</title>
-    <updated>2020-05-29T23:46:46+08:00</updated>
-    <id>tag:linx.run,2020-05-29:/first-try-grpc-to-transfer-file.html</id>
-    <link href="http://linx.run/first-try-grpc-to-transfer-file.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
