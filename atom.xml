@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2021-02-27T23:36:08+08:00</updated>
+  <updated>2021-09-11T12:57:13+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>.net-grpc-android.md</title>
+    <updated>2021-09-11T11:48:07+08:00</updated>
+    <id>tag:linx.run,2021-09-11:/post-.net-grpc-android.md.html</id>
+    <link href="http://linx.run/post-.net-grpc-android.md.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>记那些难受的修车过程</title>
+    <updated>2021-03-22T22:39:35+08:00</updated>
+    <id>tag:linx.run,2021-03-22:/记一次难受的修车过程.html</id>
+    <link href="http://linx.run/记一次难受的修车过程.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>排查文件上传超时问题</title>
     <updated>2021-02-27T23:28:52+08:00</updated>
@@ -61,20 +75,6 @@
     <updated>2020-07-07T21:24:18+08:00</updated>
     <id>tag:linx.run,2020-07-07:/samba-guest-no-password.html</id>
     <link href="http://linx.run/samba-guest-no-password.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>阿里mPaas Inside 接入H5 (Android)</title>
-    <updated>2020-06-23T19:50:09+08:00</updated>
-    <id>tag:linx.run,2020-06-23:/mpaas-inside-h5.html</id>
-    <link href="http://linx.run/mpaas-inside-h5.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>nginx proxypass tcp</title>
-    <updated>2020-06-17T21:58:40+08:00</updated>
-    <id>tag:linx.run,2020-06-17:/nginx-proxypass-tcp.html</id>
-    <link href="http://linx.run/nginx-proxypass-tcp.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
