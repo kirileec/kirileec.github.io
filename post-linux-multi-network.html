@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="镜像(加速源)收集">
+        <meta name="description" content="linux 多网卡配置">
         <meta name="author" content="">
-        <title>镜像(加速源)收集</title>
+        <title>linux 多网卡配置</title>
     </head>
     <body>
         <article class="container">
@@ -68,75 +68,97 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">镜像(加速源)收集</h1>
+                <h1 class="title">linux 多网卡配置</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1475501460"><span class="from"></span></span>
+                    <span class="date" data-time="1640269546"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h2>Nuget</h2>
+                <article class="content"><p>先停用NetworkManager， 这玩意不是什么好东西，只会让你碰到莫名其妙的问题</p>
 
-<blockquote>
-<p><a href="http://nuget.fishlee.net/v3/index.json">http://nuget.fishlee.net/v3/index.json</a>
-From <a href="https://blog.fishlee.net/2015/10/14/announcing_nuget_acceleration_service/">这里</a></p>
-</blockquote>
-
-<h2>Python Pypi</h2>
-
-<blockquote>
-<pre><code>&gt;vi ~/.pip/pip.conf
-
-&gt;[global]
-&gt;index-url = http://pypi.v2ex.com/simple
-&gt;[install]
-&gt;trusted-host=pypi.v2ex.com
-&gt;:wq
-&gt;```
-
-## NPM
-&gt;```
-&gt;vi ~/.npmrc
-&gt;
-&gt;registry = https://registry.npm.taobao.org
-&gt;```
-&gt;From [淘宝NPM镜像](https://npm.taobao.org/)
-
-## Ubuntu 
-&gt; [163镜像](http://mirrors.163.com/.help/ubuntu.html)
-
-## Openwrt
-&gt; [http://openwrt.proxy.ustclug.org/](http://openwrt.proxy.ustclug.org/)
-
-## Homebrew
-&gt; 
-&gt;&gt; [http://homebrew-mirror-china.tycdn.net/](http://homebrew-mirror-china.tycdn.net/)
-&gt;&gt; `export HOMEBREW_BOTTLE_DOMAIN=&quot;http://homebrew-mirror-china.tycdn.net&quot;`
-
-&gt;----
-&gt;&gt; [https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
-&gt;
-```bash
-cd &quot;$(brew --repo)&quot;
-git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+<pre><code class="language-shell">systemctl stop NetworkManager
+systemctl disable NetworkManager
 </code></pre>
 
-<p><a href="https://lug.ustc.edu.cn/wiki/mirrors/help/homebrew-bottles">https://lug.ustc.edu.cn/wiki/mirrors/help/homebrew-bottles</a></p>
+<p>执行<code>ifconfig</code>查看有哪些网卡， 不同的物理机， 网卡命名不同， 有些是eth0 有些是em1 ， 还有些是ens33， 看情况</p>
 
-<pre><code class="language-bash"># 对于bash用户：
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.bash_profile
-source ~/.bash_profile
-# 对于zsh用户
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.zshrc
-source ~/.zshrc
+<h2>设置 网卡ip</h2>
+
+<p>查看有哪些配置文件</p>
+
+<pre><code class="language-shell">cd /etc/sysconfig/network-scripts/
+ls -l
 </code></pre>
 
-<hr />
+<p>默认的配置文件可能是这样的</p>
 
-<p><a href="http://ban.ninja/">http://ban.ninja/</a></p>
-</blockquote>
+<pre><code>TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=em4
+UUID=4e448a53-d540-4980-b30b-8686bd90f766
+DEVICE=em4
+ONBOOT=no
+</code></pre>
+
+<p>改成这样</p>
+
+<pre><code>TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static # 静态地址
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=em1
+UUID=5179d376-7194-464a-bdfe-d510dabc3106
+DEVICE=em1
+ONBOOT=yes # 启动
+IPADDR=192.168.0.240 #IP地址
+NETMASK=255.255.255.0 # 子网掩码
+</code></pre>
+
+<p>加上或修改注释的那几行就够了, <code>GATEWAY=网关IP</code>，也可以加上网关地址，对于局域网的情况下不是必要的</p>
+
+<p>重启网络，这玩意重启还挺慢的</p>
+
+<pre><code class="language-shell">systemctl restart network
+</code></pre>
+
+<p>查看各个网卡是否正常展示ip</p>
+
+<pre><code class="language-sh">ifconfig
+</code></pre>
+
+<h2>特定的情况</h2>
+
+<p>如果不同网卡的IP段不同，那么默认情况下，你访问一个IP地址，系统可自动根据IP来判断下一跳到哪个网卡。如果你配置的IP和要访问的IP不是在一个段，例如IP是10.9.54.10， 要访问10.2.23.21，那么这时候，系统只会给你选择默认的0.0.0.0对应的路由表。这时候需要添加静态路由来指定， 语法如下</p>
+
+<pre><code class="language-sh"># ip route add 目标网段 via 要走的网关 dev 网卡名
+ip route add 10.0.0.0/8 via 10.9.54.1 dev em3
+</code></pre>
+
+<p>想要静态路由永久生效，在 <code>/etc/sysconfig/network-scripts/</code>下新建 <code>vim route-interface</code>, 内容如下</p>
+
+<pre><code class="language-sh">10.0.0.0/8 via 10.9.54.1 dev em3
+</code></pre>
+
+<p>就是去掉前面<code>ip route add</code>部分即可。 再次重启网络或者重启机器， 看看路由是否生效 <code>route -n</code></p>
 </article>
                 <section class="author">
                     
@@ -145,16 +167,6 @@ source ~/.zshrc
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/recent-computer-fever-serious.html">最近电脑发热严重</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/wpf-using-radiogroup-to-achieve-the-effect-of-listbox.html">WPF 用ListBox实现RadioGroup的效果</a>
-                    </section>
                     
                 </section>
                 
