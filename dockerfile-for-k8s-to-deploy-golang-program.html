@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="带时间戳Hash，实现一段时间内哈希值不变">
+        <meta name="description" content="dockerfile for k8s to deploy golang program">
         <meta name="author" content="">
-        <title>带时间戳Hash，实现一段时间内哈希值不变</title>
+        <title>dockerfile for k8s to deploy golang program</title>
     </head>
     <body>
         <article class="container">
@@ -68,39 +68,70 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">带时间戳Hash，实现一段时间内哈希值不变</h1>
+                <h1 class="title">dockerfile for k8s to deploy golang program</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1653553409"><span class="from"></span></span>
+                    <span class="date" data-time="1653872381"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h2>简单的api校验</h2>
+                <article class="content"><p>PS: 安装 <code>github.com/linxlib/k</code> 可以直接通过 <code>k init</code> 生成这样的文件</p>
 
-<ul>
-<li>服务端维护并提供 <code>ApiKey</code> <code>ApiSecret</code></li>
-<li><code>sign=hash(&lt;ApiKey&gt;&lt;params&gt;&lt;timestamp&gt;&lt;ApiSecret&gt;)</code> 方式生成签名，然后将ApiKey和timestamp以及签名放到Header或者Query里传给服务端</li>
-<li>服务端校验header里的时间戳是否太旧，太旧则表示该请求已经过期，需要重新签名</li>
-<li>服务端根据ApiKey到数据库查询到ApiSecret，按照同样的规则，把客户端传来的时间戳作为时间戳，进行签名，如果签名结果和传过来的签名相同则签名通过，否则401</li>
-</ul>
+<pre><code class="language-dockerfile"># 先使用特定的go环境的镜像进行打包
+FROM golang:1.18 as build
+MAINTAINER &quot;linx&quot;
 
-<p>说明：</p>
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64 \
+	GOPROXY=&quot;https://goproxy.cn&quot; \
+	GOPRIVATE=&quot;gitee.com&quot;
 
-<ul>
-<li>ApiSecret没有在请求中传输，可以保证即使被抓包，也一般不能生成正确的签名（一般来说，怂一点）</li>
-<li>由于会校验时间戳，那么即使被抓包，那同样的请求并不能再次发送到服务端，因为请求有有效期了，可以一定程度上防止重放攻击(如果客户端和服务端的时间一致，那么可以将过期时间设置的很短)</li>
-<li>更严格点，可以把签名放到redis，这样一个签名只能请求一次</li>
-<li>待签名内容需要有参数的部分在内，否则如果请求被拦截，然后篡改请求参数，那也是种攻击</li>
-</ul>
 
-<h2>hash+timestamp</h2>
+RUN mkdir /src
+# 安装编译工具 也可以用go直接打包
+RUN go install github.com/linxlib/k@latest
+WORKDIR /src
 
-<ul>
-<li>和前面的类似，只不过时间戳在被签名时不直接拼接，而是使用 timestamp/30，即整除30，那么三十秒内，整除的结果的整数部分是一样的，也就是说30秒内同样的参数，生成的签名是一样的. 例如 <sup>1653553144</sup>&frasl;<sub>30</sub> = 55118438.13333333  <sup>1653553148</sup>&frasl;<sub>30</sub>=55118438.266666666</li>
-<li>这时候如果客户端和服务端之间有几秒的时间差，那么服务器可以把当前时间戳往前退30秒或者往后推30秒，再整除30，也可以让验证通过</li>
-</ul>
+COPY . .
+# 安装依赖
+RUN go mod tidy
+RUN k build
+
+# 运行用的镜像
+FROM ubuntu as prod
+# 最好都放在单独的目录，不要放根目录，因为可能不方便进行挂载
+# 特别是有好多个目录/文件需要挂载的时候
+RUN mkdir /app
+WORKDIR /app
+# 设置镜像时区，防止时间错位
+# 安装ssl相关证书，需要请求https时必须安装
+RUN export DEBIAN_FRONTEND=noninteractive  \
+    &amp;&amp; apt-get update \
+    &amp;&amp; apt-get install -y tzdata \
+    &amp;&amp; ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    &amp;&amp; apt-get -qq install -y --no-install-recommends ca-certificates curl \
+    &amp;&amp; dpkg-reconfigure --frontend noninteractive tzdata
+
+
+# 从编译镜像中拷贝文件到运行镜像中
+COPY --from=build /src/bin/1.0.0/linux_amd64/app_name .
+COPY --from=build /src/bin/1.0.0/linux_amd64/gen.gob .
+# 如果配置文件需要通过ConfigMap挂载，那这里就不需要它了
+# COPY --from=build /src/bin/1.0.0/linux_amd64/config.toml  .
+COPY --from=build /src/bin/1.0.0/linux_amd64/swagger.json .
+# 这样链接一下比较好，不然下面经常提醒文件不存在什么的，明明文件就在那个目录
+RUN ln -fs /app/app_name /usr/bin/app_name
+RUN apt-get clean
+EXPOSE 1509
+
+CMD [&quot;app_name&quot;]
+
+
+</code></pre>
 </article>
                 <section class="author">
                     
@@ -109,16 +140,6 @@
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/dockerfile-for-k8s-to-deploy-golang-program.html">dockerfile for k8s to deploy golang program</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/post-linux-multi-network.html">linux 多网卡配置</a>
-                    </section>
                     
                 </section>
                 
