@@ -77,61 +77,119 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>PS: 安装 <code>github.com/linxlib/k</code> 可以直接通过 <code>k init</code> 生成这样的文件</p>
+                <article class="content"><p>UPDATE: 2022-06-21 更新dockerfile，使用更小的基础镜像。使用docker的分层概念，让打包使用缓存，打包更快
+UPDATE: 2022-06-21 增加makefile 使用make来进行编译构建</p>
 
 <pre><code class="language-dockerfile"># 先使用特定的go环境的镜像进行打包
 FROM golang:1.18 as build
-MAINTAINER &quot;linx&quot;
-
+MAINTAINER &quot;linx &lt;sulinke1133@gmail.com&gt;&quot;
+ARG MODE=prod
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
+    TZ=Asia/Shanghai \
     GOOS=linux \
     GOARCH=amd64 \
 	GOPROXY=&quot;https://goproxy.cn&quot; \
 	GOPRIVATE=&quot;gitee.com&quot;
 
-
 RUN mkdir /src
-# 安装编译工具 也可以用go直接打包
-RUN go install github.com/linxlib/k@latest
 WORKDIR /src
+ADD go.mod .
+ADD go.sum .
+# 到这一句为止， 只要go.mod未变化，就会使用缓存
+# 也就是说不需要每次都下载mod了
+RUN go mod download
 
 COPY . .
-# 安装依赖
-RUN go mod tidy
-RUN k build
+RUN make all MODE=${MODE}
 
 # 运行用的镜像
-FROM ubuntu as prod
-# 最好都放在单独的目录，不要放根目录，因为可能不方便进行挂载
-# 特别是有好多个目录/文件需要挂载的时候
+# 这个镜像在alpine基础上增加了 时区 和 根证书
+FROM saranraj/alpine-tz-ca-certificates as prod
+# 定义一个参数用于指定打包模式
+ARG MODE=prod
+# 指定时区
+ENV TZ=Asia/Shanghai
 RUN mkdir /app
 WORKDIR /app
-# 设置镜像时区，防止时间错位
-# 安装ssl相关证书，需要请求https时必须安装
-RUN export DEBIAN_FRONTEND=noninteractive  \
-    &amp;&amp; apt-get update \
-    &amp;&amp; apt-get install -y tzdata \
-    &amp;&amp; ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    &amp;&amp; apt-get -qq install -y --no-install-recommends ca-certificates curl \
-    &amp;&amp; dpkg-reconfigure --frontend noninteractive tzdata
 
-
-# 从编译镜像中拷贝文件到运行镜像中
-COPY --from=build /src/bin/1.0.0/linux_amd64/app_name .
-COPY --from=build /src/bin/1.0.0/linux_amd64/gen.gob .
-# 如果配置文件需要通过ConfigMap挂载，那这里就不需要它了
-# COPY --from=build /src/bin/1.0.0/linux_amd64/config.toml  .
-COPY --from=build /src/bin/1.0.0/linux_amd64/swagger.json .
-# 这样链接一下比较好，不然下面经常提醒文件不存在什么的，明明文件就在那个目录
-RUN ln -fs /app/app_name /usr/bin/app_name
-RUN apt-get clean
-EXPOSE 1509
+COPY --from=build /src/bin/app_name .
+COPY --from=build /src/bin/app_name-cli .
+# 根据参数MODE使用特定的配置文件 这样可以开发配置和正式环境配置使用俩文件
+COPY --from=build /src/cmd/moon/config/config_$MODE.toml ./config.toml
+RUN ln -fs /app/app_name /usr/bin/app_name  \
+    &amp;&amp; ln -fs /app/app_name-cli /usr/bin/app_name-cli
 
 CMD [&quot;app_name&quot;]
 
-
 </code></pre>
+
+<p>再附上makefile</p>
+
+<pre><code class="language-makefile"># 获取一堆附加信息
+gitCommit:=$(shell git rev-parse --short HEAD)
+buildTime:=$(shell date -R)
+branch:=$(shell git symbolic-ref --short HEAD)
+GOVERSION:=$(shell go version)
+# 指定一些路径啥的
+BUILD_NAME:=bin/moon
+CLI_NAME:=bin/moon-cli
+CLI_SOURCE:=cmd/moon-cli/main.go
+# 包名
+PACKAGENAME:=&lt;PACKAGENAME&gt;
+BUILD_VERSION:=0.1
+
+GOOS:=linux
+GOARCH:=amd64
+CGO_ENABLED:=0
+SOURCE:=cmd/moon/moon.go
+# 拼接LDFLAGS
+BUILDINFO:=-X ${PACKAGENAME}/pkg/buildinfo.Version=${BUILD_VERSION}
+BUILDINFO:=${BUILDINFO} -X ${PACKAGENAME}/pkg/buildinfo.GitCommitId=${gitCommit}
+BUILDINFO:=${BUILDINFO} -X ${PACKAGENAME}/pkg/buildinfo.ProjectName=moon
+BUILDINFO:=${BUILDINFO} -X '${PACKAGENAME}/pkg/buildinfo.BuildTime=${buildTime}'
+BUILDINFO:=${BUILDINFO} -X ${PACKAGENAME}/pkg/buildinfo.Branch=${branch}
+BUILDINFO:=${BUILDINFO} -X '${PACKAGENAME}/pkg/buildinfo.GoVersion=${GOVERSION}'
+BUILDINFO:=${BUILDINFO} -X '${PACKAGENAME}/pkg/buildinfo.OsArch=${GOOS}/${GOARCH}'
+BUILDINFO:=${BUILDINFO} -X '${PACKAGENAME}/pkg/buildinfo.Mode=${MODE}'
+LDFLAGS:=-ldflags &quot;-s -w ${BUILDINFO}&quot;
+# 构建主体和cli
+all: build cli
+
+cli:
+	GOOS=${GOOS} GOARCH=${GOARCH} go build -o ${CLI_NAME} ${CLI_SOURCE}
+
+.PHONY: build
+
+build: clean
+	GOOS=${GOOS} GOARCH=${GOARCH} go build -o ${BUILD_NAME} ${LDFLAGS} ${SOURCE}
+tidy:
+	go mod tidy
+
+clean:
+	rm -f ${BUILD_NAME}
+	rm -f ${CLI_NAME}
+
+dev-image:
+	docker build -t xxxxxxxx/linx/moon --build-arg MODE=dev .
+
+dev-push: dev-image
+	docker push xxxxxxx/linx/moon:latest
+
+image:
+	docker build -t xxxxxxx/xxxxxxx/moon:latest -t xxxxxxx/xxxxxxx/moon:${BUILD_VERSION} --build-arg MODE=prod .
+
+push: image
+	docker push xxxx/xxxx/moon:latest
+	docker push xxxxxxx/xxxxxxx/moon:${BUILD_VERSION}
+</code></pre>
+
+<h3>调用流程</h3>
+
+<ul>
+<li>执行 <code>make dev-push</code> -&gt; 容器中执行 <code>make all MODE=dev</code> -&gt; 镜像构建完成，打Tag -&gt; 推送到内网的harbor -&gt; k8s 重启部署</li>
+<li>执行 <code>make push</code> -&gt; 容器中执行 <code>make all MODE=prod</code> -&gt; 镜像构建完成，打Tag -&gt; 推送到公网的镜像仓库 -&gt; k8s 重启部署</li>
+</ul>
 </article>
                 <section class="author">
                     
@@ -140,6 +198,16 @@ CMD [&quot;app_name&quot;]
                 </section>
                 <section class="recommend">
                     
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/home-network-with-nas.html">家庭网络配置</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/hash-timestamp-expire.html">带时间戳Hash，实现一段时间内哈希值不变</a>
+                    </section>
                     
                 </section>
                 
