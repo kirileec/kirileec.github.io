@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2022-06-21T10:39:59+08:00</updated>
+  <updated>2022-07-16T22:00:36+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>openwrt zerotier 配置</title>
+    <updated>2022-07-16T21:32:52+08:00</updated>
+    <id>tag:linx.run,2022-07-16:/openwrt-zerotier-configure.html</id>
+    <link href="http://linx.run/openwrt-zerotier-configure.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>redmi ax6s 刷 Openwrt 流程记录</title>
+    <updated>2022-07-16T21:02:37+08:00</updated>
+    <id>tag:linx.run,2022-07-16:/redmi-ax6s-flush-firmware.html</id>
+    <link href="http://linx.run/redmi-ax6s-flush-firmware.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>家庭网络配置</title>
     <updated>2022-06-20T14:46:03+08:00</updated>
@@ -61,20 +75,6 @@
     <updated>2021-02-27T23:28:52+08:00</updated>
     <id>tag:linx.run,2021-02-27:/排查文件上传超时问题.html</id>
     <link href="http://linx.run/排查文件上传超时问题.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>Android can not perform this action after onSaveInstanceState</title>
-    <updated>2021-02-27T23:16:58+08:00</updated>
-    <id>tag:linx.run,2021-02-27:/post-can-not-perform-this-action-after-onsaveinstancestate.html</id>
-    <link href="http://linx.run/post-can-not-perform-this-action-after-onsaveinstancestate.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>为XCode自动创建 1x 2x 3x 图片</title>
-    <updated>2020-11-13T12:45:02+08:00</updated>
-    <id>tag:linx.run,2020-11-13:/createiospics.html</id>
-    <link href="http://linx.run/createiospics.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>

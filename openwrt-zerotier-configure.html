@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="家庭网络配置">
+        <meta name="description" content="openwrt zerotier 配置">
         <meta name="author" content="">
-        <title>家庭网络配置</title>
+        <title>openwrt zerotier 配置</title>
     </head>
     <body>
         <article class="container">
@@ -68,53 +68,79 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">家庭网络配置</h1>
+                <h1 class="title">openwrt zerotier 配置</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1655707563"><span class="from"></span></span>
+                    <span class="date" data-time="1657978372"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>这两天把家里的网络重新弄了一下， 记录一下</p>
-
-<h2>原来</h2>
+                <article class="content"><h2>安装zerotier</h2>
 
 <ul>
-<li>百兆移动光猫直接拨号，并提供DHCP服务</li>
-<li>家里设备不多，台式机通过预留网线直接接在光猫的LAN口， NAS也一样。</li>
-<li>因为光猫在弱电柜里，到房间要穿墙，所以房间里放了一个WNDR4300做无线AP，勉强能用，不过之前没搞好，WNDR4300被我刷成了原厂固件，启动很慢</li>
-<li>光猫是4个百兆口，虽然网上有人说有一个口是千兆的，不过我这个确定全百兆。于是局域网速度堪忧</li>
+<li>系统-&gt;软件包, 查找 luci-app-zerotier 安装即可, 会自动安装需要的包</li>
+<li>安装完成后, 在VPN-&gt;Zerotier可以看到</li>
+<li>填写Network ID, 可能需要点一下+号, 勾选启用和自动允许客户端NAT, 保存应用</li>
+<li>切换到接口信息页签, 记下虚拟网卡名 比如 ztks5wrzww</li>
 </ul>
 
-<h2>目前</h2>
-
-<p>尝试了一下发现光猫可以直接切换为桥接模式。 于是开始了折腾</p>
+<h2>创建zerotier接口和防火墙区域</h2>
 
 <ul>
-<li>登录光猫管理员账号 CMCCAdmin，密码是网上找的，记录下宽带账号和密码</li>
-<li>切换为桥接，PC测试拨号，正常，顺便测了个速，没啥问题</li>
-<li>这一步是后面才发现的。 关闭光猫DHCP服务和WIFI，否则光猫的DHCP和WIFI会抢答</li>
-<li>WNDR4300刷回Openwrt</li>
-<li>配置LAN段IP为 10.10.0.0/24，顺手修改默认密码</li>
-<li>固定NAS的IP为 10.10.0.2</li>
-<li>Openwrt配置PPPOE拨号</li>
-<li>配置Openwrt获得IPv6，参考 <a href="https://opssh.cn/luyou/216.html">https://opssh.cn/luyou/216.html</a></li>
-<li>配置可以直接访问光猫的192.168.1.1，参考 <a href="https://blog.csdn.net/qwe502763576/article/details/122157562">https://blog.csdn.net/qwe502763576/article/details/122157562</a></li>
-<li>配置自定义DNS为114.114.114.114</li>
-<li>配置 自定义挟持域名 自己的域名 -&gt; 10.10.0.2, 测试nas上各个服务是否正常</li>
-<li>配置zerotier，加入到网络中，并勾选 自动允许客户端 NAT， 开启Openwrt ip_forward功能</li>
-<li>zerotier网页增加路由 10.10.0.0/24 -&gt; Openwrt的zerotier 地址</li>
-<li>zerotier网页增加DNS， 自己的域名 &gt; 10.10.0.1 ，此步需要配置自定义挟持域名，后面这个IP需要能够返回DNS的结果，同时需要自动允许客户端 NAT已生效（即已经可以直接通过局域网IP访问局域网其他机器）</li>
-<li>NAS上开启虚拟机，运行x86的Openwrt，并配置OpenClash （后续可以修改为开个docker，貌似我用不到其它功能），参考 <a href="https://post.smzdm.com/p/ag82m5km/">https://post.smzdm.com/p/ag82m5km/</a></li>
-<li>NAS设置代理指向虚拟机的IP，这样省的经常什么镜像拉不下来啊什么的毛病</li>
-<li>主路由Openwrt关闭不需要的服务</li>
+<li>网络-&gt;接口, 添加新接口</li>
+<li>接口名称填 zerotier, 协议选不配置, 设备选择 ztks5wrzww 的那个</li>
+<li>防火墙设置, 输入 zerotier 创建一个新的防火墙区域</li>
 </ul>
 
-<p>最终效果</p>
+<h2>允许防火墙区域转发</h2>
 
-<p>不管是在家还是连接了zerotier , 访问nas只需要 使用自己的域名即可，不用去记各种难记的IP</p>
+<p>即需要允许zerotier-&gt;wan的转发</p>
+
+<ul>
+<li>网络-&gt;防火墙, 找到<code>zerotier</code>的那个区域, 编辑</li>
+<li>允许转发到目标区域 选择 <code>wan</code>, 设置<code>转发</code>为接受</li>
+<li>涵盖的网络 选择 zerotier</li>
+
+<li><p>最终 会有一个zerotier =&gt; wan 的区域设置, 且转发为 接受</p></li>
+
+<li><p>自定义规则中增加三行后保存</p>
+
+<pre><code class="language-shell">iptables -I FORWARD -i ztks5wrzww -j ACCEPT
+iptables -I FORWARD -o ztks5wrzww -j ACCEPT
+iptables -t nat -I POSTROUTING -o ztks5wrzww -j MASQUERADE
+</code></pre>
+
+<p>注意替换自己的虚拟网卡名</p>
+
+<h2>重启网络或者路由器</h2>
+
+<h2>配置zerotier规则</h2>
+
+<p>PS: 这里使用的是自定义网段, 嫌麻烦的可以用Easy模式, 挑一个就行, 我只想装个逼让IP好记点</p>
+
+<ul>
+<li>打开 <a href="https://my.zerotier.com/">https://my.zerotier.com/</a>, 进入到创建的网络中</li>
+<li>IPv4 Auto-Assign 选择 Advanced, Range Start: 10.10.1.1 Range End: 10.10.1.254</li>
+<li>Members里的设备如果已经分配了其他网段的IP, 则删掉, 让它重新分配, 也可以自己写一个, 勾上左边的Auth</li>
+<li>Members里给刚连上的路由器设置名称, 并记下它的Managed IPs</li>
+<li>Managed Routes 增加以下
+
+```</li>
+</ul></li>
+</ul>
+
+<p>10.10.0.0/24 via 路由器的虚拟网卡IP
+10.10.1.0/24 via 10.10.1.255 (这个是这个网段的网关)
+```</p>
+
+<h2>使用不在当前局域网的设备测试下</h2>
+
+<ul>
+<li>笔记本连手机热点, 运行zerotier, 加入到网络中, 并 Auth</li>
+<li>分别 ping 10.10.0.1  ping 10.10.1.1, 都通则表示配置完成</li>
+</ul>
 </article>
                 <section class="author">
                     
@@ -123,16 +149,6 @@
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/redmi-ax6s-flush-firmware.html">redmi ax6s 刷 Openwrt 流程记录</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/dockerfile-for-k8s-to-deploy-golang-program.html">dockerfile for k8s to deploy golang program</a>
-                    </section>
                     
                 </section>
                 
