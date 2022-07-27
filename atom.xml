@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2022-07-16T22:01:27+08:00</updated>
+  <updated>2022-07-27T11:58:55+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>lenovo B4360-B015 install ESXI 6.7</title>
+    <updated>2022-07-27T11:44:03+08:00</updated>
+    <id>tag:linx.run,2022-07-27:/lenovo-b4360-b015-install-esxi-6.7.html</id>
+    <link href="http://linx.run/lenovo-b4360-b015-install-esxi-6.7.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>lenovo b4360-B015 install pve</title>
+    <updated>2022-07-25T20:11:43+08:00</updated>
+    <id>tag:linx.run,2022-07-25:/lenovo-h61-install-pve.html</id>
+    <link href="http://linx.run/lenovo-h61-install-pve.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>openwrt zerotier 配置</title>
     <updated>2022-07-16T21:32:52+08:00</updated>
@@ -61,20 +75,6 @@
     <updated>2021-09-11T11:48:07+08:00</updated>
     <id>tag:linx.run,2021-09-11:/post-.net-grpc-android.md.html</id>
     <link href="http://linx.run/post-.net-grpc-android.md.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>记那些难受的修车过程</title>
-    <updated>2021-03-22T22:39:35+08:00</updated>
-    <id>tag:linx.run,2021-03-22:/记一次难受的修车过程.html</id>
-    <link href="http://linx.run/记一次难受的修车过程.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>排查文件上传超时问题</title>
-    <updated>2021-02-27T23:28:52+08:00</updated>
-    <id>tag:linx.run,2021-02-27:/排查文件上传超时问题.html</id>
-    <link href="http://linx.run/排查文件上传超时问题.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>

@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="openwrt zerotier 配置">
+        <meta name="description" content="lenovo B4360-B015 install ESXI 6.7">
         <meta name="author" content="">
-        <title>openwrt zerotier 配置</title>
+        <title>lenovo B4360-B015 install ESXI 6.7</title>
     </head>
     <body>
         <article class="container">
@@ -68,78 +68,46 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">openwrt zerotier 配置</h1>
+                <h1 class="title">lenovo B4360-B015 install ESXI 6.7</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1657978372"><span class="from"></span></span>
+                    <span class="date" data-time="1658893443"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h2>安装zerotier</h2>
+                <article class="content"><h2>准备工作</h2>
 
 <ul>
-<li>系统-&gt;软件包, 查找 luci-app-zerotier 安装即可, 会自动安装需要的包</li>
-<li>安装完成后, 在VPN-&gt;Zerotier可以看到</li>
-<li>填写Network ID, 可能需要点一下+号, 勾选启用和自动允许客户端NAT, 保存应用</li>
-<li>切换到接口信息页签, 记下虚拟网卡名 比如 ztks5wrzww</li>
-</ul>
-
-<h2>创建zerotier接口和防火墙区域</h2>
+<li><p>检查主板上的网卡型号， 我这里是RTL8111F 和 RTL8169， 两个难搞的螃蟹网卡</p>
 
 <ul>
-<li>网络-&gt;接口, 添加新接口</li>
-<li>接口名称填 zerotier, 协议选不配置, 设备选择 ztks5wrzww 的那个</li>
-<li>防火墙设置, 输入 zerotier 创建一个新的防火墙区域</li>
-</ul>
-
-<h2>允许防火墙区域转发</h2>
-
-<p>即需要允许zerotier-&gt;wan的转发</p>
-
-<ul>
-<li>网络-&gt;防火墙, 找到<code>zerotier</code>的那个区域, 编辑</li>
-<li>允许转发到目标区域 选择 <code>wan</code>, 设置<code>转发</code>为接受</li>
-<li>涵盖的网络 选择 zerotier</li>
-
-<li><p>最终 会有一个zerotier =&gt; wan 的区域设置, 且转发为 接受</p></li>
-
-<li><p>自定义规则中增加三行后保存</p>
-
-<pre><code class="language-shell">iptables -I FORWARD -i ztks5wrzww -j ACCEPT
-iptables -I FORWARD -o ztks5wrzww -j ACCEPT
-iptables -t nat -I POSTROUTING -o ztks5wrzww -j MASQUERADE
-</code></pre>
-
-<p>注意替换自己的虚拟网卡名</p>
-
-<h2>重启网络或者路由器</h2>
-
-<h2>配置zerotier规则</h2>
-
-<p>PS: 这里使用的是自定义网段, 嫌麻烦的可以用Easy模式, 挑一个就行, 我只想装个逼让IP好记点</p>
-
-<ul>
-<li>打开 <a href="https://my.zerotier.com/">https://my.zerotier.com/</a>, 进入到创建的网络中</li>
-<li>IPv4 Auto-Assign 选择 Advanced, Range Start: 10.10.1.1 Range End: 10.10.1.254</li>
-<li>Members里的设备如果已经分配了其他网段的IP, 则删掉, 让它重新分配, 也可以自己写一个, 勾上左边的Auth</li>
-<li>Members里给刚连上的路由器设置名称, 并记下它的Managed IPs</li>
-<li>Managed Routes 增加以下
-
-```</li>
+<li>ESXi 7 不支持螃蟹网卡了，网上注入vib或者offline bundle的方式都不行了</li>
+<li>ESXi 6.7 也不能注入了，会提示依赖不满足， 原因是ESXi在某个版本开始就把一些依赖库去掉了</li>
+<li>ESXi 5版本估计可以， 不过肯定不甘心用这么旧的版本</li>
+<li>只能去网上找已经集成好驱动的iso，不太好找，两个卡都支持的就更难了（有些是别人自己编译进去的）</li>
 </ul></li>
+
+<li><p>BIOS开启虚拟化、UEFI</p></li>
+
+<li><p>准备一个PE，也就是最好有两个U盘，一个装ESXI一个PE</p></li>
+
+<li><p>rufus</p></li>
 </ul>
 
-<p>10.10.0.0/24 via 路由器的虚拟网卡IP
-10.10.1.0/24 via 10.10.1.255 (这个是这个网段的网关)
-```</p>
-
-<h2>使用不在当前局域网的设备测试下</h2>
+<h2>开始</h2>
 
 <ul>
-<li>笔记本连手机热点, 运行zerotier, 加入到网络中, 并 Auth</li>
-<li>分别 ping 10.10.0.1  ping 10.10.1.1, 都通则表示配置完成</li>
+<li>下载iso，直接用rufus写入即可，选择MBR， GPT没试过</li>
+<li>插上U盘启动， 如果驱动集成没问题， 则不会出现 No Network Adapter，一步步操作即可</li>
+<li>装完拔掉U盘重启，我这个主板会提示Error 1962，不知道是主板问题还是ESXI的版本就这样。原因是安装时没有创建UEFI的启动项</li>
+<li>插上PE，开机</li>
+<li>打开Bootice，切换到UEFI页签，进入编辑UEFI启动项页面</li>
+<li>会发现刚安装ESXI的那块硬盘只有个硬盘名字，还不能修改（保存是灰的）</li>
+<li>‼️重要：<strong>添加一个启动项</strong>， 名称填写 <code>Windows Boot Manager</code>, 路径选择硬盘下的ESP分区里的Bootx64.efi</li>
+<li>新的启动项上移到顶部</li>
+<li>重启，搞定</li>
 </ul>
 </article>
                 <section class="author">
@@ -149,16 +117,6 @@ iptables -t nat -I POSTROUTING -o ztks5wrzww -j MASQUERADE
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/lenovo-h61-install-pve.html">lenovo b4360-B015 install pve</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/redmi-ax6s-flush-firmware.html">redmi ax6s 刷 Openwrt 流程记录</a>
-                    </section>
                     
                 </section>
                 

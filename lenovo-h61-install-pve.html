@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="openwrt zerotier 配置">
+        <meta name="description" content="lenovo b4360-B015 install pve">
         <meta name="author" content="">
-        <title>openwrt zerotier 配置</title>
+        <title>lenovo b4360-B015 install pve</title>
     </head>
     <body>
         <article class="container">
@@ -68,78 +68,61 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">openwrt zerotier 配置</h1>
+                <h1 class="title">lenovo b4360-B015 install pve</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1657978372"><span class="from"></span></span>
+                    <span class="date" data-time="1658751103"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h2>安装zerotier</h2>
+                <article class="content"><h2>准备工具</h2>
+
+<ol>
+<li>rufus  <a href="https://rufus.ie/zh/">https://rufus.ie/zh/</a></li>
+<li>PVE iso镜像 <a href="https://www.proxmox.com/en/downloads">https://www.proxmox.com/en/downloads</a></li>
+<li>U盘2个, 一个用于安装PVE 一个装PE。由于我是一块联想的主板，安装完会进不去系统，需要PE来修改启动项名称。如果不是联想主板，那应该PE也不需要了</li>
+<li>DiskGenius，删除分区啥的</li>
+</ol>
+
+<h2>流程</h2>
+
+<ol>
+<li>插上U盘，DiskGenius删除所有分区，保存分区表，新建一个分区并格式化，关闭之</li>
+<li>打开rufus， 选择iso镜像，会提示dd模式写入，直接继续即可，开始写入</li>
+<li>插上U盘和网线，从u盘启动，有UEFI就从UEFI启动</li>
+<li>按流程进行安装，到设置IP的时候设置一个固定IP即可，如果这里没插网线，那估计后面还要连显示器键盘来改IP，很是烦躁</li>
+<li>安装完成后重启，拔掉u盘。联想主板应该会提示1962错误</li>
+<li>插入PE，进PE使用Bootice工具，切换到UEFI页签，应该会有个UEFI启动项序列修改的，进去找到pve对应的那一项，名称修改为 <code>Windows Boot Manager</code>, 如果有其他可以修改UEFI启动项名称的工具也可以， 点击下方的保存，再次拔掉u盘重启</li>
+<li>这回是真进去了</li>
+</ol>
+
+<h2>安装后</h2>
 
 <ul>
-<li>系统-&gt;软件包, 查找 luci-app-zerotier 安装即可, 会自动安装需要的包</li>
-<li>安装完成后, 在VPN-&gt;Zerotier可以看到</li>
-<li>填写Network ID, 可能需要点一下+号, 勾选启用和自动允许客户端NAT, 保存应用</li>
-<li>切换到接口信息页签, 记下虚拟网卡名 比如 ztks5wrzww</li>
-</ul>
+<li><p>关闭订阅提示</p>
 
-<h2>创建zerotier接口和防火墙区域</h2>
+<pre><code>sed -i.backup -z &quot;s/res === null || res === undefined || \!res || res\n\t\t\t.data.status.toLowerCase() \!== 'active'/false/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js &amp;&amp; systemctl restart pveproxy.service
+</code></pre></li>
 
-<ul>
-<li>网络-&gt;接口, 添加新接口</li>
-<li>接口名称填 zerotier, 协议选不配置, 设备选择 ztks5wrzww 的那个</li>
-<li>防火墙设置, 输入 zerotier 创建一个新的防火墙区域</li>
-</ul>
+<li><p>pvetools 一键配置</p>
 
-<h2>允许防火墙区域转发</h2>
+<pre><code>echo &quot;nameserver  8.8.8.8&quot; &gt;&gt; /etc/resolv.conf &amp;&amp; rm /etc/apt/sources.list.d/pve-enterprise.list &amp;&amp; export LC_ALL=en_US.UTF-8 &amp;&amp; apt update &amp;&amp; apt -y install git &amp;&amp; git clone https://github.com/ivanhao/pvetools.git &amp;&amp; cd pvetools &amp;&amp; ./pvetools.sh
+</code></pre></li>
 
-<p>即需要允许zerotier-&gt;wan的转发</p>
+<li><p>挂载硬盘 <a href="https://wangxingcs.com/2020/0910/1442/">https://wangxingcs.com/2020/0910/1442/</a></p></li>
+
+<li><p>导入img格式镜像启动</p>
 
 <ul>
-<li>网络-&gt;防火墙, 找到<code>zerotier</code>的那个区域, 编辑</li>
-<li>允许转发到目标区域 选择 <code>wan</code>, 设置<code>转发</code>为接受</li>
-<li>涵盖的网络 选择 zerotier</li>
-
-<li><p>最终 会有一个zerotier =&gt; wan 的区域设置, 且转发为 接受</p></li>
-
-<li><p>自定义规则中增加三行后保存</p>
-
-<pre><code class="language-shell">iptables -I FORWARD -i ztks5wrzww -j ACCEPT
-iptables -I FORWARD -o ztks5wrzww -j ACCEPT
-iptables -t nat -I POSTROUTING -o ztks5wrzww -j MASQUERADE
-</code></pre>
-
-<p>注意替换自己的虚拟网卡名</p>
-
-<h2>重启网络或者路由器</h2>
-
-<h2>配置zerotier规则</h2>
-
-<p>PS: 这里使用的是自定义网段, 嫌麻烦的可以用Easy模式, 挑一个就行, 我只想装个逼让IP好记点</p>
-
-<ul>
-<li>打开 <a href="https://my.zerotier.com/">https://my.zerotier.com/</a>, 进入到创建的网络中</li>
-<li>IPv4 Auto-Assign 选择 Advanced, Range Start: 10.10.1.1 Range End: 10.10.1.254</li>
-<li>Members里的设备如果已经分配了其他网段的IP, 则删掉, 让它重新分配, 也可以自己写一个, 勾上左边的Auth</li>
-<li>Members里给刚连上的路由器设置名称, 并记下它的Managed IPs</li>
-<li>Managed Routes 增加以下
-
-```</li>
+<li>创建虚拟机 记住虚拟机的ID</li>
+<li>分离并删除默认的硬盘</li>
+<li>上传img到pve目录下</li>
+<li><code>qm importdisk [虚拟机ID] [img路径] local-lvm</code></li>
+<li>导入成功后，刚才的虚拟机下就会多一个硬盘，点击编辑，选择SATA即可</li>
+<li>选项， 修改启动顺序</li>
 </ul></li>
-</ul>
-
-<p>10.10.0.0/24 via 路由器的虚拟网卡IP
-10.10.1.0/24 via 10.10.1.255 (这个是这个网段的网关)
-```</p>
-
-<h2>使用不在当前局域网的设备测试下</h2>
-
-<ul>
-<li>笔记本连手机热点, 运行zerotier, 加入到网络中, 并 Auth</li>
-<li>分别 ping 10.10.0.1  ping 10.10.1.1, 都通则表示配置完成</li>
 </ul>
 </article>
                 <section class="author">
@@ -151,13 +134,13 @@ iptables -t nat -I POSTROUTING -o ztks5wrzww -j MASQUERADE
                     
                     <section class="nav prev more">
                         <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/lenovo-h61-install-pve.html">lenovo b4360-B015 install pve</a>
+                        <a class="link" href="/lenovo-b4360-b015-install-esxi-6.7.html">lenovo B4360-B015 install ESXI 6.7</a>
                     </section>
                     
                     
                     <section class="nav next more">
                         <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/redmi-ax6s-flush-firmware.html">redmi ax6s 刷 Openwrt 流程记录</a>
+                        <a class="link" href="/openwrt-zerotier-configure.html">openwrt zerotier 配置</a>
                     </section>
                     
                 </section>
