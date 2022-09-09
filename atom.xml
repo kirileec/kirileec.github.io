@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2022-07-27T11:58:55+08:00</updated>
+  <updated>2022-09-09T11:40:29+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>ubuntu 19.04 source</title>
+    <updated>2022-09-09T11:38:58+08:00</updated>
+    <id>tag:linx.run,2022-09-09:/ubuntu-19.04-source.html</id>
+    <link href="http://linx.run/ubuntu-19.04-source.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>lenovo B4360-B015 install ESXI 6.7</title>
     <updated>2022-07-27T11:44:03+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2021-09-11T13:06:28+08:00</updated>
     <id>tag:linx.run,2021-09-11:/视展led扩展卡局部刷新.html</id>
     <link href="http://linx.run/视展led扩展卡局部刷新.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>.net-grpc-android.md</title>
-    <updated>2021-09-11T11:48:07+08:00</updated>
-    <id>tag:linx.run,2021-09-11:/post-.net-grpc-android.md.html</id>
-    <link href="http://linx.run/post-.net-grpc-android.md.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
