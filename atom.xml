@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2022-10-31T17:13:10+08:00</updated>
+  <updated>2023-02-08T13:23:48+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>use cert-manager to renewal ssl of k8s</title>
+    <updated>2023-02-08T11:51:35+08:00</updated>
+    <id>tag:linx.run,2023-02-08:/use-cert-manager-to-renewal-ssl-of-k8s.html</id>
+    <link href="http://linx.run/use-cert-manager-to-renewal-ssl-of-k8s.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>export kube config from an imported cluster of kuboard</title>
+    <updated>2023-01-31T10:34:21+08:00</updated>
+    <id>tag:linx.run,2023-01-31:/use-nginx-proxy-to-play-docker.html</id>
+    <link href="http://linx.run/use-nginx-proxy-to-play-docker.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>pve lxc jellyfin passthrough intel gpu</title>
     <updated>2022-10-31T16:46:25+08:00</updated>
@@ -61,20 +75,6 @@
     <updated>2022-05-30T08:59:41+08:00</updated>
     <id>tag:linx.run,2022-05-30:/dockerfile-for-k8s-to-deploy-golang-program.html</id>
     <link href="http://linx.run/dockerfile-for-k8s-to-deploy-golang-program.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>带时间戳Hash，实现一段时间内哈希值不变</title>
-    <updated>2022-05-26T16:23:29+08:00</updated>
-    <id>tag:linx.run,2022-05-26:/hash-timestamp-expire.html</id>
-    <link href="http://linx.run/hash-timestamp-expire.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>linux 多网卡配置</title>
-    <updated>2021-12-23T22:25:46+08:00</updated>
-    <id>tag:linx.run,2021-12-23:/post-linux-multi-network.html</id>
-    <link href="http://linx.run/post-linux-multi-network.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
