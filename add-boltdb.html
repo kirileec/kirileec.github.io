@@ -83,19 +83,19 @@
 
 import (
 
-	&quot;github.com/asdine/storm&quot;
-	bolt &quot;go.etcd.io/bbolt&quot;
-	&quot;qrcodeTransferBox/config&quot;
-	&quot;time&quot;
+    &quot;github.com/asdine/storm&quot;
+    bolt &quot;go.etcd.io/bbolt&quot;
+    &quot;qrcodeTransferBox/config&quot;
+    &quot;time&quot;
 )
 
 var (
-	Db *storm.DB
+    Db *storm.DB
 )
 
 func InitDB() (*storm.DB,error) {
-	d,_ := time.ParseDuration(config.Cfg.Db.Timeout)
-	return storm.Open(config.Cfg.Db.DbPath, storm.BoltOptions(0600, &amp;bolt.Options{Timeout: d}))
+    d,_ := time.ParseDuration(config.Cfg.Db.Timeout)
+    return storm.Open(config.Cfg.Db.DbPath, storm.BoltOptions(0600, &amp;bolt.Options{Timeout: d}))
 }
 </code></pre>
 
@@ -116,19 +116,19 @@ if err != nil {
 <pre><code class="language-go">package utils
 
 import (
-	&quot;github.com/gin-gonic/gin&quot;
-	&quot;qrcodeTransferBox/db&quot;
-	&quot;qrcodeTransferBox/model&quot;
-	&quot;time&quot;
+    &quot;github.com/gin-gonic/gin&quot;
+    &quot;qrcodeTransferBox/db&quot;
+    &quot;qrcodeTransferBox/model&quot;
+    &quot;time&quot;
 )
 
 func WriteAccessLog(c *gin.Context) {
-	log := model.AccessLog{
-		DateTime:time.Now(),
-		Path:c.Request.RequestURI,
-		Action:c.Request.Method,
-	}
-	_ = db.Db.Save(&amp;log)
+    log := model.AccessLog{
+        DateTime:time.Now(),
+        Path:c.Request.RequestURI,
+        Action:c.Request.Method,
+    }
+    _ = db.Db.Save(&amp;log)
 }
 </code></pre>
 

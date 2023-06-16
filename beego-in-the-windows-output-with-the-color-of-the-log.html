@@ -92,16 +92,16 @@
 
 <pre><code class="language-go">
 func NewColorConsole() Logger {
-	cw := &amp;consoleWriter{
-		lg:       newLogWriter(NewAnsiColorWriter(os.Stdout)),
-		Level:    LevelDebug,
-		Colorful: true,
-	}
-	return cw
+    cw := &amp;consoleWriter{
+        lg:       newLogWriter(NewAnsiColorWriter(os.Stdout)),
+        Level:    LevelDebug,
+        Colorful: true,
+    }
+    return cw
 }
 
 func init() {
-	Register(AdapterConsole, NewColorConsole)
+    Register(AdapterConsole, NewColorConsole)
 }
 </code></pre>
 

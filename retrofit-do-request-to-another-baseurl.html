@@ -81,12 +81,12 @@
 
 <h2>方法一</h2>
 
-<pre><code class="language-kotlin">		@GET(&quot;/api/v1/attend/report/student&quot;)
+<pre><code class="language-kotlin">        @GET(&quot;/api/v1/attend/report/student&quot;)
     fun getStudentAtt(
                       @Query(&quot;imei&quot;) imei:String,
                       @Query(&quot;page&quot;) page:Int,
                       @Query(&quot;size&quot;) size:Int
-      								@Header(&quot;Authorization&quot;) token: String = App.instance.token
+                                    @Header(&quot;Authorization&quot;) token: String = App.instance.token
     )
 </code></pre>
 
@@ -97,7 +97,7 @@
                       @Query(&quot;imei&quot;) imei:String,
                       @Query(&quot;page&quot;) page:Int,
                       @Query(&quot;size&quot;) size:Int
-      								@Header(&quot;Authorization&quot;) token: String = App.instance.token
+                                    @Header(&quot;Authorization&quot;) token: String = App.instance.token
     )
 </code></pre>
 
@@ -107,11 +107,11 @@
 
 <pre><code class="language-kotlin">    @GET
     fun getStudentAtt(
-      								@Url url:String,
+                                    @Url url:String,
                       @Query(&quot;imei&quot;) imei:String,
                       @Query(&quot;page&quot;) page:Int,
                       @Query(&quot;size&quot;) size:Int
-      								@Header(&quot;Authorization&quot;) token: String = App.instance.token
+                                    @Header(&quot;Authorization&quot;) token: String = App.instance.token
     )
 </code></pre>
 

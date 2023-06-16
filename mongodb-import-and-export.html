@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="oracle create a read-only account">
+        <meta name="description" content="mongodb import and export">
         <meta name="author" content="">
-        <title>oracle create a read-only account</title>
+        <title>mongodb import and export</title>
     </head>
     <body>
         <article class="container">
@@ -68,71 +68,53 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">oracle create a read-only account</h1>
+                <h1 class="title">mongodb import and export</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1676940726"><span class="from"></span></span>
+                    <span class="date" data-time="1686896965"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h1>Oracle 创建只读账号</h1>
+                <article class="content"><h2>使用mongodump和mongorestore进行备份和还原</h2>
 
-<ul>
-<li>${ADMIN}: 对库有读写权限的原管理账号</li>
-<li>${ACCOUNT}: 新创建的只读账号</li>
-<li>${TABLENAME}: 表名</li>
-<li>${PASSWORD}: 密码</li>
-</ul>
+<ol>
+<li>安装MongoDB Community, 注意如果不是windows 10以上需要使用 4.2.24版本</li>
+<li>安装Navicat, 可以方便调用mongodump这些可执行程序</li>
+<li>安装<a href="https://www.mongodb.com/try/download/database-tools">mongo database tools</a>. 4.2.24版本在安装目录的bin文件夹已经带有mongodump. 记得选择msi的安装方式, 省事儿</li>
+<li>打开Navicat, 在集合处右键选择<code>MongoDump...</code>或<code>MongoRestore...</code>进行备份还原</li>
+</ol>
 
-<h2>创建账号</h2>
+<p>PS: 之前使用导出json的方式来进行, 后面发现会丢失meta信息. 某些字段在导入之后会变成不一样的字段. 例如:</p>
 
-<pre><code class="language-sql">CREATE USER ${ACCOUNT} identified by ${PASSWORD};
+<pre><code>{
+    &quot;_id&quot;:&quot;xxxxx&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;timeStamp&quot;: 1423122333
+        }
+    ]
 
-grant connect to ${ACCOUNT};
-grant create view to ${ACCOUNT};
-grant create session to ${ACCOUNT};
-grant create synonym to ${ACCOUNT};
+}
 </code></pre>
 
-<h2>生成授权语句</h2>
+<p>会变成</p>
 
-<p>假设管理账号为${ADMIN}</p>
+<pre><code>{
+    &quot;_id&quot;:&quot;xxxxx&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;timeStamp&quot;: {
+                &quot;$numberLong&quot;:&quot;1423122333&quot;
+            }
+        }
+    ]
 
-<pre><code class="language-sql">select 'grant select on '||owner||'.'||object_name||' to ${ACCOUNT};'
-from dba_objects
-where owner in ('${ADMIN}')
-and object_type='TABLE';
+}
 </code></pre>
 
-<p>该语句结果拿出来执行</p>
-
-<p>类似这样的语句, 在管理账号下执行即可</p>
-
-<pre><code class="language-sql">grant select on ${ADMIN}.${TABLENAME} to ${ACCOUNT}
-</code></pre>
-
-<p>PS: <strong>这里生成的语句是区分大小写的，如果数据库里有一些不是大写的表名，需要加双引号</strong></p>
-
-<h2>登录新账号确认</h2>
-
-<p>确认新账号可以看到 ${ADMIN} 下的表</p>
-
-<h2>创建同义词</h2>
-
-<p>在${ADMIN}账号下执行，生成的语句，在${ACCOUNT}下执行</p>
-
-<pre><code class="language-sql">select 'create or replace SYNONYM ${ACCOUNT}.'||object_name|| ' for ' ||owner|| '.'||object_name||';'
-from dba_objects
-where owner in ('${ADMIN}')
-and object_type='TABLE'
-</code></pre>
-
-<p>类似</p>
-
-<pre><code class="language-sql">create or replace SYNONYM ${ACCOUNT}.${TABLENAME} for ${ADMIN}.${TABLENAME};
-</code></pre>
+<p>这样会导致如果使用某些框架进行反序列化的时候会出现问题</p>
 </article>
                 <section class="author">
                     
@@ -141,16 +123,6 @@ and object_type='TABLE'
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/influxdb-v1-export-and-import-data.html">influxdb v1 export and import data</a>
-                    </section>
-                    
-                    
-                    <section class="nav next more">
-                        <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/move-disk-to-another-on-pve.html">move disk to another on pve</a>
-                    </section>
                     
                 </section>
                 

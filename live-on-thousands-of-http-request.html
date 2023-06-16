@@ -106,13 +106,13 @@
 <pre><code>defer ants.Release()
 var wg sync.WaitGroup
 invokeChan := xchan.NewXChan(10000, func(i interface{}) {
-			wg.Add(1)
-			p.Invoke(i)
-		})
+            wg.Add(1)
+            p.Invoke(i)
+        })
 p, _ = ants.NewPoolWithFunc(poolCount, func(i interface{}) {
-			handleCard(i, alarmchan, insertChan, invokeChan)
-			wg.Done()
-		})
+            handleCard(i, alarmchan, insertChan, invokeChan)
+            wg.Done()
+        })
 for _, cardid := range CardList {
     wg.Add(1)
     p.Invoke(string(cardid))

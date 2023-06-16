@@ -92,12 +92,12 @@
 
 <p>只要在<code>beego.Run()</code> 之前加入</p>
 
-<pre><code class="language-go">	beego.InsertFilter(&quot;*&quot;, beego.BeforeRouter, cors.Allow(&amp;cors.Options{
-		AllowAllOrigins: true,
-		AllowMethods:    []string{&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;},
-		AllowHeaders:    []string{&quot;Origin&quot;, &quot;Authorization&quot;, &quot;Access-Control-Allow-Origin&quot;, &quot;Content-Type&quot;},
-		ExposeHeaders:   []string{&quot;Content-Length&quot;, &quot;Access-Control-Allow-Origin&quot;},
-	}))
+<pre><code class="language-go">    beego.InsertFilter(&quot;*&quot;, beego.BeforeRouter, cors.Allow(&amp;cors.Options{
+        AllowAllOrigins: true,
+        AllowMethods:    []string{&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;},
+        AllowHeaders:    []string{&quot;Origin&quot;, &quot;Authorization&quot;, &quot;Access-Control-Allow-Origin&quot;, &quot;Content-Type&quot;},
+        ExposeHeaders:   []string{&quot;Content-Length&quot;, &quot;Access-Control-Allow-Origin&quot;},
+    }))
 </code></pre>
 
 <p>即可</p>

@@ -161,20 +161,20 @@ message FSResp {
 <pre><code class="language-go">package main
 
 import (
-	&quot;context&quot;
-	&quot;crypto/sha256&quot;
-	&quot;fmt&quot;
-	&quot;github.com/linxlib/logs&quot;
-	&quot;google.golang.org/grpc&quot;
-	&quot;google.golang.org/grpc/credentials&quot;
-	&quot;grpc_startup/proto&quot;
-	&quot;log&quot;
-	&quot;math&quot;
-	&quot;net&quot;
+    &quot;context&quot;
+    &quot;crypto/sha256&quot;
+    &quot;fmt&quot;
+    &quot;github.com/linxlib/logs&quot;
+    &quot;google.golang.org/grpc&quot;
+    &quot;google.golang.org/grpc/credentials&quot;
+    &quot;grpc_startup/proto&quot;
+    &quot;log&quot;
+    &quot;math&quot;
+    &quot;net&quot;
 )
 
 const (
-	port = &quot;:50051&quot;
+    port = &quot;:50051&quot;
 )
 
 type server struct {
@@ -182,47 +182,47 @@ type server struct {
 
 // verifyFile 校验下上传的数据包是否完整, 通过Sha256和文件数据长度两个进行判断
 func (s *server) verifyFile(file []byte, hash string, length int64) bool {
-	h := sha256.New()
-	h.Write(file)
-	myHash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
-	logs.Info(&quot;hash:&quot;, hash, &quot; myHash:&quot;, myHash, &quot; len:&quot;, length, &quot; myLen:&quot;, len(file))
-	return hash == myHash
+    h := sha256.New()
+    h.Write(file)
+    myHash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
+    logs.Info(&quot;hash:&quot;, hash, &quot; myHash:&quot;, myHash, &quot; len:&quot;, length, &quot; myLen:&quot;, len(file))
+    return hash == myHash
 }
 
 func (s *server) Upload(ctx context.Context, in *proto.FSReq) (*proto.FSResp, error) {
-	if !s.verifyFile(in.File, in.Hash, in.Filelen) {
-		return &amp;proto.FSResp{
-			Status:  false,
-			Message: &quot;数据包哈希校验失败，请重新部署&quot;,
-		}, nil
-	}
-	return &amp;proto.FSResp{
-		Status:  true,
-		Message: &quot;received&quot;,
-	}, nil
+    if !s.verifyFile(in.File, in.Hash, in.Filelen) {
+        return &amp;proto.FSResp{
+            Status:  false,
+            Message: &quot;数据包哈希校验失败，请重新部署&quot;,
+        }, nil
+    }
+    return &amp;proto.FSResp{
+        Status:  true,
+        Message: &quot;received&quot;,
+    }, nil
 }
 
 func main() {
-	lis, err := net.Listen(&quot;tcp&quot;, port)
-	if err != nil {
-		logs.Fatalf(&quot;failed to listen: %v&quot;, err)
-	}
-	c, err := credentials.NewServerTLSFromFile(&quot;./server.crt&quot;, &quot;./server.key&quot;)
-	if err != nil {
-		log.Fatalf(&quot;credentials.NewServerTLSFromFile err: %v&quot;, err)
-	}
-	//由于要发送较大的压缩包，默认为 4M。
-	//如果需要向客户端发送大文件则增加一条grpc.MaxSendMsgSize()
-	s := grpc.NewServer(
-		grpc.Creds(c),
-		grpc.MaxRecvMsgSize(math.MaxInt64))
-		
-	//注册服务
-	proto.RegisterFileServiceServer(s, &amp;server{})
+    lis, err := net.Listen(&quot;tcp&quot;, port)
+    if err != nil {
+        logs.Fatalf(&quot;failed to listen: %v&quot;, err)
+    }
+    c, err := credentials.NewServerTLSFromFile(&quot;./server.crt&quot;, &quot;./server.key&quot;)
+    if err != nil {
+        log.Fatalf(&quot;credentials.NewServerTLSFromFile err: %v&quot;, err)
+    }
+    //由于要发送较大的压缩包，默认为 4M。
+    //如果需要向客户端发送大文件则增加一条grpc.MaxSendMsgSize()
+    s := grpc.NewServer(
+        grpc.Creds(c),
+        grpc.MaxRecvMsgSize(math.MaxInt64))
+        
+    //注册服务
+    proto.RegisterFileServiceServer(s, &amp;server{})
 
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf(&quot;failed to serve: %v&quot;, err)
-	}
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf(&quot;failed to serve: %v&quot;, err)
+    }
 }
 </code></pre>
 
@@ -233,64 +233,64 @@ func main() {
 <pre><code class="language-go">package main
 
 import (
-	&quot;context&quot;
-	&quot;crypto/sha256&quot;
-	&quot;fmt&quot;
-	&quot;github.com/linxlib/conv&quot;
-	&quot;github.com/linxlib/logs&quot;
-	&quot;google.golang.org/grpc&quot;
-	&quot;google.golang.org/grpc/credentials&quot;
-	&quot;grpc_startup/proto&quot;
-	&quot;io/ioutil&quot;
-	&quot;log&quot;
-	&quot;time&quot;
+    &quot;context&quot;
+    &quot;crypto/sha256&quot;
+    &quot;fmt&quot;
+    &quot;github.com/linxlib/conv&quot;
+    &quot;github.com/linxlib/logs&quot;
+    &quot;google.golang.org/grpc&quot;
+    &quot;google.golang.org/grpc/credentials&quot;
+    &quot;grpc_startup/proto&quot;
+    &quot;io/ioutil&quot;
+    &quot;log&quot;
+    &quot;time&quot;
 )
 
 const (
-	address = &quot;localhost:50051&quot;
+    address = &quot;localhost:50051&quot;
 )
 
 func main() {
-	// 注意这里的deploy， 需要和证书公钥生成时的 Common Name 对应
-	c, err := credentials.NewClientTLSFromFile(&quot;./server.crt&quot;, &quot;deploy&quot;)
-	if err != nil {
-		log.Fatalf(&quot;credentials.NewClientTLSFromFile err: %v&quot;, err)
-	}
-	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(c))
-	if err != nil {
-		log.Fatalf(&quot;did not connect: %v&quot;, err)
-	}
-	defer conn.Close()
-	client := proto.NewFileServiceClient(conn)
+    // 注意这里的deploy， 需要和证书公钥生成时的 Common Name 对应
+    c, err := credentials.NewClientTLSFromFile(&quot;./server.crt&quot;, &quot;deploy&quot;)
+    if err != nil {
+        log.Fatalf(&quot;credentials.NewClientTLSFromFile err: %v&quot;, err)
+    }
+    conn, err := grpc.Dial(address, grpc.WithTransportCredentials(c))
+    if err != nil {
+        log.Fatalf(&quot;did not connect: %v&quot;, err)
+    }
+    defer conn.Close()
+    client := proto.NewFileServiceClient(conn)
 
-	// 30秒的上下文, 传输大文件适当扩大时间
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
-	defer cancel()
+    // 30秒的上下文, 传输大文件适当扩大时间
+    ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+    defer cancel()
 
-	bs, _ := ioutil.ReadFile(&quot;./1.0-window.7z&quot;)
-	filelen := conv.Int64(len(bs))
-	h := sha256.New()
-	h.Write(bs)
-	myhash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
-	logs.Info(&quot;myhash:&quot;, myhash)
-	start := time.Now()
-	r, err := client.Upload(ctx, &amp;proto.FSReq{
-		DstDir:   &quot;ehw&quot;,
-		ProjName: &quot;dsaudg&quot;,
-		Name:     &quot;dasgf&quot;,
-		ProjType: 1,
-		Hash:     myhash,
-		Filelen:  filelen,
-		IfReboot: false,
-		File:     bs,
-	})
-	end := time.Now().Sub(start).Seconds()
-	kb := filelen / 1024
-	logs.Info(&quot;time:&quot;, end, &quot; file size:&quot;, kb, &quot;KB&quot;)
-	if err != nil {
-		log.Fatalf(&quot;could not upload: %v&quot;, err)
-	}
-	log.Printf(&quot;Upload: %s&quot;, r.Message)
+    bs, _ := ioutil.ReadFile(&quot;./1.0-window.7z&quot;)
+    filelen := conv.Int64(len(bs))
+    h := sha256.New()
+    h.Write(bs)
+    myhash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
+    logs.Info(&quot;myhash:&quot;, myhash)
+    start := time.Now()
+    r, err := client.Upload(ctx, &amp;proto.FSReq{
+        DstDir:   &quot;ehw&quot;,
+        ProjName: &quot;dsaudg&quot;,
+        Name:     &quot;dasgf&quot;,
+        ProjType: 1,
+        Hash:     myhash,
+        Filelen:  filelen,
+        IfReboot: false,
+        File:     bs,
+    })
+    end := time.Now().Sub(start).Seconds()
+    kb := filelen / 1024
+    logs.Info(&quot;time:&quot;, end, &quot; file size:&quot;, kb, &quot;KB&quot;)
+    if err != nil {
+        log.Fatalf(&quot;could not upload: %v&quot;, err)
+    }
+    log.Printf(&quot;Upload: %s&quot;, r.Message)
 }
 
 </code></pre>
@@ -312,34 +312,34 @@ func main() {
 
 <pre><code class="language-csharp">private void button1_Click(object sender, EventArgs e)
 {
-	var secureChanel = new SslCredentials(File.ReadAllText(&quot;server.crt&quot;));
-	var channOptions = new List&lt;ChannelOption&gt;
-	{
-		new ChannelOption(ChannelOptions.SslTargetNameOverride,&quot;deploy&quot;)
-	};
-	Channel channel = new Channel(&quot;127.0.0.1:50051&quot;, secureChanel , channOptions);
+    var secureChanel = new SslCredentials(File.ReadAllText(&quot;server.crt&quot;));
+    var channOptions = new List&lt;ChannelOption&gt;
+    {
+        new ChannelOption(ChannelOptions.SslTargetNameOverride,&quot;deploy&quot;)
+    };
+    Channel channel = new Channel(&quot;127.0.0.1:50051&quot;, secureChanel , channOptions);
 
-	var client = new FileServiceClient(channel);
-	var req = new Proto.FSReq();
-	req.DstDir = &quot;ssdd&quot;;
-	req.IfReboot = false;
-	req.Name = &quot;sadas&quot;;
-	req.ProjName = &quot;dsada&quot;;
-	req.ProjType = 3;
+    var client = new FileServiceClient(channel);
+    var req = new Proto.FSReq();
+    req.DstDir = &quot;ssdd&quot;;
+    req.IfReboot = false;
+    req.Name = &quot;sadas&quot;;
+    req.ProjName = &quot;dsada&quot;;
+    req.ProjType = 3;
 
-	var file = File.ReadAllBytes(&quot;1.0-window.7z&quot;);
-	SHA256Managed Sha256 = new SHA256Managed();
-	byte[] bs = Sha256.ComputeHash(file);
-	var hash = BitConverter.ToString(bs);
-	req.Hash = hash.Replace(&quot;-&quot;,&quot;&quot;).ToLower();
-	req.Filelen = file.Length;
-	req.File = ByteString.CopyFrom(file);
+    var file = File.ReadAllBytes(&quot;1.0-window.7z&quot;);
+    SHA256Managed Sha256 = new SHA256Managed();
+    byte[] bs = Sha256.ComputeHash(file);
+    var hash = BitConverter.ToString(bs);
+    req.Hash = hash.Replace(&quot;-&quot;,&quot;&quot;).ToLower();
+    req.Filelen = file.Length;
+    req.File = ByteString.CopyFrom(file);
 
-	var reply = client.Upload(req);
+    var reply = client.Upload(req);
 
-	MessageBox.Show(&quot;来自&quot; + reply.Message);
+    MessageBox.Show(&quot;来自&quot; + reply.Message);
 
-	channel.ShutdownAsync().Wait();
+    channel.ShutdownAsync().Wait();
 }
 </code></pre>
 

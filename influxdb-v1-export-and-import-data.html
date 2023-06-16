@@ -45,9 +45,10 @@
 </script>
 
 
-        <meta name="keywords" content="记录解决方案">
-        <meta name="description" content="记录解决方案">
-        <title>Linx&#39;s Solution</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="influxdb v1 export and import data">
+        <meta name="author" content="">
+        <title>influxdb v1 export and import data</title>
     </head>
     <body>
         <article class="container">
@@ -66,42 +67,49 @@
   </ul>
 </header>
 
-            <article class="main page">
+            <article class="main article">
+                <h1 class="title">influxdb v1 export and import data</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1680168341"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><h1>InfluxDB 导出和导入数据</h1>
 
-                <header class="header site">
+<h2>导出</h2>
 
-                    
-                        <img class="logo" src="/images/photo.jpg" />
-                        <h1 class="tag">Music</h1>
-                        <h2 class="tag-sub">1 篇文章</h2>
-                    
+<pre><code>.\influx_inspect.exe export -datadir &quot;C:\Windows\System32\config\systemprofile\.influxdb\data&quot; -waldir &quot;C:\Windows\System32\config\systemprofile\.influxdb\wal&quot; -out &quot;database_export&quot; -database database_export 
+</code></pre>
 
-                </header>
-                <ul class="article-list">
+<h2>导入</h2>
+
+<pre><code>.\influx.exe -import -path &quot;&quot;
+</code></pre>
+</article>
+                <section class="author">
                     
-                    <li class="article">
-                        <a class="title" href="/%e4%ba%91%e7%83%9f%e6%88%90%e9%9b%a8.html">云烟成雨</a>
-                        
-                        <section class="preview content"><p>&lt;云烟成雨&gt;</p>
-</section>
-                        <section class="info">
-                            
-                            
-                            
-                            <span class="date" data-time="1543655258"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/Music/index.html">Music</a>
-                            </span>
-                        </section>
-                    </li>
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
                     
-                </ul>
-                <section class="page-nav">
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/mongodb-import-and-export.html">mongodb import and export</a>
+                    </section>
                     
                     
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/oracle-create-a-read-only-account.html">oracle create a read-only account</a>
+                    </section>
                     
                 </section>
+                
+
             </article>
         </article>
         <footer class="footer">
@@ -115,6 +123,11 @@
     <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
 </footer>
 
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
     </body>
-    <script src="/bundle/index.js"></script>
 </html>

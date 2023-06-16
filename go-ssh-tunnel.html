@@ -90,24 +90,24 @@
 <pre><code class="language-go">package main
 
 import (
-	&quot;github.com/elliotchance/sshtunnel&quot;
-	&quot;log&quot;
-	&quot;os&quot;
-	&quot;time&quot;
+    &quot;github.com/elliotchance/sshtunnel&quot;
+    &quot;log&quot;
+    &quot;os&quot;
+    &quot;time&quot;
 )
 
 func main() {
-	//测试服务器上的redis隧道
-	tunnel := sshtunnel.NewSSHTunnel(
-		&quot;&lt;用户名&gt;@&lt;服务器ip&gt;&quot;,
-		sshtunnel.PrivateKeyFile(&quot;&lt;私钥路径&gt;&quot;), // 1. private key
-		&quot;127.0.0.1:6379&quot;,
-		&quot;6379&quot;,
-	)
-	tunnel.Log = log.New(os.Stdout, &quot;&quot;, log.Ldate|log.Lmicroseconds)
-	go tunnel.Start()
-	
-	select {}
+    //测试服务器上的redis隧道
+    tunnel := sshtunnel.NewSSHTunnel(
+        &quot;&lt;用户名&gt;@&lt;服务器ip&gt;&quot;,
+        sshtunnel.PrivateKeyFile(&quot;&lt;私钥路径&gt;&quot;), // 1. private key
+        &quot;127.0.0.1:6379&quot;,
+        &quot;6379&quot;,
+    )
+    tunnel.Log = log.New(os.Stdout, &quot;&quot;, log.Ldate|log.Lmicroseconds)
+    go tunnel.Start()
+    
+    select {}
 }
 
 </code></pre>

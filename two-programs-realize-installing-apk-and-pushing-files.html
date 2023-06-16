@@ -122,7 +122,7 @@ int main ( int argc, char *argv[] )
 int main ( int argc, char *argv[] )
 {
     char total[256]={0};
-	sprintf(total, &quot;%s%s %s%s&quot;, &quot;adb push &quot;,argv[1],&quot;/sdcard/&quot;,basename(argv[1]) );
+    sprintf(total, &quot;%s%s %s%s&quot;, &quot;adb push &quot;,argv[1],&quot;/sdcard/&quot;,basename(argv[1]) );
     printf ( &quot;Waiting for device online...n&quot; );
     system(&quot;adb wait-for-device&quot;);
     system(total);

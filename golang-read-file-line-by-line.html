@@ -82,27 +82,27 @@
 <pre><code class="language-go">func handle(textfile string) error {
     // 1. open file
     file, err := os.Open(textfile)
-	if err != nil {
-		log.Printf(&quot;Cannot open text file: %s, err: [%v]&quot;, textfile, err)
-		return err
-	}
+    if err != nil {
+        log.Printf(&quot;Cannot open text file: %s, err: [%v]&quot;, textfile, err)
+        return err
+    }
     defer file.Close()
     //2. new a scanner to scan file
     scanner := bufio.NewScanner(file)
     for scanner.Scan() {
-		line := scanner.Text() // or
-		//line := scanner.Bytes()
-		
+        line := scanner.Text() // or
+        //line := scanner.Bytes()
+        
         // do somthing
-		fmt.Printf(&quot;%s\n&quot;, line)
-	}
+        fmt.Printf(&quot;%s\n&quot;, line)
+    }
 
-	if err := scanner.Err(); err != nil {
-		log.Printf(&quot;Cannot scanner text file: %s, err: [%v]&quot;, textfile, err)
-		return err
-	}
+    if err := scanner.Err(); err != nil {
+        log.Printf(&quot;Cannot scanner text file: %s, err: [%v]&quot;, textfile, err)
+        return err
+    }
 
-	return nil
+    return nil
 }
 
 </code></pre>
