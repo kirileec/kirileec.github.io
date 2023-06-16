@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-06-16T14:38:45+08:00</updated>
+  <updated>2023-06-16T14:51:49+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>navicat forgot password</title>
+    <updated>2023-06-16T14:48:22+08:00</updated>
+    <id>tag:linx.run,2023-06-16:/navicat-forgot-password.html</id>
+    <link href="http://linx.run/navicat-forgot-password.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>mongodb import and export</title>
     <updated>2023-06-16T14:29:25+08:00</updated>
@@ -68,13 +75,6 @@
     <updated>2022-07-27T11:44:03+08:00</updated>
     <id>tag:linx.run,2022-07-27:/lenovo-b4360-b015-install-esxi-6.7.html</id>
     <link href="http://linx.run/lenovo-b4360-b015-install-esxi-6.7.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>lenovo b4360-B015 install pve</title>
-    <updated>2022-07-25T20:11:43+08:00</updated>
-    <id>tag:linx.run,2022-07-25:/lenovo-h61-install-pve.html</id>
-    <link href="http://linx.run/lenovo-h61-install-pve.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
