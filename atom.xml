@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-06-16T14:51:49+08:00</updated>
+  <updated>2023-07-13T22:50:23+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>ROS双线分流, 国外IP转到旁路由</title>
+    <updated>2023-07-13T21:08:44+08:00</updated>
+    <id>tag:linx.run,2023-07-13:/ros双线分流+国外ip转到旁路由.html</id>
+    <link href="http://linx.run/ros双线分流+国外ip转到旁路由.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>ROS settings</title>
+    <updated>2023-06-18T20:16:34+08:00</updated>
+    <id>tag:linx.run,2023-06-18:/ros-settings.html</id>
+    <link href="http://linx.run/ros-settings.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>navicat forgot password</title>
     <updated>2023-06-16T14:48:22+08:00</updated>
@@ -61,20 +75,6 @@
     <updated>2022-10-31T16:46:25+08:00</updated>
     <id>tag:linx.run,2022-10-31:/pve-lxc-jellyfin-passthrough-intel-gpu.html</id>
     <link href="http://linx.run/pve-lxc-jellyfin-passthrough-intel-gpu.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>ubuntu 19.04 source</title>
-    <updated>2022-09-09T11:38:58+08:00</updated>
-    <id>tag:linx.run,2022-09-09:/ubuntu-19.04-source.html</id>
-    <link href="http://linx.run/ubuntu-19.04-source.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>lenovo B4360-B015 install ESXI 6.7</title>
-    <updated>2022-07-27T11:44:03+08:00</updated>
-    <id>tag:linx.run,2022-07-27:/lenovo-b4360-b015-install-esxi-6.7.html</id>
-    <link href="http://linx.run/lenovo-b4360-b015-install-esxi-6.7.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
