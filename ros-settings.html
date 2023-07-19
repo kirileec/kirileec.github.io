@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -83,12 +84,11 @@
 <li>上传ROS7-6G.ovf、ROS7-6G-disk1.vmdk等文件到PVE目录下</li>
 <li>执行: <code>qm importovf {{vmid}} ROS7-6G.ovf local-lvm --format qcow2</code></li>
 <li><code>vim /etc/pve/nodes/pve/qemu-server/{{vmid}}.conf</code></li>
-
-<li><p>ide0那一行末尾增加以下内容</p>
+<li>ide0那一行末尾增加以下内容</li>
+</ul>
 
 <pre><code>,model=VMware%20Virtual%20IDE%20Hard%20Drive,serial=00000000000000000001
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>修改后类似于ide0: local-lvm:vm-777-disk-0,model=VMware%20Virtual%20IDE%20Hard%20Drive,serial=00000000000000000001</p>
 
@@ -121,14 +121,13 @@
 <ul>
 <li>用户名admin 默认密码为空, 然后重新设置一个密码</li>
 <li>执行 <code>/system reset-configuration no-defaults=yes skip-backup=yes</code> 重置下配置</li>
-
-<li><p><code>/system license print</code> 查看授权</p>
+<li><code>/system license print</code> 查看授权</li>
+</ul>
 
 <pre><code>/interface  print
 /system reboot
 /system shutdown
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h2>ROS实现双线网络叠加</h2>
 
@@ -143,28 +142,29 @@
 <h3>网络连接</h3>
 
 <ul>
-<li>IP-&gt;DHCP Client. Interface选择ether1, Use Peer DNS 和Use Peer NTP都勾上. Add Default Route yes</li>
-<li>Interfaces -&gt; 添加 PPPOE Client. 名称默认为 pppoe-out1. Interfaces选择ether3. Dial Out页签填写用户名和密码, 其他一般不动, Apply. Status页签能获取到IP即为成功</li>
-<li>IP-&gt;Pool, 添加一个 dhcp-pool, 网段为 10.11.0.4-10.11.0.200</li>
+<li><p>IP-&gt;DHCP Client. Interface选择ether1, Use Peer DNS 和Use Peer NTP都勾上. Add Default Route yes</p></li>
+
+<li><p>Interfaces -&gt; 添加 PPPOE Client. 名称默认为 pppoe-out1. Interfaces选择ether3. Dial Out页签填写用户名和密码, 其他一般不动, Apply. Status页签能获取到IP即为成功</p></li>
+
+<li><p>IP-&gt;Pool, 添加一个 dhcp-pool, 网段为 10.11.0.4-10.11.0.200</p></li>
 
 <li><p>IP-&gt;DHCP Server. Interface选择ether2. Lease Time设置为 <code>1d 00:00:00</code>. Address Pool选择上面创建的. Networks页签, 添加一个网络. Address: 10.11.0.0./24 Gateway: 10.11.0.254 (我这里把254设置为网关) DNS Servers 随便填一个</p></li>
 
-<li><p>IP-&gt;DNS. 添加几个DNS服务器</p>
+<li><p>IP-&gt;DNS. 添加几个DNS服务器</p></li>
+</ul>
 
 <pre><code>114.114.114.114
 223.5.5.5
 119.29.29.29
 2400:3200::1
 2400:3200:baba::1
-</code></pre></li>
+</code></pre>
 
-<li><p>IPv6-&gt; DHCP Client. Interface选择 pppoe-out1, Request 勾选 prefix. Pool Name 填写ipv6. Length 填 64. 勾上 <code>Use Peer DNS</code> <code>Rapid Commit</code> <code>Add Default Route</code></p></li>
-
-<li><p>IPv6-&gt;Addresses. Address直接填写 ::/64, From Pool选择ipv6. Interface选择ether2. 勾上Advertise</p></li>
-
-<li><p>IPv6-&gt;ND. Interface 选择 ether2. 下面四个全勾选</p></li>
-
-<li><p>IP-UPNP, Enabled</p></li>
+<ul>
+<li>IPv6-&gt; DHCP Client. Interface选择 pppoe-out1, Request 勾选 prefix. Pool Name 填写ipv6. Length 填 64. 勾上 <code>Use Peer DNS</code> <code>Rapid Commit</code> <code>Add Default Route</code></li>
+<li>IPv6-&gt;Addresses. Address直接填写 ::/64, From Pool选择ipv6. Interface选择ether2. 勾上Advertise</li>
+<li>IPv6-&gt;ND. Interface 选择 ether2. 下面四个全勾选</li>
+<li>IP-UPNP, Enabled</li>
 </ul>
 
 <h3>分流配置</h3>

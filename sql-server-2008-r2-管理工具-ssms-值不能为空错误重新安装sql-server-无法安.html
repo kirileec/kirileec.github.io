@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="SQL SERVER 管理工具 值不能为空 machine.config,WINDOWS,">
         <meta name="description" content="SQL SERVER 2008 R2 管理工具 SSMS 值不能为空错误&#43;重新安装SQL SERVER 无法安装 SSMS">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>SQL SERVER 2008 R2 管理工具 SSMS 值不能为空错误&#43;重新安装SQL SERVER 无法安装 SSMS</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">SQL SERVER 2008 R2 管理工具 SSMS 值不能为空错误&#43;重新安装SQL SERVER 无法安装 SSMS</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1401424920"><span class="from"></span></span>
                     
@@ -84,9 +85,9 @@
 坑爹的方法，哪个软件会在临时文件夹放个必须文件的啊打开管理工具<code>CTRL</code>+<code>ALT</code>+<code>G</code> 在“己注册的服务器”重新注册您的服务器，这个更坑了，我的已注册服务器里啥也没有错误二的解决方法报错时会出现一个目录，到这个目录下。我这是这个<code>C:\Windows\Microsoft\.NETFramework\v2.0.50727\CONFIG</code> 嘎嘣，我的心啊，这是<code>.NET2.0</code>搞的鬼了？ 于是想重新安装<code>.NET 2.0</code>，无果，一个是已安装，一个是已有<code>.NET3.5</code> 继续搜索，最终解决, 在这个目录下 找 <code>machine.config.default</code> 文件，然后获取管理员权限或者更改所有者，把<code>.default</code> 去掉，后缀改为 <code>config</code> ，然后成功安装了<code>SQL SERVER 2008 R2</code>插张图出现了，<code>d2007litebackup</code>，看来是这个<code>machine.config</code>文件被修改了，但是应该不是<code>DELPHI 2007 lite</code>干的，因为之前是正常的，OK搞定了！！</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

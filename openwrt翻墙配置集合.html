@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="OPENWRT,">
         <meta name="description" content="openwrt翻墙配置集合">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>openwrt翻墙配置集合</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">openwrt翻墙配置集合</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1430118180"><span class="from"></span></span>
                     
@@ -217,9 +218,9 @@ iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to
 <p>PS：ChinaDNS或者pdnsd之类的都是不靠谱的，经常失效，而且是全部国外ip都走代理，不合理。ipset的方法，有两个关键的位置一个是208.67.222.222#443这里也可以换成自己架设的DNS，dnsmasq开启非标准端口监听即可然后绑定到外网ip上。dhcp的选项必须要填上去，我之前没填，反正就只能分配一次ip后面再次连接DHCP就不行了。上游DNS尽量选择响应快的，阿里的不靠谱</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

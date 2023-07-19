@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="OpenWrt,Ubuntu,">
         <meta name="description" content="自己编译Openwrt(LEDE)固件">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>自己编译Openwrt(LEDE)固件</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">自己编译Openwrt(LEDE)固件</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1557717785"><span class="from"></span></span>
                     
@@ -119,30 +120,35 @@
 <h1>开始编译</h1>
 
 <ul>
-<li><p>回到上一层执行</p>
+<li>回到上一层执行</li>
+</ul>
 
-<pre><code>cd ..
-./scripts/feeds update -a 
-./scripts/feeds install -a 
-</code></pre></li>
-
-<li><p>配置</p>
-
-<pre><code>make menuconfig
+<pre><code>  cd ..
+  ./scripts/feeds update -a 
+  ./scripts/feeds install -a 
 </code></pre>
 
 <ul>
-<li>选一下CPU，Generic NAND FLASH， 不能选默认的Generic，那样会只能看到WNDR3800而看不到WNDR4300</li>
-<li>选一下机型，WNDR4300</li>
-<li>进入LUCI，选择一些Application，并到Themes把刚才的主题选上</li>
-<li>退出即可</li>
-</ul></li>
-
-<li><p>下载， 其实直接开始编译也是可以的，不过如果下载失败的话，重新执行这个操作会快一点（编译还有其他事情的）</p>
-
-<pre><code>make download V=s
-</code></pre></li>
+<li>配置</li>
 </ul>
+
+<pre><code>  make menuconfig
+</code></pre>
+
+<ul>
+<li><p>选一下CPU，Generic NAND FLASH， 不能选默认的Generic，那样会只能看到WNDR3800而看不到WNDR4300</p></li>
+
+<li><p>选一下机型，WNDR4300</p></li>
+
+<li><p>进入LUCI，选择一些Application，并到Themes把刚才的主题选上</p></li>
+
+<li><p>退出即可</p></li>
+
+<li><p>下载， 其实直接开始编译也是可以的，不过如果下载失败的话，重新执行这个操作会快一点（编译还有其他事情的）</p></li>
+</ul>
+
+<pre><code>  make download V=s
+</code></pre>
 
 <p>这里有些包是必然失败的，或者即使挂proxy也下的很慢，需要特殊处理</p>
 
@@ -162,11 +168,11 @@
 <p>下载下来之后原样放置到 lede/dl 目录即可（下载过程中出现的<code>.hash</code>文件不要删掉）。根据情况，在下载卡住了之后再去下载，不挂proxy估计是猴年马月都下不完的，因此尽量选个速度快的</p>
 
 <ul>
-<li><p>编译</p>
-
-<pre><code>make -j5 V=s
-</code></pre></li>
+<li>编译</li>
 </ul>
+
+<pre><code>  make -j5 V=s
+</code></pre>
 
 <p>祈祷吧， 祈祷别中途崩了</p>
 
@@ -181,9 +187,9 @@
 </ul>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

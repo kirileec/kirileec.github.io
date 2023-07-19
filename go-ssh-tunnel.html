@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -90,24 +91,24 @@
 <pre><code class="language-go">package main
 
 import (
-    &quot;github.com/elliotchance/sshtunnel&quot;
-    &quot;log&quot;
-    &quot;os&quot;
-    &quot;time&quot;
+	&quot;github.com/elliotchance/sshtunnel&quot;
+	&quot;log&quot;
+	&quot;os&quot;
+	&quot;time&quot;
 )
 
 func main() {
-    //测试服务器上的redis隧道
-    tunnel := sshtunnel.NewSSHTunnel(
-        &quot;&lt;用户名&gt;@&lt;服务器ip&gt;&quot;,
-        sshtunnel.PrivateKeyFile(&quot;&lt;私钥路径&gt;&quot;), // 1. private key
-        &quot;127.0.0.1:6379&quot;,
-        &quot;6379&quot;,
-    )
-    tunnel.Log = log.New(os.Stdout, &quot;&quot;, log.Ldate|log.Lmicroseconds)
-    go tunnel.Start()
-    
-    select {}
+	//测试服务器上的redis隧道
+	tunnel := sshtunnel.NewSSHTunnel(
+		&quot;&lt;用户名&gt;@&lt;服务器ip&gt;&quot;,
+		sshtunnel.PrivateKeyFile(&quot;&lt;私钥路径&gt;&quot;), // 1. private key
+		&quot;127.0.0.1:6379&quot;,
+		&quot;6379&quot;,
+	)
+	tunnel.Log = log.New(os.Stdout, &quot;&quot;, log.Ldate|log.Lmicroseconds)
+	go tunnel.Start()
+	
+	select {}
 }
 
 </code></pre>

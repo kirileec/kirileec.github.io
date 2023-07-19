@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -144,8 +145,8 @@ The root of the module file tree corresponds to the <module>@<version>/ prefix i
 该归档文件使用斜杠(/)表示路径, 并且每个文件路径需要以<code>&lt;module&gt;@&lt;version&gt;/</code>开始, 这里的模块和版本不进行大小写编码(感叹号)
 模块文件树的根以<code>&lt;module&gt;@&lt;version&gt;/</code>为前缀</p>
 
-<p>Even when downloading directly from version control systems, the go command synthesizes explicit info, mod, and zip files and stores them in its local cache, $GOPATH/pkg/mod/cache/download, the same as if it had downloaded them directly from a proxy.
-The cache layout is the same as the proxy URL space, so serving $GOPATH/pkg/mod/cache/download at (or copying it to) <a href="https://example.com/proxy">https://example.com/proxy</a> would let other users access those cached module versions with GOPROXY=<a href="https://example.com/proxy">https://example.com/proxy</a>.</p>
+<p>Even when downloading directly from version control systems, the go command synthesizes explicit info, mod, and zip files and stores them in its local cache, <span class="math inline">\(GOPATH/pkg/mod/cache/download, the same as if it had downloaded them directly from a proxy. 
+The cache layout is the same as the proxy URL space, so serving \)</span>GOPATH/pkg/mod/cache/download at (or copying it to) <a href="https://example.com/proxy">https://example.com/proxy</a> would let other users access those cached module versions with GOPROXY=<a href="https://example.com/proxy">https://example.com/proxy</a>.</p>
 
 <p>即使从版本控制系统直接下载模块, go命令会整合模块信息, mod文件和压缩包, 并将其存储到本地缓存 <code>$GOPATH/pkg/mod/cache/download</code>, 和从模块代理处下载是一样的效果.
 缓存的布局和代理URL的格式一致, 所以, 在 <code>$GOPATH/pkg/mod/cache/download</code> 目录开启这样的Web服务(<a href="https://example.com/proxy)就可以让其他人访问你缓存的模块版本了">https://example.com/proxy)就可以让其他人访问你缓存的模块版本了</a>.</p>

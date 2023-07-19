@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="">
         <meta name="description" content="Use Mqtt With Golang and Angular6">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>Use Mqtt With Golang and Angular6</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">Use Mqtt With Golang and Angular6</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1545917671"><span class="from"></span></span>
                     
@@ -93,138 +94,138 @@
 package utils
 
 import (
-    &quot;encoding/json&quot;
-    &quot;fmt&quot;
-    &quot;io&quot;
-    &quot;net&quot;
-    &quot;net/http&quot;
-    &quot;net/url&quot;
+	&quot;encoding/json&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;net&quot;
+	&quot;net/http&quot;
+	&quot;net/url&quot;
 
-    log &quot;github.com/soesoftcn/process-manage/pkg/soelog&quot;
-    &quot;github.com/surgemq/message&quot;
-    s &quot;github.com/surgemq/surgemq/service&quot;
-    &quot;golang.org/x/net/websocket&quot;
+	log &quot;github.com/soesoftcn/process-manage/pkg/soelog&quot;
+	&quot;github.com/surgemq/message&quot;
+	s &quot;github.com/surgemq/surgemq/service&quot;
+	&quot;golang.org/x/net/websocket&quot;
 )
 
 type ServerMessage struct {
-    IsBroadCast bool        `json:&quot;isBroadCast&quot;`
-    ClientId    string      `json:&quot;clientId&quot;`
-    MsgType     int         `json:&quot;msgType&quot;`
-    Msg         interface{} `json:&quot;msg&quot;`
+	IsBroadCast bool        `json:&quot;isBroadCast&quot;`
+	ClientId    string      `json:&quot;clientId&quot;`
+	MsgType     int         `json:&quot;msgType&quot;`
+	Msg         interface{} `json:&quot;msg&quot;`
 }
 
 var MqttSvr *s.Server
 
 func InitMQTTServer() {
-    MqttSvr = &amp;s.Server{
-        KeepAlive:        300,           // seconds
-        ConnectTimeout:   2,             // seconds
-        SessionsProvider: &quot;mem&quot;,         // keeps sessions in memory
-        Authenticator:    &quot;mockSuccess&quot;, // always succeed
-        TopicsProvider:   &quot;mem&quot;,         // keeps topic subscriptions in memory
-    }
+	MqttSvr = &amp;s.Server{
+		KeepAlive:        300,           // seconds
+		ConnectTimeout:   2,             // seconds
+		SessionsProvider: &quot;mem&quot;,         // keeps sessions in memory
+		Authenticator:    &quot;mockSuccess&quot;, // always succeed
+		TopicsProvider:   &quot;mem&quot;,         // keeps topic subscriptions in memory
+	}
 
-    mqttaddr := &quot;tcp://:1883&quot;
-    addr := &quot;tcp://127.0.0.1:1883&quot;
-    AddWebsocketHandler(&quot;/mqtt&quot;, addr)
-    wsAddr := &quot;:1882&quot;
-    go ListenAndServeWebsocket(wsAddr)
+	mqttaddr := &quot;tcp://:1883&quot;
+	addr := &quot;tcp://127.0.0.1:1883&quot;
+	AddWebsocketHandler(&quot;/mqtt&quot;, addr)
+	wsAddr := &quot;:1882&quot;
+	go ListenAndServeWebsocket(wsAddr)
 
-    err := MqttSvr.ListenAndServe(mqttaddr)
-    if err != nil {
-        log.Logger.Sugar().Errorf(&quot;surgemq/main: %v&quot;, err)
-    }
+	err := MqttSvr.ListenAndServe(mqttaddr)
+	if err != nil {
+		log.Logger.Sugar().Errorf(&quot;surgemq/main: %v&quot;, err)
+	}
 }
 
 /* copy from reader to websocket, this copies the binary frames as is */
 func io_ws_copy(src io.Reader, dst *websocket.Conn) (int, error) {
-    buffer := make([]byte, 2048)
-    count := 0
-    for {
-        n, err := src.Read(buffer)
-        if err != nil || n &lt; 1 {
-            return count, err
-        }
-        count += n
-        err = websocket.Message.Send(dst, buffer[0:n])
-        if err != nil {
-            return count, err
-        }
-    }
-    return count, nil
+	buffer := make([]byte, 2048)
+	count := 0
+	for {
+		n, err := src.Read(buffer)
+		if err != nil || n &lt; 1 {
+			return count, err
+		}
+		count += n
+		err = websocket.Message.Send(dst, buffer[0:n])
+		if err != nil {
+			return count, err
+		}
+	}
+	return count, nil
 }
 
 /* copy from websocket to writer, this copies the binary frames as is */
 func io_copy_ws(src *websocket.Conn, dst io.Writer) (int, error) {
-    var buffer []byte
-    count := 0
-    for {
-        err := websocket.Message.Receive(src, &amp;buffer)
-        if err != nil {
-            return count, err
-        }
-        n := len(buffer)
-        count += n
-        i, err := dst.Write(buffer)
-        if err != nil || i &lt; 1 {
-            return count, err
-        }
-    }
-    return count, nil
+	var buffer []byte
+	count := 0
+	for {
+		err := websocket.Message.Receive(src, &amp;buffer)
+		if err != nil {
+			return count, err
+		}
+		n := len(buffer)
+		count += n
+		i, err := dst.Write(buffer)
+		if err != nil || i &lt; 1 {
+			return count, err
+		}
+	}
+	return count, nil
 }
 
 func WebsocketTcpProxy(ws *websocket.Conn, nettype string, host string) error {
-    client, err := net.Dial(nettype, host)
-    if err != nil {
-        return err
-    }
-    defer client.Close()
-    defer ws.Close()
-    chDone := make(chan bool)
+	client, err := net.Dial(nettype, host)
+	if err != nil {
+		return err
+	}
+	defer client.Close()
+	defer ws.Close()
+	chDone := make(chan bool)
 
-    go func() {
-        io_ws_copy(client, ws)
-        chDone &lt;- true
-    }()
-    go func() {
-        io_copy_ws(ws, client)
-        chDone &lt;- true
-    }()
-    &lt;-chDone
-    return nil
+	go func() {
+		io_ws_copy(client, ws)
+		chDone &lt;- true
+	}()
+	go func() {
+		io_copy_ws(ws, client)
+		chDone &lt;- true
+	}()
+	&lt;-chDone
+	return nil
 }
 
 func AddWebsocketHandler(urlPattern string, uri string) error {
-    sugar := log.Logger.Sugar()
+	sugar := log.Logger.Sugar()
 
-    sugar.Infof(&quot;AddWebsocketHandler urlPattern=%s, uri=%s&quot;, urlPattern, uri)
-    u, err := url.Parse(uri)
-    if err != nil {
-        sugar.Errorf(&quot;surgemq/main: %v&quot;, err)
-        return err
-    }
+	sugar.Infof(&quot;AddWebsocketHandler urlPattern=%s, uri=%s&quot;, urlPattern, uri)
+	u, err := url.Parse(uri)
+	if err != nil {
+		sugar.Errorf(&quot;surgemq/main: %v&quot;, err)
+		return err
+	}
 
-    h := func(ws *websocket.Conn) {
-        WebsocketTcpProxy(ws, u.Scheme, u.Host)
-    }
-    http.Handle(urlPattern, websocket.Handler(h))
-    return nil
+	h := func(ws *websocket.Conn) {
+		WebsocketTcpProxy(ws, u.Scheme, u.Host)
+	}
+	http.Handle(urlPattern, websocket.Handler(h))
+	return nil
 }
 
 func ListenAndServeWebsocket(addr string) error {
-    return http.ListenAndServe(addr, nil)
+	return http.ListenAndServe(addr, nil)
 }
 
 func MessageFromServer(i ServerMessage) {
-    msg := message.NewPublishMessage()
-    payload, err := json.Marshal(i)
-    if err != nil {
-        fmt.Println(err)
-    }
-    msg.SetTopic([]byte(&quot;/superserver/notify&quot;))
-    msg.SetPayload(payload)
+	msg := message.NewPublishMessage()
+	payload, err := json.Marshal(i)
+	if err != nil {
+		fmt.Println(err)
+	}
+	msg.SetTopic([]byte(&quot;/superserver/notify&quot;))
+	msg.SetPayload(payload)
 
-    MqttSvr.Publish(msg, nil)
+	MqttSvr.Publish(msg, nil)
 }
 
 
@@ -233,9 +234,9 @@ func MessageFromServer(i ServerMessage) {
 <p>前</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

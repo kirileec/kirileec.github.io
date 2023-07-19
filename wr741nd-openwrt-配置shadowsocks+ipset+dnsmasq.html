@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="OPENWRT,">
         <meta name="description" content="wr741nd openwrt 配置shadowsocks&#43;ipset&#43;dnsmasq">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>wr741nd openwrt 配置shadowsocks&#43;ipset&#43;dnsmasq</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">wr741nd openwrt 配置shadowsocks&#43;ipset&#43;dnsmasq</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1426727520"><span class="from"></span></span>
                     
@@ -92,38 +93,47 @@ LUCI界面配置wifi，看心情自动重启
 以下是配置过程：</p>
 
 <ul>
-<li><p>替换<code>dnsmasq</code>为<code>dnsmasq-full</code>，<code>opkg update</code>很慢，应该可以把那几个<code>Package.7z</code>手动下载覆盖的，如果安装出现kernel不符的情况，加上<code>--force-depends</code>即可</p>
+<li>替换<code>dnsmasq</code>为<code>dnsmasq-full</code>，<code>opkg update</code>很慢，应该可以把那几个<code>Package.7z</code>手动下载覆盖的，如果安装出现kernel不符的情况，加上<code>--force-depends</code>即可</li>
+</ul>
 
 <pre><code>opkg update
 opkg install kmod-ipt-ipset ipset ipset-dns iptables-mod-nat-extra
 opkg remove dnsmasq
 opkg install dnsmasq-full
-</code></pre></li>
+</code></pre>
 
-<li><p><code>/etc/dnsmasq.conf</code> 添加</p>
+<ul>
+<li><code>/etc/dnsmasq.conf</code> 添加</li>
+</ul>
 
 <pre><code>no-resolv
 server=114.114.114.114
 conf-dir=/etc/dnsmasq.d
-</code></pre></li>
+</code></pre>
 
-<li><p><code>/etc/dnsmasq.d/gfw.conf</code> 规则</p>
+<ul>
+<li><code>/etc/dnsmasq.d/gfw.conf</code> 规则</li>
+</ul>
 
 <pre><code>server=/.example.com/208.67.222.222#443
 ipset=/.example.com/gfw
-</code></pre></li>
+</code></pre>
 
-<li><p><code>/etc/firewall.user</code> 添加</p>
+<ul>
+<li><code>/etc/firewall.user</code> 添加</li>
+</ul>
 
 <pre><code>ipset -N gfw iphash
 iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to-port 1080
-</code></pre></li>
+</code></pre>
 
+<ul>
 <li><p><code>/etc/config/dhcp</code> 保持默认，主要是关掉 DNS请求转发和忽略解析文件这两个，因为配置文件已经有了</p></li>
 
 <li><p>安装shadowsocks，我装了个polarssl版本的，什么版本无所谓，反正我是<code>aes-256-cfb</code></p></li>
 
-<li><p><code>/etc/shadowsocks.json</code>,端口为<code>1081</code></p>
+<li><p><code>/etc/shadowsocks.json</code>,端口为<code>1081</code></p></li>
+</ul>
 
 <pre><code>{
 &quot;server&quot;:&quot;VPS IP&quot;,
@@ -139,9 +149,11 @@ iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to
 &quot;method&quot;:&quot;aes-256-cfb&quot;
 
 }
-</code></pre></li>
+</code></pre>
 
-<li><p>/etc/ss-redir.json,端口为1080</p>
+<ul>
+<li>/etc/ss-redir.json,端口为1080</li>
+</ul>
 
 <pre><code>{
 
@@ -158,15 +170,16 @@ iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to
 &quot;method&quot;:&quot;aes-256-cfb&quot;
 
 }
-</code></pre></li>
+</code></pre>
 
-<li><p><code>/etc/init.d/shadowsocks</code> 添加</p>
+<ul>
+<li><code>/etc/init.d/shadowsocks</code> 添加</li>
+</ul>
 
 <pre><code>service_start /usr/bin/ss-redir -c /etc/ss-redir.json
 
 service_stop /usr/bin/ss-redir
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>不要删掉ss-local</p>
 
@@ -177,9 +190,9 @@ service_stop /usr/bin/ss-redir
 </ul>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

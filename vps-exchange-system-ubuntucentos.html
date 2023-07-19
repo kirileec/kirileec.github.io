@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="Linux,">
         <meta name="description" content="VPS换系统 Ubuntu-&amp;gt;CentOS">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>VPS换系统 Ubuntu-&amp;gt;CentOS</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">VPS换系统 Ubuntu-&amp;gt;CentOS</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1454827920"><span class="from"></span></span>
                     
@@ -93,24 +94,23 @@
 <ul>
 <li>更换系统Install New OS</li>
 <li>使用lnmp安装环境,虽然这个比较慢,但总归少了很多弯路</li>
+<li><code>/usr/local/nginx/conf/nginx.conf</code> 的 <code>server</code> 段的 <code>include</code> 修改为</li>
+</ul>
 
-<li><p><code>/usr/local/nginx/conf/nginx.conf</code> 的 <code>server</code> 段的 <code>include</code> 修改为</p>
+<pre><code>    include enable-php-pathinfo.conf;  ##开启pathinfo功能
+    include typecho.conf;              ##typecho的伪静态    
+</code></pre>
 
-<pre><code>include enable-php-pathinfo.conf;  ##开启pathinfo功能
-include typecho.conf;              ##typecho的伪静态    
-</code></pre></li>
-
-<li><p>创建mysql数据库</p></li>
-
-<li><p>安装Typecho,还原数据库</p></li>
-
-<li><p>恢复插件和主题</p></li>
+<ul>
+<li>创建mysql数据库</li>
+<li>安装Typecho,还原数据库</li>
+<li>恢复插件和主题</li>
 </ul>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,9 +78,21 @@
                     
                     <span class="tags"><a class="tag" href="/tag/go/index.html">go</a></span>
                 </section>
-                <article class="content"><p>Use msys2 as integrated shell</p>
+                <article class="content"><nav>
 
-<h2>VSCode</h2>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">VSCode</a></li>
+
+<li><a href="#toc_1">Goland</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>Use msys2 as integrated shell</p>
+
+<h2 id="toc_0">VSCode</h2>
 
 <p>First, use <code>Everything</code> to search <code>msys2_shell.cmd</code> and get the full path. My path is long because I install msys2 by using scoop.
 Then, add config to VSCode setting.json file</p>
@@ -88,14 +101,14 @@ Then, add config to VSCode setting.json file</p>
 &quot;terminal.integrated.shellArgs.windows&quot;: [&quot;-defterm&quot;, &quot;-msys2&quot;, &quot;-no-start&quot;, &quot;-here&quot;],
 </code></pre>
 
-<h2>Goland</h2>
+<h2 id="toc_1">Goland</h2>
 
 <p>Go to <code>Setting</code>-&gt;<code>Tools</code>-&gt;<code>Terminal</code>-&gt;<code>Shell Path</code> and use string as follow</p>
 
 <pre><code class="language-shell">&quot;path\\to\\msys2_shell.cmd&quot; -defterm -msys2 -no-start -here
 </code></pre>
 
-<hr />
+<hr>
 
 <p>You can also change param <code>-msys2</code> to <code>-mingw64</code> which you like.</p>
 </article>

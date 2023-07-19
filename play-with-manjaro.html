@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,15 +78,39 @@
                     
                     <span class="tags"><a class="tag" href="/tag/linux/index.html">linux</a></span>
                 </section>
-                <article class="content"><p>在Manjaro下玩耍</p>
+                <article class="content"><nav>
+
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">系统选择</a></li>
+
+<li><a href="#toc_1">安装</a></li>
+
+<li><a href="#toc_2">配置</a>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_3">换源</a></li>
+
+<li><a href="#toc_4">代理</a></li>
+
+<li><a href="#toc_5">预告</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>在Manjaro下玩耍</p>
 
 <p>最近打算把自己的10年老笔记本换个linux的系统, 反正每天也就是看看视频, 还能找到事情折腾一下. 有一点不太好的是, 没有多台电脑, 所以有的时候就很惨</p>
 
-<h2>系统选择</h2>
+<h2 id="toc_0">系统选择</h2>
 
 <p>其实选哪个不重要, 重要的是你对哪个比较熟悉, 例如之前都是用ubuntu的那么选gnome, 而种草KDE的漂亮就选KDE版本, 当然也可以选arch版本, 这样就随便选了.</p>
 
-<h2>安装</h2>
+<h2 id="toc_1">安装</h2>
 
 <p>我选择的是arch版本, 其实也就是多了很多自选的选择, 但是基本上那些自选的选项对于想搞个系统来用的人来说, 无伤大雅的. 比如磁盘分区选什么格式啦, 一般都会去选ext4, 其它的大部分都不认识. 反而另外的指定好的版本更好, 语言包啥的都给装好了. 而arch版本语言包还要自己装. 这种必要的没装起来, 那种libre之类的内置软件倒是装了一大堆. 反正我后来是跟着别人的图片装的.</p>
 
@@ -96,9 +121,9 @@
 
 <p>不然你会后悔的</p>
 
-<h2>配置</h2>
+<h2 id="toc_2">配置</h2>
 
-<h4>换源</h4>
+<h4 id="toc_3">换源</h4>
 
 <p>安装完进系统第一步先</p>
 
@@ -114,12 +139,13 @@ sudo pacman -Syy
 
 <p>根据具体情况删掉几个, 我是留下了中科大和清华的(移动宽带)</p>
 
-<h4>代理</h4>
+<h4 id="toc_4">代理</h4>
 
 <p>再就是代理了, 刚装完肯定是没有的, 不是路由器翻的情况, 就比较困难了.</p>
 
 <ol>
-<li><p>设置git</p>
+<li>设置git</li>
+</ol>
 
 <pre><code class="language-shell">git config --global http.proxy http://ip:port
 git config --global https.proxy http://ip:port
@@ -128,32 +154,30 @@ git config --global https.proxy http://ip:port
 <p>代理可以通过手机开出, 当然这个速度会比较惨, 最好事先把节点先选好</p>
 
 <ol>
-<li>开启AUR, 打开自带的软件包管理器, 点右上角的三个点. 进入首选项, 有个AUR页签, 勾选启用AUR支持即可</li>
+<li><p>开启AUR, 打开自带的软件包管理器, 点右上角的三个点. 进入首选项, 有个AUR页签, 勾选启用AUR支持即可</p></li>
 
 <li><p><code>sudo pacman -S yay</code> 然后 <code>yay --aururl “https://aur.tuna.tsinghua.edu.cn” --save</code></p></li>
 
-<li><p>安装v2raya, <code>yay -S v2raya</code>, 我测试了好多个可以在linux运行的GUI, 最终觉得还是这个比较好.</p></li>
-</ol>
+<li><p>安装v2raya, <code>yay -S v2raya</code>, 我测试了好多个可以在linux运行的GUI, 最终觉得还是这个比较好.</p>
 
 <ul>
 <li>全局透明代理</li>
 <li>go版本, 依赖少, 构建不会很久</li>
 <li>前端页面最好还是自己build一份留着, 万一啥时候不能访问呢, 不就凉了</li>
 <li></li>
+</ul></li>
+
 <li>
-<code>shell 
-sudo pacman -S yarn
+<pre><code class="language-shell">sudo pacman -S yarn
 cd ~/V2RayA/gui
 yarn install
 yarn build
 cd ../web
-</code></li>
-</ul></li>
+</code></pre>
+<p>将该目录下的所有文件拷贝到<code>/src/http</code>, 然后 <code>sudo systemctl start httpd</code>, 访问<code>localhost</code>就行了</p></li>
 </ol>
 
-<p>将该目录下的所有文件拷贝到<code>/src/http</code>, 然后 <code>sudo systemctl start httpd</code>, 访问<code>localhost</code>就行了</p>
-
-<h4>预告</h4>
+<h4 id="toc_5">预告</h4>
 
 <ul>
 <li>shell美化</li>

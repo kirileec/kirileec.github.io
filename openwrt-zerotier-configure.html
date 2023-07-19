@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -99,13 +100,16 @@
 <p>即需要允许zerotier-&gt;wan的转发</p>
 
 <ul>
-<li>网络-&gt;防火墙, 找到<code>zerotier</code>的那个区域, 编辑</li>
-<li>允许转发到目标区域 选择 <code>wan</code>, 设置<code>转发</code>为接受</li>
-<li>涵盖的网络 选择 zerotier</li>
+<li><p>网络-&gt;防火墙, 找到<code>zerotier</code>的那个区域, 编辑</p></li>
+
+<li><p>允许转发到目标区域 选择 <code>wan</code>, 设置<code>转发</code>为接受</p></li>
+
+<li><p>涵盖的网络 选择 zerotier</p></li>
 
 <li><p>最终 会有一个zerotier =&gt; wan 的区域设置, 且转发为 接受</p></li>
 
-<li><p>自定义规则中增加三行后保存</p>
+<li><p>自定义规则中增加三行后保存</p></li>
+</ul>
 
 <pre><code class="language-shell">iptables -I FORWARD -i ztks5wrzww -j ACCEPT
 iptables -I FORWARD -o ztks5wrzww -j ACCEPT
@@ -125,15 +129,12 @@ iptables -t nat -I POSTROUTING -o ztks5wrzww -j MASQUERADE
 <li>IPv4 Auto-Assign 选择 Advanced, Range Start: 10.10.1.1 Range End: 10.10.1.254</li>
 <li>Members里的设备如果已经分配了其他网段的IP, 则删掉, 让它重新分配, 也可以自己写一个, 勾上左边的Auth</li>
 <li>Members里给刚连上的路由器设置名称, 并记下它的Managed IPs</li>
-<li>Managed Routes 增加以下
-
-```</li>
-</ul></li>
+<li>Managed Routes 增加以下</li>
 </ul>
 
-<p>10.10.0.0/24 via 路由器的虚拟网卡IP
+<pre><code>10.10.0.0/24 via 路由器的虚拟网卡IP
 10.10.1.0/24 via 10.10.1.255 (这个是这个网段的网关)
-```</p>
+</code></pre>
 
 <h2>使用不在当前局域网的设备测试下</h2>
 

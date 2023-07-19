@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -97,11 +98,11 @@
 
 #To use this script, open the Terminal app and go to the directry
 #where this script is located and excecute the following commands:
-    # chmod u+x PleaseSleep
+	# chmod u+x PleaseSleep
 
-    # ./PleaseSleep install
-    # -------- OR ---------
-    # ./PleaseSleep remove
+	# ./PleaseSleep install
+	# -------- OR ---------
+	# ./PleaseSleep remove
 
 # Get the argument
 set -e
@@ -109,156 +110,156 @@ ARG=$1
 
 # quit if any command fails
 if [ -z &quot;$1&quot; ] ; then
-    echo &quot;Error: No parameter. Use 'PleaseSleep install' or 'PleaseSleep remove'.&quot;
-    exit 1
+	echo &quot;Error: No parameter. Use 'PleaseSleep install' or 'PleaseSleep remove'.&quot;
+	exit 1
 
 
 # REMOVE EVERYTHING
 elif [ &quot;$ARG&quot; == &quot;remove&quot; ] || [ &quot;$ARG&quot; == &quot;uninstall&quot; ]
 then
-    echo
-    echo
-    echo &quot;REMOVING PleaseSleep with sleepwatcher 2.2&quot;
-    echo &quot;This will remove all PleaseSleep AND all Sleepwatcher files.&quot;
-    echo &quot;This also includes the sleep and wake scripts.&quot;
-    echo
-    echo &quot;Are you sure you want to continue?&quot;
-    echo &quot;Press Enter to continue or Crtl+c to quit&quot;
-    read
-    echo &quot;-------------------------------------------------------------------&quot;
-    echo
+	echo
+	echo
+	echo &quot;REMOVING PleaseSleep with sleepwatcher 2.2&quot;
+	echo &quot;This will remove all PleaseSleep AND all Sleepwatcher files.&quot;
+	echo &quot;This also includes the sleep and wake scripts.&quot;
+	echo
+	echo &quot;Are you sure you want to continue?&quot;
+	echo &quot;Press Enter to continue or Crtl+c to quit&quot;
+	read
+	echo &quot;-------------------------------------------------------------------&quot;
+	echo
 
-    echo &quot;Unloading the LaunchAgent...&quot;
-    launchctl unload ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist &amp;&gt; /dev/null
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Unloading the LaunchAgent...&quot;
+	launchctl unload ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist &amp;&gt; /dev/null
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Removing sleep and wake scripts ...&quot;
-    rm ~/.sleep &amp;&gt; /dev/null
-    rm ~/.wakeup &amp;&gt; /dev/null
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Removing sleep and wake scripts ...&quot;
+	rm ~/.sleep &amp;&gt; /dev/null
+	rm ~/.wakeup &amp;&gt; /dev/null
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Removing Sleepwatcher 2.2 and all the files ...&quot;
-    sudo rm -r /usr/local/Cellar/sleepwatcher &amp;&gt; /dev/null
-    sudo rm -r /usr/local/etc/sleepwatcher &amp;&gt; /dev/null
-    sudo rm ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist &amp;&gt; /dev/null
-    #sudo rm /usr/local/share/man/man8/sleepwatcher.8 &amp;&gt; /dev/null
-    #sudo rm /etc/rc.sleep &amp;&gt; /dev/null
-    #sudo rm /etc/rc.wakeup &amp;&gt; /dev/null
-    #sudo rm -r /Library/StartupItems/SleepWatcher &amp;&gt; /dev/null
-    sudo rm /usr/local/sbin/sleepwatcher &amp;&gt; /dev/null
+	echo &quot;Removing Sleepwatcher 2.2 and all the files ...&quot;
+	sudo rm -r /usr/local/Cellar/sleepwatcher &amp;&gt; /dev/null
+	sudo rm -r /usr/local/etc/sleepwatcher &amp;&gt; /dev/null
+	sudo rm ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist &amp;&gt; /dev/null
+  	#sudo rm /usr/local/share/man/man8/sleepwatcher.8 &amp;&gt; /dev/null
+  	#sudo rm /etc/rc.sleep &amp;&gt; /dev/null
+  	#sudo rm /etc/rc.wakeup &amp;&gt; /dev/null
+  	#sudo rm -r /Library/StartupItems/SleepWatcher &amp;&gt; /dev/null
+	sudo rm /usr/local/sbin/sleepwatcher &amp;&gt; /dev/null
 
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;-------------------------------------------------------------------&quot;
-    echo
+	echo &quot;-------------------------------------------------------------------&quot;
+	echo
 
-    echo &quot;PleaseSleep and Sleepwatcher 2.2 are successfully removed from your lovely Mac!!&quot;
-    echo
-    echo
-    echo
+	echo &quot;PleaseSleep and Sleepwatcher 2.2 are successfully removed from your lovely Mac!!&quot;
+	echo
+	echo
+	echo
 
 
 # INSTALL EVERYTHING
 elif [ &quot;$1&quot; == &quot;install&quot; ]
 then
-    echo
-    echo
-    echo &quot;INSTALLING PleaseSleep with sleepwatcher 2.2&quot;
-    echo
-    echo &quot;Are you sure you want to continue?&quot;
-    echo &quot;Press Enter to continue or Crtl+c to quit&quot;
-    read
-    echo &quot;-------------------------------------------------------------------&quot;
-    echo
+	echo
+	echo
+	echo &quot;INSTALLING PleaseSleep with sleepwatcher 2.2&quot;
+	echo
+	echo &quot;Are you sure you want to continue?&quot;
+	echo &quot;Press Enter to continue or Crtl+c to quit&quot;
+	read
+	echo &quot;-------------------------------------------------------------------&quot;
+	echo
 
-    echo &quot;Gaining permissions for /usr/local ...&quot;
-    # source: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md
-    sudo chown -R $(whoami):admin /usr/local/*
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Gaining permissions for /usr/local ...&quot;
+	# source: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md
+	sudo chown -R $(whoami):admin /usr/local/*
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Installing Sleepwatcher 2.2 (using the brew command).&quot;
-    echo &quot;Please follow the instructions when prompted ...&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
-    brew install sleepwatcher
-    echo
-    echo
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Installing Sleepwatcher 2.2 (using the brew command).&quot;
+	echo &quot;Please follow the instructions when prompted ...&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
+	brew install sleepwatcher
+	echo
+	echo
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Creating the sleep script ...&quot;
-        touch ~/.sleep
-        chmod u+x ~/.sleep
-        echo &quot;#! /bin/bash&quot; &gt; ~/.sleep
-        echo &quot;echo&quot; &gt;&gt; ~/.sleep
-        echo &quot;echo `date` \&quot;Sleeping\&quot; &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.sleep
-        echo &quot;/usr/sbin/networksetup setairportpower en0 off&quot; &gt;&gt; ~/.sleep
-        echo &quot;echo `date` `/usr/sbin/networksetup getairportpower en0` &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.sleep
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Creating the sleep script ...&quot;
+		touch ~/.sleep
+		chmod u+x ~/.sleep
+		echo &quot;#! /bin/bash&quot; &gt; ~/.sleep
+		echo &quot;echo&quot; &gt;&gt; ~/.sleep
+		echo &quot;echo `date` \&quot;Sleeping\&quot; &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.sleep
+		echo &quot;/usr/sbin/networksetup setairportpower en0 off&quot; &gt;&gt; ~/.sleep
+		echo &quot;echo `date` `/usr/sbin/networksetup getairportpower en0` &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.sleep
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Creating the wake script ...&quot;
-        touch ~/.wakeup
-        chmod u+x ~/.wakeup
-        echo &quot;#! /bin/bash&quot; &gt; ~/.wakeup
-        echo &quot;echo&quot; &gt;&gt; ~/.wakeup
-        echo &quot;echo `date` \&quot;Waking up\&quot; &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.wakeup
-        echo &quot;sleep 7&quot; &gt;&gt; ~/.wakeup
-        echo &quot;/usr/sbin/networksetup setairportpower en0 on&quot; &gt;&gt; ~/.wakeup
-        echo &quot;echo `date` `/usr/sbin/networksetup getairportpower en0` &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.wakeup
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Creating the wake script ...&quot;
+		touch ~/.wakeup
+		chmod u+x ~/.wakeup
+		echo &quot;#! /bin/bash&quot; &gt; ~/.wakeup
+		echo &quot;echo&quot; &gt;&gt; ~/.wakeup
+		echo &quot;echo `date` \&quot;Waking up\&quot; &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.wakeup
+		echo &quot;sleep 7&quot; &gt;&gt; ~/.wakeup
+		echo &quot;/usr/sbin/networksetup setairportpower en0 on&quot; &gt;&gt; ~/.wakeup
+		echo &quot;echo `date` `/usr/sbin/networksetup getairportpower en0` &gt;&gt; /tmp/sleep.log&quot; &gt;&gt; ~/.wakeup
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Copying *.plist file to ~/Library/LaunchAgents ...&quot;
-    cp /usr/local/Cellar/sleepwatcher/2.2.1/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist ~/Library/LaunchAgents
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
+	echo &quot;Copying *.plist file to ~/Library/LaunchAgents ...&quot;
+	cp /usr/local/Cellar/sleepwatcher/2.2.1/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist ~/Library/LaunchAgents
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
 
-    echo &quot;Starting PleaseSleep&quot;
-    launchctl load ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist
-    echo &quot;Done.&quot;
-    echo &quot;(Press ENTER key to continue.)&quot;
-    read
-    echo
-    echo
-    echo &quot;-------------------------------------------------------------------&quot;
-    echo
-    echo &quot;Path to wake script: ~/.wakeup&quot;
-    echo &quot;Path to sleep script: ~/.sleep&quot;
-    echo &quot;Path to logging file: /tmp/sleep.log&quot;
-    echo
-    echo &quot;Note that WiFi will only turn on 7 seconds AFTER your Mac has been waked&quot;
-    echo
-    echo &quot;-------------------------------------------------------------------&quot;
-    echo
-    echo
-    echo
-    echo &quot;IF NO ERRORS WERE FOUND, THEN INSTALLATION IS COMPLETE.&quot;
-    echo
-    echo &quot;Your lovely Mac will sleep like a boss now!&quot;
-    echo
-    echo
-    echo
+	echo &quot;Starting PleaseSleep&quot;
+	launchctl load ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist
+	echo &quot;Done.&quot;
+	echo &quot;(Press ENTER key to continue.)&quot;
+	read
+	echo
+	echo
+	echo &quot;-------------------------------------------------------------------&quot;
+	echo
+	echo &quot;Path to wake script: ~/.wakeup&quot;
+	echo &quot;Path to sleep script: ~/.sleep&quot;
+	echo &quot;Path to logging file: /tmp/sleep.log&quot;
+	echo
+	echo &quot;Note that WiFi will only turn on 7 seconds AFTER your Mac has been waked&quot;
+	echo
+	echo &quot;-------------------------------------------------------------------&quot;
+	echo
+	echo
+	echo
+	echo &quot;IF NO ERRORS WERE FOUND, THEN INSTALLATION IS COMPLETE.&quot;
+	echo
+	echo &quot;Your lovely Mac will sleep like a boss now!&quot;
+	echo
+	echo
+	echo
 
 fi
 

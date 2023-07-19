@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,15 +78,27 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>Android APP初始的操作, 调用后台API</p>
+                <article class="content"><nav>
 
-<h2>操作环境</h2>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">操作环境</a></li>
+
+<li><a href="#toc_1">步骤</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>Android APP初始的操作, 调用后台API</p>
+
+<h2 id="toc_0">操作环境</h2>
 
 <ul>
 <li>Android Studio 3.5.1</li>
 </ul>
 
-<h2>步骤</h2>
+<h2 id="toc_1">步骤</h2>
 
 <ol>
 <li>没有模拟器的需要先建立模拟器</li>
@@ -104,7 +117,8 @@
 </code></pre>
 
 <ol>
-<li><p>AndroidManifest.xml 中修改一下 exported 属性, 一个APP必需要有一个默认的</p>
+<li>AndroidManifest.xml 中修改一下 exported 属性, 一个APP必需要有一个默认的</li>
+</ol>
 
 <pre><code class="language-xml">&lt;activity android:name=&quot;.MainActivity&quot; android:exported=&quot;true&quot;&gt;&lt;/activity&gt;
 </code></pre>
@@ -115,31 +129,34 @@
 
 <pre><code class="language-xml">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;
 &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
-</code></pre></li>
+</code></pre>
 
-<li><p>res下建立xml目录, 并在其下建立 network_security_config.xml文件, 内容如下</p>
+<ol>
+<li>res下建立xml目录, 并在其下建立 network_security_config.xml文件, 内容如下</li>
+</ol>
 
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;network-security-config&gt;
-&lt;base-config cleartextTrafficPermitted=&quot;true&quot; /&gt;
+    &lt;base-config cleartextTrafficPermitted=&quot;true&quot; /&gt;
 &lt;/network-security-config&gt;
 </code></pre>
 
 <ol>
-<li>AndroidManifest.xml 加入 networkSecurityConfig
-<code>xml
-&lt;application
-android:allowBackup=&quot;true&quot;
-android:icon=&quot;@mipmap/ic_launcher&quot;
-android:label=&quot;@string/app_name&quot;
-android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
-android:supportsRtl=&quot;true&quot;
-android:networkSecurityConfig=&quot;@xml/network_security_config&quot;
-android:theme=&quot;@style/AppTheme&quot;&gt;
-</code></li>
-</ol></li>
+<li>AndroidManifest.xml 加入 networkSecurityConfig</li>
+</ol>
 
-<li><p>建立api接口, Observable需要引用 <code>import io.reactivex.Observable</code></p></li>
+<pre><code class="language-xml">&lt;application
+    android:allowBackup=&quot;true&quot;
+    android:icon=&quot;@mipmap/ic_launcher&quot;
+    android:label=&quot;@string/app_name&quot;
+    android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
+    android:supportsRtl=&quot;true&quot;
+    android:networkSecurityConfig=&quot;@xml/network_security_config&quot;
+    android:theme=&quot;@style/AppTheme&quot;&gt;
+</code></pre>
+
+<ol>
+<li>建立api接口, Observable需要引用 <code>import io.reactivex.Observable</code></li>
 </ol>
 
 <pre><code class="language-kt">interface ApiService {
@@ -152,11 +169,12 @@ android:theme=&quot;@style/AppTheme&quot;&gt;
 </code></pre>
 
 <ol>
-<li><p>建立数据类</p>
+<li>建立数据类</li>
+</ol>
 
 <pre><code class="language-kt">data class MyBody (
-val name:String,
-val age:Int
+    val name:String,
+    val age:Int
 )
 </code></pre>
 
@@ -165,12 +183,13 @@ val age:Int
 </ol>
 
 <pre><code class="language-kt">var myClient = okhttp3.OkHttpClient.Builder()
-    .connectTimeout(10,TimeUnit.SECONDS)
-    .writeTimeout(5,TimeUnit.SECONDS)
-    .readTimeout(5,TimeUnit.SECONDS).build()
-</code></pre></li>
+        .connectTimeout(10,TimeUnit.SECONDS)
+        .writeTimeout(5,TimeUnit.SECONDS)
+        .readTimeout(5,TimeUnit.SECONDS).build()
+</code></pre>
 
-<li><p>可以调用了</p></li>
+<ol>
+<li>可以调用了</li>
 </ol>
 
 <pre><code class="language-kt">var retrofit = Retrofit.Builder().baseUrl(&quot;http://192.168.3.24:8585&quot;).client(myClient)

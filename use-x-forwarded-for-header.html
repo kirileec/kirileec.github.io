@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,17 +78,32 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>使用 <code>X-Forwarded-For</code></p>
+                <article class="content"><nav>
+
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">最简单的方法</a></li>
+
+<li><a href="#toc_1">伪装</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>使用 <code>X-Forwarded-For</code></p>
 
 <p>有一个api需要IP地址鉴权, 即只有外网IP在其白名单中方可调用(下文称为&rdquo;白名单机&rdquo;, 其IP为x.x.x.x), 开发机不能直接调用, 不方便调试</p>
 
-<h3>最简单的方法</h3>
+<h3 id="toc_0">最简单的方法</h3>
 
 <p>例如我使用golang开发, 那么http.Client可以自定义Proxy, 只要在白名单机上架设一个CCProxy, 然后客户端调用时设置下代理即可</p>
 
 <p>PS: CCProxy 需要注意做好鉴权, 比如把当前的外网ip添加到CCProxy中. 若不作这种处理, 第二天你就会发现一堆连接上来的客户端了</p>
 
-<h3>伪装</h3>
+<h3 id="toc_1">伪装</h3>
 
 <p>java的服务端在判断客户端IP时, 一般都是从Header中取, 于是搜索一番, 把可能的几个header都加上, 排除法即可. 使用了这个后就无需经过一层代理转发了.</p>
 </article>

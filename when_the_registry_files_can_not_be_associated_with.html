@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="windowsserver2012,other,">
         <meta name="description" content="当注册表文件不能关联时">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>当注册表文件不能关联时</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,14 +71,14 @@
             <article class="main article">
                 <h1 class="title">当注册表文件不能关联时</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1366624233"><span class="from"></span></span>
                     
                     <span class="tags"><a class="tag" href="/tag/windowsserver2012/index.html">windowsserver2012</a><a class="tag" href="/tag/other/index.html">other</a></span>
                 </section>
-                <article class="content"><pre><code>        症状:&lt;br /&gt;
+                <article class="content"><pre><code>		症状:&lt;br /&gt;
 </code></pre>
 
 <p>注册表文件无法关联,在打开方式里找不到&rdquo;注册表编辑器&rdquo;这一项,手动选择C:Windows下的regedit.exe提示无法将该类型和该程序进行关联,但是先打开regedit.exe再手动用菜单导入则正常.<br />
@@ -93,16 +94,16 @@
 <br />
 解决办法:<br />
 1)更改C:Windowsregedit.exe文件的高级选项,更改所有者为你自己的用户名或者管理员<br />
-2)在HKEY_CLASSES_ROOT这个上面右键&gt;权限,同样更改所有者<br />
-3)上一步做完就可以新建项了,新建regfile,再新建shell,再新建open,再新建command,然后双击command的默认,输入&nbsp;<wbr>
+2)在HKEY_CLASSES_ROOT这个上面右键&amp;gt;权限,同样更改所有者<br />
+3)上一步做完就可以新建项了,新建regfile,再新建shell,再新建open,再新建command,然后双击command的默认,输入&amp;nbsp;<wbr>
 <font color="#FF380A">regedit.exe &ldquo;%1&rdquo;</font><br />
 4)重新设置打开方式<br />
 </wbr></p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

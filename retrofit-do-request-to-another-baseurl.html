@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,16 +78,28 @@
                     
                     <span class="tags"><a class="tag" href="/tag/android/index.html">android</a></span>
                 </section>
-                <article class="content"><p>Android retrofit 调用不同的BASEURL的接口</p>
+                <article class="content"><nav>
 
-<h2>方法一</h2>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">方法一</a></li>
 
-<pre><code class="language-kotlin">        @GET(&quot;/api/v1/attend/report/student&quot;)
+<li><a href="#toc_1">方法二</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>Android retrofit 调用不同的BASEURL的接口</p>
+
+<h2 id="toc_0">方法一</h2>
+
+<pre><code class="language-kotlin">		@GET(&quot;/api/v1/attend/report/student&quot;)
     fun getStudentAtt(
                       @Query(&quot;imei&quot;) imei:String,
                       @Query(&quot;page&quot;) page:Int,
                       @Query(&quot;size&quot;) size:Int
-                                    @Header(&quot;Authorization&quot;) token: String = App.instance.token
+      								@Header(&quot;Authorization&quot;) token: String = App.instance.token
     )
 </code></pre>
 
@@ -97,21 +110,21 @@
                       @Query(&quot;imei&quot;) imei:String,
                       @Query(&quot;page&quot;) page:Int,
                       @Query(&quot;size&quot;) size:Int
-                                    @Header(&quot;Authorization&quot;) token: String = App.instance.token
+      								@Header(&quot;Authorization&quot;) token: String = App.instance.token
     )
 </code></pre>
 
 <p>即直接写完全请求地址即可</p>
 
-<h2>方法二</h2>
+<h2 id="toc_1">方法二</h2>
 
 <pre><code class="language-kotlin">    @GET
     fun getStudentAtt(
-                                    @Url url:String,
+      								@Url url:String,
                       @Query(&quot;imei&quot;) imei:String,
                       @Query(&quot;page&quot;) page:Int,
                       @Query(&quot;size&quot;) size:Int
-                                    @Header(&quot;Authorization&quot;) token: String = App.instance.token
+      								@Header(&quot;Authorization&quot;) token: String = App.instance.token
     )
 </code></pre>
 

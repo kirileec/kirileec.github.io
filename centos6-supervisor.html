@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,17 +78,42 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>Centos6 Supervisor</p>
+                <article class="content"><nav>
+
+<ul>
+<li><a href="#toc_0">首先需要升级python到2.7版本</a>
+<ul>
+<li><a href="#toc_1">安装2.7 python</a></li>
+
+<li><a href="#toc_2">检测下</a></li>
+
+<li><a href="#toc_3">创建新的文件链接</a></li>
+
+<li><a href="#toc_4">修改yum启动路径</a></li>
+</ul></li>
+
+<li><a href="#toc_5">然后安装supervisor</a>
+<ul>
+<li><a href="#toc_6">pip==9.0.1 错误</a></li>
+
+<li><a href="#toc_7">安装supervisor</a></li>
+</ul></li>
+
+<li><a href="#toc_8">最后</a></li>
+</ul>
+
+</nav>
+<p>Centos6 Supervisor</p>
 
 <p>centos6 不能使用systemd进行守护，使用supervisor</p>
 
-<h1>首先需要升级python到2.7版本</h1>
+<h1 id="toc_0">首先需要升级python到2.7版本</h1>
 
 <blockquote>
 <p>参考 <a href="https://www.cnblogs.com/gjc592/p/9223005.html">https://www.cnblogs.com/gjc592/p/9223005.html</a></p>
 </blockquote>
 
-<h2>安装2.7 python</h2>
+<h2 id="toc_1">安装2.7 python</h2>
 
 <pre><code class="language-bash">yum install gcc -y
 wget https://www.python.org/ftp/python/2.7.16/Python-2.7.16.tgz
@@ -97,14 +123,14 @@ cd Python-2.7.16
 make &amp;&amp; make install
 </code></pre>
 
-<h2>检测下</h2>
+<h2 id="toc_2">检测下</h2>
 
 <pre><code class="language-bash">cd /usr/local/python2.7/bin
 ll
 whereis python
 </code></pre>
 
-<h2>创建新的文件链接</h2>
+<h2 id="toc_3">创建新的文件链接</h2>
 
 <pre><code class="language-bash">cd /usr/bin
 ll *python*
@@ -118,17 +144,17 @@ ll *python*
 python               #可以看到提示的Python2.7.15,证明安装成功，但是还没有彻底结束
 </code></pre>
 
-<h2>修改yum启动路径</h2>
+<h2 id="toc_4">修改yum启动路径</h2>
 
 <pre><code class="language-bash">vim /usr/bin/yum　#将头部#!/usr/bin/python 修改为 #!/usr/bin/python2.6
 yum install gcc -y #测试一下
 </code></pre>
 
-<h1>然后安装supervisor</h1>
+<h1 id="toc_5">然后安装supervisor</h1>
 
 <p>supervisor在centos6上需要python2.7，同时需要pip来安装, 在上面升级了python之后，应该是需要重新安装pip和setup_tool的， 安装过程略</p>
 
-<h2>pip==9.0.1 错误</h2>
+<h2 id="toc_6">pip==9.0.1 错误</h2>
 
 <p>先</p>
 
@@ -150,7 +176,7 @@ python setup.py install
 
 <p>最后 pip 确保可以正常输出</p>
 
-<h2>安装supervisor</h2>
+<h2 id="toc_7">安装supervisor</h2>
 
 <pre><code class="language-bash">easy_install supervisor
 </code></pre>
@@ -209,7 +235,7 @@ stderr_logfile=/data/www/group/app/log_err.txt
 <p>注意directory 和 stdout_logfile redirect_stderr 要设置起来， 否则可能会运行后直接退出，启动的时候 ERROR (spawn error)错误
 同时需要保证对应的服务端口没有被占用, 总之不能有阻碍程序运行的因素存在， 最好程序中尽量不使用相对路径</p>
 
-<h1>最后</h1>
+<h1 id="toc_8">最后</h1>
 
 <pre><code class="language-bash">supervisorctl status # 查看状态
 supervisorctl stop all #停止所有

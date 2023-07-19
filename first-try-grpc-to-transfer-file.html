@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -80,8 +81,7 @@
                 <article class="content"><h2>准备工作</h2>
 
 <ol>
-<li>生成CA证书
-<br /></li>
+<li>生成CA证书</li>
 </ol>
 
 <pre><code class="language-sh">openssl genrsa -out server.key 2048  # 私钥
@@ -93,8 +93,7 @@ openssl req -new -x509 -sha256 -key server.key  -out server.crt -days 36500 # �
 <p>36500表示100年有效, 自签证书就久一点好了</p>
 
 <ol>
-<li>安装protobuf生成工具
-<br /></li>
+<li>安装protobuf生成工具</li>
 </ol>
 
 <pre><code class="language-sh">go get -u github.com/golang/protobuf/protoc-gen-go
@@ -105,8 +104,7 @@ openssl req -new -x509 -sha256 -key server.key  -out server.crt -days 36500 # �
 <h2>服务端</h2>
 
 <ul>
-<li>proto接口定义
-<br /></li>
+<li>proto接口定义</li>
 </ul>
 
 <p>新建一个go module项目, 创建proto目录, 再创建fs.proto文件. 如果IDE提示装插件就装上</p>
@@ -139,8 +137,7 @@ message FSResp {
 </code></pre>
 
 <ul>
-<li>生成 *.pb.go
-<br /></li>
+<li>生成 *.pb.go</li>
 </ul>
 
 <pre><code class="language-bash">protoc --go_out=plugins=grpc:. --go_opt=paths=source_relative proto/fs.proto
@@ -150,7 +147,7 @@ message FSResp {
 
 <p><strong>或者</strong></p>
 
-<p><img src="data:image/gif;base64,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" data-src="images/idea-filewatcher-protobuf-gen-setting.png" alt="" /></p>
+<p><img src="data:image/gif;base64,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" alt="" data-src="images/idea-filewatcher-protobuf-gen-setting.png" /></p>
 
 <p>让ide自动生成</p>
 
@@ -161,20 +158,20 @@ message FSResp {
 <pre><code class="language-go">package main
 
 import (
-    &quot;context&quot;
-    &quot;crypto/sha256&quot;
-    &quot;fmt&quot;
-    &quot;github.com/linxlib/logs&quot;
-    &quot;google.golang.org/grpc&quot;
-    &quot;google.golang.org/grpc/credentials&quot;
-    &quot;grpc_startup/proto&quot;
-    &quot;log&quot;
-    &quot;math&quot;
-    &quot;net&quot;
+	&quot;context&quot;
+	&quot;crypto/sha256&quot;
+	&quot;fmt&quot;
+	&quot;github.com/linxlib/logs&quot;
+	&quot;google.golang.org/grpc&quot;
+	&quot;google.golang.org/grpc/credentials&quot;
+	&quot;grpc_startup/proto&quot;
+	&quot;log&quot;
+	&quot;math&quot;
+	&quot;net&quot;
 )
 
 const (
-    port = &quot;:50051&quot;
+	port = &quot;:50051&quot;
 )
 
 type server struct {
@@ -182,47 +179,47 @@ type server struct {
 
 // verifyFile 校验下上传的数据包是否完整, 通过Sha256和文件数据长度两个进行判断
 func (s *server) verifyFile(file []byte, hash string, length int64) bool {
-    h := sha256.New()
-    h.Write(file)
-    myHash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
-    logs.Info(&quot;hash:&quot;, hash, &quot; myHash:&quot;, myHash, &quot; len:&quot;, length, &quot; myLen:&quot;, len(file))
-    return hash == myHash
+	h := sha256.New()
+	h.Write(file)
+	myHash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
+	logs.Info(&quot;hash:&quot;, hash, &quot; myHash:&quot;, myHash, &quot; len:&quot;, length, &quot; myLen:&quot;, len(file))
+	return hash == myHash
 }
 
 func (s *server) Upload(ctx context.Context, in *proto.FSReq) (*proto.FSResp, error) {
-    if !s.verifyFile(in.File, in.Hash, in.Filelen) {
-        return &amp;proto.FSResp{
-            Status:  false,
-            Message: &quot;数据包哈希校验失败，请重新部署&quot;,
-        }, nil
-    }
-    return &amp;proto.FSResp{
-        Status:  true,
-        Message: &quot;received&quot;,
-    }, nil
+	if !s.verifyFile(in.File, in.Hash, in.Filelen) {
+		return &amp;proto.FSResp{
+			Status:  false,
+			Message: &quot;数据包哈希校验失败，请重新部署&quot;,
+		}, nil
+	}
+	return &amp;proto.FSResp{
+		Status:  true,
+		Message: &quot;received&quot;,
+	}, nil
 }
 
 func main() {
-    lis, err := net.Listen(&quot;tcp&quot;, port)
-    if err != nil {
-        logs.Fatalf(&quot;failed to listen: %v&quot;, err)
-    }
-    c, err := credentials.NewServerTLSFromFile(&quot;./server.crt&quot;, &quot;./server.key&quot;)
-    if err != nil {
-        log.Fatalf(&quot;credentials.NewServerTLSFromFile err: %v&quot;, err)
-    }
-    //由于要发送较大的压缩包，默认为 4M。
-    //如果需要向客户端发送大文件则增加一条grpc.MaxSendMsgSize()
-    s := grpc.NewServer(
-        grpc.Creds(c),
-        grpc.MaxRecvMsgSize(math.MaxInt64))
-        
-    //注册服务
-    proto.RegisterFileServiceServer(s, &amp;server{})
+	lis, err := net.Listen(&quot;tcp&quot;, port)
+	if err != nil {
+		logs.Fatalf(&quot;failed to listen: %v&quot;, err)
+	}
+	c, err := credentials.NewServerTLSFromFile(&quot;./server.crt&quot;, &quot;./server.key&quot;)
+	if err != nil {
+		log.Fatalf(&quot;credentials.NewServerTLSFromFile err: %v&quot;, err)
+	}
+	//由于要发送较大的压缩包，默认为 4M。
+	//如果需要向客户端发送大文件则增加一条grpc.MaxSendMsgSize()
+	s := grpc.NewServer(
+		grpc.Creds(c),
+		grpc.MaxRecvMsgSize(math.MaxInt64))
+		
+	//注册服务
+	proto.RegisterFileServiceServer(s, &amp;server{})
 
-    if err := s.Serve(lis); err != nil {
-        log.Fatalf(&quot;failed to serve: %v&quot;, err)
-    }
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf(&quot;failed to serve: %v&quot;, err)
+	}
 }
 </code></pre>
 
@@ -233,64 +230,64 @@ func main() {
 <pre><code class="language-go">package main
 
 import (
-    &quot;context&quot;
-    &quot;crypto/sha256&quot;
-    &quot;fmt&quot;
-    &quot;github.com/linxlib/conv&quot;
-    &quot;github.com/linxlib/logs&quot;
-    &quot;google.golang.org/grpc&quot;
-    &quot;google.golang.org/grpc/credentials&quot;
-    &quot;grpc_startup/proto&quot;
-    &quot;io/ioutil&quot;
-    &quot;log&quot;
-    &quot;time&quot;
+	&quot;context&quot;
+	&quot;crypto/sha256&quot;
+	&quot;fmt&quot;
+	&quot;github.com/linxlib/conv&quot;
+	&quot;github.com/linxlib/logs&quot;
+	&quot;google.golang.org/grpc&quot;
+	&quot;google.golang.org/grpc/credentials&quot;
+	&quot;grpc_startup/proto&quot;
+	&quot;io/ioutil&quot;
+	&quot;log&quot;
+	&quot;time&quot;
 )
 
 const (
-    address = &quot;localhost:50051&quot;
+	address = &quot;localhost:50051&quot;
 )
 
 func main() {
-    // 注意这里的deploy， 需要和证书公钥生成时的 Common Name 对应
-    c, err := credentials.NewClientTLSFromFile(&quot;./server.crt&quot;, &quot;deploy&quot;)
-    if err != nil {
-        log.Fatalf(&quot;credentials.NewClientTLSFromFile err: %v&quot;, err)
-    }
-    conn, err := grpc.Dial(address, grpc.WithTransportCredentials(c))
-    if err != nil {
-        log.Fatalf(&quot;did not connect: %v&quot;, err)
-    }
-    defer conn.Close()
-    client := proto.NewFileServiceClient(conn)
+	// 注意这里的deploy， 需要和证书公钥生成时的 Common Name 对应
+	c, err := credentials.NewClientTLSFromFile(&quot;./server.crt&quot;, &quot;deploy&quot;)
+	if err != nil {
+		log.Fatalf(&quot;credentials.NewClientTLSFromFile err: %v&quot;, err)
+	}
+	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(c))
+	if err != nil {
+		log.Fatalf(&quot;did not connect: %v&quot;, err)
+	}
+	defer conn.Close()
+	client := proto.NewFileServiceClient(conn)
 
-    // 30秒的上下文, 传输大文件适当扩大时间
-    ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
-    defer cancel()
+	// 30秒的上下文, 传输大文件适当扩大时间
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*30)
+	defer cancel()
 
-    bs, _ := ioutil.ReadFile(&quot;./1.0-window.7z&quot;)
-    filelen := conv.Int64(len(bs))
-    h := sha256.New()
-    h.Write(bs)
-    myhash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
-    logs.Info(&quot;myhash:&quot;, myhash)
-    start := time.Now()
-    r, err := client.Upload(ctx, &amp;proto.FSReq{
-        DstDir:   &quot;ehw&quot;,
-        ProjName: &quot;dsaudg&quot;,
-        Name:     &quot;dasgf&quot;,
-        ProjType: 1,
-        Hash:     myhash,
-        Filelen:  filelen,
-        IfReboot: false,
-        File:     bs,
-    })
-    end := time.Now().Sub(start).Seconds()
-    kb := filelen / 1024
-    logs.Info(&quot;time:&quot;, end, &quot; file size:&quot;, kb, &quot;KB&quot;)
-    if err != nil {
-        log.Fatalf(&quot;could not upload: %v&quot;, err)
-    }
-    log.Printf(&quot;Upload: %s&quot;, r.Message)
+	bs, _ := ioutil.ReadFile(&quot;./1.0-window.7z&quot;)
+	filelen := conv.Int64(len(bs))
+	h := sha256.New()
+	h.Write(bs)
+	myhash := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
+	logs.Info(&quot;myhash:&quot;, myhash)
+	start := time.Now()
+	r, err := client.Upload(ctx, &amp;proto.FSReq{
+		DstDir:   &quot;ehw&quot;,
+		ProjName: &quot;dsaudg&quot;,
+		Name:     &quot;dasgf&quot;,
+		ProjType: 1,
+		Hash:     myhash,
+		Filelen:  filelen,
+		IfReboot: false,
+		File:     bs,
+	})
+	end := time.Now().Sub(start).Seconds()
+	kb := filelen / 1024
+	logs.Info(&quot;time:&quot;, end, &quot; file size:&quot;, kb, &quot;KB&quot;)
+	if err != nil {
+		log.Fatalf(&quot;could not upload: %v&quot;, err)
+	}
+	log.Printf(&quot;Upload: %s&quot;, r.Message)
 }
 
 </code></pre>
@@ -302,8 +299,8 @@ func main() {
 <h2>C# WinForm 客户端</h2>
 
 <ol>
-<li>依赖如下
-<img src="data:image/gif;base64,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" data-src="images/grpc-csharp-nuget-package.png" alt="" /></li>
+<li><p>依赖如下
+<img src="data:image/gif;base64,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" alt="" data-src="images/grpc-csharp-nuget-package.png" /></p></li>
 
 <li><p>拷贝fs.proto到解决方案下, 在安装了上图的 <code>Grpc.Tools</code> 之后, 选中fs.proto文件, 下方的<code>生成操作</code>应该会多出一个<code>Protobuf</code>, 选择这个, 重新生成下项目, 就可以在 <code>obj/Debug</code> 下看到生成的 <code>Fs.cs</code> <code>FsGrpc.cs</code> 两个文件了</p></li>
 
@@ -312,34 +309,34 @@ func main() {
 
 <pre><code class="language-csharp">private void button1_Click(object sender, EventArgs e)
 {
-    var secureChanel = new SslCredentials(File.ReadAllText(&quot;server.crt&quot;));
-    var channOptions = new List&lt;ChannelOption&gt;
-    {
-        new ChannelOption(ChannelOptions.SslTargetNameOverride,&quot;deploy&quot;)
-    };
-    Channel channel = new Channel(&quot;127.0.0.1:50051&quot;, secureChanel , channOptions);
+	var secureChanel = new SslCredentials(File.ReadAllText(&quot;server.crt&quot;));
+	var channOptions = new List&lt;ChannelOption&gt;
+	{
+		new ChannelOption(ChannelOptions.SslTargetNameOverride,&quot;deploy&quot;)
+	};
+	Channel channel = new Channel(&quot;127.0.0.1:50051&quot;, secureChanel , channOptions);
 
-    var client = new FileServiceClient(channel);
-    var req = new Proto.FSReq();
-    req.DstDir = &quot;ssdd&quot;;
-    req.IfReboot = false;
-    req.Name = &quot;sadas&quot;;
-    req.ProjName = &quot;dsada&quot;;
-    req.ProjType = 3;
+	var client = new FileServiceClient(channel);
+	var req = new Proto.FSReq();
+	req.DstDir = &quot;ssdd&quot;;
+	req.IfReboot = false;
+	req.Name = &quot;sadas&quot;;
+	req.ProjName = &quot;dsada&quot;;
+	req.ProjType = 3;
 
-    var file = File.ReadAllBytes(&quot;1.0-window.7z&quot;);
-    SHA256Managed Sha256 = new SHA256Managed();
-    byte[] bs = Sha256.ComputeHash(file);
-    var hash = BitConverter.ToString(bs);
-    req.Hash = hash.Replace(&quot;-&quot;,&quot;&quot;).ToLower();
-    req.Filelen = file.Length;
-    req.File = ByteString.CopyFrom(file);
+	var file = File.ReadAllBytes(&quot;1.0-window.7z&quot;);
+	SHA256Managed Sha256 = new SHA256Managed();
+	byte[] bs = Sha256.ComputeHash(file);
+	var hash = BitConverter.ToString(bs);
+	req.Hash = hash.Replace(&quot;-&quot;,&quot;&quot;).ToLower();
+	req.Filelen = file.Length;
+	req.File = ByteString.CopyFrom(file);
 
-    var reply = client.Upload(req);
+	var reply = client.Upload(req);
 
-    MessageBox.Show(&quot;来自&quot; + reply.Message);
+	MessageBox.Show(&quot;来自&quot; + reply.Message);
 
-    channel.ShutdownAsync().Wait();
+	channel.ShutdownAsync().Wait();
 }
 </code></pre>
 

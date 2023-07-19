@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -89,8 +90,8 @@ ENV GO111MODULE=on \
     TZ=Asia/Shanghai \
     GOOS=linux \
     GOARCH=amd64 \
-    GOPROXY=&quot;https://goproxy.cn&quot; \
-    GOPRIVATE=&quot;gitee.com&quot;
+	GOPROXY=&quot;https://goproxy.cn&quot; \
+	GOPRIVATE=&quot;gitee.com&quot;
 
 RUN mkdir /src
 WORKDIR /src
@@ -157,31 +158,31 @@ LDFLAGS:=-ldflags &quot;-s -w ${BUILDINFO}&quot;
 all: build cli
 
 cli:
-    GOOS=${GOOS} GOARCH=${GOARCH} go build -o ${CLI_NAME} ${CLI_SOURCE}
+	GOOS=${GOOS} GOARCH=${GOARCH} go build -o ${CLI_NAME} ${CLI_SOURCE}
 
 .PHONY: build
 
 build: clean
-    GOOS=${GOOS} GOARCH=${GOARCH} go build -o ${BUILD_NAME} ${LDFLAGS} ${SOURCE}
+	GOOS=${GOOS} GOARCH=${GOARCH} go build -o ${BUILD_NAME} ${LDFLAGS} ${SOURCE}
 tidy:
-    go mod tidy
+	go mod tidy
 
 clean:
-    rm -f ${BUILD_NAME}
-    rm -f ${CLI_NAME}
+	rm -f ${BUILD_NAME}
+	rm -f ${CLI_NAME}
 
 dev-image:
-    docker build -t xxxxxxxx/linx/moon --build-arg MODE=dev .
+	docker build -t xxxxxxxx/linx/moon --build-arg MODE=dev .
 
 dev-push: dev-image
-    docker push xxxxxxx/linx/moon:latest
+	docker push xxxxxxx/linx/moon:latest
 
 image:
-    docker build -t xxxxxxx/xxxxxxx/moon:latest -t xxxxxxx/xxxxxxx/moon:${BUILD_VERSION} --build-arg MODE=prod .
+	docker build -t xxxxxxx/xxxxxxx/moon:latest -t xxxxxxx/xxxxxxx/moon:${BUILD_VERSION} --build-arg MODE=prod .
 
 push: image
-    docker push xxxx/xxxx/moon:latest
-    docker push xxxxxxx/xxxxxxx/moon:${BUILD_VERSION}
+	docker push xxxx/xxxx/moon:latest
+	docker push xxxxxxx/xxxxxxx/moon:${BUILD_VERSION}
 </code></pre>
 
 <h3>调用流程</h3>

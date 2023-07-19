@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="博客,hugo,git,hooks,blog,">
         <meta name="description" content="使用git钩子在VPS架设hugo博客">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>使用git钩子在VPS架设hugo博客</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">使用git钩子在VPS架设hugo博客</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1492951491"><span class="from"></span></span>
                     
@@ -148,8 +149,7 @@ cp -rf ${TMP_GIT_CLONE}/* ${NGINX_HTML}
 <ul>
 <li>创建新仓库</li>
 <li>目录选择hugo的public目录， 名称修改为自己的域名</li>
-<li>生成SSH-KEY
-<br /></li>
+<li>生成SSH-KEY</li>
 </ul>
 
 <pre><code class="language-bash">    ssh-keygen -t rsa -C &quot;A@B.COM&quot;
@@ -191,9 +191,9 @@ chmod 700 -R .ssh
 <p>为保证其他文件不丢失，那么可以把public加入忽略，然后把整个博客目录推送到github上或者其他代码托管服务上</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

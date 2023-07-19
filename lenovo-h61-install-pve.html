@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -101,19 +102,22 @@
 <h2>安装后</h2>
 
 <ul>
-<li><p>关闭订阅提示</p>
+<li>关闭订阅提示</li>
+</ul>
 
 <pre><code>sed -i.backup -z &quot;s/res === null || res === undefined || \!res || res\n\t\t\t.data.status.toLowerCase() \!== 'active'/false/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js &amp;&amp; systemctl restart pveproxy.service
-</code></pre></li>
+</code></pre>
 
-<li><p>pvetools 一键配置</p>
+<ul>
+<li>pvetools 一键配置</li>
+</ul>
 
 <pre><code>echo &quot;nameserver  8.8.8.8&quot; &gt;&gt; /etc/resolv.conf &amp;&amp; rm /etc/apt/sources.list.d/pve-enterprise.list &amp;&amp; export LC_ALL=en_US.UTF-8 &amp;&amp; apt update &amp;&amp; apt -y install git &amp;&amp; git clone https://github.com/ivanhao/pvetools.git &amp;&amp; cd pvetools &amp;&amp; ./pvetools.sh
-</code></pre></li>
+</code></pre>
 
-<li><p>挂载硬盘 <a href="https://wangxingcs.com/2020/0910/1442/">https://wangxingcs.com/2020/0910/1442/</a></p></li>
-
-<li><p>导入img格式镜像启动</p>
+<ul>
+<li>挂载硬盘 <a href="https://wangxingcs.com/2020/0910/1442/">https://wangxingcs.com/2020/0910/1442/</a></li>
+<li>导入img格式镜像启动
 
 <ul>
 <li>创建虚拟机 记住虚拟机的ID</li>

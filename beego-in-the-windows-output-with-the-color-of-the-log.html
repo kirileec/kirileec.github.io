@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="go,beego,">
         <meta name="description" content="beego 在Windows下输出带有颜色的日志">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>beego 在Windows下输出带有颜色的日志</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">beego 在Windows下输出带有颜色的日志</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1491918447"><span class="from"></span></span>
                     
@@ -85,32 +86,35 @@
 
 <p>beego的日志模块在unix系统的Terminal支持颜色输出的情况下应该是好， 不过在Windows下，我看了下代码的实现，默认自带的<code>ConsoleWriter</code>，在判断到系统是<code>windows</code>的时候会默认将<code>colorable</code>设置成<code>false</code>。然后我去官方仓库翻了翻<code>issue</code>，翻到了一个加入颜色支持的<code>issue</code>，不过并没有后续的对<code>windows</code>进行支持的。然而官方的<code>bee</code>工具里的日志输出就非常(๑•̀ㅂ•́)و✧， 其实我现在是想要一个日志输出像 <code>bee run</code>那样的输出，例如 <code>SUCCESS</code> 标签为绿色，非常漂亮。但后来经过尝试发现，其实<code>windows</code>的命令行或者<code>powershell</code> 如果不进行相关的修改，即使加上颜色，还是很难看，主要还是那个字体，并不能像<code>vscode</code>里的<code>powershell</code>那样。于是暂时先搞个带颜色的出来就好。</p>
 
-<p>在研读
-&gt; <a href="https://github.com/mattn/go-colorable">https://github.com/mattn/go-colorable</a></p>
+<p>在研读</p>
+
+<blockquote>
+<p><a href="https://github.com/mattn/go-colorable">https://github.com/mattn/go-colorable</a></p>
+</blockquote>
 
 <p>这个库的实现方式之后，了解到，只要给日志模块一个可以比较好支持颜色输出的Writer即可了。 后来发现其实beego的内部已经加入了支持，只不过目前的1.8版本还没有正式实现之，需要用户自己实现</p>
 
 <pre><code class="language-go">
 func NewColorConsole() Logger {
-    cw := &amp;consoleWriter{
-        lg:       newLogWriter(NewAnsiColorWriter(os.Stdout)),
-        Level:    LevelDebug,
-        Colorful: true,
-    }
-    return cw
+	cw := &amp;consoleWriter{
+		lg:       newLogWriter(NewAnsiColorWriter(os.Stdout)),
+		Level:    LevelDebug,
+		Colorful: true,
+	}
+	return cw
 }
 
 func init() {
-    Register(AdapterConsole, NewColorConsole)
+	Register(AdapterConsole, NewColorConsole)
 }
 </code></pre>
 
 <p>由于我对go还不是很熟悉，因此暂时就先这样直接修改代码先用着了</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

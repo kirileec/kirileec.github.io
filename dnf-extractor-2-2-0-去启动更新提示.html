@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="汇编,">
         <meta name="description" content="DNF Extractor 2.2.0 去启动更新提示">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>DNF Extractor 2.2.0 去启动更新提示</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">DNF Extractor 2.2.0 去启动更新提示</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1414845720"><span class="from"></span></span>
                     
@@ -202,7 +203,7 @@
 0045356D   .  8B4D E4       mov ecx,dword ptr ss:[ebp-0x1C]
 00453570   .  83C4 0C       add esp,0xC
 00453573   .  51            push ecx
-;走到这一行的时候   ECX 05095F64 UNICODE &ldquo;&lt;a href=&ldquo;<a href="http://client.......&amp;quot;&quot;&gt;http://client.......&quot;&lt;/a&gt;">http://client.......&amp;quot;&quot;&gt;http://client.......&quot;&lt;/a&gt;</a>
+;走到这一行的时候   ECX 05095F64 UNICODE &ldquo;&amp;lt;a href=&rdquo;<a href="http://client.......&amp;quot;&quot;&gt;http://client.......&quot;&lt;/a&gt;">http://client&hellip;&hellip;.&amp;amp;quot;&ldquo;&amp;gt;http://client&hellip;&hellip;.&rdquo;&amp;lt;/a&amp;gt;</a>
 ;并且后面直接就开始call了,于是推断,下面这个函数 ExtUtility.dll:ID#212是用来访问网页的,右键nop之
 00453574      FF15 A4134000 call dword ptr ds:[&amp;lt;&amp;amp;EXTUTILITY.#212&amp;gt;]   ;  EXTUTILI.#212
 0045357A   .  8B45 0C       mov eax,dword ptr ss:[ebp+0xC]
@@ -211,14 +212,14 @@
 00453582   .  FF15 A8134000 call dword ptr ds:[&amp;lt;&amp;amp;EXTUTILITY.#214&amp;gt;]   ;  EXTUTILI.#214           ;并且后面有switch case条件语句出现,推测是用于检测 本次 GET操作的结果,并显示是否更新之类的提示</pre>
 最后,nop掉之后,退出的时候也没有打开网页,检查更新也没反应了,那么结束了</p>
 
-<hr />
+<hr>
 
 <p>2014年11月01日 20:42:29</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

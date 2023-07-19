@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -83,19 +84,19 @@
 
 import (
 
-    &quot;github.com/asdine/storm&quot;
-    bolt &quot;go.etcd.io/bbolt&quot;
-    &quot;qrcodeTransferBox/config&quot;
-    &quot;time&quot;
+	&quot;github.com/asdine/storm&quot;
+	bolt &quot;go.etcd.io/bbolt&quot;
+	&quot;qrcodeTransferBox/config&quot;
+	&quot;time&quot;
 )
 
 var (
-    Db *storm.DB
+	Db *storm.DB
 )
 
 func InitDB() (*storm.DB,error) {
-    d,_ := time.ParseDuration(config.Cfg.Db.Timeout)
-    return storm.Open(config.Cfg.Db.DbPath, storm.BoltOptions(0600, &amp;bolt.Options{Timeout: d}))
+	d,_ := time.ParseDuration(config.Cfg.Db.Timeout)
+	return storm.Open(config.Cfg.Db.DbPath, storm.BoltOptions(0600, &amp;bolt.Options{Timeout: d}))
 }
 </code></pre>
 
@@ -116,19 +117,19 @@ if err != nil {
 <pre><code class="language-go">package utils
 
 import (
-    &quot;github.com/gin-gonic/gin&quot;
-    &quot;qrcodeTransferBox/db&quot;
-    &quot;qrcodeTransferBox/model&quot;
-    &quot;time&quot;
+	&quot;github.com/gin-gonic/gin&quot;
+	&quot;qrcodeTransferBox/db&quot;
+	&quot;qrcodeTransferBox/model&quot;
+	&quot;time&quot;
 )
 
 func WriteAccessLog(c *gin.Context) {
-    log := model.AccessLog{
-        DateTime:time.Now(),
-        Path:c.Request.RequestURI,
-        Action:c.Request.Method,
-    }
-    _ = db.Db.Save(&amp;log)
+	log := model.AccessLog{
+		DateTime:time.Now(),
+		Path:c.Request.RequestURI,
+		Action:c.Request.Method,
+	}
+	_ = db.Db.Save(&amp;log)
 }
 </code></pre>
 
@@ -136,7 +137,7 @@ func WriteAccessLog(c *gin.Context) {
 
 <p>测试了之后, 看一下数据, 发现qr.db已经生成, 找了个<code>https://github.com/br0xen/boltbrowser</code>工具来查看一下数据(这个工具的预编译下载地址的服务器很慢, 要上代理才行)</p>
 
-<hr />
+<hr>
 
 <p>找了一下对于Db这种全局可能只需要一个实例的情况要如何在golang里处理, 大致有两个</p>
 

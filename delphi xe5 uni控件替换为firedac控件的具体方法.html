@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="delphi,">
         <meta name="description" content="Delphi XE5 Uni控件替换为FireDAC控件的具体方法">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>Delphi XE5 Uni控件替换为FireDAC控件的具体方法</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">Delphi XE5 Uni控件替换为FireDAC控件的具体方法</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1441600411"><span class="from"></span></span>
                     
@@ -83,16 +84,22 @@
 <li>替换代码中TUniConnection为TFDConnection，这一步比较麻烦，可以使用Gexpert的F2功能进行，会比较快
 ，以及各种引用的时候，CommandText替换为Command.CommandText.Text</li>
 <li>替换字段类型</li>
+</ol>
+
+<ul>
 <li>TBCDField -&gt;TFMTBCDField</li>
 <li>TCurrency -&gt;TFMTBCDField</li>
 <li>TSQLTimeStampField -&gt;TDateTimeField</li>
+</ul>
+
+<ol>
 <li>FDConnection 中 Options添加Data Mapping Rules</li>
 </ol>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

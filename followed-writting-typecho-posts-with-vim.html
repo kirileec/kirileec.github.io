@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="">
         <meta name="description" content="「续」vim发 Typecho 博客">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>「续」vim发 Typecho 博客</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">「续」vim发 Typecho 博客</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1423791231"><span class="from"></span></span>
                     
@@ -82,12 +83,12 @@
 2. 在 vimpress 中发现的mwEditPost 其实是 Typecho 的 xmlrpc 中声明的
 3. 第二点所说的实现方式为xmlrpclib.ServerProxy(blog_url).metaWeblog，mw 是 metaWeblog 的缩写，ServerProxy 方法用于连接 xmlrpc 以远程调用函数</p>
 
-<p>其实这些都没啥用，今天早上起来，不死心，一个机灵，去查看了下数据库，于是只要在<code>Content</code>下的第一行加入一行``，完成，可以解析了</p>
+<p>其实这些都没啥用，今天早上起来，不死心，一个机灵，去查看了下数据库，于是只要在<code>Content</code>下的第一行加入一行&rdquo;，完成，可以解析了</p>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,21 +78,37 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>安卓签名查看</p>
+                <article class="content"><nav>
+
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">查看apk签名</a></li>
+
+<li><a href="#toc_1">查看keystore签名</a></li>
+
+<li><a href="#toc_2">Android Studio 使用本项目下的keystore打包</a></li>
+
+<li><a href="#toc_3">对比两个包名一样的apk但签名是否一致</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>安卓签名查看</p>
 
 <p>添加 %JAVA_HOME%\bin到PATH</p>
 
-<h2>查看apk签名</h2>
+<h2 id="toc_0">查看apk签名</h2>
 
 <pre><code>keytool -list -printcert -jarfile /path/to/apk
 </code></pre>
 
-<h2>查看keystore签名</h2>
+<h2 id="toc_1">查看keystore签名</h2>
 
 <pre><code>keytool -list -v -keystore /path/to/keystore
 </code></pre>
 
-<h2>Android Studio 使用本项目下的keystore打包</h2>
+<h2 id="toc_2">Android Studio 使用本项目下的keystore打包</h2>
 
 <pre><code>signingConfigs {
     debug {
@@ -100,7 +117,7 @@
 }
 </code></pre>
 
-<h2>对比两个包名一样的apk但签名是否一致</h2>
+<h2 id="toc_3">对比两个包名一样的apk但签名是否一致</h2>
 
 <p><strong>安装其中一个然后安装另外一个</strong></p>
 </article>

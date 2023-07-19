@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,9 +78,21 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>GOPATH项目迁移到go mod流程</p>
+                <article class="content"><nav>
 
-<h2>步骤</h2>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">步骤</a></li>
+
+<li><a href="#toc_1">注意</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>GOPATH项目迁移到go mod流程</p>
+
+<h2 id="toc_0">步骤</h2>
 
 <ol>
 <li>把项目目录原封不动移动到任意一个不在<code>GOPATH</code>内的目录下, 例如<code>D:\workspace\projectname</code></li>
@@ -89,7 +102,7 @@
 <li><code>go build</code></li>
 </ol>
 
-<h2>注意</h2>
+<h2 id="toc_1">注意</h2>
 
 <ol>
 <li>尽量不使用本地包, 像 <code>xxx/xxx/module</code> 这样的, 把本地包推送到线上的git仓库里去</li>

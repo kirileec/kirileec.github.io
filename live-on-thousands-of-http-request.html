@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,16 +78,34 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>面对成千上万次的http请求如何存活</p>
+                <article class="content"><nav>
 
-<h2>背景</h2>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">背景</a></li>
+
+<li><a href="#toc_1">问题</a></li>
+
+<li><a href="#toc_2">解决思路</a></li>
+
+<li><a href="#toc_3">具体代码</a></li>
+
+<li><a href="#toc_4">引用</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>面对成千上万次的http请求如何存活</p>
+
+<h2 id="toc_0">背景</h2>
 
 <ul>
 <li>大概有3w张物联卡, 需要通过api请求的方式获取其流量使用情况</li>
 <li>服务端有客户端白名单和请求频率的限制(频率具体是多少不清楚)</li>
 </ul>
 
-<h2>问题</h2>
+<h2 id="toc_1">问题</h2>
 
 <ol>
 <li>如果在一个协程中一张张跑完所有卡, 那么3w张卡从获取数据到写入到数据库可能需要消耗&hellip;额, 很长时间, 那么这种情况每次定时任务的跨度太长容易导致不方便调试等问题, 会大量拉伸开发周期</li>
@@ -94,25 +113,25 @@
 <li>需要在白名单的机子上跑方可调用api</li>
 </ol>
 
-<h2>解决思路</h2>
+<h2 id="toc_2">解决思路</h2>
 
 <ul>
 <li>针对第三点, 可以使用代理服务器, 可以完美伪装, 然而api调用的效率就会下降很多. 比如我现在的情况是java的服务端, 那么去搜java判断远程ip的方法, 可能会有很多种, 一个个拿到postman里试, 运气不错, <code>x-forwarded-for</code>可用</li>
 <li>针对另外两点, 重试就行了. 目前所用的方式为, 开一个协程池, 容量为30个, 在协程的事件中判断是否发生了限流或超时的情况, 如果发生了, 则添加到重试队列, 让它一只重试即可</li>
 </ul>
 
-<h2>具体代码</h2>
+<h2 id="toc_3">具体代码</h2>
 
 <pre><code>defer ants.Release()
 var wg sync.WaitGroup
 invokeChan := xchan.NewXChan(10000, func(i interface{}) {
-            wg.Add(1)
-            p.Invoke(i)
-        })
+			wg.Add(1)
+			p.Invoke(i)
+		})
 p, _ = ants.NewPoolWithFunc(poolCount, func(i interface{}) {
-            handleCard(i, alarmchan, insertChan, invokeChan)
-            wg.Done()
-        })
+			handleCard(i, alarmchan, insertChan, invokeChan)
+			wg.Done()
+		})
 for _, cardid := range CardList {
     wg.Add(1)
     p.Invoke(string(cardid))
@@ -125,7 +144,7 @@ isPoolRunning = false
 
 <p>在handleCard方法中, 如果需要重试, <code>invokeChan.Add(cardid)</code>即可, 而isPoolRunning用于防止某一次任务无限重试下去, 让后面的定时任务一直堆积. xchan是一个简单的队列, 感觉用来异步进行<strong>顺序</strong>操作挺合适的</p>
 
-<h2>引用</h2>
+<h2 id="toc_4">引用</h2>
 
 <ul>
 <li>协程池 <code>&quot;github.com/panjf2000/ants/v2&quot;</code></li>

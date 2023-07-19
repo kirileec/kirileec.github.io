@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,9 +78,36 @@
                     
                     <span class="tags"><a class="tag" href="/tag/android/index.html">android</a><a class="tag" href="/tag/layout/index.html">layout</a></span>
                 </section>
-                <article class="content"><p>安卓布局笔记</p>
+                <article class="content"><nav>
 
-<h2>常用属性说明</h2>
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">常用属性说明</a></li>
+
+<li><a href="#toc_1">线性布局 LinearLayout</a>
+<ul>
+<li><a href="#toc_2">常用属性</a></li>
+
+<li><a href="#toc_3">子组件常用属性</a></li>
+</ul></li>
+
+<li><a href="#toc_4">相对布局 RelativeLayout</a>
+<ul>
+<li><a href="#toc_5">子组件常用属性</a></li>
+</ul></li>
+
+<li><a href="#toc_6">网格布局 GridLayout</a>
+<ul>
+<li><a href="#toc_7">子组件常用属性</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>安卓布局笔记</p>
+
+<h2 id="toc_0">常用属性说明</h2>
 
 <ul>
 <li><code>layout_width</code> &amp; <code>layout_height</code> : 高度和宽度, match_parent 表示拉伸到父组件, wrap_content 表示, 内容有多大就撑多大</li>
@@ -89,15 +117,15 @@
 <li><code>elevation</code>: Z轴抬起的高度, 一般用于搞阴影</li>
 </ul>
 
-<h2>线性布局 LinearLayout</h2>
+<h2 id="toc_1">线性布局 LinearLayout</h2>
 
-<h3>常用属性</h3>
+<h3 id="toc_2">常用属性</h3>
 
 <ul>
 <li><code>orientation</code> 排列方向 取值: <code>horizontal</code> <code>vertical</code> 即纵向和横向布局</li>
 </ul>
 
-<h3>子组件常用属性</h3>
+<h3 id="toc_3">子组件常用属性</h3>
 
 <ul>
 <li><code>android:layout_weight</code>: 布局的权重, 例如, 当LinearLayout内有三个元素, 只有中间那个元素的 layout_weight 设置为1, 那么它会把其他两个撑开, 当然其它两个的layout_weight或者layout_height不要是match_parent, 两种行为可能会冲突, 导致最终效果不对</li>
@@ -105,11 +133,11 @@
 <li>也可以用于横向三个组件均分的情况</li>
 </ul>
 
-<h2>相对布局 RelativeLayout</h2>
+<h2 id="toc_4">相对布局 RelativeLayout</h2>
 
 <p>相对布局用于各种奇怪的布局, 特别是多个块之间不是连在一起的(区别于线性布局), 组件多层的情况一般用这个</p>
 
-<h3>子组件常用属性</h3>
+<h3 id="toc_5">子组件常用属性</h3>
 
 <ul>
 <li><code>layout_alignParentxxx</code>: 对齐到父组件(容器)的某一边, 多写几个就可以让一个FloatingActionButton一直呆在右上角了</li>
@@ -117,11 +145,11 @@
 <li><code>android:layout_alignLeft</code>系列: 不太好用的样子, 暂时还没有用这个</li>
 </ul>
 
-<h2>网格布局 GridLayout</h2>
+<h2 id="toc_6">网格布局 GridLayout</h2>
 
 <p>这个就简单了, 布那种九宫格或者需要平均分的情况, 需要指定 <code>android:rowCount</code> 和 <code>android:columnCount</code></p>
 
-<h3>子组件常用属性</h3>
+<h3 id="toc_7">子组件常用属性</h3>
 
 <ul>
 <li><code>layout_rowWeight</code> &amp; <code>layout_columnWeight</code>: 同理, 权重, 一般也都是设置成1的, 不是1的情况也不多见</li>

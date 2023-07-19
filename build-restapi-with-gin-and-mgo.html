@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="go,">
         <meta name="description" content="Build Restapi With Gin and Mgo">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>Build Restapi With Gin and Mgo</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">Build Restapi With Gin and Mgo</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1525510277"><span class="from"></span></span>
                     
@@ -105,31 +106,31 @@ govendor fetch gopkg.in/mgo.v2
 <pre><code class="language-go">package db
 
 import (
-    &quot;fmt&quot;
-    &quot;gopkg.in/mgo.v2&quot;
+	&quot;fmt&quot;
+	&quot;gopkg.in/mgo.v2&quot;
 )
 
 var (
-    Session *mgo.Session
-    Mongo *mgo.DialInfo
+	Session *mgo.Session
+	Mongo *mgo.DialInfo
 )
 
 const (
-    MongoDBUrl = &quot;mongodb://localhost:27017/super&quot;
+	MongoDBUrl = &quot;mongodb://localhost:27017/super&quot;
 )
 
 func Connect() {
-    uri := MongoDBUrl
-    mongo, err := mgo.ParseURL(uri)
-    s, err := mgo.Dial(uri)
-    if err != nil {
-        fmt.Printf(&quot;Can't connect to mongo, go error %v\n&quot;, err)
-        panic(err.Error())
-    }
-    s.SetSafe(&amp;mgo.Safe{})
-    fmt.Println(&quot;Connected to&quot;, uri)
-    Session = s
-    Mongo = mongo
+	uri := MongoDBUrl
+	mongo, err := mgo.ParseURL(uri)
+	s, err := mgo.Dial(uri)
+	if err != nil {
+		fmt.Printf(&quot;Can't connect to mongo, go error %v\n&quot;, err)
+		panic(err.Error())
+	}
+	s.SetSafe(&amp;mgo.Safe{})
+	fmt.Println(&quot;Connected to&quot;, uri)
+	Session = s
+	Mongo = mongo
 }
 
 </code></pre>
@@ -143,26 +144,26 @@ func Connect() {
 <pre><code class="language-go">package middlewares
 
 import (
-    &quot;fmt&quot;
-    &quot;gin-mgo-api/db&quot;
-    &quot;github.com/gin-gonic/gin&quot;
+	&quot;fmt&quot;
+	&quot;gin-mgo-api/db&quot;
+	&quot;github.com/gin-gonic/gin&quot;
 )
 
 func Connect(c *gin.Context) {
-    fmt.Println(&quot;Connect Middleware&quot;)
-    if db.Session == nil {
-        fmt.Println(&quot;Error DB Session&quot;)
-    }
-    s := db.Session.Clone()
+	fmt.Println(&quot;Connect Middleware&quot;)
+	if db.Session == nil {
+		fmt.Println(&quot;Error DB Session&quot;)
+	}
+	s := db.Session.Clone()
 
-    defer s.Close()
+	defer s.Close()
 
-    c.Set(&quot;db&quot;, s.DB(db.Mongo.Database))
-    c.Next()  //这一句是必须的, 否则数据连接在跑完这个方法之后就被关闭了
+	c.Set(&quot;db&quot;, s.DB(db.Mongo.Database))
+	c.Next()  //这一句是必须的, 否则数据连接在跑完这个方法之后就被关闭了
 }
 
 func Middleware(c *gin.Context) {
-    fmt.Println(&quot;this is a middleware!&quot;)
+	fmt.Println(&quot;this is a middleware!&quot;)
 }
 </code></pre>
 
@@ -175,14 +176,14 @@ func Middleware(c *gin.Context) {
 <pre><code class="language-go">package models
 
 import (
-    &quot;gopkg.in/mgo.v2/bson&quot;
+	&quot;gopkg.in/mgo.v2/bson&quot;
 )
 
 
 type Super struct {
-    Id    bson.ObjectId `json:&quot;_id,omitempty&quot; bson:&quot;_id,omitempty&quot;`
-    Name  string
-    Value string
+	Id    bson.ObjectId `json:&quot;_id,omitempty&quot; bson:&quot;_id,omitempty&quot;`
+	Name  string
+	Value string
 }
 </code></pre>
 
@@ -195,52 +196,52 @@ type Super struct {
 <pre><code class="language-go">package main
 
 import (
-    &quot;gin-mgo-api/db&quot;
-    &quot;gin-mgo-api/middlewares&quot;
-    &quot;gin-mgo-api/models&quot;
-    &quot;net/http&quot;
+	&quot;gin-mgo-api/db&quot;
+	&quot;gin-mgo-api/middlewares&quot;
+	&quot;gin-mgo-api/models&quot;
+	&quot;net/http&quot;
 
-    &quot;github.com/gin-gonic/gin&quot;
-    mgo &quot;gopkg.in/mgo.v2&quot;
+	&quot;github.com/gin-gonic/gin&quot;
+	mgo &quot;gopkg.in/mgo.v2&quot;
 )
 
 //在启动时先建立数据库连接
 func init() {
-    db.Connect()
+	db.Connect()
 }
 
 func main() {
-    router := gin.Default()
-    gin.SetMode(gin.DebugMode)
+	router := gin.Default()
+	gin.SetMode(gin.DebugMode)
 
-    router.Use(middlewares.Connect)
-    router.GET(&quot;/someGet&quot;, func(c *gin.Context) {
+	router.Use(middlewares.Connect)
+	router.GET(&quot;/someGet&quot;, func(c *gin.Context) {
         //每个接口都可以用这样的方式获得数据库操作对象
-        db := c.MustGet(&quot;db&quot;).(*mgo.Database)
-        supers := []models.Super{}
+		db := c.MustGet(&quot;db&quot;).(*mgo.Database)
+		supers := []models.Super{}
         //没数据可以先插进去几条, 或者用MongoDB Compass操作
-        // super := models.Super{Name: &quot;hhhh&quot;, Value: &quot;iiii&quot;}
-        // err := db.C(&quot;super&quot;).Insert(&amp;super)
-        err := db.C(&quot;super&quot;).Find(nil).All(&amp;supers)
-        if err != nil {
-            c.Error(err)
+		// super := models.Super{Name: &quot;hhhh&quot;, Value: &quot;iiii&quot;}
+		// err := db.C(&quot;super&quot;).Insert(&amp;super)
+		err := db.C(&quot;super&quot;).Find(nil).All(&amp;supers)
+		if err != nil {
+			c.Error(err)
 
-        }
-        c.JSON(http.StatusOK, supers)
+		}
+		c.JSON(http.StatusOK, supers)
 
-    })
+	})
 
     //这里也可以这样 router.Run(&quot;:9090&quot;) 暂时还不知道有什么区别
     
-    http.ListenAndServe(&quot;:9090&quot;, router)
+	http.ListenAndServe(&quot;:9090&quot;, router)
 }
 
 </code></pre>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

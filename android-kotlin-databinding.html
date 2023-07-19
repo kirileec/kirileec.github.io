@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,16 +78,26 @@
                     
                     <span class="tags"><a class="tag" href="/tag/kotlin/index.html">kotlin</a><a class="tag" href="/tag/android/index.html">android</a></span>
                 </section>
-                <article class="content"><p>Android Kotlin RecyclerView Databinding</p>
+                <article class="content"><nav>
 
 <ul>
-<li><h2>一个已经能进行简单的按按钮操作的RecyclerView项目</h2>
+<li>
+<ul>
+<li><a href="#toc_0">一个已经能进行简单的按按钮操作的RecyclerView项目</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>Android Kotlin RecyclerView Databinding</p>
+
+<ul>
+<li>
+<h2 id="toc_0">一个已经能进行简单的按按钮操作的RecyclerView项目</h2>
 
 <pre><code class="language-gradle">apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 </code></pre>
-
 <pre><code class="language-gradle">dataBinding {
     enabled = true
 }
@@ -139,8 +150,7 @@ apply plugin: 'kotlin-android-extensions'
 </code></pre>
 
 <ul>
-<li>一个数据adapter
-<br /></li>
+<li>一个数据adapter</li>
 </ul>
 
 <pre><code class="language-kotlin">    import android.view.LayoutInflater
@@ -231,8 +241,7 @@ apply plugin: 'kotlin-android-extensions'
 </code></pre>
 
 <ul>
-<li>声明数据类
-<br /></li>
+<li>声明数据类</li>
 </ul>
 
 <pre><code class="language-kotlin">    data class SchoolNews(
@@ -245,8 +254,7 @@ apply plugin: 'kotlin-android-extensions'
 </code></pre>
 
 <ul>
-<li>RecyclerView 的itemview中声明, 注意顶层元素使用layout, 其他盲敲即可, IDE会补全
-<br /></li>
+<li>RecyclerView 的itemview中声明, 注意顶层元素使用layout, 其他盲敲即可, IDE会补全</li>
 </ul>
 
 <pre><code class="language-xml">    &lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
@@ -289,8 +297,7 @@ apply plugin: 'kotlin-android-extensions'
 <p>顺便说下, 代码中访问内置颜色是这样的<code>android.R.color.transparent</code></p>
 
 <ul>
-<li>最后就是使用了
-<br /></li>
+<li>最后就是使用了</li>
 </ul>
 
 <pre><code class="language-kotlin">    var mAdapter: SchoolNewsAdapter? = null

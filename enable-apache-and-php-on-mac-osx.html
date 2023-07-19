@@ -47,7 +47,7 @@
 
         <meta name="keywords" content="mac,">
         <meta name="description" content="MAC 下启用 apache 和 php">
-        <meta name="author" content="">
+        <meta name="author" content="linx">
         <title>MAC 下启用 apache 和 php</title>
     </head>
     <body>
@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -70,8 +71,8 @@
             <article class="main article">
                 <h1 class="title">MAC 下启用 apache 和 php</h1>
                 <section class="info">
-                    
-                    
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
                     
                     <span class="date" data-time="1423119720"><span class="from"></span></span>
                     
@@ -85,10 +86,13 @@
 </ol>
 
 <p>这两个参数重合了不知道会咋样，估计前者被覆盖了吧
-3. cp /etc/php.ini.default  /etc/php.ini   设置下 display_errors = On<br />
+3. cp /etc/php.ini.default  /etc/php.ini   设置下 display_errors = On<br>
 4. sudo apachectl restart #apache需要root 权限才行
-5. 这里涉及的配置文件基本都是 read only，ls 一看只有 r 权限，那么
-&gt; chmod +w 文件名</p>
+5. 这里涉及的配置文件基本都是 read only，ls 一看只有 r 权限，那么</p>
+
+<blockquote>
+<p>chmod +w 文件名</p>
+</blockquote>
 
 <p>添加之，然后 sudo 即可</p>
 
@@ -100,9 +104,9 @@ mbstring、mysqli、pdo 都有</p></li>
 </ol>
 </article>
                 <section class="author">
-                    
-                    <a class="name" href="/about..html"></a>
-                    <div class="intro"></div>
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
                 </section>
                 <section class="recommend">
                     

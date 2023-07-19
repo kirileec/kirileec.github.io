@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,7 +78,17 @@
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><p>Android RecylerView BaseAdapter 更新(kotlin)</p>
+                <article class="content"><nav>
+
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">更新</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>Android RecylerView BaseAdapter 更新(kotlin)</p>
 
 <p>废话不多说直接上代码</p>
 
@@ -330,7 +341,7 @@ open class QJBaseAdapter&lt;T&gt; :
 }
 </code></pre>
 
-<h2>更新</h2>
+<h2 id="toc_0">更新</h2>
 
 <ol>
 <li>新增 <code>fun setView(listView:RecyclerView)</code> 用于为 RecyclerView 设置&rdquo;加载中&rdquo; &ldquo;加载失败&rdquo; &ldquo;无数据&rdquo; 三种视图. 只需要

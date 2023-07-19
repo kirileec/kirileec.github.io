@@ -58,6 +58,7 @@
     Linx&#39;s Solution
   </a>
   <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
       <li class="menu-item"><a href="/tag.html">标签</a></li>
       <li class="menu-item"><a href="/atom.xml">订阅</a></li>
@@ -77,38 +78,58 @@
                     
                     <span class="tags"><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/shell/index.html">shell</a></span>
                 </section>
-                <article class="content"><p>远程部署相关命令</p>
+                <article class="content"><nav>
 
-<h1>Windows版</h1>
+<ul>
+<li><a href="#toc_0">Windows版</a>
+<ul>
+<li><a href="#toc_1">必需软件</a></li>
 
-<h2>必需软件</h2>
+<li><a href="#toc_2">须知</a></li>
+
+<li><a href="#toc_3">压缩命令</a></li>
+
+<li><a href="#toc_4">scp 传输文件</a></li>
+
+<li><a href="#toc_5">ssh 执行远程命令</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>远程部署相关命令</p>
+
+<h1 id="toc_0">Windows版</h1>
+
+<h2 id="toc_1">必需软件</h2>
 
 <ul>
 <li><a href="http://www.stahlworks.com/dev/index.php?tool=zipunzip">zip.exe</a></li>
 <li><a href="https://git-scm.com/">git-scm</a></li>
 </ul>
 
-<h2>须知</h2>
+<h2 id="toc_2">须知</h2>
 
 <ul>
 <li>git-bash下可以调用exe</li>
 <li>git-bash下的路径对应关系为 <code>C:\ &lt;=&gt; /c/</code>  <code>D:\ &lt;=&gt; /d/</code></li>
+<li>windows下的sh脚本, 顶部可以写成这样
 
-<li><p>windows下的sh脚本, 顶部可以写成这样</p>
-
-<pre><code>#!/bin/bash
+<pre><code>
+#!/bin/bash
 </code></pre>
 
-<p>or</p>
+or
 
-<pre><code>#!&quot;C:\Program Files\Git\bin\bash.exe&quot;
-</code></pre></li>
+<pre><code>
+#!&quot;C:\Program Files\Git\bin\bash.exe&quot;
+</code></pre>
+</li>
 </ul>
 
 <p>前者的写法, 可以直接双击运行sh脚本, 或者在powershell里调用
   后者主要用于jenkins这种, 特别是windows上的jenkins, jenkins是无法识别<code>/bin/bash</code> 这个路径的, 而git-bash应该是直接关联了 .sh文件的打开方式了(意思是 <code>#!/bin/bash</code> 这行不写也可以)</p>
 
-<h2>压缩命令</h2>
+<h2 id="toc_3">压缩命令</h2>
 
 <pre><code>zip -q -r name.zip /c/name
 </code></pre>
@@ -119,14 +140,14 @@
 <li><p><code>-r</code> 迭代目录</p></li>
 </ul>
 
-<h2>scp 传输文件</h2>
+<h2 id="toc_4">scp 传输文件</h2>
 
 <pre><code>scp -i $PPKFILE $LOCALNAME $LOGINUSERNAME@$SERVERIP:$REMOTEEXECTEMP
 </code></pre>
 
 <p><code>PPKFILE</code> 的内容应该是 <code>BEGIN RSA PRIVATE KEY</code>, 来源是可以用Puttygen转换ppk密钥, 必需为OPENSSH的格式</p>
 
-<h2>ssh 执行远程命令</h2>
+<h2 id="toc_5">ssh 执行远程命令</h2>
 
 <pre><code>ssh -i $PPKFILE $LOGINUSERNAME@$SERVERIP &lt;&lt; remotessh
 remotessh
