@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="win8 右键菜单">
+        <meta name="author" content="">
+        <title>win8 右键菜单</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">win8 右键菜单</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="0"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><p>添加一个按住shift才会显示的右键菜单
+date: &ldquo;2013-01-14 17:38:48&rdquo;
+update: &ldquo;&rdquo;
+author: me
+tags:
+- 杂谈
+- other
+categories:
+- other
+topic: &ldquo;&rdquo;
+cover: &ldquo;&rdquo;
+draft: false
+preview: &ldquo;&rdquo;
+top: false
+type: &ldquo;&rdquo;
+hide: false
+toc: false
+image: &ldquo;&rdquo;
+subtitle: &ldquo;&rdquo;
+config: {}</p>
+
+<hr>
+
+<pre><code>		windows的注册表真是博大精深啊，以下是折腾过程：
+</code></pre>
+
+<div><br /></div>
+<div>HKEY_LOCAL_MACHINESOFTWAREClassesFoldershell</div>
+<div>
+HKEY_LOCAL_MACHINESOFTWAREClassesDirectorybackgroundshell</div>
+<div><br /></div>
+<div>以上两个，第一个是文件夹的右键菜单，后一个是文件夹背景的右键菜单（平时右键刷新的时候看到的那个）</div>
+<div><br /></div>
+<div>只要</div>
+<div>在这两个位置新建一个项，命名为你自己喜欢的，</div>
+<div>选中这个项，再新建一个项，命名为“command”（无引号，在英文输入状态下输入），</div>
+<div>双击右侧的默认，改值为你希望显示的文字。</div>
+<div>选中前面的command项，然后双击右侧的默认，改为，程序绝对路径+空格+“%V”。（英文输入状态）</div>
+<div>如
+&nbsp;<wbr>D:LeanKeyTooltoolTotalCMDTotalcmd64.exe
+"%V"</wbr></div>
+<div>这样这个菜单项就会显示了，即时生效。</div>
+<div><br /></div>
+<div>然后是按住shift才显示</div>
+<div>
+只要在你选中新建的这个项，在右侧新建两个字符串值，分别命名为Extended和NoWorkingDirectory。完成。</div>
+<div><br /></div>
+<div>附带几个位置</div>
+<div>HKEY_CLASSES_ROOT*shell &nbsp;<wbr>
+&nbsp;</wbr><wbr>所有文件的右键菜单</wbr></div>
+<div>HKEY_CLASSES_ROOTexefileshell &nbsp;<wbr>
+.exe文件的右键菜单</wbr></div>
+<div>HKEY_CLASSES_ROOTDirectoryshell &nbsp;<wbr>
+目录的右键菜单</wbr></div>
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
+<div><br /></div>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/2011-10-22/office2010_installation_in_mind_after_a_reload.html">记一次重装后的office2010安装</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/0001-01-01/%e4%b8%89%e6%97%a0-%e6%99%ae%e9%80%9adisco.html">三无《普通DISCO》</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

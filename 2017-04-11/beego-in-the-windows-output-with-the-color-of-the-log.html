@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="go,beego,">
+        <meta name="description" content="beego 在Windows下输出带有颜色的日志">
+        <meta name="author" content="linx">
+        <title>beego 在Windows下输出带有颜色的日志</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">beego 在Windows下输出带有颜色的日志</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1491918447"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/go/index.html">go</a><a class="tag" href="/tag/beego/index.html">beego</a></span>
+                </section>
+                <article class="content"><blockquote>
+<p>&ldquo;github.com/nevernet/logger&rdquo;</p>
+</blockquote>
+
+<p>首先这个库，属于一种对于beego自带日志的扩展， 然而封装的不是特别详细， 因此目前来说还是自己修改其代码以达到自己的目的。</p>
+
+<p>beego的日志模块在unix系统的Terminal支持颜色输出的情况下应该是好， 不过在Windows下，我看了下代码的实现，默认自带的<code>ConsoleWriter</code>，在判断到系统是<code>windows</code>的时候会默认将<code>colorable</code>设置成<code>false</code>。然后我去官方仓库翻了翻<code>issue</code>，翻到了一个加入颜色支持的<code>issue</code>，不过并没有后续的对<code>windows</code>进行支持的。然而官方的<code>bee</code>工具里的日志输出就非常(๑•̀ㅂ•́)و✧， 其实我现在是想要一个日志输出像 <code>bee run</code>那样的输出，例如 <code>SUCCESS</code> 标签为绿色，非常漂亮。但后来经过尝试发现，其实<code>windows</code>的命令行或者<code>powershell</code> 如果不进行相关的修改，即使加上颜色，还是很难看，主要还是那个字体，并不能像<code>vscode</code>里的<code>powershell</code>那样。于是暂时先搞个带颜色的出来就好。</p>
+
+<p>在研读</p>
+
+<blockquote>
+<p><a href="https://github.com/mattn/go-colorable">https://github.com/mattn/go-colorable</a></p>
+</blockquote>
+
+<p>这个库的实现方式之后，了解到，只要给日志模块一个可以比较好支持颜色输出的Writer即可了。 后来发现其实beego的内部已经加入了支持，只不过目前的1.8版本还没有正式实现之，需要用户自己实现</p>
+
+<pre><code class="language-go">
+func NewColorConsole() Logger {
+	cw := &amp;consoleWriter{
+		lg:       newLogWriter(NewAnsiColorWriter(os.Stdout)),
+		Level:    LevelDebug,
+		Colorful: true,
+	}
+	return cw
+}
+
+func init() {
+	Register(AdapterConsole, NewColorConsole)
+}
+</code></pre>
+
+<p>由于我对go还不是很熟悉，因此暂时就先这样直接修改代码先用着了</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/2017-04-11/golang-mgo-connection-pool-problem.html">golang mgo 连接池问题</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/2017-04-01/personal-understanding-of-nouns-in-rabbitmq.html">RabbitMQ 中名词的个人理解</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+site:
+    title: "Linx's Solution"
+    subtitle: "记录解决方案"
+    limit: 10
+    theme: theme
+    lang: zh-cn
+    url: "http://linx.run"
+    # comment: username
+    logo: "-/images/photo.jpg"
+    link: "{year}-{month}-{day}/{title}.html"
+    # link: "{year}{month}{day}{hour}{minute}{second}.html"
+    # root: "/blog"
+
+authors:
+    me:
+        name: "linx"
+        intro: "记录我自己的各种解决方案"
+        avatar: "-/images/photo.jpg"
+
+build:
+    # output: "public"
+    port: 8000
+    # Copied files to public folder when build
+    copy:
+        - "images"
+    # Excuted command when use 'ink publish'
+    publish: |
+        cp -rf ./public/* /Users/linx/Document/kirileec.github.io
+        rm -rf ./public/*
+        git add . -A
+        git commit -m "update"
+        git push origin
+        cd /Users/linx/Document/kirileec.github.io
+        git add . -A
+        git commit -m "update"
+        git push origin
+    publishw: |
+        publishw.bat
+

@@ -1,0 +1,175 @@
+title: Vultr 服务器搭建记录
+date: 2019-05-22 20:15:29 +0800
+update: ""
+author: me
+tags: []
+categories: []
+topic: ""
+cover: ""
+draft: false
+preview: ""
+top: false
+type: ""
+hide: false
+toc: false
+image: ""
+subtitle: ""
+config: {}
+
+
+---
+
+
+
+<!--more-->
+由于换了移动宽带，以前的搬瓦工的服务器已经完全不能满足现有的FQ需求了。虽然我的翻墙频率也不是很高，也就偶尔google一下，下点github代码，youtube看看视频，基本就没啥别的了。但是各种不能访问的情况，我是受不了的。
+
+于是就去寻找对移动宽带好的服务器，前两天有人说DigitalOcean的新加坡服务器还不错，虽然每月要5美元，一年下来要400+ CNY。不过不能一直这么下去，于是就搞了一台。在昨天各种鼓捣，顺利地把博客啥的全都迁移过去了，果然静态页面的博客就是舒服，只要把博客的自动生成脚本迁移过去就行了。然而好景不长，服务器的延迟虽然不高140ms左右，但是到晚上的时候简直惨不忍睹，不是慢了，而是根本就不能用。
+
+不信邪的我今天尝试去找着原因，traceroute一番发现，先是跳了北京移动然后香港出去，相当于绕了大半个中国。兜兜转转又看到了Vultr的，刚好faq的页面上有下载测试的，试了一下SGP的可以跑到满速11M+，同时也试了一下JP的，感觉比SGP的稍差一点，应该是SGP的是走PCCW线路的缘故，而且延迟更低90ms左右，又花了一下午搭了起来，记录一下
+
+
+编译安装nginx with fancyindex
+---
+
+编译指令
+
+```bash
+./configure --prefix=/usr/local/nginx \
+ --add-module=../ngx-fancyindex-0.4.3/ \
+ --with-http_ssl_module
+```
+之前第一次弄的时候忘了ssl模块，又搞了一次
+
+安装
+```bash
+make && make install
+```
+
+添加alias
+```bash
+vi ~/.bashrc
+alias nginx='/usr/local/nginx/sbin/nginx'
+```
+
+生成SSL证书
+---
+```bash
+# 设置API调用的KEY和密钥
+export Ali_Key="阿里云KEY"
+export Ali_Secret="阿里云密钥"
+
+#申请证书
+acme.sh --issue --dns dns_ali -d llinx.me -d *.llinx.me
+#安装证书到指定位置
+acme.sh --installcert -d llinx.me \
+               --keypath       /path/to/ssl/llinx.me.key  \
+               --fullchainpath /path/to/ssl/llinx.me.pem
+```
+
+nginx配置
+---
+```nginx
+# nginx.conf
+
+listen       80;
+server_name llinx.me;
+rewrite ^(.*) https://$server_name$1 permanent;  #跳转到https
+
+server {
+    listen 443 ssl default_server;
+    server_name llinx.me;
+    root html;
+    ssl_certificate /path/to/ssl/llinx.me.pem;
+    ssl_certificate_key /path/to/ssl/llinx.me.key;
+
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+这里还有一份fancyindex的配置，不过我没弄上去.对应的目录下要放上类似fancydark这样的主题目录（fancyindex）
+```nginx
+# nginx.conf
+server {
+    listen 80;
+    server_name d.llinx.me;
+    rewrite ^(.*) https://$server_name$1 permanent;
+}
+
+server {
+    listen 443 ssl;
+    server_name d.llinx.me;
+    root down;
+    include fancyindex.conf;
+    ssl_certificate /path/to/ssl/llinx.me.pem;
+    ssl_certificate_key /path/to/ssl/llinx.me.key;
+}
+
+#fancyindex.conf
+
+fancyindex on;
+fancyindex_localtime on;
+fancyindex_exact_size off;
+fancyindex_header "/fancydark/header.html";
+fancyindex_footer "/fancydark/footer.html";
+fancyindex_ignore "fancydark";
+fancyindex_name_length 255;
+```
+
+hugo自动生成博客
+---
+
+使用的是github上的一个webhook项目
+
+
+```bash
+nohup /path/to/webhook/webhook -hooks hooks.json -port 9002 -secure -key /path/to/ssl/llinx.me.key -cert /path/to/ssl/llinx.me.pem &
+```
+
+hooks.json
+```json
+
+[
+  {
+    "id": "redeploy-webhook",
+    "execute-command": "/path/to/webhook/hugo.sh",
+    "command-working-directory": "/path/to/webhook"
+  }
+]
+
+```
+拷贝hugo的可执行文件到/usr/local/bin/下，保证任意地方都可以执行hugo命令
+
+然后再丢一个hugo.sh去执行博客的生成即可，其实也就是到目录下hugo一下，再把public里的内容拷贝到nginx目录即可
+
+自己写的不知道会不会去用的二维码生成服务
+---
+
+配置已经都是默认写在代码里了
+```bash
+nohup /path/to/go-qr/go-qr &
+```
+
+一个中转服务器
+---
+
+必须先把aria2先安装上，不然启动的时候会报错退出。源代码是这个 [https://github.com/hanjm/file_download_proxy](https://github.com/hanjm/file_download_proxy).
+
+我自己进行了改造， 改成了https的版本
+
+```bash
+rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+yum install aria2 -y
+nohup /path/to/fdp/fdp -auth 用户名:密码 -limit 1 -port 9001 > fdp.log 2>&1 &
+```
+
+由于这货自带HTTP文件服务器功能，所以不需要开启fancyindex了
+
+
+最后
+---
+把该运行的程序加入到开机启动 /etc/rc.d/rc.local, 部分centos版本会需要chmod +x 一下这个文件

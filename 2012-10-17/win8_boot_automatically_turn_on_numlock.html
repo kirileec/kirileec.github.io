@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="小键盘,other,">
+        <meta name="description" content="win8开机自动打开NumLock">
+        <meta name="author" content="linx">
+        <title>win8开机自动打开NumLock</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">win8开机自动打开NumLock</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1350455280"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/%e5%b0%8f%e9%94%ae%e7%9b%98/index.html">小键盘</a><a class="tag" href="/tag/other/index.html">other</a></span>
+                </section>
+                <article class="content"><pre><code>		这个居然没什么人关心，还好我搜索能力还行。唉，到处都是不折腾的傻瓜派，搜到的帖子基本都是“我也有相同问题啊。。。。”“重启啊。。。。”之类的云云，无语了好久。。
+</code></pre>
+
+<div><br /></div>
+<div>我找的方法有四个：</div>
+<div>
+1.BIOS设置。这真的是坑爹的货，应该是针对最古老的系统和电脑的，你说win7下完全正常的东西，到win8下BIOS还能变了？</div>
+<div>PS：台式机可以试试</div>
+<div>
+2.重启。即在登录界面打开NumLock然后直接重启，我的感觉，直接说吧，没用，win8下没用！！！！！！！其他系统再说吧</div>
+<div>3.win+R 〉“sysedit”
+〉回车，启用16位程序支持，切换到Config.sys的页面，在Files=40下面加一行，输入“<span style="color: rgb(68, 68, 68); font-family: Tahoma, 'Microsoft Yahei', simsun; line-height: 28px; background-color: rgb(255, 255, 255);">NumLock=ON”，不带引号，保存并关闭。</span></div>
+<div><font color="#444444" face="Tahoma, Microsoft Yahei, Simsun"><span style="line-height: 28px;">PS：尚未测试，建议不这么干，除非有经验，sys这种文件还是少操作的好</span></font></div>
+<div><font color="#444444" face="Tahoma, Microsoft Yahei, Simsun"><span style="line-height: 28px;">4.注册表。我搜到的文章基本说注册表没用的，其实是他们找的方法有错误吧。真正的注册表位置应该是</span></font></div>
+<div>
+<div><font color="#444444" face="Tahoma, Microsoft Yahei, Simsun"><span style="line-height: 28px;">[HKEY_USERS.DEFAULTControl
+PanelKeyboard]</span></font></div>
+<div>"InitialKeyboardIndicator<wbr>s"="2"</wbr></div>
+<div><br /></div>
+<div>
+解释一下，HKEY_USERS代表的是本机上所有用户，可能他们找的是HKEY_CURRENT_USERS，这样就是概念的问题了，前者是所有用户，而后者是当前用户，但是在你还在输入密码的时候，你还不是当前用户，于是必须改前面那个位置，找到</div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;">InitialKeyboardIndicator<wbr>s更改其值为2即可，实测成功。有兴趣的可以修改后，导出注册表，备份起来。</wbr></span></div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;"><br /></span></div>
+<div><font color="#444444">吐槽下win8的图片密码，为啥我键盘输入比拿鼠标划快呢，果然是平板设计的么，</font></div>
+<div><font color="#444444">为啥要划三次呢</font></div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;">啥要划三次呢</span></div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;">要划三次呢</span></div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;">划三次呢</span></div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;">三次呢</span></div>
+<div><span style="color: rgb(68, 68, 68); line-height: 21px;">次呢</span></div>
+<div><font color="#444444">呢</font></div>
+<div><br /></div>
+</div>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/2012-10-21/m50vc_toss_of_upgrading_memory.html">M50Vc折腾之升级内存</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/2012-10-13/win8_in_win7.html">win8之于win7</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>
