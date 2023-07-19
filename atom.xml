@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-07-19T21:20:14+08:00</updated>
+  <updated>2023-07-19T21:25:37+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
@@ -10,71 +10,71 @@
   <entry>
     <title>ROS双线分流, 国外IP转到旁路由</title>
     <updated>2023-07-13T21:08:44+08:00</updated>
-    <id>tag:linx.run,2023-07-13:/ros双线分流+国外ip转到旁路由.html</id>
-    <link href="http://linx.run/ros双线分流+国外ip转到旁路由.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-07-13:/2023-07-13/ros双线分流+国外ip转到旁路由.html</id>
+    <link href="http://linx.run/2023-07-13/ros双线分流+国外ip转到旁路由.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>ROS settings</title>
     <updated>2023-06-18T20:16:34+08:00</updated>
-    <id>tag:linx.run,2023-06-18:/ros-settings.html</id>
-    <link href="http://linx.run/ros-settings.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-06-18:/2023-06-18/ros-settings.html</id>
+    <link href="http://linx.run/2023-06-18/ros-settings.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>navicat forgot password</title>
     <updated>2023-06-16T14:48:22+08:00</updated>
-    <id>tag:linx.run,2023-06-16:/navicat-forgot-password.html</id>
-    <link href="http://linx.run/navicat-forgot-password.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-06-16:/2023-06-16/navicat-forgot-password.html</id>
+    <link href="http://linx.run/2023-06-16/navicat-forgot-password.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>mongodb import and export</title>
     <updated>2023-06-16T14:29:25+08:00</updated>
-    <id>tag:linx.run,2023-06-16:/mongodb-import-and-export.html</id>
-    <link href="http://linx.run/mongodb-import-and-export.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-06-16:/2023-06-16/mongodb-import-and-export.html</id>
+    <link href="http://linx.run/2023-06-16/mongodb-import-and-export.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>influxdb v1 export and import data</title>
     <updated>2023-03-30T17:25:41+08:00</updated>
-    <id>tag:linx.run,2023-03-30:/influxdb-v1-export-and-import-data.html</id>
-    <link href="http://linx.run/influxdb-v1-export-and-import-data.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-03-30:/2023-03-30/influxdb-v1-export-and-import-data.html</id>
+    <link href="http://linx.run/2023-03-30/influxdb-v1-export-and-import-data.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>oracle create a read-only account</title>
     <updated>2023-02-21T08:52:06+08:00</updated>
-    <id>tag:linx.run,2023-02-21:/oracle-create-a-read-only-account.html</id>
-    <link href="http://linx.run/oracle-create-a-read-only-account.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-02-21:/2023-02-21/oracle-create-a-read-only-account.html</id>
+    <link href="http://linx.run/2023-02-21/oracle-create-a-read-only-account.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>move disk to another on pve</title>
     <updated>2023-02-10T10:05:45+08:00</updated>
-    <id>tag:linx.run,2023-02-10:/move-disk-to-another-on-pve.html</id>
-    <link href="http://linx.run/move-disk-to-another-on-pve.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-02-10:/2023-02-10/move-disk-to-another-on-pve.html</id>
+    <link href="http://linx.run/2023-02-10/move-disk-to-another-on-pve.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>use cert-manager to renewal ssl of k8s</title>
     <updated>2023-02-08T11:51:35+08:00</updated>
-    <id>tag:linx.run,2023-02-08:/use-cert-manager-to-renewal-ssl-of-k8s.html</id>
-    <link href="http://linx.run/use-cert-manager-to-renewal-ssl-of-k8s.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-02-08:/2023-02-08/use-cert-manager-to-renewal-ssl-of-k8s.html</id>
+    <link href="http://linx.run/2023-02-08/use-cert-manager-to-renewal-ssl-of-k8s.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>export kube config from an imported cluster of kuboard</title>
     <updated>2023-01-31T10:34:21+08:00</updated>
-    <id>tag:linx.run,2023-01-31:/use-nginx-proxy-to-play-docker.html</id>
-    <link href="http://linx.run/use-nginx-proxy-to-play-docker.html" rel="alternate"></link>
+    <id>tag:linx.run,2023-01-31:/2023-01-31/use-nginx-proxy-to-play-docker.html</id>
+    <link href="http://linx.run/2023-01-31/use-nginx-proxy-to-play-docker.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>pve lxc jellyfin passthrough intel gpu</title>
     <updated>2022-10-31T16:46:25+08:00</updated>
-    <id>tag:linx.run,2022-10-31:/pve-lxc-jellyfin-passthrough-intel-gpu.html</id>
-    <link href="http://linx.run/pve-lxc-jellyfin-passthrough-intel-gpu.html" rel="alternate"></link>
+    <id>tag:linx.run,2022-10-31:/2022-10-31/pve-lxc-jellyfin-passthrough-intel-gpu.html</id>
+    <link href="http://linx.run/2022-10-31/pve-lxc-jellyfin-passthrough-intel-gpu.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>

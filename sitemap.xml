@@ -2,1741 +2,1741 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://linx.run</loc>
-    <lastmod>2023-07-19T21:20:14.5573963+08:00</lastmod>
+    <lastmod>2023-07-19T21:25:37.2728477+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/ros双线分流+国外ip转到旁路由.html</loc>
+    <loc>http://linx.run/2023-07-13/ros双线分流+国外ip转到旁路由.html</loc>
     <lastmod>2023-07-13T21:08:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/ros-settings.html</loc>
+    <loc>http://linx.run/2023-06-18/ros-settings.html</loc>
     <lastmod>2023-06-18T20:16:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/navicat-forgot-password.html</loc>
+    <loc>http://linx.run/2023-06-16/navicat-forgot-password.html</loc>
     <lastmod>2023-06-16T14:48:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mongodb-import-and-export.html</loc>
+    <loc>http://linx.run/2023-06-16/mongodb-import-and-export.html</loc>
     <lastmod>2023-06-16T14:29:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/influxdb-v1-export-and-import-data.html</loc>
+    <loc>http://linx.run/2023-03-30/influxdb-v1-export-and-import-data.html</loc>
     <lastmod>2023-03-30T17:25:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/oracle-create-a-read-only-account.html</loc>
+    <loc>http://linx.run/2023-02-21/oracle-create-a-read-only-account.html</loc>
     <lastmod>2023-02-21T08:52:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/move-disk-to-another-on-pve.html</loc>
+    <loc>http://linx.run/2023-02-10/move-disk-to-another-on-pve.html</loc>
     <lastmod>2023-02-10T10:05:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-cert-manager-to-renewal-ssl-of-k8s.html</loc>
+    <loc>http://linx.run/2023-02-08/use-cert-manager-to-renewal-ssl-of-k8s.html</loc>
     <lastmod>2023-02-08T11:51:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-nginx-proxy-to-play-docker.html</loc>
+    <loc>http://linx.run/2023-01-31/use-nginx-proxy-to-play-docker.html</loc>
     <lastmod>2023-01-31T10:34:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/pve-lxc-jellyfin-passthrough-intel-gpu.html</loc>
+    <loc>http://linx.run/2022-10-31/pve-lxc-jellyfin-passthrough-intel-gpu.html</loc>
     <lastmod>2022-10-31T16:46:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/ubuntu-19.04-source.html</loc>
+    <loc>http://linx.run/2022-09-09/ubuntu-19.04-source.html</loc>
     <lastmod>2022-09-09T11:38:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/lenovo-b4360-b015-install-esxi-6.7.html</loc>
+    <loc>http://linx.run/2022-07-27/lenovo-b4360-b015-install-esxi-6.7.html</loc>
     <lastmod>2022-07-27T11:44:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/lenovo-h61-install-pve.html</loc>
+    <loc>http://linx.run/2022-07-25/lenovo-h61-install-pve.html</loc>
     <lastmod>2022-07-25T20:11:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/openwrt-zerotier-configure.html</loc>
+    <loc>http://linx.run/2022-07-16/openwrt-zerotier-configure.html</loc>
     <lastmod>2022-07-16T21:32:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/redmi-ax6s-flush-firmware.html</loc>
+    <loc>http://linx.run/2022-07-16/redmi-ax6s-flush-firmware.html</loc>
     <lastmod>2022-07-16T21:02:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/home-network-with-nas.html</loc>
+    <loc>http://linx.run/2022-06-20/home-network-with-nas.html</loc>
     <lastmod>2022-06-20T14:46:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/dockerfile-for-k8s-to-deploy-golang-program.html</loc>
+    <loc>http://linx.run/2022-05-30/dockerfile-for-k8s-to-deploy-golang-program.html</loc>
     <lastmod>2022-05-30T08:59:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/hash-timestamp-expire.html</loc>
+    <loc>http://linx.run/2022-05-26/hash-timestamp-expire.html</loc>
     <lastmod>2022-05-26T16:23:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/post-linux-multi-network.html</loc>
+    <loc>http://linx.run/2021-12-23/post-linux-multi-network.html</loc>
     <lastmod>2021-12-23T22:25:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/视展led扩展卡局部刷新.html</loc>
+    <loc>http://linx.run/2021-09-11/视展led扩展卡局部刷新.html</loc>
     <lastmod>2021-09-11T13:06:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/post-.net-grpc-android.md.html</loc>
+    <loc>http://linx.run/2021-09-11/post-.net-grpc-android.md.html</loc>
     <lastmod>2021-09-11T11:48:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/记一次难受的修车过程.html</loc>
+    <loc>http://linx.run/2021-03-22/记一次难受的修车过程.html</loc>
     <lastmod>2021-03-22T22:39:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/排查文件上传超时问题.html</loc>
+    <loc>http://linx.run/2021-02-27/排查文件上传超时问题.html</loc>
     <lastmod>2021-02-27T23:28:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/post-can-not-perform-this-action-after-onsaveinstancestate.html</loc>
+    <loc>http://linx.run/2021-02-27/post-can-not-perform-this-action-after-onsaveinstancestate.html</loc>
     <lastmod>2021-02-27T23:16:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/createiospics.html</loc>
+    <loc>http://linx.run/2020-11-13/createiospics.html</loc>
     <lastmod>2020-11-13T12:45:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/something-about-nginx.html</loc>
+    <loc>http://linx.run/2020-09-21/something-about-nginx.html</loc>
     <lastmod>2020-09-21T09:28:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/centos-install-mysql.html</loc>
+    <loc>http://linx.run/2020-09-21/centos-install-mysql.html</loc>
     <lastmod>2020-09-21T09:27:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/macos-homebrew-mysql-totally-reset-root-password.html</loc>
+    <loc>http://linx.run/2020-08-17/macos-homebrew-mysql-totally-reset-root-password.html</loc>
     <lastmod>2020-08-17T22:31:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mac-reset-nvram-if-update-failed.html</loc>
+    <loc>http://linx.run/2020-08-03/mac-reset-nvram-if-update-failed.html</loc>
     <lastmod>2020-08-03T14:54:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/samba-guest-no-password.html</loc>
+    <loc>http://linx.run/2020-07-07/samba-guest-no-password.html</loc>
     <lastmod>2020-07-07T21:24:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mpaas-inside-h5.html</loc>
+    <loc>http://linx.run/2020-06-23/mpaas-inside-h5.html</loc>
     <lastmod>2020-06-23T19:50:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nginx-proxypass-tcp.html</loc>
+    <loc>http://linx.run/2020-06-17/nginx-proxypass-tcp.html</loc>
     <lastmod>2020-06-17T21:58:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mac-touchpad-gesture.html</loc>
+    <loc>http://linx.run/2020-06-13/mac-touchpad-gesture.html</loc>
     <lastmod>2020-06-13T18:19:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/first-try-grpc-to-transfer-file.html</loc>
+    <loc>http://linx.run/2020-05-29/first-try-grpc-to-transfer-file.html</loc>
     <lastmod>2020-05-29T23:46:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/git-ignorecase-troubleshoot.html</loc>
+    <loc>http://linx.run/2020-05-20/git-ignorecase-troubleshoot.html</loc>
     <lastmod>2020-05-20T20:28:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/let-macbookpro-sleep-for-battery-saving.html</loc>
+    <loc>http://linx.run/2020-05-19/let-macbookpro-sleep-for-battery-saving.html</loc>
     <lastmod>2020-05-19T19:31:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/parallels-desktop-compare-to-vmware-fusion.html</loc>
+    <loc>http://linx.run/2020-05-19/parallels-desktop-compare-to-vmware-fusion.html</loc>
     <lastmod>2020-05-19T19:13:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/seekbar-with-thumb-touch.html</loc>
+    <loc>http://linx.run/2020-05-12/seekbar-with-thumb-touch.html</loc>
     <lastmod>2020-05-12T19:45:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-sharedpreferences-kotlin.html</loc>
+    <loc>http://linx.run/2020-05-12/android-sharedpreferences-kotlin.html</loc>
     <lastmod>2020-05-12T19:44:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/always-marquee-textview.html</loc>
+    <loc>http://linx.run/2020-05-12/always-marquee-textview.html</loc>
     <lastmod>2020-05-12T19:37:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/amap-smoothmarker.html</loc>
+    <loc>http://linx.run/2020-05-10/amap-smoothmarker.html</loc>
     <lastmod>2020-05-10T21:42:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/install-docker-on-debian.html</loc>
+    <loc>http://linx.run/2020-05-10/install-docker-on-debian.html</loc>
     <lastmod>2020-05-10T19:46:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mac-switch-from-different-windows.html</loc>
+    <loc>http://linx.run/2020-04-29/mac-switch-from-different-windows.html</loc>
     <lastmod>2020-04-29T20:48:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nginx-proxy-pass.html</loc>
+    <loc>http://linx.run/2020-04-28/nginx-proxy-pass.html</loc>
     <lastmod>2020-04-28T21:28:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-check-sign.html</loc>
+    <loc>http://linx.run/2020-04-21/android-check-sign.html</loc>
     <lastmod>2020-04-21T09:09:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/migrate-goland-and-android-studio-to-idea.html</loc>
+    <loc>http://linx.run/2020-04-20/migrate-goland-and-android-studio-to-idea.html</loc>
     <lastmod>2020-04-20T20:01:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/retrofit-do-request-to-another-baseurl.html</loc>
+    <loc>http://linx.run/2020-04-20/retrofit-do-request-to-another-baseurl.html</loc>
     <lastmod>2020-04-20T19:45:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/go-ssh-tunnel.html</loc>
+    <loc>http://linx.run/2020-04-03/go-ssh-tunnel.html</loc>
     <lastmod>2020-04-03T10:34:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/git-refusing-to-merge-unrelated-histories.html</loc>
+    <loc>http://linx.run/2020-03-25/git-refusing-to-merge-unrelated-histories.html</loc>
     <lastmod>2020-03-25T09:01:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/golang-module-proxy-cn.html</loc>
+    <loc>http://linx.run/2020-03-04/golang-module-proxy-cn.html</loc>
     <lastmod>2020-03-04T12:01:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/parallels-desktop-cannot-copy-files-between-mac-and-windows.html</loc>
+    <loc>http://linx.run/2020-02-15/parallels-desktop-cannot-copy-files-between-mac-and-windows.html</loc>
     <lastmod>2020-02-15T19:50:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/these-days.html</loc>
+    <loc>http://linx.run/2020-02-12/these-days.html</loc>
     <lastmod>2020-02-12T19:26:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/live-on-thousands-of-http-request.html</loc>
+    <loc>http://linx.run/2020-02-08/live-on-thousands-of-http-request.html</loc>
     <lastmod>2020-02-08T15:56:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mac-open-a-new-shell-windows-to-execute-scripts.html</loc>
+    <loc>http://linx.run/2020-02-05/mac-open-a-new-shell-windows-to-execute-scripts.html</loc>
     <lastmod>2020-02-05T20:08:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/go-1.13-setup.html</loc>
+    <loc>http://linx.run/2020-02-05/go-1.13-setup.html</loc>
     <lastmod>2020-02-05T20:03:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/golang-read-file-line-by-line.html</loc>
+    <loc>http://linx.run/2020-02-04/golang-read-file-line-by-line.html</loc>
     <lastmod>2020-02-04T20:51:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/play-iphone-screen-on-macbook.html</loc>
+    <loc>http://linx.run/2020-01-29/play-iphone-screen-on-macbook.html</loc>
     <lastmod>2020-01-29T19:56:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/regexp-get-brackets-and-content.html</loc>
+    <loc>http://linx.run/2020-01-13/regexp-get-brackets-and-content.html</loc>
     <lastmod>2020-01-13T15:47:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/audition-remove-human-voice.html</loc>
+    <loc>http://linx.run/2020-01-07/audition-remove-human-voice.html</loc>
     <lastmod>2020-01-07T15:53:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/just-go-2020.html</loc>
+    <loc>http://linx.run/2019-12-31/just-go-2020.html</loc>
     <lastmod>2019-12-31T21:36:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-shadow.html</loc>
+    <loc>http://linx.run/2019-12-30/android-shadow.html</loc>
     <lastmod>2019-12-30T17:34:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-recylerview-baseadapter-update.html</loc>
+    <loc>http://linx.run/2019-12-22/android-recylerview-baseadapter-update.html</loc>
     <lastmod>2019-12-22T11:22:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-kotlin-appbarlayout-back-to-parent-activity.html</loc>
+    <loc>http://linx.run/2019-12-07/android-kotlin-appbarlayout-back-to-parent-activity.html</loc>
     <lastmod>2019-12-07T23:20:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-kotlin-fragmentadapter.html</loc>
+    <loc>http://linx.run/2019-12-07/android-kotlin-fragmentadapter.html</loc>
     <lastmod>2019-12-07T23:13:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-kotlin-databinding.html</loc>
+    <loc>http://linx.run/2019-12-07/android-kotlin-databinding.html</loc>
     <lastmod>2019-12-07T22:40:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-wifi-debugging.html</loc>
+    <loc>http://linx.run/2019-12-02/android-wifi-debugging.html</loc>
     <lastmod>2019-12-02T09:22:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/play-with-manjaro.html</loc>
+    <loc>http://linx.run/2019-12-01/play-with-manjaro.html</loc>
     <lastmod>2019-12-01T10:31:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-layout.html</loc>
+    <loc>http://linx.run/2019-11-30/android-layout.html</loc>
     <lastmod>2019-11-30T12:09:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-startup.html</loc>
+    <loc>http://linx.run/2019-11-18/android-startup.html</loc>
     <lastmod>2019-11-18T16:22:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-msys2-with-goland-or-vscode.html</loc>
+    <loc>http://linx.run/2019-11-14/use-msys2-with-goland-or-vscode.html</loc>
     <lastmod>2019-11-14T08:54:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/access-to-gcp-with-winscp-and-putty.html</loc>
+    <loc>http://linx.run/2019-10-26/access-to-gcp-with-winscp-and-putty.html</loc>
     <lastmod>2019-10-26T11:06:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-x-forwarded-for-header.html</loc>
+    <loc>http://linx.run/2019-10-10/use-x-forwarded-for-header.html</loc>
     <lastmod>2019-10-10T16:59:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/golang-new-struct.html</loc>
+    <loc>http://linx.run/2019-09-29/golang-new-struct.html</loc>
     <lastmod>2019-09-29T17:07:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/http-api-auth.html</loc>
+    <loc>http://linx.run/2019-09-09/http-api-auth.html</loc>
     <lastmod>2019-09-09T17:28:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/deploy-your-own-goproxy-with-access-to-private-server.html</loc>
+    <loc>http://linx.run/2019-08-28/deploy-your-own-goproxy-with-access-to-private-server.html</loc>
     <lastmod>2019-08-28T21:15:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/apache-ab-test.html</loc>
+    <loc>http://linx.run/2019-08-14/apache-ab-test.html</loc>
     <lastmod>2019-08-14T17:30:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/centos-install-nginx-mainline-version-and-configure-https.html</loc>
+    <loc>http://linx.run/2019-08-14/centos-install-nginx-mainline-version-and-configure-https.html</loc>
     <lastmod>2019-08-14T12:52:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/remote-deploy-command.html</loc>
+    <loc>http://linx.run/2019-07-31/remote-deploy-command.html</loc>
     <lastmod>2019-07-31T11:54:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/gopath-to-go-module.html</loc>
+    <loc>http://linx.run/2019-07-23/gopath-to-go-module.html</loc>
     <lastmod>2019-07-23T17:37:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/centos6-supervisor.html</loc>
+    <loc>http://linx.run/2019-07-18/centos6-supervisor.html</loc>
     <lastmod>2019-07-18T17:03:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/rpgmv-startup-encry.html</loc>
+    <loc>http://linx.run/2019-06-25/rpgmv-startup-encry.html</loc>
     <lastmod>2019-06-25T20:16:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/qrtransfile-front-page-by-vue.html</loc>
+    <loc>http://linx.run/2019-06-04/qrtransfile-front-page-by-vue.html</loc>
     <lastmod>2019-06-04T19:53:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/blog-add-ipv6-support.html</loc>
+    <loc>http://linx.run/2019-06-04/blog-add-ipv6-support.html</loc>
     <lastmod>2019-06-04T10:48:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/add-boltdb.html</loc>
+    <loc>http://linx.run/2019-05-31/add-boltdb.html</loc>
     <lastmod>2019-05-31T12:58:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/add-bark-and-config.html</loc>
+    <loc>http://linx.run/2019-05-31/add-bark-and-config.html</loc>
     <lastmod>2019-05-31T12:45:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/golang-file-upload.html</loc>
+    <loc>http://linx.run/2019-05-30/golang-file-upload.html</loc>
     <lastmod>2019-05-30T16:14:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/vultr-server.html</loc>
+    <loc>http://linx.run/2019-05-22/vultr-server.html</loc>
     <lastmod>2019-05-22T20:15:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/file-store-go-of-start.html</loc>
+    <loc>http://linx.run/2019-05-18/file-store-go-of-start.html</loc>
     <lastmod>2019-05-18T17:31:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/vue-install.html</loc>
+    <loc>http://linx.run/2019-05-15/vue-install.html</loc>
     <lastmod>2019-05-15T11:51:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/compile-custom-openwrt-bin.html</loc>
+    <loc>http://linx.run/2019-05-13/compile-custom-openwrt-bin.html</loc>
     <lastmod>2019-05-13T11:23:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/my-new-desktop.html</loc>
+    <loc>http://linx.run/2019-05-12/my-new-desktop.html</loc>
     <lastmod>2019-05-12T16:33:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/compile-and-install-windows-terminal.html</loc>
+    <loc>http://linx.run/2019-05-09/compile-and-install-windows-terminal.html</loc>
     <lastmod>2019-05-09T16:47:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-mqtt-with-golang-and-angular6.html</loc>
+    <loc>http://linx.run/2018-12-27/use-mqtt-with-golang-and-angular6.html</loc>
     <lastmod>2018-12-27T21:34:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/solve-git-clone-no-space-left.html</loc>
+    <loc>http://linx.run/2018-12-10/solve-git-clone-no-space-left.html</loc>
     <lastmod>2018-12-10T10:10:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/云烟成雨.html</loc>
+    <loc>http://linx.run/2018-12-01/云烟成雨.html</loc>
     <lastmod>2018-12-01T17:07:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/syncommon-reformat-json.html</loc>
+    <loc>http://linx.run/2018-11-30/syncommon-reformat-json.html</loc>
     <lastmod>2018-11-30T15:16:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-delphinus-to-make-it-easy-to-install-packages.html</loc>
+    <loc>http://linx.run/2018-11-09/use-delphinus-to-make-it-easy-to-install-packages.html</loc>
     <lastmod>2018-11-09T14:51:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/pascalscripts-unable-to-register-type-tdataseterrorevent.html</loc>
+    <loc>http://linx.run/2018-11-05/pascalscripts-unable-to-register-type-tdataseterrorevent.html</loc>
     <lastmod>2018-11-05T18:55:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi-rest-header-do-not-encode.html</loc>
+    <loc>http://linx.run/2018-11-05/delphi-rest-header-do-not-encode.html</loc>
     <lastmod>2018-11-05T18:48:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/idefixpack6.3.html</loc>
+    <loc>http://linx.run/2018-10-31/idefixpack6.3.html</loc>
     <lastmod>2018-10-31T12:27:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mormot-json忽略未定义的字段.html</loc>
+    <loc>http://linx.run/2018-10-31/mormot-json忽略未定义的字段.html</loc>
     <lastmod>2018-10-31T09:00:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/cxgrid筛选自动添加百分号和默认旧的滚动条样式.html</loc>
+    <loc>http://linx.run/2018-10-29/cxgrid筛选自动添加百分号和默认旧的滚动条样式.html</loc>
     <lastmod>2018-10-29T19:41:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/tclientdataset支持超长字段名.html</loc>
+    <loc>http://linx.run/2018-10-29/tclientdataset支持超长字段名.html</loc>
     <lastmod>2018-10-29T19:31:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/先后抛硬币问题.html</loc>
+    <loc>http://linx.run/2018-09-11/先后抛硬币问题.html</loc>
     <lastmod>2018-09-11T14:03:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/firedac-ds-connection-pool.html</loc>
+    <loc>http://linx.run/2018-08-30/firedac-ds-connection-pool.html</loc>
     <lastmod>2018-08-30T13:58:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/how-to-use-mormot-to-build-rest-services-and-consume-them.html</loc>
+    <loc>http://linx.run/2018-07-26/how-to-use-mormot-to-build-rest-services-and-consume-them.html</loc>
     <lastmod>2018-07-26T13:35:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/use-webhook-to-deploy-hugo.html</loc>
+    <loc>http://linx.run/2018-07-24/use-webhook-to-deploy-hugo.html</loc>
     <lastmod>2018-07-24T13:07:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/build-restapi-with-gin-and-mgo.html</loc>
+    <loc>http://linx.run/2018-05-05/build-restapi-with-gin-and-mgo.html</loc>
     <lastmod>2018-05-05T16:51:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/replace-battery-of-nexus6p.html</loc>
+    <loc>http://linx.run/2018-03-21/replace-battery-of-nexus6p.html</loc>
     <lastmod>2018-03-21T21:45:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/twinhttp.html</loc>
+    <loc>http://linx.run/2017-12-31/twinhttp.html</loc>
     <lastmod>2017-12-31T18:07:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/synlog日志组件捕获成吨可调试异常.html</loc>
+    <loc>http://linx.run/2017-12-16/synlog日志组件捕获成吨可调试异常.html</loc>
     <lastmod>2017-12-16T21:54:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/以json作为配置文件.html</loc>
+    <loc>http://linx.run/2017-12-16/以json作为配置文件.html</loc>
     <lastmod>2017-12-16T21:42:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mormot数组操作.html</loc>
+    <loc>http://linx.run/2017-12-11/mormot数组操作.html</loc>
     <lastmod>2017-12-11T19:53:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mormot操作json.html</loc>
+    <loc>http://linx.run/2017-12-09/mormot操作json.html</loc>
     <lastmod>2017-12-09T23:07:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/设置vscode的文件列表排序按照修改时间为准.html</loc>
+    <loc>http://linx.run/2017-12-09/设置vscode的文件列表排序按照修改时间为准.html</loc>
     <lastmod>2017-12-09T20:28:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi奇技淫巧.html</loc>
+    <loc>http://linx.run/2017-12-09/delphi奇技淫巧.html</loc>
     <lastmod>2017-12-09T19:18:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/消愁.html</loc>
+    <loc>http://linx.run/2017-12-04/消愁.html</loc>
     <lastmod>2017-12-04T20:34:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/store-multi-state-with-one-number.html</loc>
+    <loc>http://linx.run/2017-06-08/store-multi-state-with-one-number.html</loc>
     <lastmod>2017-06-08T19:07:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mormot-rest-server-deserialize-record-from-json-body.html</loc>
+    <loc>http://linx.run/2017-05-28/mormot-rest-server-deserialize-record-from-json-body.html</loc>
     <lastmod>2017-05-28T21:52:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mormot-rest-server-return-tclientdataset-data.html</loc>
+    <loc>http://linx.run/2017-05-25/mormot-rest-server-return-tclientdataset-data.html</loc>
     <lastmod>2017-05-25T20:20:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/make-mormot-work-in-normal-vcl-app.html</loc>
+    <loc>http://linx.run/2017-05-24/make-mormot-work-in-normal-vcl-app.html</loc>
     <lastmod>2017-05-24T20:29:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/manage-tjsonobject-memory.html</loc>
+    <loc>http://linx.run/2017-05-07/manage-tjsonobject-memory.html</loc>
     <lastmod>2017-05-07T21:59:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/gasphack-make-font-looks-better.html</loc>
+    <loc>http://linx.run/2017-05-06/gasphack-make-font-looks-better.html</loc>
     <lastmod>2017-05-06T11:31:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/host-a-hugo-blog-using-git-hooks.html</loc>
+    <loc>http://linx.run/2017-04-23/host-a-hugo-blog-using-git-hooks.html</loc>
     <lastmod>2017-04-23T20:44:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/typecho迁移到hugo.html</loc>
+    <loc>http://linx.run/2017-04-22/typecho迁移到hugo.html</loc>
     <lastmod>2017-04-22T17:55:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/golang-mgo-connection-pool-problem.html</loc>
+    <loc>http://linx.run/2017-04-11/golang-mgo-connection-pool-problem.html</loc>
     <lastmod>2017-04-11T21:58:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/beego-in-the-windows-output-with-the-color-of-the-log.html</loc>
+    <loc>http://linx.run/2017-04-11/beego-in-the-windows-output-with-the-color-of-the-log.html</loc>
     <lastmod>2017-04-11T21:47:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/personal-understanding-of-nouns-in-rabbitmq.html</loc>
+    <loc>http://linx.run/2017-04-01/personal-understanding-of-nouns-in-rabbitmq.html</loc>
     <lastmod>2017-04-01T21:46:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win10-could-not-access-the-local-area-network-share-prompt-windows-could-not-find-1921681205.html</loc>
+    <loc>http://linx.run/2017-04-01/win10-could-not-access-the-local-area-network-share-prompt-windows-could-not-find-1921681205.html</loc>
     <lastmod>2017-04-01T21:19:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/beego-cross-domain-access-support.html</loc>
+    <loc>http://linx.run/2017-03-21/beego-cross-domain-access-support.html</loc>
     <lastmod>2017-03-21T09:02:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/automatic-issuance-and-renewal-of-acmesh-using-ssl.html</loc>
+    <loc>http://linx.run/2017-02-18/automatic-issuance-and-renewal-of-acmesh-using-ssl.html</loc>
     <lastmod>2017-02-18T11:41:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/gpt分区格式u盘安装win7.html</loc>
+    <loc>http://linx.run/2017-01-18/gpt分区格式u盘安装win7.html</loc>
     <lastmod>2017-01-18T23:00:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/helper-of-delphi.html</loc>
+    <loc>http://linx.run/2017-01-07/helper-of-delphi.html</loc>
     <lastmod>2017-01-07T13:47:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/gitwhat-to-when-nothing-is-do-ignored.html</loc>
+    <loc>http://linx.run/2016-12-30/gitwhat-to-when-nothing-is-do-ignored.html</loc>
     <lastmod>2016-12-30T09:07:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/csharp-automapper-property-values-creating-a-new-update-without-obxject.html</loc>
+    <loc>http://linx.run/2016-12-28/csharp-automapper-property-values-creating-a-new-update-without-obxject.html</loc>
     <lastmod>2016-12-28T00:09:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/cxgird-adding-footer-dynamically.html</loc>
+    <loc>http://linx.run/2016-12-24/cxgird-adding-footer-dynamically.html</loc>
     <lastmod>2016-12-24T22:19:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/print-cxgrid-sorted-data.html</loc>
+    <loc>http://linx.run/2016-12-24/print-cxgrid-sorted-data.html</loc>
     <lastmod>2016-12-24T22:18:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/rxlibeh-control-replacement-process.html</loc>
+    <loc>http://linx.run/2016-12-24/rxlibeh-control-replacement-process.html</loc>
     <lastmod>2016-12-24T22:15:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/cxgrid-create-multilevel-title.html</loc>
+    <loc>http://linx.run/2016-12-24/cxgrid-create-multilevel-title.html</loc>
     <lastmod>2016-12-24T22:11:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/fdmemtable-data-copy.html</loc>
+    <loc>http://linx.run/2016-12-24/fdmemtable-data-copy.html</loc>
     <lastmod>2016-12-24T22:08:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi-enumeration-directory-file-method.html</loc>
+    <loc>http://linx.run/2016-12-24/delphi-enumeration-directory-file-method.html</loc>
     <lastmod>2016-12-24T22:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/current-wpf-identifier-naming-conventions.html</loc>
+    <loc>http://linx.run/2016-12-24/current-wpf-identifier-naming-conventions.html</loc>
     <lastmod>2016-12-24T21:16:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/sql server参数嗅探.html</loc>
+    <loc>http://linx.run/2016-12-24/sql server参数嗅探.html</loc>
     <lastmod>2016-12-24T21:07:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/restsharp-use-newtonsoftjson-to-serialize.html</loc>
+    <loc>http://linx.run/2016-12-21/restsharp-use-newtonsoftjson-to-serialize.html</loc>
     <lastmod>2016-12-21T23:04:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/binding-visibility-datagridcolumn-in-for-wpf.html</loc>
+    <loc>http://linx.run/2016-12-20/binding-visibility-datagridcolumn-in-for-wpf.html</loc>
     <lastmod>2016-12-20T12:40:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/csharp-restsharp-query-string-maker.html</loc>
+    <loc>http://linx.run/2016-12-19/csharp-restsharp-query-string-maker.html</loc>
     <lastmod>2016-12-19T23:17:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/deep-copy-obxject-csharp.html</loc>
+    <loc>http://linx.run/2016-12-19/deep-copy-obxject-csharp.html</loc>
     <lastmod>2016-12-19T23:11:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/newtonsoft.json using stringenumconverter to make it compatiable with enum type.html</loc>
+    <loc>http://linx.run/2016-12-19/newtonsoft.json using stringenumconverter to make it compatiable with enum type.html</loc>
     <lastmod>2016-12-19T23:07:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/stringboolconverter-convert-string-to-bool.html</loc>
+    <loc>http://linx.run/2016-12-19/stringboolconverter-convert-string-to-bool.html</loc>
     <lastmod>2016-12-19T22:52:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/the-wndr4300-configuration-over-the-wall.html</loc>
+    <loc>http://linx.run/2016-12-07/the-wndr4300-configuration-over-the-wall.html</loc>
     <lastmod>2016-12-07T23:19:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/csharp-adds-a-restexception-to-each-model-by-inheritance.html</loc>
+    <loc>http://linx.run/2016-12-04/csharp-adds-a-restexception-to-each-model-by-inheritance.html</loc>
     <lastmod>2016-12-04T22:07:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/git-need-to-enter-the-user-name-password-case-how-to-automatically-enter.html</loc>
+    <loc>http://linx.run/2016-11-25/git-need-to-enter-the-user-name-password-case-how-to-automatically-enter.html</loc>
     <lastmod>2016-11-25T23:24:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/prism-wpf-processing-module-in-the-popup-window-regions.html</loc>
+    <loc>http://linx.run/2016-11-21/prism-wpf-processing-module-in-the-popup-window-regions.html</loc>
     <lastmod>2016-11-21T20:44:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/install-nginx-mysql-php.html</loc>
+    <loc>http://linx.run/2016-11-18/install-nginx-mysql-php.html</loc>
     <lastmod>2016-11-18T21:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/adblock-rule-definition.html</loc>
+    <loc>http://linx.run/2016-11-08/adblock-rule-definition.html</loc>
     <lastmod>2016-11-08T12:18:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/kcptun-shadowsocks.html</loc>
+    <loc>http://linx.run/2016-11-07/kcptun-shadowsocks.html</loc>
     <lastmod>2016-11-07T00:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/manually-add-json-string-to-restsharp-body.html</loc>
+    <loc>http://linx.run/2016-11-02/manually-add-json-string-to-restsharp-body.html</loc>
     <lastmod>2016-11-02T22:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nancy-c-to-open-the-detailed-error-output.html</loc>
+    <loc>http://linx.run/2016-11-02/nancy-c-to-open-the-detailed-error-output.html</loc>
     <lastmod>2016-11-02T15:35:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/service-hosting-http-based-services-using-nancy-windows.html</loc>
+    <loc>http://linx.run/2016-10-22/service-hosting-http-based-services-using-nancy-windows.html</loc>
     <lastmod>2016-10-22T18:53:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/gongsolutionswpfdragdrop-to-achieve-wpf-drag-and-drop.html</loc>
+    <loc>http://linx.run/2016-10-18/gongsolutionswpfdragdrop-to-achieve-wpf-drag-and-drop.html</loc>
     <lastmod>2016-10-18T12:36:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mockups-balsamiq.html</loc>
+    <loc>http://linx.run/2016-10-14/mockups-balsamiq.html</loc>
     <lastmod>2016-10-14T09:08:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/remember-a-thorough-cleaning.html</loc>
+    <loc>http://linx.run/2016-10-12/remember-a-thorough-cleaning.html</loc>
     <lastmod>2016-10-12T20:35:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/linq-c-dynamic-multi-condition-query.html</loc>
+    <loc>http://linx.run/2016-10-04/linq-c-dynamic-multi-condition-query.html</loc>
     <lastmod>2016-10-04T22:27:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/recent-computer-fever-serious.html</loc>
+    <loc>http://linx.run/2016-10-04/recent-computer-fever-serious.html</loc>
     <lastmod>2016-10-04T22:10:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mirror-accelerated-source-collection.html</loc>
+    <loc>http://linx.run/2016-10-03/mirror-accelerated-source-collection.html</loc>
     <lastmod>2016-10-03T21:31:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/wpf-using-radiogroup-to-achieve-the-effect-of-listbox.html</loc>
+    <loc>http://linx.run/2016-09-28/wpf-using-radiogroup-to-achieve-the-effect-of-listbox.html</loc>
     <lastmod>2016-09-28T14:43:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/binding-stringformat-wpf-is-invalid.html</loc>
+    <loc>http://linx.run/2016-09-21/binding-stringformat-wpf-is-invalid.html</loc>
     <lastmod>2016-09-21T16:51:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/sshpass.html</loc>
+    <loc>http://linx.run/2016-09-19/sshpass.html</loc>
     <lastmod>2016-09-19T12:24:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/jenkins-add-send-mail-function.html</loc>
+    <loc>http://linx.run/2016-09-13/jenkins-add-send-mail-function.html</loc>
     <lastmod>2016-09-13T22:11:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mstest-jenkins-execution-unit-test.html</loc>
+    <loc>http://linx.run/2016-09-13/mstest-jenkins-execution-unit-test.html</loc>
     <lastmod>2016-09-13T22:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/gitlabjenkins-construction-of-wpf-continuous-integration-environment.html</loc>
+    <loc>http://linx.run/2016-09-12/gitlabjenkins-construction-of-wpf-continuous-integration-environment.html</loc>
     <lastmod>2016-09-12T21:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/ssh-git-multi-host-multi-key-management.html</loc>
+    <loc>http://linx.run/2016-09-12/ssh-git-multi-host-multi-key-management.html</loc>
     <lastmod>2016-09-12T20:41:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/360-front-end-public-library.html</loc>
+    <loc>http://linx.run/2016-09-06/360-front-end-public-library.html</loc>
     <lastmod>2016-09-06T16:44:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/configure-kcptun-process-records.html</loc>
+    <loc>http://linx.run/2016-08-20/configure-kcptun-process-records.html</loc>
     <lastmod>2016-08-20T22:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/wpf-data-binding-to-class.html</loc>
+    <loc>http://linx.run/2016-08-17/wpf-data-binding-to-class.html</loc>
     <lastmod>2016-08-17T19:12:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/a-tiger.html</loc>
+    <loc>http://linx.run/2016-08-13/a-tiger.html</loc>
     <lastmod>2016-08-13T23:39:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/markdown-syntax.html</loc>
+    <loc>http://linx.run/2016-07-29/markdown-syntax.html</loc>
     <lastmod>2016-07-29T23:57:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/quot-missing-as-administratorquot-on-context-menu-run.html</loc>
+    <loc>http://linx.run/2016-07-28/quot-missing-as-administratorquot-on-context-menu-run.html</loc>
     <lastmod>2016-07-28T08:47:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/choco-installation-spf13vim.html</loc>
+    <loc>http://linx.run/2016-07-11/choco-installation-spf13vim.html</loc>
     <lastmod>2016-07-11T00:01:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/flask-download-server.html</loc>
+    <loc>http://linx.run/2016-07-09/flask-download-server.html</loc>
     <lastmod>2016-07-09T21:20:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/hello-world-flask.html</loc>
+    <loc>http://linx.run/2016-07-09/hello-world-flask.html</loc>
     <lastmod>2016-07-09T19:40:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi-to-do-two-development-based-on-the-c-dynamic-library.html</loc>
+    <loc>http://linx.run/2016-07-07/delphi-to-do-two-development-based-on-the-c-dynamic-library.html</loc>
     <lastmod>2016-07-07T18:44:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/skylake-installed-win7-prompted-not-to-drive.html</loc>
+    <loc>http://linx.run/2016-06-15/skylake-installed-win7-prompted-not-to-drive.html</loc>
     <lastmod>2016-06-15T18:19:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/i-found-that-the-mac-system-of-the-mouse-fast-moving-will-become-large-1.html</loc>
+    <loc>http://linx.run/2016-06-13/i-found-that-the-mac-system-of-the-mouse-fast-moving-will-become-large-1.html</loc>
     <lastmod>2016-06-13T18:52:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/the-secret-life-of-walter-day-dreamer-mitty.html</loc>
+    <loc>http://linx.run/2016-06-10/the-secret-life-of-walter-day-dreamer-mitty.html</loc>
     <lastmod>2016-06-10T16:13:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/unified-treatment-of-delphi-anomalies.html</loc>
+    <loc>http://linx.run/2016-06-03/unified-treatment-of-delphi-anomalies.html</loc>
     <lastmod>2016-06-03T23:33:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/omnithread-asynchronous-framework-to-achieve-the-exception-of-the-thread-capture.html</loc>
+    <loc>http://linx.run/2016-06-03/omnithread-asynchronous-framework-to-achieve-the-exception-of-the-thread-capture.html</loc>
     <lastmod>2016-06-03T23:20:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/dlogger.html</loc>
+    <loc>http://linx.run/2016-06-03/dlogger.html</loc>
     <lastmod>2016-06-03T22:48:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/the-free-domain-name-for-freenom-is-completely-disappointed.html</loc>
+    <loc>http://linx.run/2016-06-03/the-free-domain-name-for-freenom-is-completely-disappointed.html</loc>
     <lastmod>2016-06-03T22:34:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/fiddler4-capture-the-royal-war.html</loc>
+    <loc>http://linx.run/2016-05-21/fiddler4-capture-the-royal-war.html</loc>
     <lastmod>2016-05-21T21:53:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/cpu-occupancy-rate-is-low-but-the-core-frequency-of-100.html</loc>
+    <loc>http://linx.run/2016-05-11/cpu-occupancy-rate-is-low-but-the-core-frequency-of-100.html</loc>
     <lastmod>2016-05-11T19:51:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/quality-app-os-x-mac.html</loc>
+    <loc>http://linx.run/2016-05-07/quality-app-os-x-mac.html</loc>
     <lastmod>2016-05-07T22:22:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/pro-markdownpad2-1.html</loc>
+    <loc>http://linx.run/2016-05-07/pro-markdownpad2-1.html</loc>
     <lastmod>2016-05-07T21:16:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/into-the-v500-1.html</loc>
+    <loc>http://linx.run/2016-05-07/into-the-v500-1.html</loc>
     <lastmod>2016-05-07T16:27:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/pi-expansion-space.html</loc>
+    <loc>http://linx.run/2016-04-26/pi-expansion-space.html</loc>
     <lastmod>2016-04-26T23:07:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mysql-55-save-memory-configuration.html</loc>
+    <loc>http://linx.run/2016-04-25/mysql-55-save-memory-configuration.html</loc>
     <lastmod>2016-04-25T14:25:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nexus6p-modified-resolution-and-dpi.html</loc>
+    <loc>http://linx.run/2016-04-22/nexus6p-modified-resolution-and-dpi.html</loc>
     <lastmod>2016-04-22T23:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nexus-4-retired-nexus6p-open-hi.html</loc>
+    <loc>http://linx.run/2016-04-22/nexus-4-retired-nexus6p-open-hi.html</loc>
     <lastmod>2016-04-22T22:47:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/zabbix-3-installation.html</loc>
+    <loc>http://linx.run/2016-03-13/zabbix-3-installation.html</loc>
     <lastmod>2016-03-13T12:39:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/enable-win10-traditional-image-viewer.html</loc>
+    <loc>http://linx.run/2016-02-22/enable-win10-traditional-image-viewer.html</loc>
     <lastmod>2016-02-22T13:03:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/excel-under-thewin10-direct-doubleclick-to-open-the-document-is-very-slow-solution.html</loc>
+    <loc>http://linx.run/2016-02-22/excel-under-thewin10-direct-doubleclick-to-open-the-document-is-very-slow-solution.html</loc>
     <lastmod>2016-02-22T12:49:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/babun-cygwin-chinese-garbled.html</loc>
+    <loc>http://linx.run/2016-02-20/babun-cygwin-chinese-garbled.html</loc>
     <lastmod>2016-02-20T13:24:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/iptables-caused-by-vps-itself-can-not-access-the-internet-problem.html</loc>
+    <loc>http://linx.run/2016-02-20/iptables-caused-by-vps-itself-can-not-access-the-internet-problem.html</loc>
     <lastmod>2016-02-20T00:04:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/xdebug-php-debugging-phpstorm.html</loc>
+    <loc>http://linx.run/2016-02-14/xdebug-php-debugging-phpstorm.html</loc>
     <lastmod>2016-02-14T20:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/source-mirror-ustc.html</loc>
+    <loc>http://linx.run/2016-02-12/source-mirror-ustc.html</loc>
     <lastmod>2016-02-12T22:42:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-desktop-residue-icon-cleanup-green-robot.html</loc>
+    <loc>http://linx.run/2016-02-11/android-desktop-residue-icon-cleanup-green-robot.html</loc>
     <lastmod>2016-02-11T16:57:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/optical-fiber-actually-supports-ipv6.html</loc>
+    <loc>http://linx.run/2016-02-08/optical-fiber-actually-supports-ipv6.html</loc>
     <lastmod>2016-02-08T20:52:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/linux-in-the-root-user-to-delete-the-file-prompt-not-permitted-operation.html</loc>
+    <loc>http://linx.run/2016-02-08/linux-in-the-root-user-to-delete-the-file-prompt-not-permitted-operation.html</loc>
     <lastmod>2016-02-08T14:09:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/vps-exchange-system-ubuntucentos.html</loc>
+    <loc>http://linx.run/2016-02-07/vps-exchange-system-ubuntucentos.html</loc>
     <lastmod>2016-02-07T14:52:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/bad_argument_-1_to_-pairs-_-table_expected_got_nil-1.html</loc>
+    <loc>http://linx.run/2016-01-03/bad_argument_-1_to_-pairs-_-table_expected_got_nil-1.html</loc>
     <lastmod>2016-01-03T20:11:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/openwrt_lankou-gai-wankou.html</loc>
+    <loc>http://linx.run/2016-01-03/openwrt_lankou-gai-wankou.html</loc>
     <lastmod>2016-01-03T10:22:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi_he-bing-bpl_shuai-de-keng.html</loc>
+    <loc>http://linx.run/2015-12-31/delphi_he-bing-bpl_shuai-de-keng.html</loc>
     <lastmod>2015-12-31T21:22:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/tu-cao-xia-gai-si-de-hexo.html</loc>
+    <loc>http://linx.run/2015-12-31/tu-cao-xia-gai-si-de-hexo.html</loc>
     <lastmod>2015-12-31T21:03:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi_inputbox_shu-ru-kuang-li-shu-ru-mi-ma-1.html</loc>
+    <loc>http://linx.run/2015-12-23/delphi_inputbox_shu-ru-kuang-li-shu-ru-mi-ma-1.html</loc>
     <lastmod>2015-12-23T16:58:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nei-cun-huo-ci-pan-kong-jian-bu-zu-_excel.html</loc>
+    <loc>http://linx.run/2015-12-22/nei-cun-huo-ci-pan-kong-jian-bu-zu-_excel.html</loc>
     <lastmod>2015-12-22T09:41:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/baiduexporter_duo-rpcdi-zhi-she-zhi.html</loc>
+    <loc>http://linx.run/2015-12-19/baiduexporter_duo-rpcdi-zhi-she-zhi.html</loc>
     <lastmod>2015-12-19T11:59:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/二级路由 openwrt aria2远程下载.html</loc>
+    <loc>http://linx.run/2015-12-11/二级路由 openwrt aria2远程下载.html</loc>
     <lastmod>2015-12-11T00:12:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/frxpreview 预览中的状态判断.html</loc>
+    <loc>http://linx.run/2015-12-07/frxpreview 预览中的状态判断.html</loc>
     <lastmod>2015-12-07T09:02:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/omnithreadlibrary 匿名事件监视.html</loc>
+    <loc>http://linx.run/2015-11-15/omnithreadlibrary 匿名事件监视.html</loc>
     <lastmod>2015-11-15T16:26:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/omnithreadlibrary 传递数据.html</loc>
+    <loc>http://linx.run/2015-11-15/omnithreadlibrary 传递数据.html</loc>
     <lastmod>2015-11-15T14:54:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi itask 异步.html</loc>
+    <loc>http://linx.run/2015-11-15/delphi itask 异步.html</loc>
     <lastmod>2015-11-15T13:51:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/omnithreadlibrary  task任务和消息监听.html</loc>
+    <loc>http://linx.run/2015-11-15/omnithreadlibrary  task任务和消息监听.html</loc>
     <lastmod>2015-11-15T13:47:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/omnithreadlibrary async await异步编程.html</loc>
+    <loc>http://linx.run/2015-11-15/omnithreadlibrary async await异步编程.html</loc>
     <lastmod>2015-11-15T13:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi  olevariant 类型的判断.html</loc>
+    <loc>http://linx.run/2015-10-09/delphi  olevariant 类型的判断.html</loc>
     <lastmod>2015-10-09T13:14:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/[openwrt] ss+pdnsd 代替ipset, 透明.html</loc>
+    <loc>http://linx.run/2015-10-03/[openwrt] ss+pdnsd 代替ipset, 透明.html</loc>
     <lastmod>2015-10-03T13:41:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/｢预告｣ 带usb的openwrt+多个wifi网速叠加.html</loc>
+    <loc>http://linx.run/2015-09-26/｢预告｣ 带usb的openwrt+多个wifi网速叠加.html</loc>
     <lastmod>2015-09-26T16:30:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/xshell sock5代理.html</loc>
+    <loc>http://linx.run/2015-09-13/xshell sock5代理.html</loc>
     <lastmod>2015-09-13T12:05:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi xe5 msbuildtoolspath 14.0 问题.html</loc>
+    <loc>http://linx.run/2015-09-11/delphi xe5 msbuildtoolspath 14.0 问题.html</loc>
     <lastmod>2015-09-11T18:52:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi xe5 uni控件替换为firedac控件的具体方法.html</loc>
+    <loc>http://linx.run/2015-09-07/delphi xe5 uni控件替换为firedac控件的具体方法.html</loc>
     <lastmod>2015-09-07T12:33:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi xe5 打开老版本工程access violation delphicoreide190.bpl.html</loc>
+    <loc>http://linx.run/2015-08-18/delphi xe5 打开老版本工程access violation delphicoreide190.bpl.html</loc>
     <lastmod>2015-08-18T08:55:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/restful.html</loc>
+    <loc>http://linx.run/2015-07-29/restful.html</loc>
     <lastmod>2015-07-29T23:35:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/谷歌怀疑我是机器人.html</loc>
+    <loc>http://linx.run/2015-07-18/谷歌怀疑我是机器人.html</loc>
     <lastmod>2015-07-18T16:12:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/flash p2p mac.html</loc>
+    <loc>http://linx.run/2015-07-10/flash p2p mac.html</loc>
     <lastmod>2015-07-10T18:34:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/openwrt 方法猫管理界面.html</loc>
+    <loc>http://linx.run/2015-07-06/openwrt 方法猫管理界面.html</loc>
     <lastmod>2015-07-06T13:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mac-os-x-10-10-4-update-to-14e46-not-verified.html</loc>
+    <loc>http://linx.run/2015-07-01/mac-os-x-10-10-4-update-to-14e46-not-verified.html</loc>
     <lastmod>2015-07-01T20:33:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/zsh 使用小键盘.html</loc>
+    <loc>http://linx.run/2015-06-26/zsh 使用小键盘.html</loc>
     <lastmod>2015-06-26T15:02:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/proxychain 配置.html</loc>
+    <loc>http://linx.run/2015-06-23/proxychain 配置.html</loc>
     <lastmod>2015-06-23T21:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/aria2c 的配置.html</loc>
+    <loc>http://linx.run/2015-06-22/aria2c 的配置.html</loc>
     <lastmod>2015-06-22T19:25:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/cocoapods相关.html</loc>
+    <loc>http://linx.run/2015-06-19/cocoapods相关.html</loc>
     <lastmod>2015-06-19T10:50:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/搬瓦工服务器迁移.html</loc>
+    <loc>http://linx.run/2015-06-14/搬瓦工服务器迁移.html</loc>
     <lastmod>2015-06-14T18:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/更新至yosemite 10.10.4 后的不同.html</loc>
+    <loc>http://linx.run/2015-05-23/更新至yosemite 10.10.4 后的不同.html</loc>
     <lastmod>2015-05-23T19:37:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android 5.0 开启google now.html</loc>
+    <loc>http://linx.run/2015-05-06/android 5.0 开启google now.html</loc>
     <lastmod>2015-05-06T14:33:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/又在一次瞎搞中把硬盘分区给搞崩了.html</loc>
+    <loc>http://linx.run/2015-05-05/又在一次瞎搞中把硬盘分区给搞崩了.html</loc>
     <lastmod>2015-05-05T19:53:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/openwrt翻墙配置集合.html</loc>
+    <loc>http://linx.run/2015-04-27/openwrt翻墙配置集合.html</loc>
     <lastmod>2015-04-27T15:03:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/关于无线路由器无故自动重启.html</loc>
+    <loc>http://linx.run/2015-04-24/关于无线路由器无故自动重启.html</loc>
     <lastmod>2015-04-24T22:08:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/[强迫症结果]mavericks10.9.5无损升级至yosemite10.10.2.html</loc>
+    <loc>http://linx.run/2015-04-14/[强迫症结果]mavericks10.9.5无损升级至yosemite10.10.2.html</loc>
     <lastmod>2015-04-14T14:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/我要来吐槽自个儿的强迫症一下了.html</loc>
+    <loc>http://linx.run/2015-04-13/我要来吐槽自个儿的强迫症一下了.html</loc>
     <lastmod>2015-04-13T22:36:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/普通 disco.html</loc>
+    <loc>http://linx.run/2015-03-26/普通 disco.html</loc>
     <lastmod>2015-03-26T12:55:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/wr741nd-openwrt-配置shadowsocks+ipset+dnsmasq.html</loc>
+    <loc>http://linx.run/2015-03-19/wr741nd-openwrt-配置shadowsocks+ipset+dnsmasq.html</loc>
     <lastmod>2015-03-19T09:12:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/strange-things-recently.html</loc>
+    <loc>http://linx.run/2015-03-10/strange-things-recently.html</loc>
     <lastmod>2015-03-10T21:57:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/problems-of-adbyby-on-openwrt.html</loc>
+    <loc>http://linx.run/2015-03-09/problems-of-adbyby-on-openwrt.html</loc>
     <lastmod>2015-03-09T05:47:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-ssh-solution.html</loc>
+    <loc>http://linx.run/2015-03-09/android-ssh-solution.html</loc>
     <lastmod>2015-03-09T05:44:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/wr941n-v5-flash-bin-openwrt-from-mingyue-then-set-ss.html</loc>
+    <loc>http://linx.run/2015-03-07/wr941n-v5-flash-bin-openwrt-from-mingyue-then-set-ss.html</loc>
     <lastmod>2015-03-07T22:21:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/run-clash-of-clans-with-genymotion.html</loc>
+    <loc>http://linx.run/2015-03-04/run-clash-of-clans-with-genymotion.html</loc>
     <lastmod>2015-03-04T15:12:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/年味越来越淡了.html</loc>
+    <loc>http://linx.run/2015-02-18/年味越来越淡了.html</loc>
     <lastmod>2015-02-18T11:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/make-same-name-dir-with-md-and-rd.html</loc>
+    <loc>http://linx.run/2015-02-14/make-same-name-dir-with-md-and-rd.html</loc>
     <lastmod>2015-02-14T20:39:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/followed-writting-typecho-posts-with-vim.html</loc>
+    <loc>http://linx.run/2015-02-13/followed-writting-typecho-posts-with-vim.html</loc>
     <lastmod>2015-02-13T09:33:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/writing-posts-with-vim.html</loc>
+    <loc>http://linx.run/2015-02-12/writing-posts-with-vim.html</loc>
     <lastmod>2015-02-12T21:25:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/replace-git-of-xcode-with-git-from-homebrew.html</loc>
+    <loc>http://linx.run/2015-02-12/replace-git-of-xcode-with-git-from-homebrew.html</loc>
     <lastmod>2015-02-12T12:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nvidia-grid-trail.html</loc>
+    <loc>http://linx.run/2015-02-08/nvidia-grid-trail.html</loc>
     <lastmod>2015-02-08T21:11:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/written-after-delete-files-accidently-with-paragon-ntfs-for-mac.html</loc>
+    <loc>http://linx.run/2015-02-06/written-after-delete-files-accidently-with-paragon-ntfs-for-mac.html</loc>
     <lastmod>2015-02-06T19:07:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/shadowsocks-setting-process.html</loc>
+    <loc>http://linx.run/2015-02-05/shadowsocks-setting-process.html</loc>
     <lastmod>2015-02-05T20:43:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/enable-apache-and-php-on-mac-osx.html</loc>
+    <loc>http://linx.run/2015-02-05/enable-apache-and-php-on-mac-osx.html</loc>
     <lastmod>2015-02-05T15:02:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/good-song.html</loc>
+    <loc>http://linx.run/2015-02-04/good-song.html</loc>
     <lastmod>2015-02-04T14:17:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/搬瓦工-vps-上搭建博客.html</loc>
+    <loc>http://linx.run/2015-02-02/搬瓦工-vps-上搭建博客.html</loc>
     <lastmod>2015-02-02T16:48:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/更换wordpress至typecho.html</loc>
+    <loc>http://linx.run/2014-11-15/更换wordpress至typecho.html</loc>
     <lastmod>2014-11-15T10:11:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/dnf-extractor-2-2-0-去启动更新提示.html</loc>
+    <loc>http://linx.run/2014-11-01/dnf-extractor-2-2-0-去启动更新提示.html</loc>
     <lastmod>2014-11-01T20:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/goagent-黄字-红字.html</loc>
+    <loc>http://linx.run/2014-07-08/goagent-黄字-红字.html</loc>
     <lastmod>2014-07-08T10:50:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/sql-server导入txt数据错误-数据流任务-数据转换失败-文.html</loc>
+    <loc>http://linx.run/2014-07-04/sql-server导入txt数据错误-数据流任务-数据转换失败-文.html</loc>
     <lastmod>2014-07-04T10:48:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/卸载了该死的猎豹wifi.html</loc>
+    <loc>http://linx.run/2014-06-04/卸载了该死的猎豹wifi.html</loc>
     <lastmod>2014-06-04T20:34:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/sql-server-2008-r2-管理工具-ssms-值不能为空错误重新安装sql-server-无法安.html</loc>
+    <loc>http://linx.run/2014-05-30/sql-server-2008-r2-管理工具-ssms-值不能为空错误重新安装sql-server-无法安.html</loc>
     <lastmod>2014-05-30T12:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/黑苹果-mac-10-8-5-ml-共享无线.html</loc>
+    <loc>http://linx.run/2014-05-10/黑苹果-mac-10-8-5-ml-共享无线.html</loc>
     <lastmod>2014-05-10T21:57:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/m50vc-更换无线网卡intel-5100-bcm4322-黑苹果测试.html</loc>
+    <loc>http://linx.run/2014-05-02/m50vc-更换无线网卡intel-5100-bcm4322-黑苹果测试.html</loc>
     <lastmod>2014-05-02T22:34:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi动态创建多个控件和设置圆角.html</loc>
+    <loc>http://linx.run/2014-04-16/delphi动态创建多个控件和设置圆角.html</loc>
     <lastmod>2014-04-16T18:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/delphi-控件闪烁.html</loc>
+    <loc>http://linx.run/2014-04-09/delphi-控件闪烁.html</loc>
     <lastmod>2014-04-09T10:31:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/c-dll调用约定.html</loc>
+    <loc>http://linx.run/2014-03-19/c-dll调用约定.html</loc>
     <lastmod>2014-03-19T21:56:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/m50vc-pm45-cpu升级成功t6400-t9600.html</loc>
+    <loc>http://linx.run/2014-03-12/m50vc-pm45-cpu升级成功t6400-t9600.html</loc>
     <lastmod>2014-03-12T10:50:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/c语言头文件及其源文件.html</loc>
+    <loc>http://linx.run/2014-03-07/c语言头文件及其源文件.html</loc>
     <lastmod>2014-03-07T10:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/windows下gcc编译环境和vc编译环境的搭建-2.html</loc>
+    <loc>http://linx.run/2014-03-06/windows下gcc编译环境和vc编译环境的搭建-2.html</loc>
     <lastmod>2014-03-06T18:50:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/two-programs-realize-installing-apk-and-pushing-files.html</loc>
+    <loc>http://linx.run/2014-03-04/two-programs-realize-installing-apk-and-pushing-files.html</loc>
     <lastmod>2014-03-04T11:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/天天爱西游修改速度.html</loc>
+    <loc>http://linx.run/2014-03-03/天天爱西游修改速度.html</loc>
     <lastmod>2014-03-03T20:38:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nexus-4-enable-google-play-complete-edition-google-now-in-china.html</loc>
+    <loc>http://linx.run/2014-03-03/nexus-4-enable-google-play-complete-edition-google-now-in-china.html</loc>
     <lastmod>2014-03-03T12:41:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/自己学着编译vim-7-4-x64-加入非等宽字体支持-支持渲染.html</loc>
+    <loc>http://linx.run/2014-02-19/自己学着编译vim-7-4-x64-加入非等宽字体支持-支持渲染.html</loc>
     <lastmod>2014-02-19T00:03:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/android-4-4-开启art模式.html</loc>
+    <loc>http://linx.run/2014-02-18/android-4-4-开启art模式.html</loc>
     <lastmod>2014-02-18T00:21:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/我今天卸载了刚没用几天的谷歌输入法.html</loc>
+    <loc>http://linx.run/2014-01-06/我今天卸载了刚没用几天的谷歌输入法.html</loc>
     <lastmod>2014-01-06T16:24:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/新年快乐.html</loc>
+    <loc>http://linx.run/2014-01-01/新年快乐.html</loc>
     <lastmod>2014-01-01T14:54:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/我的那些软件.html</loc>
+    <loc>http://linx.run/2013-12-26/我的那些软件.html</loc>
     <lastmod>2013-12-26T13:21:11+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win-8-1无法进行网络发现.html</loc>
+    <loc>http://linx.run/2013-12-21/win-8-1无法进行网络发现.html</loc>
     <lastmod>2013-12-21T12:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/wordpress-3-8-parse-error-syntax-error-unexpected-end-wp-db-php-错误.html</loc>
+    <loc>http://linx.run/2013-12-17/wordpress-3-8-parse-error-syntax-error-unexpected-end-wp-db-php-错误.html</loc>
     <lastmod>2013-12-17T12:04:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/程序的管理.html</loc>
+    <loc>http://linx.run/2013-12-12/程序的管理.html</loc>
     <lastmod>2013-12-12T23:51:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/changed_a_rss_reader.html</loc>
+    <loc>http://linx.run/2013-11-30/changed_a_rss_reader.html</loc>
     <lastmod>2013-11-30T15:25:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/children_toss_system.html</loc>
+    <loc>http://linx.run/2013-11-28/children_toss_system.html</loc>
     <lastmod>2013-11-28T18:11:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/my_way_of_black_apple_mac.html</loc>
+    <loc>http://linx.run/2013-11-25/my_way_of_black_apple_mac.html</loc>
     <lastmod>2013-11-25T22:41:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/nvidia_graphics_custom_resolution.html</loc>
+    <loc>http://linx.run/2013-10-16/nvidia_graphics_custom_resolution.html</loc>
     <lastmod>2013-10-16T17:45:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/today_they_changed_the_system_from_win8_professional_edition_to_win_server_2012_r2.html</loc>
+    <loc>http://linx.run/2013-10-11/today_they_changed_the_system_from_win8_professional_edition_to_win_server_2012_r2.html</loc>
     <lastmod>2013-10-11T19:42:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/zjuwlan_related.html</loc>
+    <loc>http://linx.run/2013-10-07/zjuwlan_related.html</loc>
     <lastmod>2013-10-07T15:23:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/ssd__hdd_dual_hard_drives.html</loc>
+    <loc>http://linx.run/2013-09-13/ssd__hdd_dual_hard_drives.html</loc>
     <lastmod>2013-09-13T19:14:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/vhd_system.html</loc>
+    <loc>http://linx.run/2013-08-09/vhd_system.html</loc>
     <lastmod>2013-08-09T15:17:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/after_the_trial_win81_go_back_win8.html</loc>
+    <loc>http://linx.run/2013-07-01/after_the_trial_win81_go_back_win8.html</loc>
     <lastmod>2013-07-01T23:30:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/accelerated_office2013.html</loc>
+    <loc>http://linx.run/2013-06-11/accelerated_office2013.html</loc>
     <lastmod>2013-06-11T22:43:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/i_feel_for_the_virtual_machine.html</loc>
+    <loc>http://linx.run/2013-05-29/i_feel_for_the_virtual_machine.html</loc>
     <lastmod>2013-05-29T21:45:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/windows_server_2012_firm_more_than_a_month.html</loc>
+    <loc>http://linx.run/2013-05-21/windows_server_2012_firm_more_than_a_month.html</loc>
     <lastmod>2013-05-21T09:39:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/let_administrator_has_administrator_privileges_ampquot_ampquot.html</loc>
+    <loc>http://linx.run/2013-04-23/let_administrator_has_administrator_privileges_ampquot_ampquot.html</loc>
     <lastmod>2013-04-23T21:13:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/when_the_registry_files_can_not_be_associated_with.html</loc>
+    <loc>http://linx.run/2013-04-22/when_the_registry_files_can_not_be_associated_with.html</loc>
     <lastmod>2013-04-22T17:50:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/windows_server_2012_on_hlp_files_to_solve.html</loc>
+    <loc>http://linx.run/2013-04-12/windows_server_2012_on_hlp_files_to_solve.html</loc>
     <lastmod>2013-04-12T23:56:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_achieve_window_glass_effect_win7_era.html</loc>
+    <loc>http://linx.run/2013-04-05/win8_achieve_window_glass_effect_win7_era.html</loc>
     <lastmod>2013-04-05T13:18:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_pagefilesys_file_is_too_large.html</loc>
+    <loc>http://linx.run/2013-03-24/win8_pagefilesys_file_is_too_large.html</loc>
     <lastmod>2013-03-24T23:13:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/windows8_under_chrome_extension_quotmissingquot_phenomenon_solutions_can_not_be_updated.html</loc>
+    <loc>http://linx.run/2013-02-13/windows8_under_chrome_extension_quotmissingquot_phenomenon_solutions_can_not_be_updated.html</loc>
     <lastmod>2013-02-13T17:25:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mirillis_action_under_win8_i_think_the_best_video_recording_software.html</loc>
+    <loc>http://linx.run/2013-01-31/mirillis_action_under_win8_i_think_the_best_video_recording_software.html</loc>
     <lastmod>2013-01-31T21:43:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/importing_potplayer_configuration_file_to_export.html</loc>
+    <loc>http://linx.run/2013-01-17/importing_potplayer_configuration_file_to_export.html</loc>
     <lastmod>2013-01-17T22:39:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/continued_win8_drag_and_drop_files_can_not_be_opened.html</loc>
+    <loc>http://linx.run/2013-01-09/continued_win8_drag_and_drop_files_can_not_be_opened.html</loc>
     <lastmod>2013-01-09T23:08:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_can_not_drag_and_drop_files_to_open.html</loc>
+    <loc>http://linx.run/2012-12-20/win8_can_not_drag_and_drop_files_to_open.html</loc>
     <lastmod>2012-12-20T12:17:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/screenshot_software_recommended.html</loc>
+    <loc>http://linx.run/2012-12-08/screenshot_software_recommended.html</loc>
     <lastmod>2012-12-08T21:36:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/windows_8_in_the_mini_music_console.html</loc>
+    <loc>http://linx.run/2012-12-05/windows_8_in_the_mini_music_console.html</loc>
     <lastmod>2012-12-05T21:58:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_build_wifi_hotspot_with_connectify_advantages_and_disadvantages.html</loc>
+    <loc>http://linx.run/2012-11-30/win8_build_wifi_hotspot_with_connectify_advantages_and_disadvantages.html</loc>
     <lastmod>2012-11-30T16:07:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/handle_analog_mode.html</loc>
+    <loc>http://linx.run/2012-11-21/handle_analog_mode.html</loc>
     <lastmod>2012-11-21T23:31:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_ie10_run_only_with_administrator_privileges_problem_solutions-2.html</loc>
+    <loc>http://linx.run/2012-11-10/win8_ie10_run_only_with_administrator_privileges_problem_solutions-2.html</loc>
     <lastmod>2012-11-10T14:10:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_ie10_run_only_with_administrator_privileges_problem_solutions.html</loc>
+    <loc>http://linx.run/2012-11-10/win8_ie10_run_only_with_administrator_privileges_problem_solutions.html</loc>
     <lastmod>2012-11-10T13:36:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/completely_remove_win8_metro_corrupted_applications.html</loc>
+    <loc>http://linx.run/2012-11-02/completely_remove_win8_metro_corrupted_applications.html</loc>
     <lastmod>2012-11-02T22:28:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/x-plore_158_crack_process.html</loc>
+    <loc>http://linx.run/2012-10-22/x-plore_158_crack_process.html</loc>
     <lastmod>2012-10-22T22:40:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/m50vc_toss_of_upgrading_memory.html</loc>
+    <loc>http://linx.run/2012-10-21/m50vc_toss_of_upgrading_memory.html</loc>
     <lastmod>2012-10-21T22:33:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_boot_automatically_turn_on_numlock.html</loc>
+    <loc>http://linx.run/2012-10-17/win8_boot_automatically_turn_on_numlock.html</loc>
     <lastmod>2012-10-17T14:28:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_in_win7.html</loc>
+    <loc>http://linx.run/2012-10-13/win8_in_win7.html</loc>
     <lastmod>2012-10-13T14:42:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/kill_renrenserviceexe.html</loc>
+    <loc>http://linx.run/2012-10-08/kill_renrenserviceexe.html</loc>
     <lastmod>2012-10-08T21:28:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_installation_experience.html</loc>
+    <loc>http://linx.run/2012-10-07/win8_installation_experience.html</loc>
     <lastmod>2012-10-07T14:19:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/for_asus_notebook_m50vc_do_two_things.html</loc>
+    <loc>http://linx.run/2012-09-23/for_asus_notebook_m50vc_do_two_things.html</loc>
     <lastmod>2012-09-23T14:36:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win7_double-click_a_folder_to_open_in_a_new_window.html</loc>
+    <loc>http://linx.run/2012-08-14/win7_double-click_a_folder_to_open_in_a_new_window.html</loc>
     <lastmod>2012-08-14T20:17:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/program_runs_after_login.html</loc>
+    <loc>http://linx.run/2012-06-14/program_runs_after_login.html</loc>
     <lastmod>2012-06-14T12:58:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/mouse_problem_solving.html</loc>
+    <loc>http://linx.run/2012-06-11/mouse_problem_solving.html</loc>
     <lastmod>2012-06-11T13:23:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/c_program_analysis.html</loc>
+    <loc>http://linx.run/2012-06-09/c_program_analysis.html</loc>
     <lastmod>2012-06-09T20:43:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/the_first_c_program_linux.html</loc>
+    <loc>http://linx.run/2012-06-07/the_first_c_program_linux.html</loc>
     <lastmod>2012-06-07T13:56:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/news_flash_to_advertising.html</loc>
+    <loc>http://linx.run/2012-06-02/news_flash_to_advertising.html</loc>
     <lastmod>2012-06-02T10:52:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/chrome_browser_tips.html</loc>
+    <loc>http://linx.run/2012-05-06/chrome_browser_tips.html</loc>
     <lastmod>2012-05-06T21:25:36+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/ubuntu_installed_google_input_method.html</loc>
+    <loc>http://linx.run/2012-03-18/ubuntu_installed_google_input_method.html</loc>
     <lastmod>2012-03-18T19:52:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/adobeampnbspreader.html</loc>
+    <loc>http://linx.run/2012-03-14/adobeampnbspreader.html</loc>
     <lastmod>2012-03-14T15:45:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/news_flash_win7_shared_wireless_france.html</loc>
+    <loc>http://linx.run/2012-03-04/news_flash_win7_shared_wireless_france.html</loc>
     <lastmod>2012-03-04T10:16:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/windows_path.html</loc>
+    <loc>http://linx.run/2012-02-27/windows_path.html</loc>
     <lastmod>2012-02-27T19:00:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/network_february_13_2012_through_the_bridge_to_share_a_wired_router.html</loc>
+    <loc>http://linx.run/2012-02-13/network_february_13_2012_through_the_bridge_to_share_a_wired_router.html</loc>
     <lastmod>2012-02-13T20:02:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/some_sentences.html</loc>
+    <loc>http://linx.run/2012-01-07/some_sentences.html</loc>
     <lastmod>2012-01-07T12:00:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/notebook_wireless_lan.html</loc>
+    <loc>http://linx.run/2012-01-04/notebook_wireless_lan.html</loc>
     <lastmod>2012-01-04T19:43:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/always.html</loc>
+    <loc>http://linx.run/2011-12-25/always.html</loc>
     <lastmod>2011-12-25T13:15:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/cod8_clearance.html</loc>
+    <loc>http://linx.run/2011-11-12/cod8_clearance.html</loc>
     <lastmod>2011-11-12T22:06:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win7_optimized_for_landscaping_advice.html</loc>
+    <loc>http://linx.run/2011-11-02/win7_optimized_for_landscaping_advice.html</loc>
     <lastmod>2011-11-02T11:02:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/data_backup_is_recommended.html</loc>
+    <loc>http://linx.run/2011-10-22/data_backup_is_recommended.html</loc>
     <lastmod>2011-10-22T14:16:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/office2010_installation_in_mind_after_a_reload.html</loc>
+    <loc>http://linx.run/2011-10-22/office2010_installation_in_mind_after_a_reload.html</loc>
     <lastmod>2011-10-22T14:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_-_add_a_context_menu_will_be_displayed_hold_down_the_shift_right-click_menu.html</loc>
+    <loc>http://linx.run/0001-01-01/win8_-_add_a_context_menu_will_be_displayed_hold_down_the_shift_right-click_menu.html</loc>
     <lastmod>0001-01-01T00:00:00Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/三无-普通disco.html</loc>
+    <loc>http://linx.run/0001-01-01/三无-普通disco.html</loc>
     <lastmod>0001-01-01T00:00:00Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
