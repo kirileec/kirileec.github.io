@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="SynCommons,config,mORMot,">
+        <meta name="description" content="以JSON作为配置文件">
+        <meta name="author" content="linx">
+        <title>以JSON作为配置文件</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">以JSON作为配置文件</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1513431760"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/SynCommons/index.html">SynCommons</a><a class="tag" href="/tag/config/index.html">config</a><a class="tag" href="/tag/mORMot/index.html">mORMot</a></span>
+                </section>
+                <article class="content"><p>代码如下</p>
+
+<p>其实我一直有个疑问， 为什么github上很多的配置库基本上都是只读的，并没有提供写配置的方法，因为如果可以实时地修改某个配置项的话就会很方便了。
+我这个版本是直接更新整个文件的. 另外CnPack里有个根据Ini配置文件生成读写单元的功能， 但是我认为如果配置文件里需要加入新的配置项的话依然会很不方便（需要重新生成）</p>
+
+<pre><code class="language-pascal">{*******************************************************}
+{                                                       }
+{           工程: 短信专业版                             }
+{       单元功能: 配置管理                               }
+{           作者: Linx                                  }
+{           时间: 2017-12-10 17:26:50                   }
+{                                                       }
+{       版权所有 (C) 2017 soesoft                       }
+{                                                       }
+{*******************************************************}
+
+unit SMSPro.Base.JSONConfig;
+
+interface
+
+uses
+  System.SysUtils,
+  SynCommons,
+  Vcl.Dialogs;
+const
+  CONFIG_FILENAME = 'SMS.json';
+type
+  TParam = record
+    name: string;
+    description: string;
+    field: string;
+    hdwms_sms_type: string;
+    demo:string;
+  end;
+
+  TParamDynArray = array of TParam;
+
+  TTemplate = record
+    sms_template_code: string;
+  end;
+
+  TSMSConfig = record
+    account: record
+      username: string;
+      password: string;
+    end;
+    pageSize:Integer;
+    log:Boolean;
+    api: record
+      baseUri: string;
+      sendApi: string;
+      checkApi: string;
+      templatesApi: string;
+      templateApi:string;
+      listDetail: string;
+    end;
+    params: array of TParam;
+    template: TTemplate;
+    procedure LoadFromFile(pvFileName: string = '');
+    function SaveToFile(pvFileName: string = ''): Boolean;
+    procedure SaveDefaultToFile();
+    function DecodeFile(pvFileName: string = ''):Boolean;
+    function EncodeFile(pvFileName:string = ''):Boolean;
+  end;
+
+procedure LoadConfig;
+
+function Config: TSMSConfig;
+
+var
+  SMSConfig: TSMSConfig;
+
+implementation
+
+uses
+  System.IOUtils;
+
+procedure LoadConfig;
+begin
+  SMSConfig.LoadFromFile();
+end;
+
+function Config: TSMSConfig;
+begin
+  Result := SMSConfig;
+end;
+
+procedure TSMSConfig.SaveDefaultToFile();
+var
+  lvFileName: string;
+  configContent: RawJSON;
+begin
+  lvFileName := ExtractFilePath(ParamStr(0)) + CONFIG_FILENAME;
+  configContent := RecordSaveJSON(Self, TypeInfo(TSMSConfig));
+  TFile.WriteAllText(lvFileName, configContent);
+end;
+
+
+function TSMSConfig.SaveToFile(pvFileName: string = ''): Boolean;
+var
+  lvFileName: string absolute pvFileName;
+  configContent: RawJSON;
+  IfSaveBase64:Boolean;
+begin
+  Result := True;
+  try
+    if lvFileName = '' then
+    begin
+      lvFileName := ExtractFilePath(ParamStr(0)) + CONFIG_FILENAME;
+    end;
+    if not FileExists(lvFileName) then
+    begin
+      IfSaveBase64 := True;
+    end
+    else
+    begin
+      configContent := TFile.ReadAllText(lvFileName);
+      IfSaveBase64 := IsBase64(configContent);
+    end;
+
+    if IfSaveBase64 then
+    begin
+      configContent := RecordSaveBase64(Self,TypeInfo(TSMSConfig));
+    end
+    else
+    begin
+      configContent := RecordSaveJSON(Self, TypeInfo(TSMSConfig));
+    end;
+
+    TFile.WriteAllText(lvFileName, configContent,TEncoding.UTF8);
+  except
+    Result := False;
+  end;
+
+end;
+
+procedure TSMSConfig.LoadFromFile(pvFileName: string = '');
+var
+  lvFileName: string absolute pvFileName;
+  configContent: RawJSON;
+begin
+  if lvFileName = '' then
+  begin
+    lvFileName := ExtractFilePath(ParamStr(0)) + CONFIG_FILENAME;
+  end;
+  if TFile.Exists(lvFileName) then
+  begin
+
+    configContent := AnyTextFileToRawUTF8(lvFileName, True);
+
+    if IsBase64(configContent) then
+    begin
+      if not RecordLoadBase64(PAnsiChar(configContent), Length(configContent), Self,
+        TypeInfo(TSMSConfig)) then
+      begin
+        ShowMessage('读取短信配置失败');
+      end;
+    end
+    else
+    begin
+      if not RecordLoadJson(Self, configContent, TypeInfo(TSMSConfig)) then
+      begin
+        ShowMessage('读取短信配置失败');
+      end;
+    end;
+  end
+  else
+  begin
+    ShowMessage('短信配置文件SMSPro.json不存在');
+  end;
+end;
+
+function TSMSConfig.DecodeFile(pvFileName: string = ''):Boolean;
+var
+  lvFileName: string absolute pvFileName;
+  configContent: RawJSON;
+  tmp:TSMSConfig;
+begin
+  Result := False;
+  if lvFileName = '' then
+  begin
+    lvFileName := ExtractFilePath(ParamStr(0)) + CONFIG_FILENAME;
+  end;
+  if not FileExists(lvFileName) then
+  begin
+    Exit;
+  end
+  else
+  begin
+    configContent := AnyTextFileToRawUTF8(lvFileName, True);
+  end;
+
+  if IsBase64(configContent) then
+  begin
+    if RecordLoadBase64(PAnsiChar(configContent), Length(configContent), tmp, TypeInfo(TSMSConfig)) then
+    begin
+      configContent := RecordSaveJSON(tmp, TypeInfo(TSMSConfig));
+      Result := True;
+    end;
+  end
+  else
+  begin
+    Exit(True);
+  end;
+
+  TFile.WriteAllText(lvFileName, configContent, TEncoding.UTF8);
+end;
+
+function TSMSConfig.EncodeFile(pvFileName:string = ''):Boolean;
+var
+  lvFileName: string absolute pvFileName;
+  configContent: RawJSON;
+  tmp:TSMSConfig;
+begin
+  Result := False;
+  if lvFileName = '' then
+  begin
+    lvFileName := ExtractFilePath(ParamStr(0)) + CONFIG_FILENAME;
+  end;
+  if not FileExists(lvFileName) then
+  begin
+    Exit;
+  end
+  else
+  begin
+    configContent := AnyTextFileToRawUTF8(lvFileName, True);
+  end;
+
+  if not IsBase64(configContent) then
+  begin
+    if RecordLoadJSON(tmp, configContent, TypeInfo(TSMSConfig)) then
+    begin
+      configContent := RecordSaveBase64(tmp, TypeInfo(TSMSConfig));
+      Result := True;
+    end;
+  end
+  else
+  begin
+    Exit(Result);
+  end;
+
+  TFile.WriteAllText(lvFileName, configContent, TEncoding.UTF8);
+end;
+
+
+initialization
+  LoadConfig;
+
+finalization
+
+end.
+
+</code></pre>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/synlog%e6%97%a5%e5%bf%97%e7%bb%84%e4%bb%b6%e6%8d%95%e8%8e%b7%e6%88%90%e5%90%a8%e5%8f%af%e8%b0%83%e8%af%95%e5%bc%82%e5%b8%b8.html">SynLog日志组件捕获成吨可调试异常</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/mormot%e6%95%b0%e7%bb%84%e6%93%8d%e4%bd%9c.html">mORMot数组操作</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

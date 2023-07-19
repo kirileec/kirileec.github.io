@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="windows,sql,">
+        <meta name="description" content="SQL Server参数嗅探">
+        <meta name="author" content="linx">
+        <title>SQL Server参数嗅探</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">SQL Server参数嗅探</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1482584826"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/windows/index.html">windows</a><a class="tag" href="/tag/sql/index.html">sql</a></span>
+                </section>
+                <article class="content"><h1>SQL Server参数嗅探</h1>
+
+<p>没想到我也会有接触到数据库这么深的地方哈哈。</p>
+
+<p>起因是，公司软件的报表打开很慢，查一个月的营业综合报表数据，居然花了10几分钟，简直恶心。然后我拿到数据库之后下断点调试，经过几分钟的折腾后终于定位到了一个表值函数上。</p>
+
+<p>然后为了让结果快点出来，将时间间隔设置为5天，竟然需要一分钟才出结果，然后我尝试将这个函数里面的代码拷贝出来，给参数直接赋值然后执行，天啊 3秒，见鬼了，尝试了几次之后终于确定这个问题很诡异。于是就各种搜“为什么同样的sql语句直接执行和放到存储过程中的效率完全不一样”，百度是肯定没有的了，那么笨的家伙。。。。
+于是stackoverflow，在一个票数很高的问题里，</p>
+
+<blockquote>
+<p><a href="http://stackoverflow.com/questions/440944/sql-server-query-fast-but-slow-from-procedure">http://stackoverflow.com/questions/440944/sql-server-query-fast-but-slow-from-procedure</a></p>
+</blockquote>
+
+<p>发现了这么个名词
+###and prevent parameter sniffing###
+然后百度一下，就出来了参数嗅探</p>
+
+<blockquote>
+<p><a href="http://www.cnblogs.com/lyhabc/articles/3222179.html">http://www.cnblogs.com/lyhabc/articles/3222179.html</a></p>
+</blockquote>
+
+<p>具体是怎么样的原理，我看了一下午也没看出个所以然，不过了解了个大概。
+意思就是，<code>sql server</code>对于一个语句会有编译然后生成执行计划这么一个过程。</p>
+
+<p>我们一般执行一句sql语句的时候，其实是先编译然后生成执行计划，最后根据执行计划去执行。
+那么一个执行过程的效率如何关键就在这个执行计划。如果对于同样的代码，放到<code>procedure</code>和直接执行，它们生成的执行计划是不同的。</p>
+
+<p>为什么呢，问题就在<code>procedure</code>在<code>sql server</code>里会经过优化，它的执行计划不会每次都重新生成，同理也不会每次调用都重新编译
+那么如果</p>
+
+<pre><code class="language-sql">EXEC sp_recompile N'PROCEDURENAME'
+</code></pre>
+
+<p>在一个过程前调用前执行这么一句，就可以保证它生成的执行计划是准确的。</p>
+
+<p>而如果没有进行重新编译，<code>sql server</code>就可能使用一个烂的执行计划去干活了，自然就慢了。</p>
+
+<p>下面摘几种方式来处理参数嗅探</p>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>是否修改存储过程</th>
+<th>是否每次运行都要重编译</th>
+<th>执行计划准确度</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>用exec()方式运行动态SQL</td>
+<td>需要</td>
+<td>会</td>
+<td>很准确</td>
+</tr>
+
+<tr>
+<td>使用本地变量local variable</td>
+<td>需要</td>
+<td>不会</td>
+<td>一般</td>
+</tr>
+
+<tr>
+<td>query hint+&ldquo;recompile&rdquo;</td>
+<td>需要</td>
+<td>会</td>
+<td>很准确</td>
+</tr>
+
+<tr>
+<td>query  hint指定join运算</td>
+<td>需要</td>
+<td>不会</td>
+<td>很一般</td>
+</tr>
+
+<tr>
+<td>query hint optimize for</td>
+<td>需要</td>
+<td>不会</td>
+<td>比较准确</td>
+</tr>
+
+<tr>
+<td>Plan Guide</td>
+<td>不需要</td>
+<td>不会</td>
+<td>比较准确</td>
+</tr>
+</tbody>
+</table>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/current-wpf-identifier-naming-conventions.html">目前使用的WPF代码规范</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/restsharp-use-newtonsoftjson-to-serialize.html">RestSharp use Newtonsoft.JSON to serialize object and deserialize json</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

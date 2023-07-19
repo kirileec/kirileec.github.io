@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="Android RecylerView BaseAdapter 更新">
+        <meta name="author" content="">
+        <title>Android RecylerView BaseAdapter 更新</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Android RecylerView BaseAdapter 更新</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1576984971"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><nav>
+
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">更新</a></li>
+</ul></li>
+</ul>
+
+</nav>
+<p>Android RecylerView BaseAdapter 更新(kotlin)</p>
+
+<p>废话不多说直接上代码</p>
+
+<pre><code class="language-kotlin">package com.qijin.xiaohui.base
+
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.IntDef
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.qijin.xiaohui.R
+import java.util.*
+
+
+/**
+ * RecylerView 数据绑定适配器
+ * @param T
+ * @property mList List&lt;T&gt;? 对应的数据列表
+ * @property layoutId Int? RecylerView子item的布局id
+ * @property brId Int? RecylerView子item中声明的model的名称(这个不会有代码提示, 直接写)
+ * @property itemClick ItemClick? 项目item点击事件, 如果要对item内部的按钮设定时间, 重载forInnerControl即可
+ * @constructor
+ */
+open class QJBaseAdapter&lt;T&gt; :
+    Adapter&lt;QJBaseAdapter.QJBaseViewHolder&gt; {
+    var mList: List&lt;T&gt;?
+    var layoutId: Int?
+    var brId: Int?
+
+    constructor(context: BaseActivity, mList: List&lt;T&gt;?, layoutId: Int?, brId: Int?) : super() {
+        this.mList = mList
+        this.layoutId = layoutId
+        this.brId = brId
+        this.ctx = context
+        this.layoutInflater = context.layoutInflater
+        this.state = STATE_NORMAL
+    }
+
+    constructor(context: BaseFragment, mList: List&lt;T&gt;?, layoutId: Int?, brId: Int?) : super() {
+        this.mList = mList
+        this.layoutId = layoutId
+        this.brId = brId
+        this.ctx = context.context
+        this.layoutInflater = context.layoutInflater
+        this.state = STATE_NORMAL
+    }
+    var ctx:Context?=null
+    open val layoutInflater:LayoutInflater?
+
+    var itemClick: ItemClick? = null
+    /**
+     * 更新数据
+     * @param items ArrayList&lt;T&gt;?
+     */
+    fun updateData(items: ArrayList&lt;T&gt;?) {
+        this.mList = items
+        if (LoadingView==null || EmptyView == null || ErrorView==null) {
+            notifyDataSetChanged()
+        } else {
+            endLoading()
+        }
+    }
+
+    fun startLoading() {
+        if (LoadingView==null || EmptyView == null || ErrorView==null) {
+            return
+        }
+        this.state = STATE_LOADING
+        notifyDataSetChanged()
+    }
+
+    fun endLoading() {
+        if (mList.orEmpty().size&lt;=0) {
+            this.state = STATE_EMPTY
+        } else {
+            this.state = STATE_NORMAL
+        }
+        if (state != STATE_NORMAL) {
+            notifyDataSetChanged()
+        } else {
+            mListView.post({
+                notifyDataSetChanged()
+            })
+        }
+
+    }
+
+    fun showError() {
+        this.state = STATE_ERROR
+        notifyDataSetChanged()
+    }
+
+    interface ItemClick {
+        fun OnItemClick(v: View, position: Int)
+    }
+
+    fun setItemClickListener(itemClick: ItemClick) {
+        this.itemClick = itemClick
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QJBaseViewHolder {
+        if (LoadingView!=null &amp;&amp; EmptyView != null &amp;&amp; ErrorView!=null) {
+            when (viewType) {
+                TYPE_LOADING -&gt; {
+                    return QJBaseViewHolder(LoadingView!!)
+                }
+                TYPE_EMPTY -&gt; {
+                    return QJBaseViewHolder(EmptyView!!)
+                }
+                TYPE_ERROR -&gt; {
+                    return QJBaseViewHolder(ErrorView!!)
+                }
+            }
+        }
+
+        val binding: ViewDataBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context), this.layoutId!!, parent, false
+        )
+        return QJBaseViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
+        when (state) {
+            STATE_LOADING, STATE_EMPTY, STATE_ERROR -&gt; return 1
+        }
+        return mList!!.size
+    }
+
+
+    override fun onBindViewHolder(holder: QJBaseViewHolder, position: Int) {
+        if (state in arrayOf(STATE_LOADING,STATE_EMPTY,STATE_ERROR)) {return}
+
+        var item = mList!![position] // 这里必须为var 因为需要修改列表的数据
+        doBeforeShow(holder.binding.root, item)
+        holder.binding.setVariable(this.brId!!, mList!![position])
+        holder.binding.executePendingBindings()
+        // item点击事件
+        holder.binding.root.setOnClickListener {
+            itemClick?.OnItemClick(holder.binding.root, position)
+        }
+        forInnerControl(holder.binding.root, item,position)
+        forInnerControl(holder.binding.root, item)
+    }
+
+
+
+
+    /**
+     * 在绑定数据之前执行, 可以修改数据 item 的值
+     * @param itemView View?
+     * @param item T
+     */
+    open fun doBeforeShow(itemView: View?, item: T) {
+
+    }
+
+    /**
+     * 用于给ItemView内部的组件绑定事件
+     * @param itemView View?
+     * @param item T
+     */
+    open fun forInnerControl(itemView: View?, item: T,position: Int = 0) {
+
+    }
+
+    open fun forInnerControl(itemView: View?, item: T) {
+
+    }
+
+
+    class QJBaseViewHolder : ViewHolder {
+        lateinit var binding: ViewDataBinding
+        lateinit var view:View
+
+        constructor(binding: ViewDataBinding) : super(binding.root) {
+            this.binding = binding
+        }
+
+        constructor(view:View):super(view) {
+            this.view = view
+        }
+    }
+
+
+    var LoadingView: View? = null
+        set(value) {
+            field = value
+        }
+    var EmptyView: View? = null
+        set(value) {
+            field = value
+        }
+    var ErrorView: View? = null
+        set(value) {
+            field = value
+        }
+
+    @State
+    private var state: Int = STATE_NORMAL
+
+    companion object {
+        const val STATE_NORMAL = 0
+        const val STATE_LOADING = 1
+        const val STATE_EMPTY = 2
+        const val STATE_ERROR = 3
+        const val TYPE_LOADING = 1000
+        const val TYPE_EMPTY = 1001
+        const val TYPE_ERROR = 1002
+
+        @IntDef(STATE_NORMAL, STATE_LOADING, STATE_EMPTY, STATE_ERROR)
+        @Retention(AnnotationRetention.SOURCE)
+        annotation class State
+    }
+
+    @State
+    open fun getState(): Int {
+        return this.state
+    }
+
+    open fun setState(@State state: Int) {
+        this.state = state
+        notifyDataSetChanged()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (state) {
+            STATE_LOADING -&gt; TYPE_LOADING
+            STATE_EMPTY -&gt; TYPE_EMPTY
+            STATE_ERROR -&gt; TYPE_ERROR
+            else -&gt; super.getItemViewType(position)
+        }
+    }
+
+    lateinit var mListView:RecyclerView
+
+    fun setView(listView:RecyclerView) {
+        LoadingView = layoutInflater!!.inflate(R.layout.rv_loading,listView,false)
+        ErrorView = layoutInflater!!.inflate(R.layout.error,listView,false)
+        EmptyView = layoutInflater!!.inflate(R.layout.empty,listView,false)
+        listView.adapter = this
+        mListView = listView
+    }
+}
+</code></pre>
+
+<h2 id="toc_0">更新</h2>
+
+<ol>
+<li>新增 <code>fun setView(listView:RecyclerView)</code> 用于为 RecyclerView 设置&rdquo;加载中&rdquo; &ldquo;加载失败&rdquo; &ldquo;无数据&rdquo; 三种视图. 只需要
+在调用数据开始的时候 <code>mAdapter.startLoading()</code>, 在 mAdapter.updateData(mList) 时, 将自动停止加载. 同时不用调用 <code>listView.adapter = mAdapter</code> 了</li>
+<li>增加另外一个 <code>forInnerControl</code>的版本多一个 position的参数, 用于简单实现&rdquo;动态的单选RadioButton&rdquo;功能, 两个版本重载一个即可</li>
+<li>增加一个构造函数, 传入两种类型的context</li>
+<li>不断更新&hellip;.</li>
+</ol>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/android-shadow.html">Android Shadow</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/android-kotlin-appbarlayout-back-to-parent-activity.html">Android Kotlin Appbarlayout Back to Parent Activity</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

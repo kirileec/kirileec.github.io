@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="Delphi,">
+        <meta name="description" content="CxGrid筛选自动添加百分号和默认旧的滚动条样式">
+        <meta name="author" content="linx">
+        <title>CxGrid筛选自动添加百分号和默认旧的滚动条样式</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">CxGrid筛选自动添加百分号和默认旧的滚动条样式</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1540813300"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/Delphi/index.html">Delphi</a></span>
+                </section>
+                <article class="content"><h1>cxGrid支持使用like过滤时自动添加百分号</h1>
+
+<p>默认状态下， 不会添加 <code>%%</code> 到过滤串中， 修改源码如下</p>
+
+<p><code>cxFilter.pas</code> 在 <code>\Library\Sources\cxFilter.pas</code> 和 <code>\ExpressDataController\Sources\cxFilter.pas</code> 两个地方都有一个，一起修改掉</p>
+
+<p><code>cxFilter.pas</code> 的 <code>TcxFilterCriteria.AddItem</code> 改成这样</p>
+
+<pre><code class="language-pascal">  //if AParent = nil then
+  //  AParent := Root;
+  //Result := AParent.AddItem(AItemLink, AOperatorKind, AValue, ADisplayValue);
+    if AParent = nil then
+    AParent := Root;
+  if AOperatorKind in [foLike, foNotLike] then
+    Result := AParent.AddItem(AItemLink, AOperatorKind, '%' + AValue + '%', ADisplayValue)
+  else
+    Result := AParent.AddItem(AItemLink, AOperatorKind, AValue, ADisplayValue);
+</code></pre>
+
+<p><code>cxFilterDialog.pas</code> 在 <code>Library\Sources\cxFilterDialog.pas</code>和<code>ExpressQuantumGrid\Sources\cxFilterDialog.pas</code></p>
+
+<pre><code class="language-pascal">// TcxFilterDialog.AddFilterItem
+
+procedure TcxFilterDialog.AddFilterItem(AParent: TcxFilterCriteriaItemList;
+  AComboBox: TcxComboBox; AValue: Variant; ADisplayValue: string);
+var
+  AOperator: TcxFilterControlOperator;
+begin
+  AOperator := GetOperator(AComboBox);
+  if AOperator = fcoNone then Exit;
+  
+  //edited by lero 09-11-18  如果是like,而且没有输入%时,自动在前后加入%
+  if AOperator in [fcoLike, fcoNotLike] then
+  begin
+    if VarIsStr(AValue) and (AValue &lt;&gt; '') and (Pos('%', AValue) = 0) then
+      AValue := '%' + AValue + '%';
+  end;
+
+  if AOperator in [fcoBlanks, fcoNonBlanks] then
+    AValue := Null;
+  if VarIsNull(AValue) or (VarIsStr(AValue) and (AValue = '')) then
+    ADisplayValue := cxGetResourceString(@cxSFilterBlankCaption);
+
+  Criteria.AddItem(AParent, ItemLink, GetFilterOperatorKind(AOperator), AValue, ADisplayValue);
+end;
+</code></pre>
+
+<h1>DevExpress控件滚动条默认使用旧的经典滚动条样式</h1>
+
+<p>新版本， 应该是17还是多少版本开始，默认使用触摸的滚动条样式， 查询了官方的论坛之后， 可以修改如下</p>
+
+<p>搜索<code>cxVer.inc</code> 在 <code>\Library\Sources\cxVer.inc</code> 和 <code>\ExpressCore Library\Sources\cxVer.inc</code> 两个地方各有一个</p>
+
+<p>打开后， 搜索 <code>USETOUCHSCROLLUIMODEASDEFAULT</code> 在 <code>$DEFINE</code> 前面加个点即可</p>
+
+<pre><code class="language-pascal">{.$DEFINE USETOUCHSCROLLUIMODEASDEFAULT}
+</code></pre>
+
+<h1>DevExpress下拉lookup控件加入输入时自动定位</h1>
+
+<ul>
+<li>单元 <code>cxCustomData.pas</code> <code>Library\Sources\cxCustomData.pas</code> <code>ExpressDataController\Sources\cxCustomData.pas</code> 修改如下</li>
+</ul>
+
+<pre><code class="language-pascal">function TcxCustomDataController.DoIncrementalFilterRecord(ARecordIndex: Integer): Boolean;
+var
+  S: string;
+  I: Integer;
+begin
+  //edited by lero---
+  Result := False;
+  for I := 0 to Fields.ItemCount - 1 do
+  begin
+    S := GetInternalDisplayText(ARecordIndex, Fields[i]);
+    Result := DataCompareText(S, FIncrementalFilterText, True);
+    if Result then
+    begin
+      FDisplayIndex := i;
+      Exit;
+    end;
+  end;
+  //S := GetInternalDisplayText(ARecordIndex, FIncrementalFilterField);
+  //Result := DataCompareText(S, FIncrementalFilterText, True, FIncrementalFilteringFromAnyPos);
+end;
+</code></pre>
+
+<p>在<code>SortingBySummaryDataItemIndex</code>属性下方添加, 不要忘了在private节下加入 <code>FDisplayIndex:Integer;</code></p>
+
+<pre><code class="language-pascal">property DisplayIndex: Integer  read FDisplayIndex write FDisplayIndex;   //add by lero
+</code></pre>
+
+<ul>
+<li>单元 <code>cxLookupEdit.pas</code> 分别在 <code>Library\Sources\cxLookupEdit.pas</code> 和 <code>ExpressEditors Library\Sources\cxLookupEdit.pas</code></li>
+</ul>
+
+<pre><code class="language-pascal">// TcxCustomLookupEditLookupData.Locate
+
+
+    if ARecordIndex &lt;&gt; -1 then
+      begin
+        DataController.ChangeFocusedRecordIndex(ARecordIndex);
+        DoSetCurrentKey(ARecordIndex);
+        Result := True;
+        //此处为添加代码   add by lero---
+        if DataController.DisplayIndex &gt; -1 then
+        begin
+          S := DataController.DisplayTexts[ARecordIndex, DataController.DisplayIndex];
+          DataController.DisplayIndex := -1;
+        end
+        else
+        begin
+          S := DataController.DisplayTexts[ARecordIndex, AItemIndex];
+        end;
+      //结束
+        //S := DataController.DisplayTexts[ARecordIndex, AItemIndex];
+        if IsLikeTypeFiltering then
+          ATail := ''
+        else
+        begin
+          AText := Copy(S, 1, Length(AText));
+          ATail := Copy(S, Length(AText) + 1, Length(S));
+        end;
+        DoSetKeySelection(True);
+      end
+      else
+        DoSetKeySelection(False);
+</code></pre>
+
+<p>最后的最后，使用编译工具重新编译安装即可</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/mormot-json%e5%bf%bd%e7%95%a5%e6%9c%aa%e5%ae%9a%e4%b9%89%e7%9a%84%e5%ad%97%e6%ae%b5.html">mORMot Json忽略未定义的字段</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/tclientdataset%e6%94%af%e6%8c%81%e8%b6%85%e9%95%bf%e5%ad%97%e6%ae%b5%e5%90%8d.html">TClientDataSet支持超长字段名</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="vps,">
+        <meta name="description" content="搬瓦工 VPS 上搭建博客">
+        <meta name="author" content="linx">
+        <title>搬瓦工 VPS 上搭建博客</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">搬瓦工 VPS 上搭建博客</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1422866880"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/vps/index.html">vps</a></span>
+                </section>
+                <article class="content"><p>之前,曾使用 Typecho 作为博客程序,但是在搭建过程中遇到了蛋疼的问题,各种500 404 405错误,以及 <code>pdo</code> <code>pdomysql</code> <code>pathinfo</code>的问题, 基本都能解决. 总算安装成功之后, 又是各种点下一页就跳到首页,点链接就跳到首页,多方查询,确认应该是伪静态上的问题,无奈网上全是放个规则你自己抄,妈蛋我个菜鸟硬是不知道应该在 <code>.htaccess</code>里边还是在 <code>/nginx/sites-available/default</code> 里边,郁闷的.在导入数据库的时候,使用 <code>phpmyadmin</code> 导入,不行,经常提示 <code>duplicate primary key &quot;1&quot;</code>, 后来换了个远程管理的工具就正常了. 话说, php 程序不能在 mysql 里建个数据库(⊙ ⊙)？,还要亲自动手也是给跪</p>
+
+<p>嫌烦,我就换成 wordpress, 幸好 Typecho 还有人搞了个插件把数据转回 wp, Typecho 简洁是简洁了, 但是&hellip;&hellip;</p>
+
+<p>记录一下:</p>
+
+<p>Ubuntu 12.04.3 LTS \n \l 32位 非 minimal (搬瓦工的系统是不是有问题啊,总是缺这个缺那个的,之前搭 ss 的时候经常 apt-get 不能用,经常 can&rsquo;t locate package XXX)</p>
+
+<pre><code>apt-get update
+
+apt-get install mysql-server
+</code></pre>
+
+<p>中间会提示设置 root 的密码</p>
+
+<pre><code>mysqladmin -u root password db_user_password
+</code></pre>
+
+<p>如果用其他方式安装 mysql, 默认的密码用这个设置</p>
+
+<p>测试登陆命令</p>
+
+<pre><code class="language-bash">    mysql -uroot -p
+
+    create database 数据库名称;
+
+    \q
+
+    apt-get install nginx
+
+    vi /etc/nginx/sites-available/default
+</code></pre>
+
+<pre><code class="language-nginx">    root /var/www;
+
+    index index.html index.php;  // 添加index.php
+
+    #location ~ \.php$ {
+
+    location ~ .*\.php(\/.*)*$ {    /4  nginx &amp;gt; 0.7 开启pathinfo 的方法
+
+    #       fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+    #       # NOTE: You should have &quot;cgi.fix_pathinfo = 0;&quot; in php.ini
+
+    #
+
+    #       # With php5-cgi alone:
+
+    fastcgi_pass 127.0.0.1:9000;   /1
+
+    #       # With php5-fpm:
+    #       fastcgi_pass unix:/var/run/php5-fpm.sock;
+
+    fastcgi_index index.php;  /2
+
+    include fastcgi_params;  /3
+
+    }
+</code></pre>
+
+<p>取消 /1/2/3处的注释,启用 php-fpm 的解析功能</p>
+
+<pre><code class="language-bash">    apt-get install php5
+
+    php5-fpm php5-gd php5-mysql  php5-cli
+
+    vi /var/www/test.php
+</code></pre>
+
+<pre><code class="language-php">    &lt;?php
+
+    phpinfo();
+
+    ?&gt;
+</code></pre>
+
+<pre><code>:wq
+</code></pre>
+
+<p>打开 <code>ip/test.php</code></p>
+
+<p>查看是否有</p>
+
+<p><strong>curl</strong></p>
+
+<p><strong>mbstring</strong></p>
+
+<p><strong>iconv</strong></p>
+
+<p><strong>pdo</strong></p>
+
+<p><strong>pdo_mysql</strong></p>
+
+<p><strong>mysqli</strong></p>
+
+<p>这些模块,PDO必须要有,不然 Typecho 不能选择&rdquo;数据库适配器&rdquo;,相当于 php 无法连接数据库</p>
+
+<p>但是我安装了 wordpress</p>
+
+<pre><code class="language-bash">    wget https://wordpress.org/latest.tar.gz
+</code></pre>
+
+<p>下载最新的「英文版」wp，我勒个去，最后还是想换回中文版的，于是</p>
+
+<pre><code class="language-bash">    tar -zxvf latest.tar.gz
+
+    cd latest
+
+    cp -rf * /var/www
+
+    wget https://cn.wordpress.org/wordpress-4.1-zh_CN.tar.gz
+</code></pre>
+
+<p>然后，</p>
+
+<pre><code class="language-bash">    tar -zxvf wordpress-4.1-zh_CN.tar.gz
+
+    cd wordpress-4.1-zh_CN/wp-content
+
+    cp -rf languages /var/www/wp-content
+</code></pre>
+
+<p>恩，搞定，进仪表盘可以看到新的语言了。官方的那个方法弱</p>
+
+<p>设置全部目录的所有者，可以不用安装 ftp 服务端了，www-data 可以使用 top 命令查看 php5-fpm</p>
+
+<pre><code class="language-bash">    chown -R www-data /var/www
+</code></pre>
+
+<p>最后，wordpress 赤裸裸地占了</p>
+
+<pre><code class="language-bash">398 root 20 0 43820 936 232 S 0.0 0.6 0:02.69 php5-fpm
+400 www-data 20 0 73268 32m 3124 S 0.0 21.6 0:11.48 php5-fpm
+402 www-data 20 0 72040 31m 2912 S 0.0 21.5 0:13.78 php5-fpm
+403 www-data 20 0 70488 31m 3048 S 0.0 21.0 0:11.78 php5-fpm
+404 www-data 20 0 70748 31m 3020 S 0.0 21.0 0:11.37 php5-fpm
+</code></pre>
+
+<p>而 mysql</p>
+
+<pre><code class="language-bash">331 mysql     20   0  349m  13m 3424 S  0.0  8.9   0:17.28 mysqld
+</code></pre>
+
+<p>只能说 wp 真是大户啊</p>
+
+<hr>
+
+<p>接上次，后来用1 2天:-( ， 发现实在受不了那么大得内存占用，于是又想换个别的，但是奇怪的是，wordpress 依然正常运行，除了安装插件之类的要等一会之外，其它都还可以</p>
+
+<p>然后又去找博客程序，找半天觉得还是 Typecho 比较合适</p>
+
+<ul>
+<li>简洁，占内存小</li>
+<li>我用 github 之类的比较少，不想把博客放在 github 上，虽然说放在那边挺好，还能顺便版本控制，听说图片也可以，不过我的访问速度并不快，git clone 的速度以10k 附近在跑，VPS 上瞬间就 clone 完了。</li>
+<li>Hexo之前听说过还不错的样子,主要安装挺方便,但是写个博客要输代码(⊙_⊙)？,那真是见鬼,管它是不是逼格很高呢.万一需要 ssh 到 vps 上写的话就恶心了,我VPS丢包率大得很,ssh 输命令都顿卡的</li>
+</ul>
+
+<p>主要原因是找到了那个点击文章链接返回首页的方法, 还真的是伪静态(固定链接)的原因,只要保证,</p>
+
+<blockquote>
+<p>typecho 后台可以直接开启 Rewrite 功能,而不提示任何有关「强制开启 rewrite」的信息。</p>
+</blockquote>
+
+<p>nginx不管是 typecho还是 wordpress 都需要手动修改配置文件启用伪静态
+位置为<code>/etc/nginx/sites-available/default</code></p>
+
+<pre><code class="language-nginx">    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to index.html
+        # 原规则
+        # try_files $uri $uri/ /index.html;
+        # Uncomment to enable naxsi on this location
+        # Wordpress  伪静态
+        # try_files $uri $uri/ /index.php?q=$uri&amp;$args;
+        # Typecho 伪静态
+        if (-f $request_filename/index.html){
+            rewrite (.*) $1/index.html break;
+        }
+        if (-f $request_filename/index.php){
+            rewrite (.*) $1/index.php;
+        }
+        if (!-f $request_filename){
+            rewrite (.*) /index.php;
+        }
+        # include /etc/nginx/naxsi.rules
+    }
+</code></pre>
+
+<p>即可</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/good-song.html">还不错</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/%e6%9b%b4%e6%8d%a2wordpress%e8%87%b3typecho.html">更换Wordpress至typecho</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

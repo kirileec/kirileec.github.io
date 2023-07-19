@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="openwrt,">
+        <meta name="description" content="WR941N V5 刷 OpenWRT 明月永在版, 并配置中继和翻墙">
+        <meta name="author" content="linx">
+        <title>WR941N V5 刷 OpenWRT 明月永在版, 并配置中继和翻墙</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">WR941N V5 刷 OpenWRT 明月永在版, 并配置中继和翻墙</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1425738060"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/openwrt/index.html">openwrt</a></span>
+                </section>
+                <article class="content"><p>前些天, 花66买了个二手的 WR941N V5, 自带了 uboot 和 OpenWRT 明月永在圣诞版.</p>
+
+<p>发现的问题:
+- 开机之后，需要等待很长时间(0~+∞)，原因是，每次在开机之后，我插入网线使之与电脑连接，或者通过无线与之连接，路由器就重启了, 表现为全部指示灯亮起并灭掉，然后过一会，图标为齿轮的那个灯闪烁，我推测为又再次进入了 OPENWRT 的开机初始化过程，但是恶心的是，使用安卓手机连接则不会出现重启现象，但是我的 MAC 系统和 Win Server 2012 连接上去都会如此。以至于，每次都需要等很久, 等待无线指示灯稳定后，才敢插上网线。有时候会在连上无线之后几秒钟后重启，简直是莫名其妙的问题，uboot 里就不会出现，因此推测为固件原因
+- 开启了 Shadowsocks 和 ChinaDNS-C，并且设置了 DNS 转发后, 仅仅 Google 的相关网站可以访问，Youtube、Twitter、Facebook、t66y、v2ex等网站无法访问。开始的时候推测为关键词屏蔽的原因，毕竟 ChinaDNS 只能解决 DNS 污染的问题，而且是基于 IP 进行的判断，于是开始寻找基于域名的解决方案（管 TM DNS 污染干啥呢），但是结果让我傻了眼，根本没人出现这个问题，都 TM 正常，唯独我不正常，日。基于域名的解决方案的帖子倒是有找到，但回帖中根本没有我要的答案，比如 PAC 这种就毫无意义啊，本身搞 OpenWRT 不就是为了透明代理么，客户端需要设置的话，那不是白搞了。再吐槽下，妈蛋怎么那些教程都是命令行模式的操作啊，有界面不玩偏偏用命令，只能说明教程都过时了，他们都没见过 Luci。再吐槽下，为什么我总感觉，把 DNS 解析的过程进行加密不如直接使用代理进行访问好呢（不是很懂，我印象中即使我拿到了正确的网站ip，那么也还是会因为关键词而被截杀的）。<br>
+- 在换了 pdnsd 进行抗污染后，twitter 和 facebook 可以访问了，但是不完美（有些网站不行），那么肯定是 ChinaDNS 的问题，看了下版本，应该就是过于老旧了，新版本肯定进行过处理了
+- 我下了两个固件，都是 sysupgrade 的，一个 WR941N，另一个 WR741N，因为机身上是 WR941N V5, 但是 openwrt 界面上显示的是 wr741N。都试着在 uboot 里刷了下，也在 openwrt 的备份升级处试了下。结果是openwrt 里面不能升级，会报错，uboot 常规固件里也不行，上传几 k/s，比乌龟还慢，花大半个小时传完了，然后报错 <code>服务当前不可用</code>，搜索无果。然后今天实在受不了重启，又试了试，发现又正常了，上传有个400k/s 的样子了，结果是 WR941N 的 bin 传上去后就卡在重启那一步，没反应，强制重启也一样，开机只有个 LAN 灯亮着。而 WR741N 则可以正常重启，真™见鬼了啊，莫名其妙的问题。</p>
+
+<p>目前，明月永在春节版，shadowsocks+pdnsd + 中继，正常使用，但愿别再重启了。</p>
+
+<ul>
+<li>Shadowsocks</li>
+</ul>
+
+<ol>
+<li>阿里云 haproxy 跳板</li>
+<li>代理方式<code>忽略列表</code></li>
+<li>UDP 转发<code>启用</code></li>
+<li>其他默认</li>
+</ol>
+
+<ul>
+<li>pdnsd</li>
+</ul>
+
+<ol>
+<li>默认选项</li>
+</ol>
+
+<ul>
+<li>桥接</li>
+</ul>
+
+<ol>
+<li>Clinet 模式连接主路由, wwan, 表示从主路由接收信号并作为 WAN 口, wwan 意为 WLAN WAN, 其他默认配置</li>
+<li>接入点AP 模式(Master), lan, 表示将本路由器的 NAT 网络共享至 4个LAN口和无线网络(组成局域网的接口), ESSID Openwrt 高大上, 无需重启接口产生一个无线信号</li>
+</ol>
+
+<ul>
+<li>adbyby</li>
+</ul>
+
+<ol>
+<li>更新到春节版后发现 adbyby 没了, 据作者所说是和 Shadowsocks 有冲突, 不过我没发现, 所以还是手动装上用着先.</li>
+<li>wget tar -xvf then chmod then ./bin/adbyby&amp;</li>
+<li>懒得搞开机重启</li>
+<li><code>iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8118</code>
+用于实现透明去广告, 这里重启下, 重新./adbyby&amp; 一下即可</li>
+</ol>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/android-ssh-solution.html">安卓ssh解决方案</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/run-clash-of-clans-with-genymotion.html">Genymotion 虚拟机 Clash of Clans</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

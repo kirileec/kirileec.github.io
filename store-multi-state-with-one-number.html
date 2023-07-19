@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="Delphi,set,Delphi-XE8,">
+        <meta name="description" content="使用一个数字存储很多状态">
+        <meta name="author" content="linx">
+        <title>使用一个数字存储很多状态</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">使用一个数字存储很多状态</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1496920067"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/Delphi/index.html">Delphi</a><a class="tag" href="/tag/set/index.html">set</a><a class="tag" href="/tag/Delphi-XE8/index.html">Delphi-XE8</a></span>
+                </section>
+                <article class="content"><p>假设这样一种情景，一个界面上几十个CheckBox，每个都表示某个选项的启用或不启用，并且这些选项都需要存储起来。
+那么怎么做呢？每个都创建一个字段存储起来？那如果选项很多呢？</p>
+
+<p>又或者设计一个权限系统。。。</p>
+
+<p>二进制的世界是美妙的，门就两个状态，开或者关。用二进制表示的话就是1和0 .</p>
+
+<p>Delphi中， set集合本身就是以一个数字存储起来的</p>
+
+<pre><code class="language-pascal">  TSwitchStatus2 = set of (
+    WindowOpen,
+    WindowPause,
+    WindowClose,
+    AirConditionHigh,
+    AirConditionMedium,
+    AirConditionLow,
+    AirConditionOpen,
+    AirConditionClose);
+</code></pre>
+
+<pre><code class="language-pascal">function SetToBin(p: PByteArray; size: Integer): UInt8;
+var
+  i,j: Integer;
+  function SetBit(const X, N: integer): integer;
+  asm
+        bts     eax, edx
+  end;
+begin
+  Result := 0;
+  for i := 0 to size - 1 do
+    for j := 0 to 7 do
+      if Odd(p^[size - 1 - i] shr j) then
+        Result := SetBit(Result, i * 8 + 8 - j);
+end;
+</code></pre>
+
+<p>以上代码可以将一个最大容量为8的集合转换为一个8位的十进制值</p>
+
+<pre><code class="language-pascal">  SetToBin(@pvSwitchStatus, SizeOf(TSwitchStatus2));
+</code></pre>
+
+<p>其实这里的8位的意思是，这个值最大为
+11111111 (无符号), 当然也可以写出 16位甚至64位的方法，那样就可以存储更多的状态。</p>
+
+<p>当一个集合变量拥有了某个状态， 那么对应的二进制的对应位置的值就为1，否则为0</p>
+
+<p>转换出来的数值可以直接存储，这样就实现了，一个字段就存储了8个状态。</p>
+
+<p>当然还是需要转换回来的啦</p>
+
+<pre><code class="language-pascal">  Byte(switchStatus2) := DataFrame.Data[4];
+</code></pre>
+
+<p>那么接下来就可以使用in语法来判断某个状态是否开启了， 或者写个算法，做一下移位，然后用odd判断一下也可以（这样比较快）</p>
+
+<p>当然了， 如果需要存储的状态并没有太大的关联性， 那么某种意义上来说， 并不适合存放在一起的</p>
+
+<p>对于权限系统来说，可以将权限归类，每个类别限制在较少的数量，如此一来，一组权限只需要一个数字就行了</p>
+
+<p>那么如果，真的很多权限呢？ 那么只要把一个数拆分为好几个部分即可，拆两半的话就一个高位一个低位即可</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/%e6%b6%88%e6%84%81.html">消愁</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/mormot-rest-server-deserialize-record-from-json-body.html">mORMot REST服务端自动解析json body为record</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>
