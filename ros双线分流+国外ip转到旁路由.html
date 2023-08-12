@@ -45,7 +45,7 @@
 </script>
 
 
-        <meta name="keywords" content="">
+        <meta name="keywords" content="ros,多线,">
         <meta name="description" content="ROS双线分流, 国外IP转到旁路由">
         <meta name="author" content="">
         <title>ROS双线分流, 国外IP转到旁路由</title>
@@ -57,6 +57,8 @@
     <img class="logo" src="/images/photo.jpg" />
     Linx&#39;s Solution
   </a>
+
+ 
   <ul class="menu">
       <li class="menu-item"><a href="/tools.html">工具</a></li>
       <li class="menu-item"><a href="/archive.html">归档</a></li>
@@ -66,6 +68,7 @@
       <li class="menu-item"><a href="/about.html">关于</a></li>
 
   </ul>
+
 </header>
 
             <article class="main article">
@@ -76,9 +79,30 @@
                     
                     <span class="date" data-time="1689253724"><span class="from"></span></span>
                     
-                    <span class="tags"></span>
+                    <span class="tags"><a class="tag" href="/tag/ros/index.html">ros</a><a class="tag" href="/tag/%e5%a4%9a%e7%ba%bf/index.html">多线</a></span>
                 </section>
-                <article class="content"><p>经过多日难受 -_-||, 总算正常了</p>
+                <article class="content"><nav>
+
+<ul>
+<li>
+<ul>
+<li><a href="#toc_0">前言</a></li>
+
+<li><a href="#toc_1">网络结构</a></li>
+
+<li><a href="#toc_2">配置两条网络连接</a></li>
+
+<li><a href="#toc_3">开始重头戏</a></li>
+
+<li><a href="#toc_4">小总结</a></li>
+</ul></li>
+</ul>
+
+</nav>
+
+<h2 id="toc_0">前言</h2>
+
+<p>经过多日难受 -_-||, 总算正常了</p>
 
 <p>以下为我的场景</p>
 
@@ -88,7 +112,7 @@
 <li>由于之前瞎鸡儿乱搞导致翻墙访问很慢, google网页都要10s以上才有反应, 用curl测试也要10s左右, 因此特别去研究了下ROS的mangle</li>
 </ul>
 
-<h2>网络结构</h2>
+<h2 id="toc_1">网络结构</h2>
 
 <ul>
 <li>10.11.0.1 ROS虚拟机</li>
@@ -98,7 +122,7 @@
 <li>10.11.0.6 dns服务</li>
 </ul>
 
-<h2>配置两条网络连接</h2>
+<h2 id="toc_2">配置两条网络连接</h2>
 
 <p>wanct 为电信, wancm则为连接移动的光猫口, pppoe-cm为移动拨号后的接口</p>
 
@@ -226,7 +250,7 @@ add interface=*2 other-configuration=yes
 
 <p>到这里, 局域网机子应该可以自动获得ipv6地址了</p>
 
-<h2>开始重头戏</h2>
+<h2 id="toc_3">开始重头戏</h2>
 
 <ul>
 <li>加入一个拉取国内IP地址列表的脚本, 名字随意</li>
@@ -349,7 +373,7 @@ add action=mark-routing chain=prerouting connection-mark=conn-ct in-interface=\
 <li>最后2条为把前面PCC标记的连接打上路由标记, 这样这些连接就会根据标记到该去的路由表进行处理了</li>
 </ul>
 
-<h2>小总结</h2>
+<h2 id="toc_4">小总结</h2>
 
 <pre><code>add action=masquerade chain=srcnat comment=&quot;IP伪装, 通过路由表转发到clash, 如果不伪装, 数据回来的时候会直接回到客户端去,造成无法访问&quot; out-interface=br-lan \
     routing-mark=gfw
