@@ -45,7 +45,7 @@
 </script>
 
 
-        <meta name="keywords" content="">
+        <meta name="keywords" content="mirrors,page,">
         <meta name="description" content="镜像(加速源)收集">
         <meta name="author" content="linx">
         <title>镜像(加速源)收集</title>
@@ -77,70 +77,78 @@
                     <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
                     <a class="name" href="/about.me.html">linx</a>
                     
-                    <span class="date" data-time="1475501460"><span class="from"></span></span>
+                    <span class="date" data-time="1429682513"><span class="from"></span></span>
                     
-                    <span class="tags"></span>
+                    <span class="tags"><a class="tag" href="/tag/mirrors/index.html">mirrors</a><a class="tag" href="/tag/page/index.html">page</a></span>
                 </section>
-                <article class="content"><h2>Nuget</h2>
+                <article class="content"><p>#</p>
 
-<blockquote>
-<p><a href="http://nuget.fishlee.net/v3/index.json">http://nuget.fishlee.net/v3/index.json</a>
-From <a href="https://blog.fishlee.net/2015/10/14/announcing_nuget_acceleration_service/">这里</a></p>
-</blockquote>
+<h2>Nuget</h2>
+
+<pre><code class="language-link">http://nuget.fishlee.net/v3/index.json 
+</code></pre>
+
+<p>From <a href="https://blog.fishlee.net/2015/10/14/announcing_nuget_acceleration_service/">这里</a></p>
 
 <h2>Python Pypi</h2>
 
-<blockquote>
-<pre><code>&gt;vi ~/.pip/pip.conf
+<pre><code class="language-bash">vi ~/.pip/pip.conf  
+</code></pre>
 
-&gt;[global]
-&gt;index-url = http://pypi.v2ex.com/simple
-&gt;[install]
-&gt;trusted-host=pypi.v2ex.com
-&gt;:wq
-&gt;```
+<pre><code class="language-ini">[global]  
+index-url = http://pypi.v2ex.com/simple  
+[install]  
+trusted-host=pypi.v2ex.com  
+</code></pre>
 
-## NPM
-&gt;```
-&gt;vi ~/.npmrc
-&gt;
-&gt;registry = https://registry.npm.taobao.org
-&gt;```
-&gt;From [淘宝NPM镜像](https://npm.taobao.org/)
+<p><code>:wq</code></p>
 
-## Ubuntu 
-&gt; [163镜像](http://mirrors.163.com/.help/ubuntu.html)
+<h2>NPM</h2>
 
-## Openwrt
-&gt; [http://openwrt.proxy.ustclug.org/](http://openwrt.proxy.ustclug.org/)
+<pre><code class="language-bash">vi ~/.npmrc  
+</code></pre>
 
-## Homebrew
-&gt; 
-&gt;&gt; [http://homebrew-mirror-china.tycdn.net/](http://homebrew-mirror-china.tycdn.net/)
-&gt;&gt; `export HOMEBREW_BOTTLE_DOMAIN=&quot;http://homebrew-mirror-china.tycdn.net&quot;`
+<pre><code class="language-ini">registry = https://registry.npm.taobao.org  
+</code></pre>
 
-&gt;----
-&gt;&gt; [https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
-&gt;
-```bash
-cd &quot;$(brew --repo)&quot;
-git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+<p>From <a href="https://npm.taobao.org/">淘宝NPM镜像</a></p>
+
+<h2>Ubuntu</h2>
+
+<p><a href="http://mirrors.163.com/.help/ubuntu.html">163镜像</a></p>
+
+<h2>Openwrt</h2>
+
+<p><a href="http://openwrt.proxy.ustclug.org/">http://openwrt.proxy.ustclug.org/</a></p>
+
+<h2>Homebrew</h2>
+
+<p><a href="http://homebrew-mirror-china.tycdn.net/">http://homebrew-mirror-china.tycdn.net/</a></p>
+
+<pre><code class="language-bash">export HOMEBREW_BOTTLE_DOMAIN=&quot;http://homebrew-mirror-china.tycdn.net&quot;
+</code></pre>
+
+<hr>
+
+<p><a href="https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git">https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git</a></p>
+
+<pre><code class="language-bash">cd &quot;$(brew --repo)&quot;  
+git remote set-url origin git://mirrors.ustc.edu.cn/brew.git  
 </code></pre>
 
 <p><a href="https://lug.ustc.edu.cn/wiki/mirrors/help/homebrew-bottles">https://lug.ustc.edu.cn/wiki/mirrors/help/homebrew-bottles</a></p>
 
-<pre><code class="language-bash"># 对于bash用户：
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.bash_profile
-source ~/.bash_profile
-# 对于zsh用户
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.zshrc
-source ~/.zshrc
+<pre><code class="language-bash"># 对于bash用户：  
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.bash_profile  
+source ~/.bash_profile  
+# 对于zsh用户  
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.zshrc  
+source ~/.zshrc  
 </code></pre>
 
 <hr>
 
 <p><a href="http://ban.ninja/">http://ban.ninja/</a></p>
-</blockquote>
 </article>
                 <section class="author">
                     <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
@@ -151,13 +159,13 @@ source ~/.zshrc
                     
                     <section class="nav prev more">
                         <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/recent-computer-fever-serious.html">最近电脑发热严重</a>
+                        <a class="link" href="/friends.html">朋友们...</a>
                     </section>
                     
                     
                     <section class="nav next more">
                         <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/wpf-using-radiogroup-to-achieve-the-effect-of-listbox.html">WPF 用ListBox实现RadioGroup的效果</a>
+                        <a class="link" href="/mylinks.html">Pages</a>
                     </section>
                     
                 </section>

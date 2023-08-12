@@ -119,7 +119,7 @@
 <li>10.11.0.2 PVE</li>
 <li>10.11.0.4 打洞服务</li>
 <li>10.11.0.5 梯子服务</li>
-<li>10.11.0.6 dns服务</li>
+<li>10.11.0.8 dns服务</li>
 </ul>
 
 <h2 id="toc_2">配置两条网络连接</h2>
@@ -186,8 +186,16 @@ add address=10.11.0.0/24 dns-server=10.11.0.1 gateway=10.11.0.1
 <li>配置DNS</li>
 </ol>
 
+<p>由于ros的dns配置allow-remote-requests后, 经常出现缓存错误的问题. 采用直接转发的方式, 感觉这样更稳定</p>
+
 <pre><code>/ip dns
-set allow-remote-requests=yes cache-size=20480KiB servers=10.11.0.6
+set cache-size=204800KiB max-concurrent-queries=1000 max-concurrent-tcp-sessions=200 query-server-timeout=5s servers=10.11.0.8
+
+
+/ip firewall nat
+add action=dst-nat chain=dstnat comment=&quot;dns转发&quot; dst-port=53 in-interface=br-lan protocol=tcp src-address=!10.11.0.8 to-addresses=10.11.0.8 to-ports=53
+add action=dst-nat chain=dstnat comment=&quot;dns转发&quot; dst-port=53 in-interface=br-lan protocol=udp src-address=!10.11.0.8 to-addresses=10.11.0.8 to-ports=53
+
 </code></pre>
 
 <ol>
@@ -407,8 +415,13 @@ add action=mark-routing chain=prerouting connection-mark=conn-ct in-interface=\
                 </section>
                 <section class="recommend">
                     
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/%e4%bd%bf%e7%94%a8wireguard%e8%bf%9b%e8%a1%8c%e7%bb%84%e7%bd%91.html">使用wireguard进行组网</a>
+                    </section>
                     
-                    <section class="nav next">
+                    
+                    <section class="nav next more">
                         <div class="head">下一篇 ▶</div>
                         <a class="link" href="/ros-settings.html">ROS settings</a>
                     </section>
