@@ -45,9 +45,10 @@
 </script>
 
 
-        <meta name="keywords" content="记录解决方案">
-        <meta name="description" content="记录解决方案">
-        <title>Linx&#39;s Solution</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="oracle密码过期后的处理">
+        <meta name="author" content="">
+        <title>oracle密码过期后的处理</title>
     </head>
     <body>
         <article class="container">
@@ -70,63 +71,46 @@
 
 </header>
 
-            <article class="main page">
+            <article class="main article">
+                <h1 class="title">oracle密码过期后的处理</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1692178364"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><p>由于等保搞事, 给数据库加了密码过期策略. 本来设置的是90天, 不知道咋的, 没几天就提示密码过期, 修改密码后开始提示密码锁定</p>
 
-                <header class="header site">
+<p>登录dba</p>
 
-                    
-                        <img class="logo" src="/images/photo.jpg" />
+<p>修改密码</p>
 
-                        <h1 class="title">Linx&#39;s Solution</h1>
-                        <h2 class="subtitle">记录解决方案</h2>
-                    
-                    
-                    <div class="search-wrap">
-  <input id="search" class="search" placeholder='搜索...' data-root="">
-  <svg class="icon" width="25" height="25" viewBox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg>
-</div>
+<pre><code>alter user &lt;账号&gt; identified by &lt;密码&gt;
+</code></pre>
 
-                </header>
-                <ul class="article-list">
+<p>解锁账号</p>
+
+<pre><code>alter user &lt;账号&gt; account unlock
+</code></pre>
+</article>
+                <section class="author">
                     
-                    <li class="article">
-                        <a class="title" href="/%e4%b8%89%e6%97%a0-%e6%99%ae%e9%80%9adisco.html">三无《普通DISCO》</a>
-                        
-                        
-                        <section class="info">
-                            
-                            
-                            
-                            <span class="date" data-time="0"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            
-                            </span>
-                        </section>
-                    </li>
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
                     
-                    <li class="article">
-                        <a class="title" href="/win8_-_add_a_context_menu_will_be_displayed_hold_down_the_shift_right-click_menu.html">win8 右键菜单</a>
-                        
-                        
-                        <section class="info">
-                            
-                            
-                            
-                            <span class="date" data-time="0"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            
-                            </span>
-                        </section>
-                    </li>
                     
-                </ul>
-                <section class="page-nav">
-                    <a class="prev" href="/page35.html">◀ 上一页</a>
-                    <span class="nav">36 / 36</span>
+                    <section class="nav next">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/pve%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%90%af%e7%94%a8xterm.js.html">pve虚拟机启用xterm.js</a>
+                    </section>
                     
                 </section>
+                
+
             </article>
         </article>
         <footer class="footer">
@@ -140,6 +124,11 @@
     <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
 </footer>
 
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
     </body>
-    <script src="/bundle/index.js"></script>
 </html>
