@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-08-16T01:44:20Z</updated>
+  <updated>2023-09-21T08:41:35Z</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>群晖相关调整</title>
+    <updated>2023-09-11T16:18:14Z</updated>
+    <id>tag:linx.run,2023-09-11:/群晖相关调整.html</id>
+    <link href="http://linx.run/群晖相关调整.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>oracle密码过期后的处理</title>
     <updated>2023-08-16T09:32:44Z</updated>
@@ -68,13 +75,6 @@
     <updated>2023-06-16T14:29:25+08:00</updated>
     <id>tag:linx.run,2023-06-16:/mongodb-import-and-export.html</id>
     <link href="http://linx.run/mongodb-import-and-export.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>influxdb v1 export and import data</title>
-    <updated>2023-03-30T17:25:41+08:00</updated>
-    <id>tag:linx.run,2023-03-30:/influxdb-v1-export-and-import-data.html</id>
-    <link href="http://linx.run/influxdb-v1-export-and-import-data.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
