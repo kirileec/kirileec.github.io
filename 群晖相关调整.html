@@ -90,8 +90,14 @@
 
 <h2>安装WebStation后, 仍然想要跳转到5000端口</h2>
 
-<pre><code>vim /usr/local/etc/nginx/sites-enabled/server.webstation.conf
+<p><del>vim /usr/local/etc/nginx/sites-enabled/server.webstation.conf</del></p>
+
+<pre><code>vim /usr/local/etc/nginx/sites-available/xxxxx.w3conf
 </code></pre>
+
+<p>其中xxxx为随机的, 只能一个个打开看看, 哪个跟sites-enabled/server.webstation.conf文件一样.</p>
+
+<p>如果直接修改sites-enabled下的文件, 那么重启NAS后, 做的改动都会失效</p>
 
 <p>加入一段</p>
 
