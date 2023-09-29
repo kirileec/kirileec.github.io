@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://linx.run</loc>
-    <lastmod>2023-09-23T10:18:57.131219432Z</lastmod>
+    <lastmod>2023-09-29T17:47:18.434322886Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://linx.run/端口转发到另外的局域网.html</loc>
+    <lastmod>2023-09-30T01:18:31Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
