@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-09-29T17:47:18Z</updated>
+  <updated>2023-10-05T15:53:43Z</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>记录一次局域网不能互访的问题</title>
+    <updated>2023-10-05T23:38:14Z</updated>
+    <id>tag:linx.run,2023-10-05:/记录一次局域网不能互访的问题.html</id>
+    <link href="http://linx.run/记录一次局域网不能互访的问题.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>端口转发到另外的局域网</title>
     <updated>2023-09-30T01:18:31Z</updated>
@@ -68,13 +75,6 @@
     <updated>2023-06-18T20:16:34+08:00</updated>
     <id>tag:linx.run,2023-06-18:/ros-settings.html</id>
     <link href="http://linx.run/ros-settings.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>navicat forgot password</title>
-    <updated>2023-06-16T14:48:22+08:00</updated>
-    <id>tag:linx.run,2023-06-16:/navicat-forgot-password.html</id>
-    <link href="http://linx.run/navicat-forgot-password.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>

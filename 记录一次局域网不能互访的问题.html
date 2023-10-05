@@ -45,10 +45,10 @@
 </script>
 
 
-        <meta name="keywords" content="杂谈,other,">
-        <meta name="description" content="记一次重装后的office2010安装">
-        <meta name="author" content="linx">
-        <title>记一次重装后的office2010安装</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="记录一次局域网不能互访的问题">
+        <meta name="author" content="">
+        <title>记录一次局域网不能互访的问题</title>
     </head>
     <body>
         <article class="container">
@@ -72,50 +72,66 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">记一次重装后的office2010安装</h1>
+                <h1 class="title">记录一次局域网不能互访的问题</h1>
                 <section class="info">
-                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
-                    <a class="name" href="/about.me.html">linx</a>
                     
-                    <span class="date" data-time="1319292840"><span class="from"></span></span>
                     
-                    <span class="tags"><a class="tag" href="/tag/%e6%9d%82%e8%b0%88/index.html">杂谈</a><a class="tag" href="/tag/other/index.html">other</a></span>
+                    
+                    <span class="date" data-time="1696549094"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
                 </section>
-                <article class="content"><p>继上次中毒后，选择了重装这条路，幸好系统盘里除了软件什么都没有，省去了很多步骤，采用方法</p>
+                <article class="content"><h2>环境说明</h2>
 
-<p><a href="http://blog.sina.com.cn/s/blog_612685570100u9w7.html">链接</a></p>
+<ul>
+<li>10.10.0.1 openwrt 主路由器</li>
+<li>10.10.0.2 黑裙NAS</li>
+<li>10.10.0.200 一台ubuntu自组机器</li>
+<li>10.10.0.4 另一个路由器, 关闭DHCP</li>
+</ul>
 
-<p>只备份了utorrent的记录文件【运行<code>%Appdata%</code>即可找到】和桌面上的文件，开始重装&hellip;&hellip;</p>
+<p>主路由下接一个5口交换机, 上面两个机器均接在LAN口和交换机上. .4则为LAN口接到交换机上</p>
 
-<p>尝试了一下那个传说中的win7精简版，使用GHOST安装，安装过程一切正常，装完后，关闭UAC，激活，还原桌面，安装显卡驱动，设置环境变量等等，突然看到桌面上一堆office文件，想起要装office。本来安装一切顺利，但因为采用了，一种特别的激活方式（删除文件，删除注册表），导致打开文件时提示许可证什么的，郁闷，只好重新安装，然而新问题出来了：每次安装到最后，总会提示安装过程中出错，我想难道是卸载未完全，于是拿出了office2010完全卸载工具，清理&hellip;&hellip;重启，安装&hellip;..汗，再次出现了。没办法，我可不想重装系统，搜索&hellip;..终于发现了一篇<br>
-<a href="http://wenku.baidu.com/view/48df653b580216fc700afd65.html">文章</a></p>
+<h2>现象描述</h2>
 
-<p>，帮了大忙，果然是其中一个组件的问题，于是尝试之，成功！哈哈！</p>
+<ul>
+<li>.1 &lt;-&gt; .2 之间不能互相ping</li>
+<li>.2 和 .200 .4 均可以互相ping</li>
+<li>.2的网关修改为.4, 则正常</li>
+<li>除了.2 其他均正常</li>
+<li>.2 网关为.1时, 外网都不能访问</li>
+</ul>
 
-<p>同时想分享一个技巧，即自定义工具，运行cmd后，cd到office2010的虚拟光驱的盘符，然后输入setup.exe
-/admin回车可以打开，在里面配置各种安装选项，可以使你的后续安装过程更加简化（无需设置了），重点是里面有一项是“删除以前的office”而这一项在直接启动setup.exe是无法设置的。同时这个方法保存的配置文件可以留着下次安装用或者给别人用，很好。
-据说原文地址是
-<a href="http://www.sxqisheng.com/jishuinfo.asp?id=59">原文地址</a>
-反正我卡得打不开
-<a href="http://blog.pconline.com.cn/article/2240473.html">链接</a>
-这个打得开</p>
+<h2>检查流程</h2>
+
+<ul>
+<li>.2 修改网关后就正常. 说明.2内部的路由无问题. 排除NAS自己设置的问题</li>
+<li>.1下其它局域网机器均正常, .1上应该也没有什么问题</li>
+<li>由于.4关闭了DHCP, 应该也不是DHCP广播的问题</li>
+</ul>
+
+<h2>解决</h2>
+
+<p>由于.2是一台黑群, 最近更换了序列号, 同时也修改了网卡MAC地址. 本来这样是没问题的, 但是我之前手贱, 在NAS中已经配置为静态IP的情况下, 在 .1上进行了IP/MAC地址绑定. 从而, 对于.1来说, 局域网中 10.10.0.2这个IP对应了多个mac地址. .1作为交换机的时候, 发现有多个mac地址, 无法确定流量应该向哪个设备发送.</p>
+
+<ul>
+<li>.1 -ping-&gt; .2 无法确定往哪儿发</li>
+<li>.2 -ping-&gt; .1 .1收到后无法确定数据包往哪里回复</li>
+</ul>
+
+<p>删除IP/MAC绑定记录即可解决</p>
 </article>
                 <section class="author">
-                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
-                    <a class="name" href="/about.me.html">linx</a>
-                    <div class="intro">记录我自己的各种解决方案</div>
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/data_backup_is_recommended.html">资料备份方式推荐</a>
-                    </section>
                     
-                    
-                    <section class="nav next more">
+                    <section class="nav next">
                         <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/win8_-_add_a_context_menu_will_be_displayed_hold_down_the_shift_right-click_menu.html">win8 右键菜单</a>
+                        <a class="link" href="/%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91%e5%88%b0%e5%8f%a6%e5%a4%96%e7%9a%84%e5%b1%80%e5%9f%9f%e7%bd%91.html">端口转发到另外的局域网</a>
                     </section>
                     
                 </section>
