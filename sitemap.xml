@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://linx.run</loc>
-    <lastmod>2023-10-05T15:53:43.757879245Z</lastmod>
+    <lastmod>2023-10-16T07:48:25.916386174Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://linx.run/ros.html</loc>
+    <lastmod>2023-10-16T15:25:15Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -1771,12 +1776,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/win8_-_add_a_context_menu_will_be_displayed_hold_down_the_shift_right-click_menu.html</loc>
+    <loc>http://linx.run/三无-普通disco.html</loc>
     <lastmod>0001-01-01T00:00:00Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://linx.run/三无-普通disco.html</loc>
+    <loc>http://linx.run/win8_-_add_a_context_menu_will_be_displayed_hold_down_the_shift_right-click_menu.html</loc>
     <lastmod>0001-01-01T00:00:00Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-10-05T15:53:43Z</updated>
+  <updated>2023-10-16T07:48:25Z</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>ros pppoe不能获得公网IP</title>
+    <updated>2023-10-16T15:25:15Z</updated>
+    <id>tag:linx.run,2023-10-16:/ros.html</id>
+    <link href="http://linx.run/ros.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>记录一次局域网不能互访的问题</title>
     <updated>2023-10-05T23:38:14Z</updated>
@@ -68,13 +75,6 @@
     <updated>2023-07-13T21:08:44+08:00</updated>
     <id>tag:linx.run,2023-07-13:/ros双线分流+国外ip转到旁路由.html</id>
     <link href="http://linx.run/ros双线分流+国外ip转到旁路由.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>ROS settings</title>
-    <updated>2023-06-18T20:16:34+08:00</updated>
-    <id>tag:linx.run,2023-06-18:/ros-settings.html</id>
-    <link href="http://linx.run/ros-settings.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
