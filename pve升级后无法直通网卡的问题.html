@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="镜像(加速源)收集">
-        <meta name="author" content="linx">
-        <title>镜像(加速源)收集</title>
+        <meta name="description" content="PVE升级后无法直通网卡的问题">
+        <meta name="author" content="">
+        <title>PVE升级后无法直通网卡的问题</title>
     </head>
     <body>
         <article class="container">
@@ -72,92 +72,66 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">镜像(加速源)收集</h1>
+                <h1 class="title">PVE升级后无法直通网卡的问题</h1>
                 <section class="info">
-                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
-                    <a class="name" href="/about.me.html">linx</a>
                     
-                    <span class="date" data-time="1475530260"><span class="from"></span></span>
+                    
+                    
+                    <span class="date" data-time="1698101188"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h2>Nuget</h2>
+                <article class="content"><h2>源起</h2>
 
-<blockquote>
-<p><a href="http://nuget.fishlee.net/v3/index.json">http://nuget.fishlee.net/v3/index.json</a>
-From <a href="https://blog.fishlee.net/2015/10/14/announcing_nuget_acceleration_service/">这里</a></p>
-</blockquote>
+<p>源于某个周日下午(2023-10-22), 看着最近一段时间逐步完善的软路由网络架构. 已经可以比较完美地满足现有的网络需求</p>
 
-<h2>Python Pypi</h2>
+<ul>
+<li>国内外流量分流</li>
+<li>端口映射</li>
+<li>P2P组网</li>
+<li>媒体硬解</li>
+</ul>
 
-<blockquote>
-<pre><code>&gt;vi ~/.pip/pip.conf
+<p>内心膨胀了, 开始想要把基础设施(PVE)升级到最新版本了. 甚至我完全没有去看更新日志, 脑子一热, 找了个流程就开始了升级.</p>
 
-&gt;[global]
-&gt;index-url = http://pypi.v2ex.com/simple
-&gt;[install]
-&gt;trusted-host=pypi.v2ex.com
-&gt;:wq
-&gt;```
+<p>升级过程一切顺利, 正常看到了版本号变更. 噩耗就发生在第一次重启之后. 发现我的ROS无法启动</p>
 
-## NPM
-&gt;```
-&gt;vi ~/.npmrc
-&gt;
-&gt;registry = https://registry.npm.taobao.org
-&gt;```
-&gt;From [淘宝NPM镜像](https://npm.taobao.org/)
+<h2>源途</h2>
 
-## Ubuntu 
-&gt; [163镜像](http://mirrors.163.com/.help/ubuntu.html)
+<p>在日志中看到了简单的<code>got timeout</code>, 由于其他虚拟机正常运行, 于是将目标投向了这些虚拟机不同的地方&mdash;直通网卡.</p>
 
-## Openwrt
-&gt; [http://openwrt.proxy.ustclug.org/](http://openwrt.proxy.ustclug.org/)
+<p>除了PVE的管理口, 是通过挂载进去的, 其余三个网口都是通过PCI直通的方式进入到ROS中. 在经过多次删减后, 发现<code>0000:05:00:0</code> 也就是最后一个网口, 只要去掉这个网口即可正常开机. 本来这个网口也被我拿来当作2.5G LAN的用途, 为了暂时先解决没网的问题, 只好先将这个网口先空余出来, 其他设备先接入到交换机中.</p>
 
-## Homebrew
-&gt; 
-&gt;&gt; [http://homebrew-mirror-china.tycdn.net/](http://homebrew-mirror-china.tycdn.net/)
-&gt;&gt; `export HOMEBREW_BOTTLE_DOMAIN=&quot;http://homebrew-mirror-china.tycdn.net&quot;`
+<p>第二天, 本着试试的心态, 把这个网口直通到了一个win10的虚拟机, 依然启动不了. 这时想到了之前手动直通时接触到的一个命令 <code>dmesg</code>. 找到了一个可能的错误</p>
 
-&gt;----
-&gt;&gt; [https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
-&gt;
-```bash
-cd &quot;$(brew --repo)&quot;
-git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+<pre><code>Unable to change power state from D3cold to D0, device inaccessible
 </code></pre>
 
-<p><a href="https://lug.ustc.edu.cn/wiki/mirrors/help/homebrew-bottles">https://lug.ustc.edu.cn/wiki/mirrors/help/homebrew-bottles</a></p>
+<p>并且这一句前面刚好就是 <code>0000:05:00:0</code></p>
 
-<pre><code class="language-bash"># 对于bash用户：
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.bash_profile
-source ~/.bash_profile
-# 对于zsh用户
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' &gt;&gt; ~/.zshrc
-source ~/.zshrc
-</code></pre>
+<h2>源灭</h2>
 
-<hr>
+<p>根据关键词搜索, 最终找到了 <code>pcie_port_pm=off</code> 将此参数加入到 pve的 <code>/etc/default/grub</code> =&gt; <code>GRUB_CMDLINE_LINUX_DEFAULT=</code> 然后<code>update-grub</code>. 重启后再次将最后一个网口直通到win10虚拟机, 正常使用. 然后又胆大包天, 直接给怼到ROS里(这时候人还不在家), 战战兢兢地点击重启按钮, 手那个抖的啊&hellip;</p>
 
-<p><a href="http://ban.ninja/">http://ban.ninja/</a></p>
-</blockquote>
+<h2>源因</h2>
+
+<p>pve8使用了6.2.x的内核, 这个版本内核对于Intel I225网卡有bug, 主要就是在切换设备电源状态的时候失败了, 导致vfio模块无法正常加载所有网卡. 增加上面的参数就是关闭pcie端口的电源管理功能, 跳过这一步骤. 由于网卡也没有休眠之类的, 插着么总是会用的, 因此对于功耗的影响不大.</p>
+
+<p>改天还是想办法把版本退回去好了, 对于新版本没有什么追求, 还是稳定最好.</p>
+
+<p>教训: 升级!!! 升个鬼的级!!!</p>
 </article>
                 <section class="author">
-                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
-                    <a class="name" href="/about.me.html">linx</a>
-                    <div class="intro">记录我自己的各种解决方案</div>
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/recent-computer-fever-serious.html">最近电脑发热严重</a>
-                    </section>
                     
-                    
-                    <section class="nav next more">
+                    <section class="nav next">
                         <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/wpf-using-radiogroup-to-achieve-the-effect-of-listbox.html">WPF 用ListBox实现RadioGroup的效果</a>
+                        <a class="link" href="/ros.html">ros pppoe不能获得公网IP</a>
                     </section>
                     
                 </section>
@@ -180,11 +154,6 @@ source ~/.zshrc
         <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
             <svg width="50" height="50" viewBox="0 0 878 1024">
                 <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
-            </svg>
-        </div>
-    </body>
-</html>
-7l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
             </svg>
         </div>
     </body>

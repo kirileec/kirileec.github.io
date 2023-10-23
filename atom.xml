@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-10-16T07:48:25Z</updated>
+  <updated>2023-10-23T15:20:41Z</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>PVE升级后无法直通网卡的问题</title>
+    <updated>2023-10-23T22:46:28Z</updated>
+    <id>tag:linx.run,2023-10-23:/pve升级后无法直通网卡的问题.html</id>
+    <link href="http://linx.run/pve升级后无法直通网卡的问题.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>ros pppoe不能获得公网IP</title>
     <updated>2023-10-16T15:25:15Z</updated>
@@ -68,13 +75,6 @@
     <updated>2023-07-20T09:31:20Z</updated>
     <id>tag:linx.run,2023-07-20:/使用wireguard进行组网.html</id>
     <link href="http://linx.run/使用wireguard进行组网.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>ROS双线分流, 国外IP转到旁路由</title>
-    <updated>2023-07-13T21:08:44+08:00</updated>
-    <id>tag:linx.run,2023-07-13:/ros双线分流+国外ip转到旁路由.html</id>
-    <link href="http://linx.run/ros双线分流+国外ip转到旁路由.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>

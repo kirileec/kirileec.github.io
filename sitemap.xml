@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://linx.run</loc>
-    <lastmod>2023-10-16T07:48:25.916386174Z</lastmod>
+    <lastmod>2023-10-23T15:20:41.090371783Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://linx.run/pve升级后无法直通网卡的问题.html</loc>
+    <lastmod>2023-10-23T22:46:28Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
