@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://linx.run</loc>
-    <lastmod>2023-12-30T16:04:23.076434042Z</lastmod>
+    <lastmod>2024-01-17T14:47:14.372015556Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://linx.run/关于晚霞.html</loc>
+    <lastmod>2024-01-17T22:46:19Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
