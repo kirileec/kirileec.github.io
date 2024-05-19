@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2024-01-18T16:00:52Z</updated>
+  <updated>2024-05-19T14:33:48Z</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
+  <entry>
+    <title>ip转发</title>
+    <updated>2024-05-19T22:26:40Z</updated>
+    <id>tag:linx.run,2024-05-19:/ip转发.html</id>
+    <link href="http://linx.run/ip转发.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>ros ddns portmap</title>
+    <updated>2024-05-19T21:36:17Z</updated>
+    <id>tag:linx.run,2024-05-19:/ros ddns portmap.html</id>
+    <link href="http://linx.run/ros ddns portmap.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
   <entry>
     <title>记录第一次被裁</title>
     <updated>2024-01-18T23:28:36Z</updated>
@@ -61,20 +75,6 @@
     <updated>2023-09-11T16:18:14Z</updated>
     <id>tag:linx.run,2023-09-11:/群晖相关调整.html</id>
     <link href="http://linx.run/群晖相关调整.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>oracle密码过期后的处理</title>
-    <updated>2023-08-16T09:32:44Z</updated>
-    <id>tag:linx.run,2023-08-16:/oracle.html</id>
-    <link href="http://linx.run/oracle.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>pve虚拟机启用xterm.js</title>
-    <updated>2023-08-10T11:39:25Z</updated>
-    <id>tag:linx.run,2023-08-10:/pve虚拟机启用xterm.js.html</id>
-    <link href="http://linx.run/pve虚拟机启用xterm.js.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
