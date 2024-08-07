@@ -46,9 +46,9 @@
 
 
         <meta name="keywords" content="">
-        <meta name="description" content="ip转发">
+        <meta name="description" content="内网docker使用traefik作为网关">
         <meta name="author" content="">
-        <title>ip转发</title>
+        <title>内网docker使用traefik作为网关</title>
     </head>
     <body>
         <article class="container">
@@ -72,31 +72,78 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">ip转发</h1>
+                <h1 class="title">内网docker使用traefik作为网关</h1>
                 <section class="info">
                     
                     
                     
-                    <span class="date" data-time="1716157600"><span class="from"></span></span>
+                    <span class="date" data-time="1723055814"><span class="from"></span></span>
                     
                     <span class="tags"></span>
                 </section>
-                <article class="content"><h1>IP转发的防火墙配置</h1>
+                <article class="content"><p>由于内网docker上跑了一些服务，但是发现经常不记得它们的端口号，于是很多时候直接就把它们忘掉了，也就偶尔记得一些常用的。遂决定上traefik来用域名去访问它们。</p>
 
-<p><code>/etc/sysctl.conf</code> 文件</p>
+<h2>配置泛域名解析</h2>
 
-<pre><code>net.ipv4.ip_forward=1
-net.ipv6.conf.all.forwarding=1
+<p>最好是有一个没啥用的域名，如果域名已经在其他地方用了，那就要保证添加的泛域名不要把原来的解析记录给搞失效了，比如我的域名就已经配置过泛域名了。于是随便找了个linx.com的，用来在内网使用，没打算上https，所以问题不大。</p>
+
+<p>由于内网已有mosdns服务，直接在mosdns的hosts.txt 增加一条 <code>domain:linx.com 10.10.0.16</code></p>
+
+<p>随便ping一个 xxx.linx.com 测试下看看</p>
+
+<h2>配置traefik容器</h2>
+
+<ul>
+<li><p>image: traefik:latest</p></li>
+
+<li><p>command：</p>
+
+<pre><code>'--api=true' 
+'--api.dashboard=true' 
+'--api.insecure=true' 
+'--entrypoints.http.address=:80' 
+'--providers.docker=true' 
+'--providers.docker.endpoint=unix:///var/run/docker.sock' 
+'--providers.docker.exposedbydefault=true' 
+'--providers.docker.defaultrule=Host(`{{ .ContainerName }}.linx.com`)'
+</code></pre></li>
+</ul>
+
+<p>最后两行的意思是，反代所有容器，并且以 容器名.linx.com 的方式访问，这样就无需到每个容器里都增加labels了</p>
+
+<ul>
+<li><p>volume: <code>/var/run/docker.sock:/var/run/docker.sock</code></p></li>
+
+<li><p>network: <code>host</code></p>
+
+<p>由于还有一些服务是docker compose运行的，不想把这些都跑在一个network下，于是就偷个懒</p></li>
+
+<li><p>labels:</p>
+
+<pre><code>traefik.http.routers.traefik-dashboard-api.entrypoints=http
+traefik.http.routers.traefik-dashboard-api.rule=Host(`linx.com`) &amp;&amp; PathPrefix(`/api`)
+traefik.http.routers.traefik-dashboard-api.service=api@internal
+traefik.http.routers.traefik-dashboard.entrypoints=http
+traefik.http.routers.traefik-dashboard.rule=Host(`linx.com`)
+traefik.http.routers.traefik-dashboard.service=dashboard@internal
+</code></pre></li>
+
+<li><p>restart: <code>unless-stoped</code></p></li>
+</ul>
+
+<h2>手动指定端口</h2>
+
+<p>如果一个容器有多个端口，然后它运行时，你发现它的第一个端口（docker ps）不是你要的端口，则需要手动指定端口，通过labels设置即可</p>
+
+<pre><code>`traefik.http.services.emby-emby.loadbalancer.server.port=8096`
+docker compose创建的服务，在traefik中会以 `堆栈名-服务名` 的形式存在
 </code></pre>
 
-<p>创建一个sh脚本，并加入自启动</p>
+<p>docker compose 下是这样的</p>
 
-<pre><code>iptables -I FORWARD -i eth -j ACCEPT
-iptables -I FORWARD -o eth -j ACCEPT
-iptables -t nat -I POSTROUTING -o eth -j MASQUERADE
+<pre><code>labels:
+  - &quot;traefik.http.services.emby-emby.loadbalancer.server.port=8096&quot;
 </code></pre>
-
-<p>eth 代表需要进行处理的虚拟网卡，例如zerotier、tailscale、netbird等等服务运行后创建的虚拟网卡</p>
 </article>
                 <section class="author">
                     
@@ -105,15 +152,10 @@ iptables -t nat -I POSTROUTING -o eth -j MASQUERADE
                 </section>
                 <section class="recommend">
                     
-                    <section class="nav prev more">
-                        <div class="head">◀ 上一篇</div>
-                        <a class="link" href="/%e5%86%85%e7%bd%91docker%e4%bd%bf%e7%94%a8traefik%e4%bd%9c%e4%b8%ba%e7%bd%91%e5%85%b3.html">内网docker使用traefik作为网关</a>
-                    </section>
                     
-                    
-                    <section class="nav next more">
+                    <section class="nav next">
                         <div class="head">下一篇 ▶</div>
-                        <a class="link" href="/ros%20ddns%20portmap.html">ros ddns portmap</a>
+                        <a class="link" href="/ip%e8%bd%ac%e5%8f%91.html">ip转发</a>
                     </section>
                     
                 </section>

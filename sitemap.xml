@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://linx.run</loc>
-    <lastmod>2024-05-19T14:33:48.963490602Z</lastmod>
+    <lastmod>2024-08-07T12:14:32.766952167Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://linx.run/内网docker使用traefik作为网关.html</loc>
+    <lastmod>2024-08-07T18:36:54Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
