@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="ros ddns portmap">
+        <meta name="author" content="">
+        <title>ros ddns portmap</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">ros ddns portmap</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1716125777"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><h1>RouterOS 配置ddns、端口转发、内网回流</h1>
+
+<p>需要有公网IP</p>
+
+<h2>RouterOS DDNS配置</h2>
+
+<p><code>System</code>-&gt;<code>Scripts</code> 添加一个脚本，内容如下，依赖 <a href="https://github.com/kirileec/Aliddns-Ros">https://github.com/kirileec/Aliddns-Ros</a> 这个我自己写的小服务（同时还支持群晖的自定义DDNS调用）</p>
+
+<p>PS：注意ROS版本升级后，fetch中需要移除 <code>mode=http</code> 否则会报错导致请求失败，仓库那边还没更新</p>
+
+<pre><code>#xxxx处替换为需要解析的域名AccessKeyID  
+:local AccessKeyID &quot;xxxxx&quot;  
+#xxxx处替换为需要解析的域名AccessKeySecret  
+:local AccessKeySecret &quot;xxxx&quot;   
+#xxxx处替换为需要解析的域名，如baidu.com, 这里是根域名
+:local DomainName &quot;xxxx&quot;  
+#xxxx处替换为需要解析的子域名，如home.baidu.com只需要填home即可   
+:local RR &quot;nas&quot;   
+#xxxx处替换为网络出口名称，如pppoe-out1  
+:local pppoe &quot;xxxx&quot;   
+
+# 获取拨号接口的公网地址
+:local IpAddr [/ip address get [/ip address find interface=$pppoe] address]  
+:set IpAddr [:pick $IpAddr 0 ([len $IpAddr] -3)]  
+:log warning &quot;当前公网IP地址：$IpAddr&quot;  
+
+# 拼接请求地址
+:local aliddns &quot;https://ros.linx.run/aliddns?AccessKeyID=$AccessKeyID&amp;AccessKeySecret=$AccessKeySecret&amp;RR=$RR&amp;DomainName=$DomainName&amp;IpAddr=$IpAddr&quot;  
+
+# 调用
+:local result [/tool fetch url=(&quot;$aliddns&quot;) http-method=get as-value output=user];  
+:log warning $result  
+
+:if ($result-&gt;&quot;status&quot; = &quot;finished&quot;) do={  
+
+:if ($result-&gt;&quot;data&quot; = &quot;loginerr&quot;) do={  
+:log warning &quot;阿里云登录失败！!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;iperr&quot;) do={  
+:log warning &quot;修改解析地址信息失败!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;ip&quot;) do={  
+:log warning &quot;修改解析地址信息成功!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;domainerr&quot;) do={  
+:log warning &quot;添加新域名解析失败!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;domain&quot;) do={  
+:log warning &quot;添加新域名解析成功!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;same&quot;) do={  
+:log warning &quot;当前配置解析地址与公网IP相同，不需要修改!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;ip&quot;) do={  
+:log warning &quot;更新IP信息成功!&quot;;  
+:log warning &quot;$IpAddr!&quot;;  
+}  
+:if ($result-&gt;&quot;data&quot; = &quot;domain&quot;) do={  
+:log warning &quot;增加域名信息成功!&quot;;  
+}  
+}  
+} 
+</code></pre>
+
+<p>每个需要DDNS的子域名都配置一个脚本即可。</p>
+
+<p><code>System</code>-&gt;<code>Scheduler</code> 添加一个定时任务，间隔随意，内容就调用上面的脚本即可</p>
+
+<h2>RouterOS端口转发</h2>
+
+<p><code>IP</code>-&gt;<code>Firewall</code>-&gt;<code>NAT</code></p>
+
+<pre><code>0    ;;; portmap
+      chain=dstnat action=dst-nat to-addresses=内部IP to-ports=内部端口 protocol=tcp dst-address=公网IP in-interface=拨号接口 dst-port=外部端口 log=no 
+      log-prefix=&quot;&quot; 
+
+ 0    ;;; portmap
+      chain=dstnat action=dst-nat to-addresses=内部IP to-ports=内部端口 protocol=tcp dst-address=公网IP in-interface=lan桥接接口 dst-port=外部端口 log=no 
+      log-prefix=&quot;&quot;  
+</code></pre>
+
+<p>这里两条的注释都为portmap，是为了方面后面脚本进行查找。第一条为外部进来的端口转发，第二条为局域网内部如果也使用ddns域名访问时的转发</p>
+
+<p>自动更新上面两条的公网IP部分，脚本如下，依然是加个定时任务。 这样就可以在pppoe重新拨号后，更新 dst-address的值了</p>
+
+<pre><code># 获取当前公网IP
+:global ddnsinterface 拨号接口
+:global ddnsip &quot;&quot;
+:set ddnsip [/ip address get [find interface=$ddnsinterface] address]
+:set ddnsip [:pick $ddnsip 0 [:find $ddnsip &quot;/&quot;]]
+# 这里偷懒就不进行if判断了，把nat里所有注释为portmap的都更新一下
+# 主要是还不知道如何批量进行if判断，(lll￢ω￢)
+/ip firewall nat set [find comment=&quot;portmap&quot;] dst-address=$ddnsip
+</code></pre>
+
+<h2>RouterOS内网回流</h2>
+
+<p>迫于局域网也想使用同一个域名访问特定的服务（比如不想加好几个书签之类的）</p>
+
+<pre><code>0    ;;; huiliu
+      chain=srcnat action=masquerade protocol=tcp src-address=10.10.0.0/24 out-interface=lan桥接接口 dst-port=内部端口 log=no log-prefix=&quot;&quot;
+</code></pre>
+
+<p>这一句的意思是，当10.10.0.0/24这个网段的设备要访问lan内部的服务时，进行伪装。假设 10.10.0.5:5001 是我们需要端口转发的服务，当使用 <a href="http://10.10.0.5:5001">http://10.10.0.5:5001</a> 访问时，是不会匹配到这条masquerade规则，因为局域网内使用ip访问时，并不会经过ROS，会直接被交换机转发给对应设备</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/ip%e8%bd%ac%e5%8f%91.html">ip转发</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/%e8%ae%b0%e5%bd%95%e7%ac%ac%e4%b8%80%e6%ac%a1%e8%a2%ab%e8%a3%81.html">记录第一次被裁</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

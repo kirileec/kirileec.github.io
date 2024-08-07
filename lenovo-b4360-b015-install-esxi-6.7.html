@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="lenovo B4360-B015 install ESXI 6.7">
+        <meta name="author" content="">
+        <title>lenovo B4360-B015 install ESXI 6.7</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">lenovo B4360-B015 install ESXI 6.7</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1658893443"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><h2>准备工作</h2>
+
+<ul>
+<li><p>检查主板上的网卡型号， 我这里是RTL8111F 和 RTL8169， 两个难搞的螃蟹网卡</p>
+
+<ul>
+<li>ESXi 7 不支持螃蟹网卡了，网上注入vib或者offline bundle的方式都不行了</li>
+<li>ESXi 6.7 也不能注入了，会提示依赖不满足， 原因是ESXi在某个版本开始就把一些依赖库去掉了</li>
+<li>ESXi 5版本估计可以， 不过肯定不甘心用这么旧的版本</li>
+<li>只能去网上找已经集成好驱动的iso，不太好找，两个卡都支持的就更难了（有些是别人自己编译进去的）</li>
+</ul></li>
+
+<li><p>BIOS开启虚拟化、UEFI</p></li>
+
+<li><p>准备一个PE，也就是最好有两个U盘，一个装ESXI一个PE</p></li>
+
+<li><p>rufus</p></li>
+</ul>
+
+<h2>开始</h2>
+
+<ul>
+<li>下载iso，直接用rufus写入即可，选择MBR， GPT没试过</li>
+<li>插上U盘启动， 如果驱动集成没问题， 则不会出现 No Network Adapter，一步步操作即可</li>
+<li>装完拔掉U盘重启，我这个主板会提示Error 1962，不知道是主板问题还是ESXI的版本就这样。原因是安装时没有创建UEFI的启动项</li>
+<li>插上PE，开机</li>
+<li>打开Bootice，切换到UEFI页签，进入编辑UEFI启动项页面</li>
+<li>会发现刚安装ESXI的那块硬盘只有个硬盘名字，还不能修改（保存是灰的）</li>
+<li>‼️重要：<strong>添加一个启动项</strong>， 名称填写 <code>Windows Boot Manager</code>, 路径选择硬盘下的ESP分区里的Bootx64.efi</li>
+<li>新的启动项上移到顶部</li>
+<li>重启，搞定</li>
+</ul>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/ubuntu-19.04-source.html">ubuntu 19.04 source</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/lenovo-h61-install-pve.html">lenovo b4360-B015 install pve</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

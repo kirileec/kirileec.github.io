@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="OPENWRT,">
+        <meta name="description" content="wr741nd openwrt 配置shadowsocks&#43;ipset&#43;dnsmasq">
+        <meta name="author" content="linx">
+        <title>wr741nd openwrt 配置shadowsocks&#43;ipset&#43;dnsmasq</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">wr741nd openwrt 配置shadowsocks&#43;ipset&#43;dnsmasq</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1426727520"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/OPENWRT/index.html">OPENWRT</a></span>
+                </section>
+                <article class="content"><p>由于之前路由器一直处于某种状态</p>
+
+<p>开机，看心情自动重启
+插入网线，看心情自动重启
+访问192.168.1.1的时候，回车一敲，看心情自动重启
+LUCI界面配置wifi，看心情自动重启
+随机找个时间，看心情自动重启</p>
+
+<p>PS：看心情的概率&gt;90%
+本来觉得是不是路由器硬件的缺陷，毕竟盖着 wr941nd V5 的壳子，但是又只能刷 wr741nd 的固件，不过经过昨天的试验，证明了其实是固件的问题。
+昨天刷了 openwrt 官方网站提供的<a href="http://downloads.openwrt.org/latest/ar71xx/generic/openwrt-ar71xx-generic-tl-wr741nd-v2-squashfs-sysupgrade.bin">下载地址</a>，然后发现，只要不在刚开机的时候连接上去，基本不会重启。
+关键运行过程中不会突然重启了，而且，不使用WEB访问就不会重启，于是ssh上去很爽，因此，就没有去使用各个软件的LUCI界面了
+以下是配置过程：</p>
+
+<ul>
+<li>替换<code>dnsmasq</code>为<code>dnsmasq-full</code>，<code>opkg update</code>很慢，应该可以把那几个<code>Package.7z</code>手动下载覆盖的，如果安装出现kernel不符的情况，加上<code>--force-depends</code>即可</li>
+</ul>
+
+<pre><code>opkg update
+opkg install kmod-ipt-ipset ipset ipset-dns iptables-mod-nat-extra
+opkg remove dnsmasq
+opkg install dnsmasq-full
+</code></pre>
+
+<ul>
+<li><code>/etc/dnsmasq.conf</code> 添加</li>
+</ul>
+
+<pre><code>no-resolv
+server=114.114.114.114
+conf-dir=/etc/dnsmasq.d
+</code></pre>
+
+<ul>
+<li><code>/etc/dnsmasq.d/gfw.conf</code> 规则</li>
+</ul>
+
+<pre><code>server=/.example.com/208.67.222.222#443
+ipset=/.example.com/gfw
+</code></pre>
+
+<ul>
+<li><code>/etc/firewall.user</code> 添加</li>
+</ul>
+
+<pre><code>ipset -N gfw iphash
+iptables -t nat -A PREROUTING -p tcp -m set --match-set gfw dst -j REDIRECT --to-port 1080
+</code></pre>
+
+<ul>
+<li><p><code>/etc/config/dhcp</code> 保持默认，主要是关掉 DNS请求转发和忽略解析文件这两个，因为配置文件已经有了</p></li>
+
+<li><p>安装shadowsocks，我装了个polarssl版本的，什么版本无所谓，反正我是<code>aes-256-cfb</code></p></li>
+
+<li><p><code>/etc/shadowsocks.json</code>,端口为<code>1081</code></p></li>
+</ul>
+
+<pre><code>{
+&quot;server&quot;:&quot;VPS IP&quot;,
+
+&quot;server_port&quot;: ,
+
+&quot;local_port&quot;:1081,
+
+&quot;password&quot;:&quot;PASSWORD&quot;,
+
+&quot;timeout&quot;:60,
+
+&quot;method&quot;:&quot;aes-256-cfb&quot;
+
+}
+</code></pre>
+
+<ul>
+<li>/etc/ss-redir.json,端口为1080</li>
+</ul>
+
+<pre><code>{
+
+&quot;server&quot;:&quot;VPS IP&quot;,
+
+&quot;server_port&quot;: ,
+
+&quot;local_port&quot;:1080,
+
+&quot;password&quot;:&quot;PASSWORD&quot;,
+
+&quot;timeout&quot;:60,
+
+&quot;method&quot;:&quot;aes-256-cfb&quot;
+
+}
+</code></pre>
+
+<ul>
+<li><code>/etc/init.d/shadowsocks</code> 添加</li>
+</ul>
+
+<pre><code>service_start /usr/bin/ss-redir -c /etc/ss-redir.json
+
+service_stop /usr/bin/ss-redir
+</code></pre>
+
+<p>不要删掉ss-local</p>
+
+<ul>
+<li><p><code>/etc/init.d/shadowsocks enable</code></p></li>
+
+<li><p>重启路由器</p></li>
+</ul>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/%e6%99%ae%e9%80%9a%20disco.html">普通 DISCO</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/strange-things-recently.html">最近发生的一些奇怪的事情</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

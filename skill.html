@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="x,y,">
+        <meta name="description" content="技能树">
+        <meta name="author" content="linx">
+        <title>技能树</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">技能树</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1495636647"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/x/index.html">x</a><a class="tag" href="/tag/y/index.html">y</a></span>
+                </section>
+                <article class="content"><ul>
+<li><p>易语言</p>
+
+<ul>
+<li>曾被其表格式的函数声明方式所吸引（才不是因为中文编程呢）</li>
+<li>当然如果这个世界上能出现一种真正不用切换的中文输入法的话那就美了</li>
+<li>不过现在基本不会写了</li>
+</ul></li>
+
+<li><p>Delphi</p>
+
+<ul>
+<li>虽然前途未知，资料匮乏</li>
+<li>Windows下依然最强，界面美观的代价必然是exe越来越大</li>
+<li>对各种硬件设备的二次开发最让人开心了</li>
+<li>没有多少语法糖，但每一个新特性都能让人兴奋</li>
+<li>DataSnap又爱又恨，特别是Indy控件</li>
+<li>还是经常掉入多线程的坑中无法自拔</li>
+<li>OminiThreadLibrary</li>
+<li>自制http库，封装RESTClient</li>
+<li>有文档就没有什么难的</li>
+<li>正在学习并使用 <a href="https://github.com/synopse/mORMot">mORMot</a>, Delphi上的高性能Rest服务不再是梦, 然而这个框架内容非常之多</li>
+<li>update:2019 我准备远离它了</li>
+</ul></li>
+
+<li><p>C# WPF Prism UnityContainer</p>
+
+<ul>
+<li>MVVM做界面，双向绑定，爽 (PS: 屁嘞, 搞那么多层干啥)</li>
+<li>AutoMapper</li>
+<li>AOP暂时还没有找到个让人感觉特爽的框架</li>
+<li>当然这货依赖环境比较恶心</li>
+<li>update:2019 .NET Core也不麻烦嘛</li>
+<li>update:2023 准备个好用的框架很重要, 哪里需要改, 一下就找到了. 搞什么接口啦实现啦, 烦</li>
+</ul></li>
+
+<li><p>golang</p>
+
+<ul>
+<li>使用beego开发WebAPI挺不错，不过有些东西还是需要自己封装一下</li>
+<li>虽说gc，但是有些东西还是要及时释放的，比如从连接池里拿出来的连接</li>
+<li>基于mongodb和RabbitMQ的中心服务器状态收集系统, 这里遇到的坑就是RabbitMQ上的消息没有设置有效时间, 导致消息堆积, 服务死掉</li>
+<li>把做的中心服务器删掉一些东西封装成了一个seed项目 (<a href="https://github.com/kirileec/beego-mgo-rabbitmq-jwt">https://github.com/kirileec/beego-mgo-rabbitmq-jwt</a>)</li>
+<li>后来发现gin这个框架更牛, 于是准备搞一个gin版的seed项目</li>
+<li>update:2019 好想有泛型功能啊, 2.0啥时候出啊</li>
+<li>update:2019 一个多月没碰, 语法都快忘了, 补上补上</li>
+<li>update:2023 泛型虽然出了, 但&hellip;&hellip;</li>
+<li>update:写api是真不爽, 啥都要自己写, 拼啊拼, 搁这拼图呢</li>
+</ul></li>
+
+<li><p>docker</p>
+
+<ul>
+<li>玩得贼拉溜(doge), 能找个封装完整的镜像得是多么美的一件事啊</li>
+<li>懒得敲命令, 人生苦短我用portainer</li>
+<li>docker-compose挺好, 但每次都忘了docker-compose.yaml的文件开头咋写, 里面有啥属性</li>
+</ul></li>
+
+<li><p>k8s</p>
+
+<ul>
+<li>也就玩玩kuboard之类的, yaml工程师? 那不可能的</li>
+<li>这玩意没有足够的资源玩不起来啊, 想像docker那样挂载个目录进去挺麻烦的, 都用configmap太傻了</li>
+</ul></li>
+
+<li><p>python</p>
+
+<ul>
+<li>也尝试过写个爬虫， 不过总是没跑几下就停了</li>
+</ul></li>
+
+<li><p>java</p>
+
+<ul>
+<li>对那些繁杂的配置望而却步</li>
+<li>该死的内存占用</li>
+<li>写过一段时间的crub</li>
+<li>看得懂代码, 也改得了, 安卓组件一顿魔改</li>
+<li>update: xml写界面yyds, 谁设计的用代码写界面</li>
+</ul></li>
+
+<li><p>ionic2</p>
+
+<ul>
+<li>一个调用go后端http服务的app</li>
+<li>花的最多的时间估计就在本地存储上面, 读取个值还要考虑是不是null是不是空, 又不会封装库::-_&lt;::</li>
+</ul></li>
+
+<li><p>linux</p>
+
+<ul>
+<li>最初被安利ubuntu，在ubuntu论坛上逛过一段时间，主要是各种问题想办法搜索解决</li>
+<li>目前还停留在出现问题，就从报错信息中提取关键字，然后Google之，搜不到我就不行了</li>
+<li>在gnome年代也玩过几次界面特效啥的，模拟MAC界面之类的</li>
+<li>由于目前还没有必须要在linux下进行开发，停滞不前中</li>
+<li>会简单的docker使用</li>
+<li>update:2019-12-31 尝试在老笔记本上装上了manjaro, 打算用linux当作主系统, 然而天不遂人愿, 笔记本挂了</li>
+<li>update:2023 额, 最近老喜欢玩虚拟机了</li>
+</ul></li>
+
+<li><p>Jenkins</p>
+
+<ul>
+<li>现有的项目是一个版本一个分支的, 而且是一个客户一个库</li>
+<li>完全从头开始搭建了一个Delphi的编译发布流程</li>
+<li>实现推送代码就可以得到对应版本的程序, 并发布到更新服务器, 最后通过钉钉的消息通知告知构建结果</li>
+<li>这完全改变了之前的安装包的发布流程</li>
+</ul></li>
+
+<li><p>vim</p>
+
+<ul>
+<li>改配置用</li>
+<li>update: 这玩意不用它编程或码字, 根本不需要学那么多命令</li>
+</ul></li>
+
+<li><p>android 开发</p>
+
+<ul>
+<li>目前正在进行, 从零开始用kotlin构建完整的校徽app, 目前已完成第一期的需求</li>
+<li>update: 你以为难的是写代码, 其实难的是上架</li>
+</ul></li>
+</ul>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/osx-app.html">精品APP(MAC OS X)</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/software-windows.html">精品软件(Windows)</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

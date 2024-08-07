@@ -1,0 +1,76 @@
+/*!
+  Highlight.js v11.8.0 (git: 65687a907b)
+  (c) 2006-2023 undefined and other contributors
+  License: BSD-3-Clause
+ */
+
+/*!
+ * jQuery JavaScript Library v3.7.0
+ * https://jquery.com/
+ *
+ * Copyright OpenJS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2023-05-11T18:29Z
+ */
+
+/*! `bash` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `cpp` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `csharp` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `css` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `dart` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `delphi` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `dockerfile` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `dos` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `go` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `http` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `ini` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `java` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `javascript` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `json` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `kotlin` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `makefile` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `markdown` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `nginx` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `properties` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `protobuf` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `routeros` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `rust` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `scss` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `shell` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `sql` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `thrift` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `typescript` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `vim` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `xml` grammar compiled for Highlight.js 11.8.0 */
+
+/*! `yaml` grammar compiled for Highlight.js 11.8.0 */

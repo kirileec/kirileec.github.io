@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="PVE升级后无法直通网卡的问题">
+        <meta name="author" content="">
+        <title>PVE升级后无法直通网卡的问题</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">PVE升级后无法直通网卡的问题</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1698072388"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><h2>源起</h2>
+
+<p>源于某个周日下午(2023-10-22), 看着最近一段时间逐步完善的软路由网络架构. 已经可以比较完美地满足现有的网络需求</p>
+
+<ul>
+<li>国内外流量分流</li>
+<li>端口映射</li>
+<li>P2P组网</li>
+<li>媒体硬解</li>
+</ul>
+
+<p>内心膨胀了, 开始想要把基础设施(PVE)升级到最新版本了. 甚至我完全没有去看更新日志, 脑子一热, 找了个流程就开始了升级.</p>
+
+<p>升级过程一切顺利, 正常看到了版本号变更. 噩耗就发生在第一次重启之后. 发现我的ROS无法启动</p>
+
+<h2>源途</h2>
+
+<p>在日志中看到了简单的<code>got timeout</code>, 由于其他虚拟机正常运行, 于是将目标投向了这些虚拟机不同的地方&mdash;直通网卡.</p>
+
+<p>除了PVE的管理口, 是通过挂载进去的, 其余三个网口都是通过PCI直通的方式进入到ROS中. 在经过多次删减后, 发现<code>0000:05:00:0</code> 也就是最后一个网口, 只要去掉这个网口即可正常开机. 本来这个网口也被我拿来当作2.5G LAN的用途, 为了暂时先解决没网的问题, 只好先将这个网口先空余出来, 其他设备先接入到交换机中.</p>
+
+<p>第二天, 本着试试的心态, 把这个网口直通到了一个win10的虚拟机, 依然启动不了. 这时想到了之前手动直通时接触到的一个命令 <code>dmesg</code>. 找到了一个可能的错误</p>
+
+<pre><code>Unable to change power state from D3cold to D0, device inaccessible
+</code></pre>
+
+<p>并且这一句前面刚好就是 <code>0000:05:00:0</code></p>
+
+<h2>源灭</h2>
+
+<p>根据关键词搜索, 最终找到了 <code>pcie_port_pm=off</code> 将此参数加入到 pve的 <code>/etc/default/grub</code> =&gt; <code>GRUB_CMDLINE_LINUX_DEFAULT=</code> 然后<code>update-grub</code>. 重启后再次将最后一个网口直通到win10虚拟机, 正常使用. 然后又胆大包天, 直接给怼到ROS里(这时候人还不在家), 战战兢兢地点击重启按钮, 手那个抖的啊&hellip;</p>
+
+<h2>源因</h2>
+
+<p>pve8使用了6.2.x的内核, 这个版本内核对于Intel I225网卡有bug, 主要就是在切换设备电源状态的时候失败了, 导致vfio模块无法正常加载所有网卡. 增加上面的参数就是关闭pcie端口的电源管理功能, 跳过这一步骤. 由于网卡也没有休眠之类的, 插着么总是会用的, 因此对于功耗的影响不大.</p>
+
+<p>改天还是想办法把版本退回去好了, 对于新版本没有什么追求, 还是稳定最好.</p>
+
+<p>教训: 升级!!! 升个鬼的级!!!</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/docker%20emby%20crack.html">docker emby crack</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/ros.html">ros pppoe不能获得公网IP</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

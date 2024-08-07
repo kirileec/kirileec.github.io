@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="记录一次局域网不能互访的问题">
+        <meta name="author" content="">
+        <title>记录一次局域网不能互访的问题</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">记录一次局域网不能互访的问题</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1696520294"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><h2>环境说明</h2>
+
+<ul>
+<li>10.10.0.1 openwrt 主路由器</li>
+<li>10.10.0.2 黑裙NAS</li>
+<li>10.10.0.200 一台ubuntu自组机器</li>
+<li>10.10.0.4 另一个路由器, 关闭DHCP</li>
+</ul>
+
+<p>主路由下接一个5口交换机, 上面两个机器均接在LAN口和交换机上. .4则为LAN口接到交换机上</p>
+
+<h2>现象描述</h2>
+
+<ul>
+<li>.1 &lt;-&gt; .2 之间不能互相ping</li>
+<li>.2 和 .200 .4 均可以互相ping</li>
+<li>.2的网关修改为.4, 则正常</li>
+<li>除了.2 其他均正常</li>
+<li>.2 网关为.1时, 外网都不能访问</li>
+</ul>
+
+<h2>检查流程</h2>
+
+<ul>
+<li>.2 修改网关后就正常. 说明.2内部的路由无问题. 排除NAS自己设置的问题</li>
+<li>.1下其它局域网机器均正常, .1上应该也没有什么问题</li>
+<li>由于.4关闭了DHCP, 应该也不是DHCP广播的问题</li>
+</ul>
+
+<h2>解决</h2>
+
+<p>由于.2是一台黑群, 最近更换了序列号, 同时也修改了网卡MAC地址. 本来这样是没问题的, 但是我之前手贱, 在NAS中已经配置为静态IP的情况下, 在 .1上进行了IP/MAC地址绑定. 从而, 对于.1来说, 局域网中 10.10.0.2这个IP对应了多个mac地址. .1作为交换机的时候, 发现有多个mac地址, 无法确定流量应该向哪个设备发送.</p>
+
+<ul>
+<li>.1 -ping-&gt; .2 无法确定往哪儿发</li>
+<li>.2 -ping-&gt; .1 .1收到后无法确定数据包往哪里回复</li>
+</ul>
+
+<p>删除IP/MAC绑定记录即可解决</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/ros.html">ros pppoe不能获得公网IP</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91%e5%88%b0%e5%8f%a6%e5%a4%96%e7%9a%84%e5%b1%80%e5%9f%9f%e7%bd%91.html">端口转发到另外的局域网</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

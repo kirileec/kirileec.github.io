@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="delphi,">
+        <meta name="description" content="OmniThreadLibrary 匿名事件监视">
+        <meta name="author" content="linx">
+        <title>OmniThreadLibrary 匿名事件监视</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">OmniThreadLibrary 匿名事件监视</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1447575960"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/delphi/index.html">delphi</a></span>
+                </section>
+                <article class="content"><pre><code class="language-pascal">    FAnonTask := CreateTask(
+        procedure (const task: IOmniTask) begin
+          task.Comm.Send(0, Format('Hello, world! Reporting from thread %d',
+            [GetCurrentThreadID]));
+        end,
+        'HelloWorld')
+      .OnMessage(
+        procedure(const task: IOmniTaskControl; const msg: TOmniMessage) begin
+          lbLog.ItemIndex := lbLog.Items.Add(Format('%d:[%d/%s] %d|%s',
+            [GetCurrentThreadID, task.UniqueID, task.Name, msg.msgID,
+             msg.msgData.AsString]));
+        end)
+      .OnTerminated(
+        procedure(const task: IOmniTaskControl) begin
+          lbLog.ItemIndex := lbLog.Items.Add(Format('[%d/%s] Terminated',
+            [task.UniqueID, task.Name]));
+          btnHello.Enabled := true;
+          FAnonTask := nil;
+        end)
+      .Run;
+</code></pre>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/frxpreview%20%e9%a2%84%e8%a7%88%e4%b8%ad%e7%9a%84%e7%8a%b6%e6%80%81%e5%88%a4%e6%96%ad.html">frxpreview 预览中的状态判断</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/omnithreadlibrary%20%e4%bc%a0%e9%80%92%e6%95%b0%e6%8d%ae.html">OmniThreadLibrary 传递数据</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

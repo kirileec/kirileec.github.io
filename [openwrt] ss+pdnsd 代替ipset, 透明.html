@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="OPENWRT,">
+        <meta name="description" content="[Openwrt] ss&#43;pdnsd 代替ipset, 透明">
+        <meta name="author" content="linx">
+        <title>[Openwrt] ss&#43;pdnsd 代替ipset, 透明</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">[Openwrt] ss&#43;pdnsd 代替ipset, 透明</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/images/photo.jpg);"></span>
+                    <a class="name" href="/about.me.html">linx</a>
+                    
+                    <span class="date" data-time="1443850877"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/OPENWRT/index.html">OPENWRT</a></span>
+                </section>
+                <article class="content"><p>之前用 <code>pdnsd</code> 突然之间就觉得不好用了，那时候还完全不熟悉这个家伙，前几天买了个带USB的wr841n，
+再次折腾的时候，由于折腾半天没搞定 <code>dnsmasq+ipset</code> 的配置，搞到最后还上不了网了，然后偶然就发现 <code>pdnsd</code> 比<code>ipset</code>要方便</p>
+
+<p>配置过程：
+先PS一下：我需要的自动穿越应该是这样的，可以手动添加域名（而不是ip，因此排除ChinaDNS），我自己发现相应的域名之后，自己添加，不需要那么智能，因为我看的网站也不多么</p>
+
+<ol>
+<li><p>惯例先给 openwrt 上网，使用桥接，<code>搜索网络</code>，然后 <code>加入网络</code> , 然后关键的一步 <code>重置无线配置</code> 把这个勾去掉，不去掉的话，确认完原来的无线就没有了，要重新添加。我刷的明月的固件，因此开始就已经有无线（基于lan接口），没必要再添加一次，特别是如果无线连接到路由器那就绝对不能勾选了（因为桥接的时候肯定要把路由放在<code>奇怪</code>的位置）。如果无线不能上网，有线可以上网
+请检查，无线对应的接口配置的网络那里是不是勾选了lan</p></li>
+
+<li><p>Shadowsocks</p>
+
+<ul>
+<li>启动前等待改为1或0，因为我不多拨</li>
+<li>代理方式为忽略列表，这样启动完成后就可以看是不是成功了</li>
+<li>UDP转发关掉</li>
+<li>点一次 <code>保存&amp;应用</code>就可以了，点一次 <code>保存&amp;应用</code>就可以了，点一次 <code>保存&amp;应用</code>就可以了重要的事说三遍，然而我点了好多次&hellip;.</li>
+</ul></li>
+
+<li><p>pdnsd</p>
+
+<ul>
+<li>排除国内DNS解析 这个行最前面加#</li>
+<li>上级 dns 的 ip 地址自己选，支持自定义端口，本来想用我自己的，后来发现 208.67.220.220 ，速度其实还行，我之前一直觉得opendns挺慢的</li>
+<li>gfw配置文件里 server=/域名/127.0.0.1#1053这样的格式添加即可，不需要配置iptables，方便多了</li>
+<li>保存应用</li>
+</ul></li>
+
+<li><p>DNS转发设置为 127.0.0.1#1053，OK搞定</p></li>
+</ol>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/images/photo.jpg);"></div>
+                    <a class="name" href="/about.me.html">linx</a>
+                    <div class="intro">记录我自己的各种解决方案</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/delphi%20%20olevariant%20%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%88%a4%e6%96%ad.html">Delphi  OleVariant 类型的判断</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/%ef%bd%a2%e9%a2%84%e5%91%8a%ef%bd%a3%20%e5%b8%a6usb%e7%9a%84openwrt&#43;%e5%a4%9a%e4%b8%aawifi%e7%bd%91%e9%80%9f%e5%8f%a0%e5%8a%a0.html">｢预告｣ 带USB的openwrt&#43;多个WiFi网速叠加</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>
