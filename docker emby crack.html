@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linx&#39;s Solution">
+<meta name="twitter:description" content="记录解决方案">
+<meta name="twitter:image:src" content="http://linx.run/images/photo.jpg">
+
+<meta property="og:url" content="http://linx.run">
+<meta property="og:title" content="Linx&#39;s Solution">
+<meta property="og:description" content="记录解决方案">
+<meta property="og:site_name" content="Linx&#39;s Solution">
+<meta property="og:image" content="http://linx.run/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="Linx&#39;s Solution">
+<meta itemprop="description" content="记录解决方案">
+<meta itemprop="image" content="http://linx.run/images/photo.jpg">
+
+<link rel="canonical" href="http://linx.run">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-itouch-icon" href="/favicon.ico">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+
+        <meta name="keywords" content="">
+        <meta name="description" content="docker emby crack">
+        <meta name="author" content="">
+        <title>docker emby crack</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/images/photo.jpg" />
+    Linx&#39;s Solution
+  </a>
+
+ 
+  <ul class="menu">
+      <li class="menu-item"><a href="/tools.html">工具</a></li>
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+      <li class="menu-item"><a href="/friends.html">友链</a></li>
+      <li class="menu-item"><a href="/about.html">关于</a></li>
+
+  </ul>
+
+</header>
+
+            <article class="main article">
+                <h1 class="title">docker emby crack</h1>
+                <section class="info">
+                    
+                    
+                    
+                    <span class="date" data-time="1703950627"><span class="from"></span></span>
+                    
+                    <span class="tags"></span>
+                </section>
+                <article class="content"><h1>docker emby</h1>
+
+<h2>前言</h2>
+
+<p>由于xinjiawei1/emby_unlockd这个镜像里面的 mb6.top地址虽然能访问，但是对应接口已经无法访问，也不知道什么问题，作者也没有说明什么。 于是来动点手脚，自建一套服务器</p>
+
+<h2>准备一个Cloudflare Workers</h2>
+
+<p><a href="https://workers.cloudflare.com/">https://workers.cloudflare.com/</a> 登录后即可开始创建</p>
+
+<p>index.js代码如下，其他文件可以删除 welcome.html留下</p>
+
+<pre><code>
+import welcome from &quot;welcome.html&quot;;
+/**
+ * @typedef {Object} Env
+ */
+
+export default {
+	/**
+	 * @param {Request} request
+	 * @param {Env} env
+	 * @param {ExecutionContext} ctx
+	 * @returns {Promise&lt;Response&gt;}
+	 */
+	async fetch(request, env, ctx) {
+		const url = new URL(request.url);
+		console.log(`Hello ${navigator.userAgent} at path ${url.pathname}!`);
+
+		if (url.pathname === &quot;/admin/service/registration/validateDevice&quot;) {
+			const files = '{&quot;cacheExpirationDays&quot;: 365,&quot;message&quot;: &quot;Device Valid&quot;,&quot;resultCode&quot;: &quot;GOOD&quot;}';
+			return new Response(files, {
+				headers: {
+				&quot;content-type&quot;: &quot;application/json; charset=utf-8&quot;,
+				&quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Headers&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Method&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Credentials&quot;: &quot;true&quot;,
+				},
+			});
+		} else if (url.pathname === &quot;/admin/service/registration/getStatus&quot;) {
+			const files = '{&quot;deviceStatus&quot;:&quot;0&quot;,&quot;planType&quot;:&quot;Lifetime&quot;,&quot;subscriptions&quot;:{}}';
+			return new Response(files, {
+				headers: {
+				&quot;content-type&quot;: &quot;application/json; charset=utf-8&quot;,
+				&quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Headers&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Method&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Credentials&quot;: &quot;true&quot;,
+				},
+			});
+		} else if (url.pathname === &quot;/admin/service/registration/validate&quot;) {
+			const files = '{&quot;featId&quot;:&quot;&quot;,&quot;registered&quot;:true,&quot;expDate&quot;:&quot;2099-01-01&quot;,&quot;key&quot;:&quot;&quot;}';
+			return new Response(files, {
+				headers: {
+				&quot;content-type&quot;: &quot;application/json; charset=utf-8&quot;,
+				&quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;,
+			
+				&quot;Access-Control-Allow-Headers&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Method&quot;: &quot;*&quot;,
+				&quot;Access-Control-Allow-Credentials&quot;: &quot;true&quot;,
+				},
+			});
+		}
+		return new Response(welcome, {
+			headers: {
+				&quot;content-type&quot;: &quot;text/html&quot;,
+			},
+		});
+	},
+};
+
+</code></pre>
+
+<p>Deploy之后， 获取到一个地址， 记下来</p>
+
+<p>后面会用到这三个地址</p>
+
+<p><a href="https://xxxx.xxx.workers.dev/admin/service/registration/validate">https://xxxx.xxx.workers.dev/admin/service/registration/validate</a>
+<a href="https://xxxx.xxx.workers.dev/admin/service/registration/getStatus">https://xxxx.xxx.workers.dev/admin/service/registration/getStatus</a>
+<a href="https://xxxx.xxx.workers.dev/admin/service/registration/validateDevice">https://xxxx.xxx.workers.dev/admin/service/registration/validateDevice</a></p>
+
+<p>PS：下文中替换的时候， 要注意， 原地址是带<code>.php</code> 后缀的， 记得去掉</p>
+
+<h2>运行一个已处理的镜像</h2>
+
+<p><code>xinjiawei1/emby_unlockd</code></p>
+
+<p>PUID和PGID 可以这样获取 <code>id 当前用户名</code>， root用户的话就是 0</p>
+
+<pre><code>version: &quot;3.7&quot;
+services: 
+  emby:
+    image: xinjiawei1/emby_unlockd:latest
+    container_name: emby
+    ports:
+      - 8096:8096
+      - 8920:8920
+      - 1900:1900/udp
+      - 7359:7359/udp
+    environment:
+      - PUID=0
+      - PGID=0
+    restart: always
+    volumes:
+      - /mnt/pt:/volume1/pt
+      - /root/emby/config:/config
+    devices:
+      - /dev/dri:dev/dri
+
+</code></pre>
+
+<p>记录下镜像ID IMAGEID</p>
+
+<h2>拷贝出特定文件</h2>
+
+<pre><code>docker cp {IMAGEID}:/system/Emby.Web.dll ./Emby.Web.dll
+docker cp {IMAGEID}:/system/MediaBrowser.Model.dll ./MediaBrowser.Model.dll
+docker cp {IMAGEID}:/system/dashboard-ui/modules/emby-apiclient/connectionmanager.js ./connectionmanager.js
+docker cp {IMAGEID}:/system/dashboard-ui/embypremiere/embypremiere.js ./embypremiere.js
+docker cp {IMAGEID}:/system/Emby.Server.Implementations.dll ./Emby.Server.Implementations.dll
+</code></pre>
+
+<p>然后把这几个文件拷贝到本地电脑</p>
+
+<h2>在windows下用VSCode和dnSpy进行处理</h2>
+
+<h3>Emby.Web.dll</h3>
+
+<p>找到资源 <code>Emby.Web.dashboard_ui.modules.emby_apiclient.connectionmanager.js</code>, 右键保存到本地， 搜索mb6.top，对应替换前缀为上面的地址</p>
+
+<p>然后把原来的js删掉， 创建文件资源， 选择改好的js文件</p>
+
+<h3>MediaBrowser.Model.dll</h3>
+
+<p>因为上面的镜像已经改过了， 这个文件暂时不需要动</p>
+
+<h3>Emby.Server.Implementations.dll</h3>
+
+<p>Emby.Server.Implementations.Security下的PluginSecurityManager。 找到 MBValidateUrl， 右键编辑字段，替换为上面的地址</p>
+
+<h3>connectionmanager.js</h3>
+
+<p>同 Emby.Web.dll 里面的那个文件一样的处理方式</p>
+
+<h3>embypremiere.js</h3>
+
+<p>同上，找到地址替换即可</p>
+
+<h2>替换回去</h2>
+
+<p>我是用Winscp先覆盖已处理的文件， 然后执行</p>
+
+<pre><code>docker cp ./Emby.Web.dll {IMAGEID}:/system/Emby.Web.dll 
+docker cp ./MediaBrowser.Model.dll {IMAGEID}:/system/MediaBrowser.Model.dll 
+docker cp ./Emby.Server.Implementations.dll {IMAGEID}:/system/Emby.Server.Implementations.dll 
+docker cp ./connectionmanager.js {IMAGEID}:/system/dashboard-ui/modules/emby-apiclient/connectionmanager.js 
+docker cp ./embypremiere.js {IMAGEID}:/system/dashboard-ui/embypremiere/embypremiere.js 
+</code></pre>
+
+<p>这样这个镜像就可以用，可以docker compose restart一下</p>
+
+<p>或者也可以把当前镜像打包成一个新的， 防止下次手贱给更新了</p>
+
+<pre><code>docker commit emby emby_new:latest
+</code></pre>
+
+<p>然后把docker-compose文件里换一下</p>
+
+<p>PS: 这里的emby是我docker compose文件里指定的容器名</p>
+</article>
+                <section class="author">
+                    
+                    <a class="name" href="/about..html"></a>
+                    <div class="intro"></div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">◀ 上一篇</div>
+                        <a class="link" href="/%e5%85%b3%e4%ba%8e%e6%99%9a%e9%9c%9e.html">关于晚霞</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下一篇 ▶</div>
+                        <a class="link" href="/pve%e5%8d%87%e7%ba%a7%e5%90%8e%e6%97%a0%e6%b3%95%e7%9b%b4%e9%80%9a%e7%bd%91%e5%8d%a1%e7%9a%84%e9%97%ae%e9%a2%98.html">PVE升级后无法直通网卡的问题</a>
+                    </section>
+                    
+                </section>
+                
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        Linx&#39;s Solution ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+
+    <span class="publish">Powered by <a href="https://linx.run" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+        <div id="go_top" style="position:fixed; LEFT:85%; bottom:50px" >
+            <svg width="50" height="50" viewBox="0 0 878 1024">
+                <path fill="#8a8a8a" d="M733.714 511.429c0-9.714-3.429-18.857-10.286-25.714l-258.857-258.857c-6.857-6.857-16-10.286-25.714-10.286s-18.857 3.429-25.714 10.286l-258.857 258.857c-6.857 6.857-10.286 16-10.286 25.714s3.429 18.857 10.286 25.714l52 52c6.857 6.857 16 10.286 25.714 10.286s18.857-3.429 25.714-10.286l108-108v286.857c0 20 16.571 36.571 36.571 36.571h73.143c20 0 36.571-16.571 36.571-36.571v-286.857l108 108c6.857 6.857 16 10.857 25.714 10.857s18.857-4 25.714-10.857l52-52c6.857-6.857 10.286-16 10.286-25.714zM877.714 512c0 242.286-196.571 438.857-438.857 438.857s-438.857-196.571-438.857-438.857 196.571-438.857 438.857-438.857 438.857 196.571 438.857 438.857z"></path>
+            </svg>
+        </div>
+    </body>
+</html>

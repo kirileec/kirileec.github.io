@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2023-10-23T15:20:41Z</updated>
+  <updated>2024-08-07T20:42:20+08:00</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
     <name>Linx&#39;s Solution</name>
   </author>
   <entry>
+    <title>内网docker使用traefik作为网关</title>
+    <updated>2024-08-07T18:36:54+08:00</updated>
+    <id>tag:linx.run,2024-08-07:/内网docker使用traefik作为网关.html</id>
+    <link href="http://linx.run/内网docker使用traefik作为网关.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>ip转发</title>
+    <updated>2024-05-19T22:26:40+08:00</updated>
+    <id>tag:linx.run,2024-05-19:/ip转发.html</id>
+    <link href="http://linx.run/ip转发.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>ros ddns portmap</title>
+    <updated>2024-05-19T21:36:17+08:00</updated>
+    <id>tag:linx.run,2024-05-19:/ros ddns portmap.html</id>
+    <link href="http://linx.run/ros ddns portmap.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>记录第一次被裁</title>
+    <updated>2024-01-18T23:28:36+08:00</updated>
+    <id>tag:linx.run,2024-01-18:/记录第一次被裁.html</id>
+    <link href="http://linx.run/记录第一次被裁.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>关于晚霞</title>
+    <updated>2024-01-17T22:46:19+08:00</updated>
+    <id>tag:linx.run,2024-01-17:/关于晚霞.html</id>
+    <link href="http://linx.run/关于晚霞.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
+    <title>docker emby crack</title>
+    <updated>2023-12-30T23:37:07+08:00</updated>
+    <id>tag:linx.run,2023-12-30:/docker emby crack.html</id>
+    <link href="http://linx.run/docker emby crack.html" rel="alternate"></link>
+    <summary type="html"></summary>
+  </entry>
+  <entry>
     <title>PVE升级后无法直通网卡的问题</title>
-    <updated>2023-10-23T22:46:28Z</updated>
+    <updated>2023-10-23T22:46:28+08:00</updated>
     <id>tag:linx.run,2023-10-23:/pve升级后无法直通网卡的问题.html</id>
     <link href="http://linx.run/pve升级后无法直通网卡的问题.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>ros pppoe不能获得公网IP</title>
-    <updated>2023-10-16T15:25:15Z</updated>
+    <updated>2023-10-16T15:25:15+08:00</updated>
     <id>tag:linx.run,2023-10-16:/ros.html</id>
     <link href="http://linx.run/ros.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>记录一次局域网不能互访的问题</title>
-    <updated>2023-10-05T23:38:14Z</updated>
+    <updated>2023-10-05T23:38:14+08:00</updated>
     <id>tag:linx.run,2023-10-05:/记录一次局域网不能互访的问题.html</id>
     <link href="http://linx.run/记录一次局域网不能互访的问题.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
   <entry>
     <title>端口转发到另外的局域网</title>
-    <updated>2023-09-30T01:18:31Z</updated>
+    <updated>2023-09-30T01:18:31+08:00</updated>
     <id>tag:linx.run,2023-09-30:/端口转发到另外的局域网.html</id>
     <link href="http://linx.run/端口转发到另外的局域网.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>群晖相关调整</title>
-    <updated>2023-09-11T16:18:14Z</updated>
-    <id>tag:linx.run,2023-09-11:/群晖相关调整.html</id>
-    <link href="http://linx.run/群晖相关调整.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>oracle密码过期后的处理</title>
-    <updated>2023-08-16T09:32:44Z</updated>
-    <id>tag:linx.run,2023-08-16:/oracle.html</id>
-    <link href="http://linx.run/oracle.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>pve虚拟机启用xterm.js</title>
-    <updated>2023-08-10T11:39:25Z</updated>
-    <id>tag:linx.run,2023-08-10:/pve虚拟机启用xterm.js.html</id>
-    <link href="http://linx.run/pve虚拟机启用xterm.js.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>linux虚拟机硬盘扩容</title>
-    <updated>2023-08-09T10:19:02Z</updated>
-    <id>tag:linx.run,2023-08-09:/linux虚拟机硬盘扩容.html</id>
-    <link href="http://linx.run/linux虚拟机硬盘扩容.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>桥接后使用光猫的WIFI</title>
-    <updated>2023-07-24T10:55:15Z</updated>
-    <id>tag:linx.run,2023-07-24:/桥接后使用光猫的wifi.html</id>
-    <link href="http://linx.run/桥接后使用光猫的wifi.html" rel="alternate"></link>
-    <summary type="html"></summary>
-  </entry>
-  <entry>
-    <title>使用wireguard进行组网</title>
-    <updated>2023-07-20T09:31:20Z</updated>
-    <id>tag:linx.run,2023-07-20:/使用wireguard进行组网.html</id>
-    <link href="http://linx.run/使用wireguard进行组网.html" rel="alternate"></link>
     <summary type="html"></summary>
   </entry>
 </feed>
