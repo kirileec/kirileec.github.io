@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>Linx&#39;s Solution</title>
   <id>http://linx.run</id>
-  <updated>2024-08-07T20:49:16+08:00</updated>
+  <updated>2024-08-12T04:47:43Z</updated>
   <subtitle>记录解决方案</subtitle>
   <link href="http://linx.run"></link>
   <author>
@@ -9,72 +9,62 @@
   </author>
   <entry>
     <title>内网docker使用traefik作为网关</title>
-    <updated>2024-08-07T18:36:54+08:00</updated>
+    <updated>2024-08-07T18:36:54Z</updated>
     <id>tag:linx.run,2024-08-07:/内网docker使用traefik作为网关.html</id>
     <link href="http://linx.run/内网docker使用traefik作为网关.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>ip转发</title>
-    <updated>2024-05-19T22:26:40+08:00</updated>
+    <updated>2024-05-19T22:26:40Z</updated>
     <id>tag:linx.run,2024-05-19:/ip转发.html</id>
     <link href="http://linx.run/ip转发.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>ros ddns portmap</title>
-    <updated>2024-05-19T21:36:17+08:00</updated>
+    <updated>2024-05-19T21:36:17Z</updated>
     <id>tag:linx.run,2024-05-19:/ros ddns portmap.html</id>
     <link href="http://linx.run/ros ddns portmap.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>记录第一次被裁</title>
-    <updated>2024-01-18T23:28:36+08:00</updated>
+    <updated>2024-01-18T23:28:36Z</updated>
     <id>tag:linx.run,2024-01-18:/记录第一次被裁.html</id>
     <link href="http://linx.run/记录第一次被裁.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>关于晚霞</title>
-    <updated>2024-01-17T22:46:19+08:00</updated>
+    <updated>2024-01-17T22:46:19Z</updated>
     <id>tag:linx.run,2024-01-17:/关于晚霞.html</id>
     <link href="http://linx.run/关于晚霞.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>docker emby crack</title>
-    <updated>2023-12-30T23:37:07+08:00</updated>
+    <updated>2023-12-30T23:37:07Z</updated>
     <id>tag:linx.run,2023-12-30:/docker emby crack.html</id>
     <link href="http://linx.run/docker emby crack.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>PVE升级后无法直通网卡的问题</title>
-    <updated>2023-10-23T22:46:28+08:00</updated>
+    <updated>2023-10-23T22:46:28Z</updated>
     <id>tag:linx.run,2023-10-23:/pve升级后无法直通网卡的问题.html</id>
     <link href="http://linx.run/pve升级后无法直通网卡的问题.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>ros pppoe不能获得公网IP</title>
-    <updated>2023-10-16T15:25:15+08:00</updated>
+    <updated>2023-10-16T15:25:15Z</updated>
     <id>tag:linx.run,2023-10-16:/ros.html</id>
     <link href="http://linx.run/ros.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>记录一次局域网不能互访的问题</title>
-    <updated>2023-10-05T23:38:14+08:00</updated>
+    <updated>2023-10-05T23:38:14Z</updated>
     <id>tag:linx.run,2023-10-05:/记录一次局域网不能互访的问题.html</id>
     <link href="http://linx.run/记录一次局域网不能互访的问题.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
   <entry>
     <title>端口转发到另外的局域网</title>
-    <updated>2023-09-30T01:18:31+08:00</updated>
+    <updated>2023-09-30T01:18:31Z</updated>
     <id>tag:linx.run,2023-09-30:/端口转发到另外的局域网.html</id>
     <link href="http://linx.run/端口转发到另外的局域网.html" rel="alternate"></link>
-    <summary type="html"></summary>
   </entry>
 </feed>
